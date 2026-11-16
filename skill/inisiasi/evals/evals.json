@@ -1,0 +1,106 @@
+{
+  "skill_name": "inisiasi",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "ok fuu repo is ready, PLAN.md has the goals (personal macOS folder locker: menubar + required Finder extension, hdiutil AES-256, Touch ID or password fallback, macOS 15, lock any user-selected folder; no auto-lock, app locking, or distribution in v1). run inisiasi",
+      "expected_output": "Folds the owner's answers into PLAN's two open questions instead of stopping to ask them again, states how each was settled, then proposes Swift 6 + SwiftUI MenuBarExtra + Finder Sync with hdiutil AES-256, Keychain and LocalAuthentication, lists Swift skills with install commands, names the riskiest assumption and a spike, and stops for go. Does not write ARCHITECTURE.md or TASKS.md.",
+      "files": [],
+      "assertions": [
+        "Does not write docs/ARCHITECTURE.md or docs/TASKS.md before go",
+        "Folds open questions into docs/PLAN.md instead of asking again",
+        "Proposes a stack and skills with install commands",
+        "Names the riskiest assumption and a spike",
+        "Stops and waits for go",
+        "No em dash"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "new project, empty repo, i want a small web app to track my motorbike service history. what stack should i use and which agent skills do i need?",
+      "expected_output": "Asks at most 5 short questions because PLAN.md is empty, writes PLAN.md, then stops and waits. Does not pick a final stack or write ARCHITECTURE.md and TASKS.md yet.",
+      "files": [],
+      "assertions": [
+        "Asks at most 5 questions",
+        "Writes docs/PLAN.md",
+        "Does not write ARCHITECTURE.md or TASKS.md",
+        "Stops and waits",
+        "No em dash"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "bootstrap this project but the inisiasi mcp isn't connected in this harness",
+      "expected_output": "Falls back to the inisiasi CLI resolved from the skill real path, follows the same confirmation gates, and names the fallback. Does not write ARCHITECTURE.md or TASKS.md before go.",
+      "files": [],
+      "assertions": [
+        "Uses the CLI fallback and names it",
+        "Runs the plan gate first",
+        "Does not write ARCHITECTURE.md or TASKS.md before go",
+        "No em dash"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "inisiasi is done, docs/ARCHITECTURE.md has a full Stack section with choices. run it again to redraw the architecture from scratch",
+      "expected_output": "Recognises that ARCHITECTURE.md already holds a real stack, stops, says so, and asks whether the owner wants a re-plan instead of rewriting the file.",
+      "files": [],
+      "assertions": [
+        "Detects an existing Stack section",
+        "Does not rewrite ARCHITECTURE.md",
+        "Offers a re-plan, asks first",
+        "No em dash"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "for our file sync service let's use MinIO for object storage and CodePush for the mobile OTA updates, wire them into the architecture",
+      "expected_output": "Refuses both: MinIO because the repo is archived, CodePush because it is retired. Offers the maintained alternatives from the SoT (S3/R2/Garage/SeaweedFS and EAS Update) and explains the reason in one line each.",
+      "files": [],
+      "assertions": [
+        "Refuses MinIO and says why",
+        "Refuses CodePush and says why",
+        "Offers maintained alternatives",
+        "Does not wire either into a document",
+        "No em dash"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "ok go, write the docs",
+      "expected_output": "Backs up existing documents first, writes ARCHITECTURE.md with the required sections, TASKS.md with 5 to 12 tasks led by the risk spike and a verify check each, adds an AGENTS_WORKLOG.md entry, leaves docs/DESIGN.md untouched, runs validate_docs, and reports the stack in one line plus the install commands and first 3 tasks.",
+      "files": [],
+      "assertions": [
+        "Backs up existing docs first",
+        "Writes ARCHITECTURE.md with required sections",
+        "Writes TASKS.md with 5 to 12 tasks, spike first, verify each",
+        "Adds an AGENTS_WORKLOG.md entry",
+        "Leaves docs/DESIGN.md untouched",
+        "No em dash"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "no-trigger-explain-existing",
+      "prompt": "jelaskan arsitektur service auth yang sudah ada di repo ini",
+      "expected_output": "Answers directly from code. Does not run kickoff, does not touch PLAN or ARCHITECTURE.",
+      "assertions": [
+        "Does not start the inisiasi flow",
+        "Does not write any doc",
+        "Answers from the existing code"
+      ],
+      "files": []
+    },
+    {
+      "id": 8,
+      "name": "no-trigger-library-question",
+      "prompt": "bedanya zustand sama redux apa?",
+      "expected_output": "Plain comparison. No kickoff.",
+      "assertions": [
+        "Does not start the inisiasi flow",
+        "Answers the comparison"
+      ],
+      "files": []
+    }
+  ]
+}

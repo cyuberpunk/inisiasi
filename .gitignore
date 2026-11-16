@@ -1,0 +1,9 @@
+node_modules/
+dist/
+*.skill
+*-workspace/
+.DS_Store
+.bak-*/
+.agent-teams/
+.diag-dsh/
+_crawl/

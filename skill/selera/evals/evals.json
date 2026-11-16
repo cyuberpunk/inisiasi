@@ -1,0 +1,82 @@
+{
+  "skill_name": "selera",
+  "evals": [
+    {
+      "id": 1,
+      "name": "record-stated-preference",
+      "prompt": "pakai zod buat validasi",
+      "expected_output": "Runs set schema zod, confirms in one line, does not ask permission first.",
+      "assertions": [
+        "Runs `selera set schema zod` (or equivalent)",
+        "Does not ask whether to record",
+        "Confirms in one line what was stored",
+        "No em dash"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "ignore-tool-question",
+      "prompt": "apa itu zod?",
+      "expected_output": "Answers as ordinary question. Does not write any profile key.",
+      "assertions": [
+        "Does not run set",
+        "Does not change profile.json",
+        "Answers the question about zod"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "scoped-preference",
+      "prompt": "untuk frontend pakai tanstack-query buat fetch",
+      "expected_output": "Records under the fe scope, not default.",
+      "assertions": [
+        "Runs set with key fe.fetch (not fetch)",
+        "Value is tanstack-query",
+        "Does not overwrite default fetch"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "reject-unknown-key",
+      "prompt": "rekam: orm-x prisma",
+      "expected_output": "Refuses the unknown key orm-x, lists valid keys or the nearest match, stores nothing.",
+      "assertions": [
+        "Does not store a key named orm-x",
+        "Shows the known-key list or a close match",
+        "Asks once what key was meant"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "check-active-standard",
+      "prompt": "cek di standar, aturan penamaan file apa?",
+      "expected_output": "Runs apply, names the source (project or global), reports naming.file or says unset.",
+      "assertions": [
+        "Runs apply",
+        "Names the source of the value",
+        "Does not invent a value when unset"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "learn-without-write",
+      "prompt": "lihat kebiasaan saya dari repo ini",
+      "expected_output": "Runs learn without --write, shows evidence, asks before saving.",
+      "assertions": [
+        "Runs learn without --write",
+        "Shows evidence per key",
+        "Asks before writing"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "no-trigger-on-review-diff",
+      "prompt": "review PR ini, cari bug logika di fungsi parse",
+      "expected_output": "Does not use selera. Reviews logic as a code review task.",
+      "assertions": [
+        "Does not record or apply selera profile",
+        "Focuses on logic bug, not style"
+      ]
+    }
+  ]
+}

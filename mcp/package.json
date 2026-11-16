@@ -1,0 +1,28 @@
+{
+  "name": "inisiasi-mcp",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local stdio MCP server that recommends agent skills from a curated catalog. Same tool surface as skill-issue.in.",
+  "type": "module",
+  "bin": {
+    "inisiasi-mcp": "dist/server.js",
+    "inisiasi": "dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "test": "npm run validate && npm run build && node test/docs.mjs && node test/stack.mjs && node test/smoke.mjs",
+    "validate": "node validate.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "fuse.js": "^7.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "typescript": "^7.0.2"
+  }
+}

@@ -1,0 +1,117 @@
+import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+import Fuse from "fuse.js";
+
+export type Skill = {
+  id: string;
+  name: string;
+  domain: string;
+  niche: string;
+  creator: string;
+  use_cases: string[];
+  tags: string[];
+  source_url: string;
+  install_command: string;
+  popularity: number;
+  verified: boolean;
+};
+
+export type Domain = { domain: string; skill_count: number; niches: string[] };
+
+const DEFAULT_PATH = fileURLToPath(new URL("../catalog.json", import.meta.url));
+
+export function loadCatalog(path = process.env.INISIASI_CATALOG ?? DEFAULT_PATH): Skill[] {
+  const raw = JSON.parse(readFileSync(path, "utf8"));
+  if (!Array.isArray(raw?.skills)) throw new Error(`catalog at ${path} has no "skills" array`);
+  return raw.skills as Skill[];
+}
+
+export const clampLimit = (limit: unknown) =>
+  Math.min(25, Math.max(1, Math.floor(typeof limit === "number" && Number.isFinite(limit) ? limit : 8)));
+
+const byPopularity = (a: Skill, b: Skill) => b.popularity - a.popularity;
+
+const STOP = new Set("a an and app apps the of for with to in on using use build building built is it my our that this from by or as".split(" "));
+// Keeps "next.js" and adds "nextjs"; trims sentence dots ("supabase." -> "supabase").
+const tokens = (s: string) =>
+  s.toLowerCase().split(/[^a-z0-9+#.]+/)
+    .map((t) => t.replace(/^\.+|\.+$/g, ""))
+    .flatMap((t) => (t.includes(".") ? [t, t.replace(/\./g, "")] : [t]))
+    .filter((t) => t.length > 1 && !STOP.has(t));
+
+export function listDomains(skills: Skill[]): Domain[] {
+  const map = new Map<string, Set<string>>();
+  const counts = new Map<string, number>();
+  for (const s of skills) {
+    if (!map.has(s.domain)) map.set(s.domain, new Set());
+    map.get(s.domain)!.add(s.niche);
+    counts.set(s.domain, (counts.get(s.domain) ?? 0) + 1);
+  }
+  return [...map].map(([domain, niches]) => ({ domain, skill_count: counts.get(domain)!, niches: [...niches].sort() }))
+    .sort((a, b) => b.skill_count - a.skill_count || a.domain.localeCompare(b.domain));
+}
+
+export const getSkill = (skills: Skill[], id: string) => skills.find((s) => s.id === id);
+
+export const listDomainSkills = (skills: Skill[], domain: string, limit?: number) =>
+  skills.filter((s) => s.domain === domain).sort(byPopularity).slice(0, clampLimit(limit));
+
+// Words that appear in almost every description carry no signal, and a lone generic tag hit
+// like "cli" or "api" pulls in unrelated skills, so both are ignored unless something specific matches.
+const GENERIC = new Set([
+  "tool", "tools", "cli", "api", "app", "apps", "project", "projects", "code", "write", "build",
+  "create", "make", "using", "use", "used", "with", "for", "the", "and", "my", "our", "new",
+  "small", "simple", "personal", "test", "tests", "data", "user", "users", "file", "files",
+]);
+const MIN_SCORE = 3;
+
+// Keyword scoring: tag hits weigh most, then niche/domain/name, then use-case words. Popularity breaks ties.
+// Loose stem match: "encrypts" hits "encryption", "menubar" hits "menubar".
+const stemHit = (words: Set<string>, t: string) =>
+  words.has(t) || (t.length >= 5 && [...words].some((w) => w.length >= 5 && w.slice(0, 5) === t.slice(0, 5) && (w.startsWith(t.slice(0, 7)) || t.startsWith(w.slice(0, 7)))));
+
+export function recommendSkills(skills: Skill[], description: string, limit?: number) {
+  const words = new Set(tokens(description));
+  const text = description.toLowerCase();
+  const scored = skills.map((s) => {
+    let score = 0;
+    const matched = new Set<string>();
+    for (const tag of s.tags) {
+      if (GENERIC.has(tag)) continue;
+      if (stemHit(words, tag) || (tag.includes("-") && text.includes(tag.replace(/-/g, " ")))) { score += 3; matched.add(tag); }
+    }
+    for (const t of [...tokens(s.niche.replace(/-/g, " ")), s.domain, ...tokens(s.name.replace(/-/g, " "))]) {
+      if (words.has(t)) { score += 2; matched.add(t); }
+    }
+    for (const t of new Set(s.use_cases.flatMap(tokens))) if (words.has(t)) { score += 1; matched.add(t); }
+    return { skill: s, score, matched: [...matched] };
+  });
+  return scored
+    .filter((r) => r.score >= MIN_SCORE)
+    .sort((a, b) => b.score - a.score || byPopularity(a.skill, b.skill))
+    .slice(0, clampLimit(limit))
+    .map((r) => ({ ...summary(r.skill), score: r.score, matched: r.matched }));
+}
+
+export function searchSkills(skills: Skill[], query: string, domain?: string, limit?: number) {
+  const pool = domain ? skills.filter((s) => s.domain === domain) : skills;
+  const fuse = new Fuse(pool, {
+    keys: [
+      { name: "name", weight: 3 },
+      { name: "tags", weight: 2 },
+      { name: "niche", weight: 2 },
+      { name: "use_cases", weight: 1.5 },
+      { name: "creator", weight: 1 },
+    ],
+    threshold: 0.4,
+    ignoreLocation: true,
+    includeScore: true,
+  });
+  return fuse.search(query).slice(0, clampLimit(limit))
+    .map((r) => ({ ...summary(r.item), match: Number((1 - (r.score ?? 1)).toFixed(3)) }));
+}
+
+export const summary = (s: Skill) => ({
+  id: s.id, name: s.name, domain: s.domain, niche: s.niche, creator: s.creator,
+  install_command: s.install_command, popularity: s.popularity, verified: s.verified,
+});
