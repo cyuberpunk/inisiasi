@@ -12,7 +12,7 @@ The owner's time is the scarce thing. Every question you ask costs a round trip,
 ## Paths
 
 - **SoT references:** `$INISIASI_REFERENCES` if set, otherwise `references/sot` next to this skill (resolve symlinks first). Start at `references/sot/README.md`: read order and the owner-bias rule. Never recommend anything under Hindari. An uncovered need is a gap: say so, do not invent tools or versions.
-- **Plan gate details:** `references/plan-gate.md`. **Doc formats:** `references/templates.md`. **Example prompts:** `references/prompts.md`.
+- **Plan gate details:** `references/plan-gate.md`. **Doc formats:** `references/templates.md`. **Example prompts:** `references/prompts.md`. **Skill rules and drift check:** `references/skill-rules.md`. **Dev workflow phases:** `references/addy-index.md`.
 - **MCP fallback:** if the `inisiasi` MCP is unavailable, use the CLI in `references/cli-fallback.md` and note it in the worklog.
 
 ## When to run
@@ -34,7 +34,7 @@ The owner's time is the scarce thing. Every question you ask costs a round trip,
 
 2. **Context.** Describe the project in one plain sentence. Prefer `recommend_bundle` as the single call (`limit` 10). Otherwise `select_references` plus `recommend_skills` (`limit` 10), and `search_skills` only for a PLAN need still uncovered.
     - Read only the returned reference files. TS projects: `toolchain-ts.md` and `stack-compat-ts.md` are binding. Web UI: the checklist in `frontend-architecture.md`. Note gaps and `stale` flags.
-    - Keep 3 to 8 skills, each mapped to a PLAN need. Flag `verified: false`. If `~/.agents/skills/<id>` exists, mark it installed.
+    - Recommend at most 2 to 3 general and 1 to 3 specific skills, 6 active at once, each tied to a PLAN need. Follow `references/skill-rules.md`: no overlap, platform fits, bundles via `--list`. Skip anything `verified: false` unless flagged. If `~/.agents/skills/<id>` exists, mark it installed.
 
 3. **Propose.** Pick the simplest stack that meets the goals. Prefer SoT defaults, platform defaults, and what the owner already knows. For each decision, state the choice, one-line why, and the rejected alternative with its reason. Sketch components, data model, data flow, storage, trust boundaries, and failure modes, only as deep as the scale needs. Name the riskiest assumption and a spike to prove it.
 
@@ -50,8 +50,16 @@ The owner's time is the scarce thing. Every question you ask costs a round trip,
 
 5. **Validate and report.** Use `validate_docs` if available (`root` is the project root), otherwise self-check: required sections present, TASKS 5 to 12 items with verify checks and the spike as #1, no em dashes, worklog shape, DESIGN.md untouched, ARCHITECTURE not a stub. Fix failures. Reply with the stack in one line, the install commands in one copy-paste block, and the first 3 tasks.
 
+## Later sessions (drift check)
+
+inisiasi keeps working after kickoff, only on a trigger: PLAN, TASKS or selera changed, the owner asks "cek drift" or "inisiasi cek", or a task needs a new capability.
+1. Read selera (`show`), ARCHITECTURE and TASKS. List what no longer agrees: one line each.
+2. A new tech decision: propose it for selera and wait for the owner to confirm before `set`. Never write it silently.
+3. A task needs a capability: recommend at most one specific skill with options and the risk of each. Install nothing without a yes.
+4. No trigger, no output. Never run on every session.
+
 ## Rules
 
-- Decide. Do not present menus. Ask only product or taste calls that nothing else can settle.
+- Decide. Do not present menus: one choice, one rejected alternative, and its risk. Ask only product or taste calls that nothing else can settle.
 - No speculative infra (queues, microservices, k8s) unless a goal needs it.
 - Terse. No em dashes.
