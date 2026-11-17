@@ -6,6 +6,7 @@ import { validateDocs } from "./validateDocs.js";
 import { detectStack } from "./detectStack.js";
 import { selectReferences } from "./selectReferences.js";
 import { recommendBundle } from "./recommendBundle.js";
+import { checkDrift } from "./drift.js";
 
 const [cmd, ...rest] = process.argv.slice(2);
 const usage = "usage: inisiasi <domains | domain <slug> | recommend <description> | search <query> | get <id> | inspect_plan <path> | validate_docs <root> | detect_stack <root> | select_references [--plan <path>] <description> | recommend_bundle [--root <path>] [--plan <path>] [--limit <n>] <description>>";
@@ -36,6 +37,9 @@ if (cmd === "inspect_plan") {
   const project_description = desc.join(" ").trim();
   if (!project_description && !opts.plan) { console.error(usage); process.exit(1); }
   console.log(JSON.stringify(selectReferences({ project_description, plan_path: opts.plan, limit: opts.limit ? Number(opts.limit) : undefined }), null, 2));
+} else if (cmd === "drift") {
+  const root = rest[0] ?? process.cwd();
+  console.log(JSON.stringify(checkDrift(root, process.env.SELERA_PROFILE), null, 2));
 } else if (cmd === "recommend_bundle") {
   const { opts, rest: desc } = flags(rest);
   const project_description = desc.join(" ").trim();
