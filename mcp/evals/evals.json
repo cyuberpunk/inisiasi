@@ -1,0 +1,141 @@
+{
+  "skill_name": "skill-finder-mcp",
+  "note": "tool selection evals for the inisiasi MCP. expected_tool null means no MCP tool should be called",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "new project, empty repo, I want a small web app to track my motorbike service history. what skills should I install?",
+      "expected_tool": "recommend_bundle",
+      "should_trigger": true,
+      "assertions": [
+        "calls recommend_bundle"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "apa skill yang cocok untuk dashboard admin SaaS pakai React dan Tailwind?",
+      "expected_tool": "recommend_skills",
+      "should_trigger": true,
+      "assertions": [
+        "calls recommend_skills"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "cari skill untuk Swift concurrency",
+      "expected_tool": "search_skills",
+      "should_trigger": true,
+      "assertions": [
+        "calls search_skills"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "skill apa saja yang ada di kategori Security?",
+      "expected_tool": "list_domain_skills",
+      "should_trigger": true,
+      "assertions": [
+        "calls list_domain_skills"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "ada kategori skill apa saja di katalog ini?",
+      "expected_tool": "list_domains",
+      "should_trigger": true,
+      "assertions": [
+        "calls list_domains"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "cek apakah PLAN.md di ~/project/fuu sudah lengkap sebelum kita lanjut",
+      "expected_tool": "inspect_plan",
+      "should_trigger": true,
+      "assertions": [
+        "calls inspect_plan"
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "validasi ARCHITECTURE.md dan TASKS.md di repo ini, apakah sudah sesuai template",
+      "expected_tool": "validate_docs",
+      "should_trigger": true,
+      "assertions": [
+        "calls validate_docs"
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "stack apa yang sudah dipakai di folder ~/project/kura?",
+      "expected_tool": "detect_stack",
+      "should_trigger": true,
+      "assertions": [
+        "calls detect_stack"
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "apa itu zod? jelasin singkat",
+      "expected_tool": null,
+      "should_trigger": false,
+      "assertions": [
+        "calls no inisiasi MCP tool"
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "tulis fungsi python untuk parse CSV",
+      "expected_tool": null,
+      "should_trigger": false,
+      "assertions": [
+        "calls no inisiasi MCP tool"
+      ]
+    },
+    {
+      "id": 11,
+      "prompt": "review diff ini, cari bug logika di fungsi parse",
+      "expected_tool": null,
+      "should_trigger": false,
+      "assertions": [
+        "calls no inisiasi MCP tool"
+      ]
+    },
+    {
+      "id": 12,
+      "prompt": "bedanya zustand sama redux apa?",
+      "expected_tool": null,
+      "should_trigger": false,
+      "assertions": [
+        "calls no inisiasi MCP tool"
+      ]
+    },
+    {
+      "id": 13,
+      "prompt": "detail lengkap skill swiftui-pro: source URL dan perintah install",
+      "expected_tool": "get_skill",
+      "should_trigger": true,
+      "assertions": [
+        "calls get_skill"
+      ]
+    },
+    {
+      "id": 14,
+      "prompt": "untuk stack Next.js + Postgres, referensi SoT mana yang relevan dan apakah sudah stale?",
+      "expected_tool": "select_references",
+      "should_trigger": true,
+      "assertions": [
+        "calls select_references"
+      ]
+    },
+    {
+      "id": 15,
+      "prompt": "bootstrap project ini dari docs/PLAN.md, bundle skill dan dokumen sekaligus",
+      "expected_tool": "inisiasi",
+      "should_trigger": true,
+      "assertions": [
+        "calls inisiasi"
+      ]
+    }
+  ]
+}
