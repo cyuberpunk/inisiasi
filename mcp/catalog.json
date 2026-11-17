@@ -202,7 +202,7 @@
       ],
       "source_url": "https://github.com/anthropics/skills/tree/main/skills/frontend-design",
       "install_command": "npx skills add anthropics/skills -g -s frontend-design",
-      "popularity": 0,
+      "popularity": 196293,
       "verified": true,
       "tier": "main",
       "score": null
@@ -305,7 +305,8 @@
       "popularity": 0,
       "verified": true,
       "tier": "main",
-      "score": null
+      "score": null,
+      "unscored": true
     },
     {
       "id": "apple-design",
@@ -331,7 +332,8 @@
       "popularity": 0,
       "verified": true,
       "tier": "main",
-      "score": null
+      "score": null,
+      "unscored": true
     },
     {
       "id": "design-system-patterns",
@@ -571,7 +573,8 @@
       "popularity": 0,
       "verified": true,
       "tier": "main",
-      "score": null
+      "score": null,
+      "unscored": true
     },
     {
       "id": "supabase-postgres-best-practices",
@@ -596,7 +599,8 @@
       "popularity": 0,
       "verified": true,
       "tier": "main",
-      "score": null
+      "score": null,
+      "unscored": true
     },
     {
       "id": "postgres",
@@ -618,7 +622,7 @@
       ],
       "source_url": "https://github.com/planetscale/database-skills/tree/main/skills/postgres",
       "install_command": "npx skills add planetscale/database-skills -g -s postgres",
-      "popularity": 0,
+      "popularity": 741,
       "verified": true,
       "tier": "main",
       "score": null
@@ -712,7 +716,7 @@
       ],
       "source_url": "https://github.com/mongodb/agent-skills/tree/main/skills/mongodb-schema-design",
       "install_command": "npx skills add mongodb/agent-skills -g -s mongodb-schema-design",
-      "popularity": 0,
+      "popularity": 200,
       "verified": true,
       "tier": "main",
       "score": null
@@ -760,7 +764,7 @@
       ],
       "source_url": "https://github.com/clerk/skills/tree/main/skills/clerk-setup",
       "install_command": "npx skills add clerk/skills -g -s clerk-setup",
-      "popularity": 0,
+      "popularity": 94,
       "verified": true,
       "tier": "main",
       "score": null
@@ -783,7 +787,7 @@
       ],
       "source_url": "https://github.com/clerk/skills/tree/main/skills/clerk-nextjs-patterns",
       "install_command": "npx skills add clerk/skills -g -s clerk-nextjs-patterns",
-      "popularity": 0,
+      "popularity": 94,
       "verified": true,
       "tier": "main",
       "score": null
@@ -807,7 +811,7 @@
       ],
       "source_url": "https://github.com/clerk/skills/tree/main/skills/clerk-swift",
       "install_command": "npx skills add clerk/skills -g -s clerk-swift",
-      "popularity": 0,
+      "popularity": 94,
       "verified": true,
       "tier": "main",
       "score": null
@@ -950,7 +954,7 @@
       ],
       "source_url": "https://github.com/anthropics/skills/tree/main/skills/webapp-testing",
       "install_command": "npx skills add anthropics/skills -g -s webapp-testing",
-      "popularity": 0,
+      "popularity": 196293,
       "verified": true,
       "tier": "main",
       "score": null
@@ -1140,7 +1144,7 @@
       ],
       "source_url": "https://github.com/vercel/ai/tree/main/skills/use-ai-sdk",
       "install_command": "npx skills add vercel/ai -g -s ai-sdk",
-      "popularity": 0,
+      "popularity": 28025,
       "verified": true,
       "tier": "main",
       "score": null
@@ -1215,7 +1219,8 @@
       "popularity": 0,
       "verified": true,
       "tier": "main",
-      "score": null
+      "score": null,
+      "unscored": true
     },
     {
       "id": "huggingface-llm-trainer",
@@ -1239,7 +1244,8 @@
       "popularity": 0,
       "verified": true,
       "tier": "main",
-      "score": null
+      "score": null,
+      "unscored": true
     },
     {
       "id": "huggingface-gradio",
@@ -1263,7 +1269,8 @@
       "popularity": 0,
       "verified": true,
       "tier": "main",
-      "score": null
+      "score": null,
+      "unscored": true
     },
     {
       "id": "pinecone-quickstart",
@@ -1375,7 +1382,7 @@
       ],
       "source_url": "https://github.com/callstackincubator/agent-skills/tree/main/skills/react-native-best-practices",
       "install_command": "npx skills add callstackincubator/agent-skills -g -s react-native-best-practices",
-      "popularity": 0,
+      "popularity": 1713,
       "verified": true,
       "tier": "main",
       "score": null
@@ -1403,7 +1410,8 @@
       "popularity": 0,
       "verified": true,
       "tier": "main",
-      "score": null
+      "score": null,
+      "unscored": true
     },
     {
       "id": "architect",
@@ -1609,7 +1617,7 @@
       ],
       "source_url": "https://github.com/OthmanAdi/planning-with-files/tree/master/skills/planning-with-files",
       "install_command": "npx skills add OthmanAdi/planning-with-files -g -s planning-with-files",
-      "popularity": 0,
+      "popularity": 28102,
       "verified": true,
       "tier": "main",
       "score": null
@@ -2060,7 +2068,8 @@
       "popularity": 0,
       "verified": true,
       "tier": "main",
-      "score": null
+      "score": null,
+      "unscored": true
     },
     {
       "id": "animate",
@@ -2079,7 +2088,8 @@
       "popularity": 0,
       "verified": true,
       "tier": "main",
-      "score": null
+      "score": null,
+      "unscored": true
     },
     {
       "id": "animation-systems",
@@ -2152,7 +2162,7 @@
       ],
       "source_url": "https://www.ui-skills.com/skills/appllama/appllama-app-design-skill",
       "install_command": "npx skills add https://github.com/Appllama/appllama-skills --skill appllama-app-design-skill",
-      "popularity": 0,
+      "popularity": 5221,
       "verified": true,
       "tier": "main",
       "score": null
@@ -2171,7 +2181,7 @@
       ],
       "source_url": "https://www.ui-skills.com/skills/pbakaus/audit",
       "install_command": "npx skills add https://github.com/pbakaus/impeccable --skill audit",
-      "popularity": 0,
+      "popularity": 111639,
       "verified": true,
       "tier": "main",
       "score": null
@@ -2193,7 +2203,8 @@
       "popularity": 0,
       "verified": true,
       "tier": "main",
-      "score": null
+      "score": null,
+      "unscored": true
     },
     {
       "id": "audit-and-fix",
@@ -2247,7 +2258,7 @@
       ],
       "source_url": "https://www.ui-skills.com/skills/bencium/bencium-controlled-ux-designer",
       "install_command": "npx skills add https://github.com/bencium/bencium-marketplace --skill bencium-controlled-ux-designer",
-      "popularity": 0,
+      "popularity": 499,
       "verified": true,
       "tier": "main",
       "score": null
@@ -2345,7 +2356,8 @@
       "popularity": 0,
       "verified": true,
       "tier": "main",
-      "score": null
+      "score": null,
+      "unscored": true
     },
     {
       "id": "daisyui",
@@ -2402,7 +2414,8 @@
       "popularity": 0,
       "verified": true,
       "tier": "main",
-      "score": null
+      "score": null,
+      "unscored": true
     },
     {
       "id": "design-system",
@@ -2592,7 +2605,8 @@
       "popularity": 0,
       "verified": true,
       "tier": "main",
-      "score": null
+      "score": null,
+      "unscored": true
     },
     {
       "id": "oil-ui",
@@ -2608,7 +2622,7 @@
       ],
       "source_url": "https://www.ui-skills.com/skills/oil-oil/oil-ui",
       "install_command": "npx skills add https://github.com/oil-oil/oil-ui --skill oil-ui",
-      "popularity": 0,
+      "popularity": 3472,
       "verified": true,
       "tier": "main",
       "score": null
@@ -2817,7 +2831,7 @@
       ],
       "source_url": "https://www.ui-skills.com/skills/vercel-labs/composition-patterns",
       "install_command": "npx skills add https://github.com/vercel-labs/agent-skills --skill vercel-composition-patterns",
-      "popularity": 0,
+      "popularity": 34248,
       "verified": true,
       "tier": "main",
       "score": null
@@ -2912,7 +2926,7 @@
       ],
       "source_url": "https://www.ui-skills.com/skills/antfu/vue",
       "install_command": "npx skills add https://github.com/antfu/skills --skill vue",
-      "popularity": 0,
+      "popularity": 6077,
       "verified": true,
       "tier": "main",
       "score": null
@@ -2969,7 +2983,7 @@
       ],
       "source_url": "https://www.ui-skills.com/skills/wshobson/web-component-design",
       "install_command": "npx skills add https://github.com/wshobson/agents --skill web-component-design",
-      "popularity": 0,
+      "popularity": 42599,
       "verified": true,
       "tier": "main",
       "score": null
@@ -2988,7 +3002,7 @@
       ],
       "source_url": "https://www.ui-skills.com/skills/emilkowalski/write-swift",
       "install_command": "npx skills add https://github.com/emilkowalski/skills --skill write-swift",
-      "popularity": 0,
+      "popularity": 57572,
       "verified": true,
       "tier": "main",
       "score": null
@@ -5387,7 +5401,8 @@
       "popularity": 0,
       "verified": true,
       "tier": "support",
-      "score": null
+      "score": null,
+      "unscored": true
     },
     {
       "id": "mobile-ios-design",
@@ -5837,7 +5852,7 @@
       ],
       "source_url": "https://github.com/anthropics/skills/tree/main/skills/mcp-builder",
       "install_command": "npx skills add anthropics/skills -g -s mcp-builder",
-      "popularity": 0,
+      "popularity": 196293,
       "verified": true,
       "tier": "support",
       "score": null
@@ -5862,7 +5877,7 @@
       ],
       "source_url": "https://github.com/anthropics/skills/tree/main/skills/claude-api",
       "install_command": "npx skills add anthropics/skills -g -s claude-api",
-      "popularity": 0,
+      "popularity": 196293,
       "verified": true,
       "tier": "support",
       "score": null
@@ -6029,7 +6044,7 @@
       ],
       "source_url": "https://github.com/mongodb/agent-skills/tree/main/skills/mongodb-search-and-ai",
       "install_command": "npx skills add mongodb/agent-skills -g -s mongodb-search-and-ai",
-      "popularity": 0,
+      "popularity": 200,
       "verified": true,
       "tier": "support",
       "score": null
@@ -6127,7 +6142,7 @@
       ],
       "source_url": "https://github.com/AvdLee/Swift-Concurrency-Agent-Skill/tree/main/skills/swift-concurrency",
       "install_command": "npx skills add AvdLee/Swift-Concurrency-Agent-Skill -g -s swift-concurrency",
-      "popularity": 0,
+      "popularity": 1720,
       "verified": true,
       "tier": "support",
       "score": null
@@ -6675,7 +6690,7 @@
       ],
       "source_url": "https://github.com/anthropics/skills/tree/main/skills/doc-coauthoring",
       "install_command": "npx skills add anthropics/skills -g -s doc-coauthoring",
-      "popularity": 0,
+      "popularity": 196293,
       "verified": true,
       "tier": "support",
       "score": null
@@ -6812,7 +6827,7 @@
       ],
       "source_url": "https://github.com/anthropics/skills/tree/main/skills/skill-creator",
       "install_command": "npx skills add anthropics/skills -g -s skill-creator",
-      "popularity": 0,
+      "popularity": 196293,
       "verified": true,
       "tier": "support",
       "score": null
@@ -7275,7 +7290,7 @@
       ],
       "source_url": "https://github.com/101-skills/superpowers",
       "install_command": "npx skills add 101-skills/superpowers -g -s twitter-automation",
-      "popularity": 0,
+      "popularity": 25,
       "verified": true,
       "tier": "support",
       "score": null
@@ -7356,7 +7371,7 @@
       ],
       "source_url": "https://github.com/antibrow/anti-detect-browser-skills",
       "install_command": "npx skills add antibrow/anti-detect-browser-skills -g -s browser-mcp-agent",
-      "popularity": 0,
+      "popularity": 21,
       "verified": true,
       "tier": "support",
       "score": null
@@ -7665,7 +7680,7 @@
       ],
       "source_url": "https://github.com/netlify/context-and-tools",
       "install_command": "npx skills add netlify/context-and-tools -g -s netlify-deploy",
-      "popularity": 0,
+      "popularity": 54,
       "verified": true,
       "tier": "support",
       "score": null
@@ -7968,7 +7983,7 @@
       ],
       "source_url": "https://www.ui-skills.com/skills/accesslint/accessibility-diff",
       "install_command": "npx skills add https://github.com/AccessLint/claude-marketplace --skill accessibility-diff",
-      "popularity": 0,
+      "popularity": 122,
       "verified": true,
       "tier": "support",
       "score": null
@@ -8177,7 +8192,7 @@
       ],
       "source_url": "https://www.ui-skills.com/skills/mengto/audit-verify-explain-grade-5",
       "install_command": "npx skills add https://github.com/MengTo/Skills --skill audit-verify-explain-grade-5",
-      "popularity": 0,
+      "popularity": 7663,
       "verified": true,
       "tier": "support",
       "score": null
@@ -8203,7 +8218,8 @@
       "popularity": 0,
       "verified": true,
       "tier": "support",
-      "score": null
+      "score": null,
+      "unscored": true
     },
     {
       "id": "constraint-driven-development",
@@ -8226,7 +8242,8 @@
       "popularity": 0,
       "verified": true,
       "tier": "support",
-      "score": null
+      "score": null,
+      "unscored": true
     },
     {
       "id": "debugging-and-error-recovery",
@@ -8249,7 +8266,8 @@
       "popularity": 0,
       "verified": true,
       "tier": "support",
-      "score": null
+      "score": null,
+      "unscored": true
     },
     {
       "id": "deprecation-and-migration",
@@ -8272,7 +8290,8 @@
       "popularity": 0,
       "verified": true,
       "tier": "support",
-      "score": null
+      "score": null,
+      "unscored": true
     },
     {
       "id": "doubt-driven-development",
@@ -8295,7 +8314,8 @@
       "popularity": 0,
       "verified": true,
       "tier": "support",
-      "score": null
+      "score": null,
+      "unscored": true
     },
     {
       "id": "git-workflow-and-versioning",
@@ -8318,7 +8338,8 @@
       "popularity": 0,
       "verified": true,
       "tier": "support",
-      "score": null
+      "score": null,
+      "unscored": true
     },
     {
       "id": "idea-refine",
@@ -8341,7 +8362,8 @@
       "popularity": 0,
       "verified": true,
       "tier": "support",
-      "score": null
+      "score": null,
+      "unscored": true
     },
     {
       "id": "incremental-implementation",
@@ -8364,7 +8386,8 @@
       "popularity": 0,
       "verified": true,
       "tier": "support",
-      "score": null
+      "score": null,
+      "unscored": true
     },
     {
       "id": "interview-me",
@@ -8387,7 +8410,8 @@
       "popularity": 0,
       "verified": true,
       "tier": "support",
-      "score": null
+      "score": null,
+      "unscored": true
     },
     {
       "id": "performance-optimization",
@@ -8410,7 +8434,8 @@
       "popularity": 0,
       "verified": true,
       "tier": "support",
-      "score": null
+      "score": null,
+      "unscored": true
     },
     {
       "id": "shipping-and-launch",
@@ -8433,7 +8458,8 @@
       "popularity": 0,
       "verified": true,
       "tier": "support",
-      "score": null
+      "score": null,
+      "unscored": true
     },
     {
       "id": "source-driven-development",
@@ -8456,7 +8482,8 @@
       "popularity": 0,
       "verified": true,
       "tier": "support",
-      "score": null
+      "score": null,
+      "unscored": true
     },
     {
       "id": "using-agent-skills",
@@ -8479,7 +8506,8 @@
       "popularity": 0,
       "verified": true,
       "tier": "support",
-      "score": null
+      "score": null,
+      "unscored": true
     },
     {
       "id": "test-driven-development",
@@ -8680,7 +8708,8 @@
       "popularity": 0,
       "verified": true,
       "tier": "support",
-      "score": 0
+      "score": 0,
+      "unscored": true
     }
   ],
   "count": 407

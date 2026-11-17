@@ -14,6 +14,8 @@ export type Skill = {
   install_command: string;
   popularity: number;
   verified: boolean;
+  tier?: "main" | "support";
+  unscored?: boolean;
 };
 
 export type Domain = { domain: string; skill_count: number; niches: string[] };
@@ -70,6 +72,11 @@ const MIN_SCORE = 3;
 const stemHit = (words: Set<string>, t: string) =>
   words.has(t) || (t.length >= 5 && [...words].some((w) => w.length >= 5 && w.slice(0, 5) === t.slice(0, 5) && (w.startsWith(t.slice(0, 7)) || t.startsWith(w.slice(0, 7)))));
 
+
+// Main before support on equal relevance; unscored rows sink below scored ones.
+const tierRank = (s: Skill) => (s.tier === "main" ? 0 : 1);
+const unscoredLast = (a: Skill, b: Skill) => Number(!!(a as Skill & { unscored?: boolean }).unscored) - Number(!!(b as Skill & { unscored?: boolean }).unscored);
+
 export function recommendSkills(skills: Skill[], description: string, limit?: number) {
   const words = new Set(tokens(description));
   const text = description.toLowerCase();
@@ -88,7 +95,7 @@ export function recommendSkills(skills: Skill[], description: string, limit?: nu
   });
   return scored
     .filter((r) => r.score >= MIN_SCORE)
-    .sort((a, b) => b.score - a.score || byPopularity(a.skill, b.skill))
+    .sort((a, b) => b.score - a.score || unscoredLast(a.skill, b.skill) || tierRank(a.skill) - tierRank(b.skill) || byPopularity(a.skill, b.skill))
     .slice(0, clampLimit(limit))
     .map((r) => ({ ...summary(r.skill), score: r.score, matched: r.matched }));
 }
@@ -114,4 +121,5 @@ export function searchSkills(skills: Skill[], query: string, domain?: string, li
 export const summary = (s: Skill) => ({
   id: s.id, name: s.name, domain: s.domain, niche: s.niche, creator: s.creator,
   install_command: s.install_command, popularity: s.popularity, verified: s.verified,
+  tier: s.tier ?? null, unscored: !!s.unscored,
 });
