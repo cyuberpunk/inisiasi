@@ -1,6 +1,6 @@
 ---
 name: inisiasi
-description: Project kickoff. Turns the goals in docs/PLAN.md into the agent skills to install, the tech stack, the architecture and the system design, then writes docs/ARCHITECTURE.md and docs/TASKS.md. Use at the start of any new project or when docs/ARCHITECTURE.md is empty, and whenever the user says inisiasi, bootstrap, kickoff, "start a new project", "mulai project baru", "pilih stack", "stack apa yang cocok", "skill apa yang perlu", "which skills do I need", or asks for architecture or system design for something not built yet. Use it even if they only mention a new idea and an empty repo.
+description: Project kickoff. Turns the goals in docs/PLAN.md into the agent skills to install, the tech stack, the architecture and the system design, then writes docs/ARCHITECTURE.md and docs/TASKS.md. Use at the start of any new project or when docs/ARCHITECTURE.md is empty, and whenever the user says inisiasi, bootstrap, kickoff, "start a new project", "mulai project baru", "pilih stack", "stack apa yang cocok", "skill apa yang perlu", "which skills do I need", "bootstrap this project", "ok go, write the docs", "tulis docs-nya", or asks for architecture or system design for something not built yet. Use it even if they only mention a new idea and an empty repo.
 ---
 
 # inisiasi
