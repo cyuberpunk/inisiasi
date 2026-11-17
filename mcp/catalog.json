@@ -2994,25 +2994,6 @@
       "score": null
     },
     {
-      "id": "hyperframes-core",
-      "name": "Hyperframes Core",
-      "domain": "automation-tools",
-      "niche": "support",
-      "creator": "heygen-com",
-      "use_cases": [
-        "ui-skills library"
-      ],
-      "tags": [
-        "heygen-com"
-      ],
-      "source_url": "https://www.ui-skills.com/skills/heygen-com/hyperframes-core",
-      "install_command": "npx skills add https://github.com/heygen-com/hyperframes --skill hyperframes-core",
-      "popularity": 931200,
-      "verified": true,
-      "tier": "support",
-      "score": 94.18
-    },
-    {
       "id": "requesting-code-review",
       "name": "requesting-code-review",
       "domain": "core-and-utilities",
@@ -3075,25 +3056,6 @@
       "score": 91.03
     },
     {
-      "id": "hyperframes-studio",
-      "name": "Hyperframes Studio",
-      "domain": "automation-tools",
-      "niche": "support",
-      "creator": "heygen-com",
-      "use_cases": [
-        "ui-skills library"
-      ],
-      "tags": [
-        "heygen-com"
-      ],
-      "source_url": "https://www.ui-skills.com/skills/heygen-com/hyperframes-studio",
-      "install_command": "npx skills add https://github.com/heygen-com/hyperframes --skill hyperframes-studio",
-      "popularity": 451800,
-      "verified": true,
-      "tier": "support",
-      "score": 90.64
-    },
-    {
       "id": "writing-skills",
       "name": "writing-skills",
       "domain": "core-and-utilities",
@@ -3111,25 +3073,6 @@
       "source_url": "https://github.com/obra/superpowers/tree/main/skills/writing-skills",
       "install_command": "npx skills add obra/superpowers -g -s writing-skills",
       "popularity": 238100,
-      "verified": true,
-      "tier": "support",
-      "score": 90.61
-    },
-    {
-      "id": "pr-to-video",
-      "name": "Pr To Video",
-      "domain": "document",
-      "niche": "support",
-      "creator": "heygen-com",
-      "use_cases": [
-        "ui-skills library"
-      ],
-      "tags": [
-        "heygen-com"
-      ],
-      "source_url": "https://www.ui-skills.com/skills/heygen-com/pr-to-video",
-      "install_command": "npx skills add https://github.com/heygen-com/hyperframes --skill pr-to-video",
-      "popularity": 449400,
       "verified": true,
       "tier": "support",
       "score": 90.61
@@ -3250,44 +3193,6 @@
       "verified": true,
       "tier": "support",
       "score": 83.59
-    },
-    {
-      "id": "remotion-markup",
-      "name": "Remotion Markup",
-      "domain": "document",
-      "niche": "support",
-      "creator": "remotion-dev",
-      "use_cases": [
-        "ui-skills library"
-      ],
-      "tags": [
-        "remotion-dev"
-      ],
-      "source_url": "https://www.ui-skills.com/skills/remotion-dev/remotion-markup",
-      "install_command": "npx skills add https://github.com/remotion-dev/skills --skill remotion-markup",
-      "popularity": 351300,
-      "verified": true,
-      "tier": "support",
-      "score": 83.59
-    },
-    {
-      "id": "remotion-saas",
-      "name": "Remotion Saas",
-      "domain": "document",
-      "niche": "support",
-      "creator": "remotion-dev",
-      "use_cases": [
-        "ui-skills library"
-      ],
-      "tags": [
-        "remotion-dev"
-      ],
-      "source_url": "https://www.ui-skills.com/skills/remotion-dev/remotion-saas",
-      "install_command": "npx skills add https://github.com/remotion-dev/skills --skill remotion-saas",
-      "popularity": 341800,
-      "verified": true,
-      "tier": "support",
-      "score": 83.46
     },
     {
       "id": "break-ui",
@@ -4163,25 +4068,6 @@
       "score": 57.88
     },
     {
-      "id": "browser-video-recording",
-      "name": "Browser Video Recording",
-      "domain": "automation-tools",
-      "niche": "support",
-      "creator": "mengto",
-      "use_cases": [
-        "ui-skills library"
-      ],
-      "tags": [
-        "mengto"
-      ],
-      "source_url": "https://www.ui-skills.com/skills/mengto/browser-video-recording",
-      "install_command": "npx skills add https://github.com/MengTo/Skills --skill browser-video-recording",
-      "popularity": 1800,
-      "verified": true,
-      "tier": "support",
-      "score": 57.88
-    },
-    {
       "id": "corner-diagonals",
       "name": "Corner Diagonals",
       "domain": "design",
@@ -4391,25 +4277,6 @@
       "score": 57.6
     },
     {
-      "id": "design-game-encounters",
-      "name": "Design Game Encounters",
-      "domain": "design",
-      "niche": "support",
-      "creator": "mengto",
-      "use_cases": [
-        "ui-skills library"
-      ],
-      "tags": [
-        "mengto"
-      ],
-      "source_url": "https://www.ui-skills.com/skills/mengto/design-game-encounters",
-      "install_command": "npx skills add https://github.com/MengTo/Skills --skill design-game-encounters",
-      "popularity": 1700,
-      "verified": true,
-      "tier": "support",
-      "score": 57.6
-    },
-    {
       "id": "framed-tech-dark-border-gradient",
       "name": "Framed Tech Dark Border Gradient",
       "domain": "design",
@@ -4461,25 +4328,6 @@
       ],
       "source_url": "https://www.ui-skills.com/skills/mengto/operational-enterprise-ai",
       "install_command": "npx skills add https://github.com/MengTo/Skills --skill operational-enterprise-ai",
-      "popularity": 1700,
-      "verified": true,
-      "tier": "support",
-      "score": 57.6
-    },
-    {
-      "id": "shaders-cursor-ripples",
-      "name": "Shaders Cursor Ripples",
-      "domain": "design",
-      "niche": "support",
-      "creator": "mengto",
-      "use_cases": [
-        "ui-skills library"
-      ],
-      "tags": [
-        "mengto"
-      ],
-      "source_url": "https://www.ui-skills.com/skills/mengto/shaders-cursor-ripples",
-      "install_command": "npx skills add https://github.com/MengTo/Skills --skill shaders-cursor-ripples",
       "popularity": 1700,
       "verified": true,
       "tier": "support",
@@ -4579,25 +4427,6 @@
       ],
       "source_url": "https://www.ui-skills.com/skills/mengto/build-threejs-enemy-systems",
       "install_command": "npx skills add https://github.com/MengTo/Skills --skill build-threejs-enemy-systems",
-      "popularity": 1600,
-      "verified": true,
-      "tier": "support",
-      "score": 57.3
-    },
-    {
-      "id": "tune-enemy-ai",
-      "name": "Tune Enemy Ai",
-      "domain": "general",
-      "niche": "support",
-      "creator": "mengto",
-      "use_cases": [
-        "ui-skills library"
-      ],
-      "tags": [
-        "mengto"
-      ],
-      "source_url": "https://www.ui-skills.com/skills/mengto/tune-enemy-ai",
-      "install_command": "npx skills add https://github.com/MengTo/Skills --skill tune-enemy-ai",
       "popularity": 1600,
       "verified": true,
       "tier": "support",
@@ -4824,25 +4653,6 @@
       "score": 53.03
     },
     {
-      "id": "game-dev-combat-animation",
-      "name": "Game Dev Combat Animation",
-      "domain": "frontend",
-      "niche": "support",
-      "creator": "mengto",
-      "use_cases": [
-        "ui-skills library"
-      ],
-      "tags": [
-        "mengto"
-      ],
-      "source_url": "https://www.ui-skills.com/skills/mengto/game-dev-combat-animation",
-      "install_command": "npx skills add https://github.com/MengTo/Skills --skill game-dev-combat-animation",
-      "popularity": 665,
-      "verified": true,
-      "tier": "support",
-      "score": 53
-    },
-    {
       "id": "improve-threejs",
       "name": "Improve Threejs",
       "domain": "frontend",
@@ -4998,25 +4808,6 @@
       "verified": true,
       "tier": "support",
       "score": 49.01
-    },
-    {
-      "id": "html-explainer-video",
-      "name": "Html Explainer Video",
-      "domain": "automation-tools",
-      "niche": "support",
-      "creator": "mengto",
-      "use_cases": [
-        "ui-skills library"
-      ],
-      "tags": [
-        "mengto"
-      ],
-      "source_url": "https://www.ui-skills.com/skills/mengto/html-explainer-video",
-      "install_command": "npx skills add https://github.com/MengTo/Skills --skill html-explainer-video",
-      "popularity": 243,
-      "verified": true,
-      "tier": "support",
-      "score": 48.08
     },
     {
       "id": "create-ai-avatar",
@@ -5593,28 +5384,6 @@
       ],
       "source_url": "https://github.com/emilkowalski/skills/tree/main/skills/improve-animations",
       "install_command": "npx skills add emilkowalski/skills -g -s improve-animations",
-      "popularity": 0,
-      "verified": true,
-      "tier": "support",
-      "score": null
-    },
-    {
-      "id": "remotion-best-practices",
-      "name": "remotion-best-practices",
-      "domain": "frontend",
-      "niche": "support",
-      "creator": "remotion-dev",
-      "use_cases": [
-        "Router for all Remotion skills"
-      ],
-      "tags": [
-        "remotion",
-        "video",
-        "react",
-        "animation"
-      ],
-      "source_url": "https://github.com/remotion-dev/skills/tree/main/skills/remotion-best-practices",
-      "install_command": "npx skills add remotion-dev/skills -g -s remotion-best-practices",
       "popularity": 0,
       "verified": true,
       "tier": "support",
@@ -7117,26 +6886,6 @@
       "score": null
     },
     {
-      "id": "unity-scriptableobjects",
-      "name": "unity-scriptableobjects",
-      "domain": "architecture",
-      "niche": "support",
-      "creator": "gamedev-skills",
-      "use_cases": [
-        "Teaches Unity 6.3 ScriptableObjects for config assets, shared variables and event channels instead of singletons."
-      ],
-      "tags": [
-        "unity",
-        "scriptableobjects"
-      ],
-      "source_url": "https://github.com/gamedev-skills/awesome-gamedev-agent-skills/blob/main/skills/unity/unity-scriptableobjects/SKILL.md",
-      "install_command": "npx skills add gamedev-skills/awesome-gamedev-agent-skills -g -s SKILL.md",
-      "popularity": 11300,
-      "verified": true,
-      "tier": "support",
-      "score": null
-    },
-    {
       "id": "copywriting",
       "name": "copywriting",
       "domain": "document",
@@ -7174,51 +6923,6 @@
       "verified": true,
       "tier": "support",
       "score": null
-    },
-    {
-      "id": "academic-research-skills",
-      "name": "academic-research-skills",
-      "domain": "research",
-      "niche": "support",
-      "creator": "Imbad0202",
-      "use_cases": [
-        "Plugin suite of academic research skills covering research, paper writing, review and integrity pipeline (README v3.24.3)."
-      ],
-      "tags": [
-        "academic",
-        "research"
-      ],
-      "source_url": "https://github.com/Imbad0202/academic-research-skills",
-      "install_command": "npx skills add Imbad0202/academic-research-skills -g -s academic-research-skills",
-      "popularity": 57211,
-      "verified": true,
-      "tier": "support",
-      "score": null,
-      "skill_count": 5,
-      "bundle": true
-    },
-    {
-      "id": "research-paper-writing-skills",
-      "name": "Research-Paper-Writing-Skills",
-      "domain": "research",
-      "niche": "support",
-      "creator": "Master-cai",
-      "use_cases": [
-        "Improves ML/CV/NLP paper writing: section structure, paragraph flow, figures and claim-support checks before submission."
-      ],
-      "tags": [
-        "research",
-        "paper",
-        "writing"
-      ],
-      "source_url": "https://github.com/Master-cai/Research-Paper-Writing-Skills",
-      "install_command": "npx skills add Master-cai/Research-Paper-Writing-Skills -g -s research-paper-writing-skills",
-      "popularity": 8390,
-      "verified": true,
-      "tier": "support",
-      "score": null,
-      "skill_count": 1,
-      "bundle": false
     },
     {
       "id": "deep-research-skills",
@@ -7259,26 +6963,6 @@
       "source_url": "https://github.com/199-biotechnologies/claude-deep-research-skill",
       "install_command": "npx skills add 199-biotechnologies/claude-deep-research-skill -g -s claude-deep-research-skill",
       "popularity": 1223,
-      "verified": true,
-      "tier": "support",
-      "score": null
-    },
-    {
-      "id": "quantitative-research",
-      "name": "quantitative-research",
-      "domain": "research",
-      "niche": "support",
-      "creator": "omer-metin",
-      "use_cases": [
-        "Persona-style guidance for systematic trading research: backtesting, alpha, factor models, statistical arbitrage."
-      ],
-      "tags": [
-        "quantitative",
-        "research"
-      ],
-      "source_url": "https://github.com/omer-metin/skills-for-antigravity",
-      "install_command": "npx skills add omer-metin/skills-for-antigravity -g -s quantitative-research",
-      "popularity": 2700,
       "verified": true,
       "tier": "support",
       "score": null
@@ -7403,27 +7087,6 @@
       "source_url": "https://github.com/inference-sh/skills/blob/main/guides/social/ai-social-media-content/SKILL.md",
       "install_command": "npx skills add inference-sh/skills -g -s SKILL.md",
       "popularity": 7,
-      "verified": true,
-      "tier": "support",
-      "score": null
-    },
-    {
-      "id": "baoyu-post-to-wechat",
-      "name": "baoyu-post-to-wechat",
-      "domain": "social-media",
-      "niche": "support",
-      "creator": "JimLiu",
-      "use_cases": [
-        "Posts articles (HTML, markdown, text) or image-text posts to a WeChat Official Account via API or Chrome CDP."
-      ],
-      "tags": [
-        "baoyu",
-        "post",
-        "wechat"
-      ],
-      "source_url": "https://github.com/JimLiu/baoyu-skills",
-      "install_command": "npx skills add JimLiu/baoyu-skills -g -s baoyu-post-to-wechat",
-      "popularity": 35000,
       "verified": true,
       "tier": "support",
       "score": null
@@ -7742,29 +7405,6 @@
       "score": null
     },
     {
-      "id": "erpnext-syntax-clientscripts",
-      "name": "erpnext-syntax-clientscripts",
-      "domain": "automation-tools",
-      "niche": "support",
-      "creator": "OpenAEC-Foundation",
-      "use_cases": [
-        "Syntax reference for ERPNext/Frappe client-side form scripts (frappe.ui.form.on, frm methods, frappe.call, child tables) for v14-v16."
-      ],
-      "tags": [
-        "erpnext",
-        "syntax",
-        "clientscripts"
-      ],
-      "source_url": "https://github.com/OpenAEC-Foundation/ERPNext_Anthropic_Claude_Development_Skill_Package/tree/main/skills/source/syntax/erpnext-syntax-clientscripts",
-      "install_command": "npx skills add OpenAEC-Foundation/ERPNext_Anthropic_Claude_Development_Skill_Package -g -s erpnext-syntax-clientscripts",
-      "popularity": 43,
-      "verified": true,
-      "tier": "support",
-      "score": null,
-      "skill_count": 61,
-      "bundle": true
-    },
-    {
       "id": "agents-cli",
       "name": "agents-cli",
       "domain": "automation-tools",
@@ -7828,27 +7468,6 @@
       "score": null
     },
     {
-      "id": "godogen",
-      "name": "godogen",
-      "domain": "general",
-      "niche": "support",
-      "creator": "htdt",
-      "use_cases": [
-        "The only SKILL.md in the repo is asset-gen: generates game images, textured GLB models, rigged characters, audio via local GPU tools and paid APIs."
-      ],
-      "tags": [
-        "godogen"
-      ],
-      "source_url": "https://github.com/htdt/godogen",
-      "install_command": "npx skills add htdt/godogen -g -s godogen",
-      "popularity": 115,
-      "verified": true,
-      "tier": "support",
-      "score": null,
-      "skill_count": 1,
-      "bundle": false
-    },
-    {
       "id": "dream-loop",
       "name": "dream-loop",
       "domain": "general",
@@ -7864,26 +7483,6 @@
       "source_url": "https://github.com/achimala/dream-loop",
       "install_command": "npx skills add achimala/dream-loop -g -s dream-loop",
       "popularity": 1200,
-      "verified": true,
-      "tier": "support",
-      "score": null
-    },
-    {
-      "id": "game-feel",
-      "name": "game-feel",
-      "domain": "general",
-      "niche": "support",
-      "creator": "gamedev-skills",
-      "use_cases": [
-        "Adds engine-neutral juice: trauma screen shake, hit-stop, tweens, squash and stretch, knockback."
-      ],
-      "tags": [
-        "game",
-        "feel"
-      ],
-      "source_url": "https://github.com/gamedev-skills/awesome-gamedev-agent-skills/blob/main/skills/disciplines/game-feel/SKILL.md",
-      "install_command": "npx skills add gamedev-skills/awesome-gamedev-agent-skills -g -s SKILL.md",
-      "popularity": 17900,
       "verified": true,
       "tier": "support",
       "score": null
@@ -8029,27 +7628,6 @@
       "score": null,
       "skill_count": 67,
       "bundle": true
-    },
-    {
-      "id": "create-game-assets",
-      "name": "create-game-assets",
-      "domain": "infrastructure",
-      "niche": "support",
-      "creator": "gamedev-skills",
-      "use_cases": [
-        "Plans, generates and validates consistent game art: style guides, sprites, tilesets, icons, with QA and licence records."
-      ],
-      "tags": [
-        "create",
-        "game",
-        "assets"
-      ],
-      "source_url": "https://github.com/gamedev-skills/awesome-gamedev-agent-skills/blob/main/skills/disciplines/create-game-assets/SKILL.md",
-      "install_command": "npx skills add gamedev-skills/awesome-gamedev-agent-skills -g -s SKILL.md",
-      "popularity": 13900,
-      "verified": true,
-      "tier": "support",
-      "score": null
     },
     {
       "id": "setup-pre-commit",
@@ -8950,52 +8528,6 @@
       "score": 11.02
     },
     {
-      "id": "hyperframes-cli",
-      "name": "hyperframes-cli",
-      "domain": "automation-tools",
-      "niche": "support",
-      "creator": "heygen-com",
-      "use_cases": [
-        "HyperFrames CLI - scaffold, check frames, edit timelines, preview, render, share and project history; read JSON and recover from failures."
-      ],
-      "tags": [
-        "hyperframes",
-        "scaffold",
-        "check",
-        "frames",
-        "edit"
-      ],
-      "source_url": "https://github.com/heygen-com/hyperframes",
-      "install_command": "npx skills add heygen-com/hyperframes -g -s hyperframes-cli",
-      "popularity": 1600000,
-      "verified": true,
-      "tier": "support",
-      "score": 96.83
-    },
-    {
-      "id": "hyperframes-registry",
-      "name": "hyperframes-registry",
-      "domain": "general",
-      "niche": "support",
-      "creator": "heygen-com",
-      "use_cases": [
-        "About 450 ready-made HyperFrames blocks and components installed as editable source - transitions, overlays, titles, kinetic type, captions, charts, map overlays, 3D, camera moves. Use it before hand-building any named visual (CRT scanlines, glitch, film grain, a chart); also for"
-      ],
-      "tags": [
-        "hyperframes",
-        "registry",
-        "about",
-        "ready",
-        "made"
-      ],
-      "source_url": "https://github.com/heygen-com/hyperframes",
-      "install_command": "npx skills add heygen-com/hyperframes -g -s hyperframes-registry",
-      "popularity": 1300000,
-      "verified": true,
-      "tier": "support",
-      "score": 95.82
-    },
-    {
       "id": "cloudflare-email-service",
       "name": "cloudflare-email-service",
       "domain": "business-and-productivity",
@@ -9150,5 +8682,6 @@
       "tier": "support",
       "score": 0
     }
-  ]
+  ],
+  "count": 407
 }
