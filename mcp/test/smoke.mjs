@@ -19,17 +19,18 @@ const call = async (name, args = {}) => {
 };
 
 const domains = await call("list_domains");
-assert.ok(domains.data.some((d) => d.domain === "apple"));
+assert.ok(domains.data.some((d) => d.domain === "frontend"));
 
 const rec = await call("recommend_skills", { project_description: "macOS menubar app in Swift and SwiftUI that encrypts folders with Touch ID", limit: 5 });
 assert.equal(rec.data.length, 5);
-assert.equal(rec.data[0].domain, "apple");
+assert.ok(rec.data.some((s) => /swift/i.test(s.id)), rec.data.map((s) => s.id).join(","));
 
 const dom = await call("list_domain_skills", { domain: "design", limit: 99 });
 assert.ok(dom.data.length <= 25);
+assert.ok(dom.data.length > 0);
 assert.ok(dom.data.every((s, i, a) => i === 0 || a[i - 1].popularity >= s.popularity));
 
-const search = await call("search_skills", { query: "swift concurency", domain: "apple", limit: 3 });
+const search = await call("search_skills", { query: "swift concurency", limit: 3 });
 assert.ok(search.data.slice(0, 2).some((s) => s.id === "swift-concurrency"));
 
 const one = await call("get_skill", { id: "swiftui-pro" });

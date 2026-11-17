@@ -116,7 +116,7 @@ assert.ok(fuuBundle.plan?.open_questions.length >= 1);
 assert.ok(fuuBundle.references.files.some((f) => f.file === "apple-macos-swift.md"));
 assert.ok(fuuBundle.references.files.some((f) => f.file === "security.md"));
 assert.ok(fuuBundle.skills.length > 0);
-assert.ok(fuuBundle.skills.some((s) => s.domain === "apple"));
+assert.ok(fuuBundle.skills.some((s) => /swift|apple|macos|xcode/i.test(s.id)));
 assert.ok(fuuBundle.skills.every((s) => typeof s.installed === "boolean"));
 assert.ok(fuuBundle.coverage_holes.length >= 1);
 

@@ -24,6 +24,8 @@ Default di file ini adalah bias owner (TypeScript dengan Vite+, Apple native, Po
 | [stack-compat-ts.md](stack-compat-ts.md) | Merakit stack TS (kombinasi valid dan terlarang) |
 | [frontend.md](frontend.md) | Framework web, UI, state, form, i18n |
 | [frontend-architecture.md](frontend-architecture.md) | Checklist system design FE |
+| [ui-catalog.md](ui-catalog.md) | Ikon, motion, loading, chart, diagram, sound |
+| [ui-catalog-scores.md](ui-catalog-scores.md) | Skor 0-10 tiap library katalog (hasil skrip) |
 | [backend.md](backend.md) | Framework server, ORM, queue per bahasa |
 | [database.md](database.md) | Database, host, migrasi |
 | [api.md](api.md) | REST, tRPC/oRPC, GraphQL, gRPC, versi, gateway |

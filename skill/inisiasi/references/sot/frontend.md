@@ -2,7 +2,7 @@
 
 > Terakhir diverifikasi: 2026-11-16
 
-Scope: framework web, UI kit, design system, state, form, styling. Arsitektur dan checklist: [frontend-architecture.md](frontend-architecture.md). Mobile: [mobile.md](mobile.md).
+Scope: framework web, UI kit, design system, state, form, styling. Arsitektur dan checklist: [frontend-architecture.md](frontend-architecture.md). Ikon, motion, loading, chart, diagram, sound: [ui-catalog.md](ui-catalog.md). Mobile: [mobile.md](mobile.md).
 
 ## Default
 
