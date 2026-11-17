@@ -5,7 +5,7 @@ Project kickoff skill plus a local MCP server. The skill turns `docs/PLAN.md` go
 ```
 skill/inisiasi/   SKILL.md, references/templates.md, references/prompts.md, references/sot, evals/evals.json
 mcp/              stdio MCP server (TypeScript, @modelcontextprotocol/sdk)
-mcp/catalog.json  curated skill catalog (159 skills, 15 domains)
+mcp/catalog.json  curated skill catalog (407 skills, 15 domains)
 mcp/catalog.md    curation criteria and how to add entries
 ```
 
@@ -89,4 +89,4 @@ Domains and niches come from the entries. `popularity` is GitHub stars of the so
 
 ## Catalog
 
-159 curated skills across 15 domains, each checked at its GitHub source. Criteria, domains and the steps to add an entry are in [`mcp/catalog.md`](mcp/catalog.md). Run `npm run validate` after editing.
+407 curated skills across 15 domains, each checked at its GitHub source. Criteria, domains and the steps to add an entry are in [`mcp/catalog.md`](mcp/catalog.md). Run `npm run validate` after editing.

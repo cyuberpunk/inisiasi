@@ -149,5 +149,5 @@ Use when you want to see which SoT files are stale, not to rewrite them yet.
 Expected: a list of `_references` files with `Terakhir diverifikasi` dates, flagged if older than 12 months or missing the header. `select_references` already returns `verified_at` and `stale` for the shortlist; this prompt is the full-tree check. No edits unless you ask.
 
 ```
-Cek freshness _references inisiasi. List file yang tanggal "Terakhir diverifikasi"-nya lebih dari 12 bulan atau header-nya hilang. Jangan edit .md-nya, lapor aja dulu.
+Cek freshness references/sot inisiasi. List file yang tanggal "Terakhir diverifikasi"-nya lebih dari 12 bulan atau header-nya hilang. Jangan edit .md-nya, lapor aja dulu.
 ```
