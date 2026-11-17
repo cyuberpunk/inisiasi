@@ -1792,7 +1792,7 @@
       "source_url": "https://github.com/xiaopu-ai/web-design",
       "install_command": "npx skills add xiaopu-ai/web-design -g -s web-design",
       "popularity": 330,
-      "verified": false,
+      "verified": true,
       "tier": "main",
       "score": null
     },
@@ -1813,7 +1813,7 @@
       "source_url": "https://github.com/wshobson/agents/tree/main/plugins/developer-essentials/skills/error-handling-patterns",
       "install_command": "npx skills add wshobson/agents -g -s error-handling-patterns",
       "popularity": 23900,
-      "verified": false,
+      "verified": true,
       "tier": "main",
       "score": null
     },
@@ -7132,7 +7132,7 @@
       "source_url": "https://github.com/gamedev-skills/awesome-gamedev-agent-skills/blob/main/skills/unity/unity-scriptableobjects/SKILL.md",
       "install_command": "npx skills add gamedev-skills/awesome-gamedev-agent-skills -g -s SKILL.md",
       "popularity": 11300,
-      "verified": false,
+      "verified": true,
       "tier": "support",
       "score": null
     },
@@ -7191,9 +7191,11 @@
       "source_url": "https://github.com/Imbad0202/academic-research-skills",
       "install_command": "npx skills add Imbad0202/academic-research-skills -g -s academic-research-skills",
       "popularity": 57211,
-      "verified": false,
+      "verified": true,
       "tier": "support",
-      "score": null
+      "score": null,
+      "skill_count": 5,
+      "bundle": true
     },
     {
       "id": "research-paper-writing-skills",
@@ -7212,9 +7214,11 @@
       "source_url": "https://github.com/Master-cai/Research-Paper-Writing-Skills",
       "install_command": "npx skills add Master-cai/Research-Paper-Writing-Skills -g -s research-paper-writing-skills",
       "popularity": 8390,
-      "verified": false,
+      "verified": true,
       "tier": "support",
-      "score": null
+      "score": null,
+      "skill_count": 1,
+      "bundle": false
     },
     {
       "id": "deep-research-skills",
@@ -7232,9 +7236,11 @@
       "source_url": "https://github.com/Weizhena/Deep-Research-skills",
       "install_command": "npx skills add Weizhena/Deep-Research-skills -g -s deep-research-skills",
       "popularity": 2571,
-      "verified": false,
+      "verified": true,
       "tier": "support",
-      "score": null
+      "score": null,
+      "skill_count": 20,
+      "bundle": true
     },
     {
       "id": "claude-deep-research-skill",
@@ -7253,7 +7259,7 @@
       "source_url": "https://github.com/199-biotechnologies/claude-deep-research-skill",
       "install_command": "npx skills add 199-biotechnologies/claude-deep-research-skill -g -s claude-deep-research-skill",
       "popularity": 1223,
-      "verified": false,
+      "verified": true,
       "tier": "support",
       "score": null
     },
@@ -7292,9 +7298,11 @@
       "source_url": "https://github.com/uditgoenka/autoresearch",
       "install_command": "npx skills add uditgoenka/autoresearch -g -s autoresearch",
       "popularity": 2700,
-      "verified": false,
+      "verified": true,
       "tier": "support",
-      "score": null
+      "score": null,
+      "skill_count": 7,
+      "bundle": true
     },
     {
       "id": "content-research-writer",
@@ -7313,7 +7321,7 @@
       "source_url": "https://github.com/ComposioHQ/awesome-claude-skills/tree/master/content-research-writer",
       "install_command": "npx skills add ComposioHQ/awesome-claude-skills -g -s content-research-writer",
       "popularity": 9000,
-      "verified": false,
+      "verified": true,
       "tier": "support",
       "score": null
     },
@@ -7395,7 +7403,7 @@
       "source_url": "https://github.com/inference-sh/skills/blob/main/guides/social/ai-social-media-content/SKILL.md",
       "install_command": "npx skills add inference-sh/skills -g -s SKILL.md",
       "popularity": 7,
-      "verified": false,
+      "verified": true,
       "tier": "support",
       "score": null
     },
@@ -7437,9 +7445,11 @@
       "source_url": "https://github.com/ScrapeCreators/social-media-research-skills",
       "install_command": "npx skills add ScrapeCreators/social-media-research-skills -g -s social-media-research-skills",
       "popularity": 6617,
-      "verified": false,
+      "verified": true,
       "tier": "support",
-      "score": null
+      "score": null,
+      "skill_count": 13,
+      "bundle": true
     },
     {
       "id": "social-media-skills",
@@ -7457,9 +7467,11 @@
       "source_url": "https://github.com/charlie947/social-media-skills",
       "install_command": "npx skills add charlie947/social-media-skills -g -s social-media-skills",
       "popularity": 4722,
-      "verified": false,
+      "verified": true,
       "tier": "support",
-      "score": null
+      "score": null,
+      "skill_count": 17,
+      "bundle": true
     },
     {
       "id": "create-viral-content",
@@ -7478,7 +7490,7 @@
       "source_url": "https://github.com/aaaronmiller/create-viral-content",
       "install_command": "npx skills add aaaronmiller/create-viral-content -g -s create-viral-content",
       "popularity": 207,
-      "verified": false,
+      "verified": true,
       "tier": "support",
       "score": null
     },
@@ -7498,7 +7510,7 @@
       "source_url": "https://github.com/alirezarezvani/claude-skills/blob/main/marketing-skill/skills/x-twitter-growth/SKILL.md",
       "install_command": "npx skills add alirezarezvani/claude-skills -g -s SKILL.md",
       "popularity": 741,
-      "verified": false,
+      "verified": true,
       "tier": "support",
       "score": null
     },
@@ -7639,7 +7651,7 @@
       "source_url": "https://github.com/sergebulaev/linkedin-skills",
       "install_command": "npx skills add sergebulaev/linkedin-skills -g -s linkedin-skills",
       "popularity": 5970,
-      "verified": false,
+      "verified": true,
       "tier": "support",
       "score": null
     },
@@ -7659,9 +7671,11 @@
       "source_url": "https://github.com/Jakeschincariol/instagram-agent-skill",
       "install_command": "npx skills add Jakeschincariol/instagram-agent-skill -g -s instagram-agent-skill",
       "popularity": 6861,
-      "verified": false,
+      "verified": true,
       "tier": "support",
-      "score": null
+      "score": null,
+      "skill_count": 13,
+      "bundle": true
     },
     {
       "id": "browser-mcp-agent",
@@ -7744,9 +7758,11 @@
       "source_url": "https://github.com/OpenAEC-Foundation/ERPNext_Anthropic_Claude_Development_Skill_Package/tree/main/skills/source/syntax/erpnext-syntax-clientscripts",
       "install_command": "npx skills add OpenAEC-Foundation/ERPNext_Anthropic_Claude_Development_Skill_Package -g -s erpnext-syntax-clientscripts",
       "popularity": 43,
-      "verified": false,
+      "verified": true,
       "tier": "support",
-      "score": null
+      "score": null,
+      "skill_count": 61,
+      "bundle": true
     },
     {
       "id": "agents-cli",
@@ -7764,9 +7780,11 @@
       "source_url": "https://github.com/google/agents-cli",
       "install_command": "npx skills add google/agents-cli -g -s agents-cli",
       "popularity": 6362,
-      "verified": false,
+      "verified": true,
       "tier": "support",
-      "score": null
+      "score": null,
+      "skill_count": 16,
+      "bundle": true
     },
     {
       "id": "clipify",
@@ -7783,7 +7801,7 @@
       "source_url": "https://github.com/louisedesadeleer/clipify",
       "install_command": "npx skills add louisedesadeleer/clipify -g -s clipify",
       "popularity": 256,
-      "verified": false,
+      "verified": true,
       "tier": "support",
       "score": null
     },
@@ -7824,9 +7842,11 @@
       "source_url": "https://github.com/htdt/godogen",
       "install_command": "npx skills add htdt/godogen -g -s godogen",
       "popularity": 115,
-      "verified": false,
+      "verified": true,
       "tier": "support",
-      "score": null
+      "score": null,
+      "skill_count": 1,
+      "bundle": false
     },
     {
       "id": "dream-loop",
@@ -7844,7 +7864,7 @@
       "source_url": "https://github.com/achimala/dream-loop",
       "install_command": "npx skills add achimala/dream-loop -g -s dream-loop",
       "popularity": 1200,
-      "verified": false,
+      "verified": true,
       "tier": "support",
       "score": null
     },
@@ -7864,7 +7884,7 @@
       "source_url": "https://github.com/gamedev-skills/awesome-gamedev-agent-skills/blob/main/skills/disciplines/game-feel/SKILL.md",
       "install_command": "npx skills add gamedev-skills/awesome-gamedev-agent-skills -g -s SKILL.md",
       "popularity": 17900,
-      "verified": false,
+      "verified": true,
       "tier": "support",
       "score": null
     },
@@ -7884,7 +7904,7 @@
       "source_url": "https://github.com/gamedev-skills/awesome-gamedev-agent-skills/blob/main/skills/disciplines/procedural-gen/SKILL.md",
       "install_command": "npx skills add gamedev-skills/awesome-gamedev-agent-skills -g -s SKILL.md",
       "popularity": 13600,
-      "verified": false,
+      "verified": true,
       "tier": "support",
       "score": null
     },
@@ -7904,7 +7924,7 @@
       "source_url": "https://github.com/gamedev-skills/awesome-gamedev-agent-skills/blob/main/skills/workflows/prototype-fast/SKILL.md",
       "install_command": "npx skills add gamedev-skills/awesome-gamedev-agent-skills -g -s SKILL.md",
       "popularity": 12400,
-      "verified": false,
+      "verified": true,
       "tier": "support",
       "score": null
     },
@@ -7924,7 +7944,7 @@
       "source_url": "https://github.com/gamedev-skills/awesome-gamedev-agent-skills/blob/main/skills/disciplines/dialogue-systems/SKILL.md",
       "install_command": "npx skills add gamedev-skills/awesome-gamedev-agent-skills -g -s SKILL.md",
       "popularity": 13100,
-      "verified": false,
+      "verified": true,
       "tier": "support",
       "score": null
     },
@@ -7944,7 +7964,7 @@
       "source_url": "https://github.com/gamedev-skills/awesome-gamedev-agent-skills/blob/main/skills/disciplines/shader-programming/SKILL.md",
       "install_command": "npx skills add gamedev-skills/awesome-gamedev-agent-skills -g -s SKILL.md",
       "popularity": 13300,
-      "verified": false,
+      "verified": true,
       "tier": "support",
       "score": null
     },
@@ -8004,9 +8024,11 @@
       "source_url": "https://github.com/bergside/awesome-design-skills",
       "install_command": "npx skills add bergside/awesome-design-skills -g -s awesome-design-skills",
       "popularity": 3689,
-      "verified": false,
+      "verified": true,
       "tier": "support",
-      "score": null
+      "score": null,
+      "skill_count": 67,
+      "bundle": true
     },
     {
       "id": "create-game-assets",
@@ -8025,7 +8047,7 @@
       "source_url": "https://github.com/gamedev-skills/awesome-gamedev-agent-skills/blob/main/skills/disciplines/create-game-assets/SKILL.md",
       "install_command": "npx skills add gamedev-skills/awesome-gamedev-agent-skills -g -s SKILL.md",
       "popularity": 13900,
-      "verified": false,
+      "verified": true,
       "tier": "support",
       "score": null
     },
