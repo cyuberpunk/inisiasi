@@ -11,7 +11,8 @@
         "Does not ask whether to record",
         "Confirms in one line what was stored",
         "No em dash"
-      ]
+      ],
+      "should_trigger": true
     },
     {
       "id": 2,
@@ -22,7 +23,8 @@
         "Does not run set",
         "Does not change profile.json",
         "Answers the question about zod"
-      ]
+      ],
+      "should_trigger": false
     },
     {
       "id": 3,
@@ -33,7 +35,8 @@
         "Runs set with key fe.fetch (not fetch)",
         "Value is tanstack-query",
         "Does not overwrite default fetch"
-      ]
+      ],
+      "should_trigger": true
     },
     {
       "id": 4,
@@ -44,7 +47,8 @@
         "Does not store a key named orm-x",
         "Shows the known-key list or a close match",
         "Asks once what key was meant"
-      ]
+      ],
+      "should_trigger": true
     },
     {
       "id": 5,
@@ -55,7 +59,8 @@
         "Runs apply",
         "Names the source of the value",
         "Does not invent a value when unset"
-      ]
+      ],
+      "should_trigger": true
     },
     {
       "id": 6,
@@ -66,7 +71,8 @@
         "Runs learn without --write",
         "Shows evidence per key",
         "Asks before writing"
-      ]
+      ],
+      "should_trigger": true
     },
     {
       "id": 7,
@@ -76,7 +82,8 @@
       "assertions": [
         "Does not record or apply selera profile",
         "Focuses on logic bug, not style"
-      ]
+      ],
+      "should_trigger": false
     }
   ]
 }

@@ -13,7 +13,8 @@
         "Names the riskiest assumption and a spike",
         "Stops and waits for go",
         "No em dash"
-      ]
+      ],
+      "should_trigger": true
     },
     {
       "id": 2,
@@ -26,7 +27,8 @@
         "Does not write ARCHITECTURE.md or TASKS.md",
         "Stops and waits",
         "No em dash"
-      ]
+      ],
+      "should_trigger": true
     },
     {
       "id": 3,
@@ -38,7 +40,8 @@
         "Runs the plan gate first",
         "Does not write ARCHITECTURE.md or TASKS.md before go",
         "No em dash"
-      ]
+      ],
+      "should_trigger": true
     },
     {
       "id": 4,
@@ -50,7 +53,8 @@
         "Does not rewrite ARCHITECTURE.md",
         "Offers a re-plan, asks first",
         "No em dash"
-      ]
+      ],
+      "should_trigger": true
     },
     {
       "id": 5,
@@ -63,7 +67,8 @@
         "Offers maintained alternatives",
         "Does not wire either into a document",
         "No em dash"
-      ]
+      ],
+      "should_trigger": true
     },
     {
       "id": 6,
@@ -77,7 +82,8 @@
         "Adds an AGENTS_WORKLOG.md entry",
         "Leaves docs/DESIGN.md untouched",
         "No em dash"
-      ]
+      ],
+      "should_trigger": true
     },
     {
       "id": 7,
@@ -89,7 +95,8 @@
         "Does not write any doc",
         "Answers from the existing code"
       ],
-      "files": []
+      "files": [],
+      "should_trigger": false
     },
     {
       "id": 8,
@@ -100,7 +107,8 @@
         "Does not start the inisiasi flow",
         "Answers the comparison"
       ],
-      "files": []
+      "files": [],
+      "should_trigger": false
     }
   ]
 }
