@@ -44,7 +44,7 @@ A local stdio MCP server plus two skills. The server answers catalog and project
 
 - `inisiasi` (this repo, stdio): the catalog for this project. Project-doc tools exist only here.
 - `skill-issue` (remote, user-level, `https://skill-issue.in/api/mcp`): exposes the same 5 catalog tools. Duplicate.
-- Decision: keep `inisiasi`. Remove `skill-issue` from the user config (`claude mcp remove skill-issue`). Pending owner confirmation, because it changes the global config for every project.
+- Decision: keep `inisiasi`. `skill-issue` removed from the user config with `claude mcp remove skill-issue` (done 2026-11-18).
 
 ## Rejected alternatives
 
