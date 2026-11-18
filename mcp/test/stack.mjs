@@ -153,4 +153,6 @@ assert.ok(has(flutter, "mobile.md") && !has(flutter, "apple-macos-swift.md"), "f
 assert.ok(has(pick("saas with stripe subscriptions and a paywall"), "billing.md"), "subscriptions route to billing.md");
 for (const d of ["laravel php ecommerce", "spring boot java api", "rails app in ruby", "asp.net core api in c#"]) assert.ok(has(pick(d), "backend.md"), d + " routes to backend.md");
 assert.deepEqual(pick("react dashboard with vite").gaps, [], "covered stack reports no gap");
+assert.ok(!has(pick("deploy api on windows server"), "desktop.md"), "windows server is not a desktop app");
+assert.ok(has(pick("note taking app for windows"), "desktop.md"), "an app for windows routes to desktop.md");
 console.log("OK: platform routing and gaps");
