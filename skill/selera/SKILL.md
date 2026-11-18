@@ -3,12 +3,15 @@ name: selera
 description: >-
   Records and applies this owner's code standards: tool and library choices,
   naming, formatting, testing, commit style. Use when the user states a
-  preference ("pakai pnpm ya", "gunakan zod buat validasi", "jangan chakra, pakai
-  heroui"), asks which convention applies ("cek di standar", "aturan penamaan
-  file apa"), or wants to set up or detect their standards ("selera setup",
-  "lihat kebiasaan saya dari repo"). Also while scaffolding code when a
-  convention choice comes up. Not for logic or bug review of a diff, not for
-  explaining how a tool or library works, not for project kickoff (use inisiasi).
+  preference ("use pnpm", "use zod for validation", "no chakra, use heroui"),
+  asks which convention applies ("what's our naming rule", "which standard
+  applies"), or wants to set up or detect their standards ("selera setup",
+  "detect my habits from the repo"). Also while scaffolding code when a
+  convention choice comes up. Indonesian triggers work too: "pakai pnpm ya",
+  "gunakan zod buat validasi", "jangan chakra, pakai heroui", "cek di standar",
+  "aturan penamaan file apa", "lihat kebiasaan saya dari repo". Not for logic
+  or bug review of a diff, not for explaining how a tool or library works, not
+  for project kickoff (use inisiasi).
 ---
 
 # selera
@@ -47,20 +50,20 @@ The owner will not use fixed phrases, and should not have to. Judge by intent: i
 
 | Intent | Sounds like | Action |
 |---|---|---|
-| State a preference | `pakai pnpm`, `gunakan zod`, `jangan chakra`, `heroui aja`, `kita pakai uv`, `gue lebih suka X`, "we use X here" | `set <key> <value>`, then confirm in one line |
-| Ask what is in force | `cek di standar`, `aturan penamaan apa`, `standar kode saya`, `conventions?`, `gimana kita biasanya` | `apply`, name the source |
-| Ask to detect habits | `lihat kebiasaan saya`, `selera learn`, `tebak dari repo` | `learn`, show evidence, ask before `--write` |
-| Ask to set up | `atur standar`, `selera setup`, `setup conventions` | `setup` |
+| State a preference | `use pnpm`, `use zod`, `no chakra`, `we use X here`; Indonesian: `pakai pnpm`, `gunakan zod`, `jangan chakra`, `kita pakai uv`, `gue lebih suka X` | `set <key> <value>`, then confirm in one line |
+| Ask what is in force | `what's our convention`, `what's the naming rule`, `how do we usually do it`; Indonesian: `cek di standar`, `aturan penamaan apa`, `standar kode saya` | `apply`, name the source |
+| Ask to detect habits | `detect my habits`, `selera learn`, `guess from the repo`; Indonesian: `lihat kebiasaan saya`, `tebak dari repo` | `learn`, show evidence, ask before `--write` |
+| Ask to set up | `set up my standards`, `selera setup`; Indonesian: `atur standar` | `setup` |
 | Apply while working | any coding task where a convention choice appears | read the SoT group, follow the profile, mention the deviation |
 
-Do not fire on general tool talk. "Apa itu zod", "kenapa Hermes lebih cepat", "cara install uv" are ordinary questions, not preference statements. If it is ambiguous whether the owner is stating a rule or just chatting, treat it as a question and ask once, briefly.
+Do not fire on general tool talk. "What is zod", "why is Hermes faster", "how to install uv" are ordinary questions, not preference statements. If it is ambiguous whether the owner is stating a rule or just chatting, treat it as a question and ask once, briefly.
 
 A stated preference is a `set`, not a question. Do not ask permission to record it, and never guess a key that is not in the list.
 
 ## Steps
 
 1. **Check.** Run `show`. An empty profile is normal: the SoT already covers universal practice. Offer `setup` only when the owner asks, and let them skip anything.
-2. **Record.** When the owner states a preference in passing (`pakai pnpm ya`, `jangan chakra, heroui aja`), run `set` immediately and say one line about what you stored. Do not ask permission for this, and never overwrite a recorded value silently.
+2. **Record.** When the owner states a preference in passing (`use pnpm`, `no chakra, use heroui`), run `set` immediately and say one line about what you stored. Do not ask permission for this, and never overwrite a recorded value silently.
 3. **Read the standards.** Open `references/sot/README.md`, then only the files matching the task. Nine groups: naming, structure, imports, formatting, functions, design, types, git, testing.
 4. **Apply.** Follow the profile first, SoT second, generic convention last. When they conflict, the profile wins and you name the deviation in one line.
 5. **Report.** When you wrote or reviewed code, state the conventions you applied in one short line. No essay.

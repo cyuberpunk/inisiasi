@@ -1,6 +1,6 @@
 ---
 name: inisiasi
-description: Project kickoff. Turns the goals in docs/PLAN.md into the agent skills to install, the tech stack, the architecture and the system design, then writes docs/ARCHITECTURE.md and docs/TASKS.md. Use at the start of any new project or when docs/ARCHITECTURE.md is empty, and whenever the user says inisiasi, bootstrap, kickoff, "start a new project", "mulai project baru", "pilih stack", "stack apa yang cocok", "skill apa yang perlu", "which skills do I need", "bootstrap this project", "ok go, write the docs", "tulis docs-nya", or asks for architecture or system design for something not built yet. Use it even if they only mention a new idea and an empty repo.
+description: Project kickoff. Turns the goals in docs/PLAN.md into the agent skills to install, the tech stack, the architecture and the system design, then writes docs/ARCHITECTURE.md and docs/TASKS.md. Use at the start of any new project or when docs/ARCHITECTURE.md is empty, and whenever the user says inisiasi, bootstrap, kickoff, "start a new project", "which stack fits", "which skills do I need", "bootstrap this project", "ok go, write the docs", or asks for architecture or system design for something not built yet. Also triggers on the Indonesian equivalents: "mulai project baru", "pilih stack", "stack apa yang cocok", "skill apa yang perlu", "tulis docs-nya". Use it even if they only mention a new idea and an empty repo.
 ---
 
 # inisiasi
@@ -11,7 +11,7 @@ The owner's time is the scarce thing. Every question you ask costs a round trip,
 
 ## Paths
 
-- **SoT references:** `$INISIASI_REFERENCES` if set, otherwise `references/sot` next to this skill (resolve symlinks first). Start at `references/sot/README.md`: read order and the owner-bias rule. Never recommend anything under Hindari. An uncovered need is a gap: say so, do not invent tools or versions.
+- **SoT references:** `$INISIASI_REFERENCES` if set, otherwise `references/sot` next to this skill (resolve symlinks first). Start at `references/sot/README.md`: read order and the owner-bias rule. Never recommend anything under Avoid (Hindari). An uncovered need is a gap: say so, do not invent tools or versions.
 - **Plan gate details:** `references/plan-gate.md`. **Doc formats:** `references/templates.md`. **Example prompts:** `references/prompts.md`. **Skill rules and drift check:** `references/skill-rules.md`. **Dev workflow phases:** `references/addy-index.md`.
 - **MCP fallback:** if the `inisiasi` MCP is unavailable, use the CLI in `references/cli-fallback.md` and note it in the worklog.
 
@@ -52,7 +52,7 @@ The owner's time is the scarce thing. Every question you ask costs a round trip,
 
 ## Later sessions (drift check)
 
-inisiasi keeps working after kickoff, only on a trigger: PLAN, TASKS or selera changed, the owner asks "cek drift" or "inisiasi cek", or a task needs a new capability.
+inisiasi keeps working after kickoff, only on a trigger: PLAN, TASKS or selera changed, the owner asks "check drift" or "inisiasi check" (Indonesian: "cek drift", "inisiasi cek"), or a task needs a new capability.
 1. Read selera (`show`), ARCHITECTURE and TASKS. List what no longer agrees: one line each.
 2. A new tech decision: propose it for selera and wait for the owner to confirm before `set`. Never write it silently.
 3. A task needs a capability: recommend at most one specific skill with options and the risk of each. Install nothing without a yes.
