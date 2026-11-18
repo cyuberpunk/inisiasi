@@ -11,7 +11,7 @@ The owner's time is the scarce thing. Every question you ask costs a round trip,
 
 ## Paths
 
-- **SoT references:** `$INISIASI_REFERENCES` if set, otherwise `references/sot` next to this skill (resolve symlinks first). Start at `references/sot/README.md`: read order and the owner-bias rule. Never recommend anything under Avoid (Hindari). An uncovered need is a gap: say so, do not invent tools or versions.
+- **SoT references:** `$INISIASI_REFERENCES` if set, otherwise `references/sot` next to this skill (resolve symlinks first). Start at `references/sot/README.md`: read order and the owner-bias rule. Never recommend anything under Avoid. An uncovered need is a gap: say so, do not invent tools or versions.
 - **Plan gate details:** `references/plan-gate.md`. **Doc formats:** `references/templates.md`. **Example prompts:** `references/prompts.md`. **Skill rules and drift check:** `references/skill-rules.md`. **Dev workflow phases:** `references/addy-index.md`.
 - **MCP fallback:** if the `inisiasi` MCP is unavailable, use the CLI in `references/cli-fallback.md` and note it in the worklog.
 
