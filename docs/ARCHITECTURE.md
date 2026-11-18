@@ -12,7 +12,7 @@ A local stdio MCP server plus two skills. The server answers catalog and project
 | Runtime | Node.js 20 or newer | Matches `engines` in `mcp/package.json` | Bun: not needed for a stdio server |
 | MCP | `@modelcontextprotocol/sdk` over stdio | Standard client support | Custom protocol: no benefit |
 | Fuzzy search | `fuse.js` | Already a dependency, no index to maintain | Full-text database: overkill for 407 entries |
-| Package manager | npm, `package-lock.json` | What the repo uses today | pnpm: recorded in selera, not yet applied here |
+| Package manager | pnpm 12, `pnpm-lock.yaml`, `packageManager` field | Matches selera (`packageManager: pnpm`) | npm: the lockfile it replaced |
 | Tests | Node scripts using `node:assert` | No test framework to maintain | vitest: recorded in selera, not yet applied here |
 
 ## Architecture
@@ -39,6 +39,12 @@ A local stdio MCP server plus two skills. The server answers catalog and project
 - `inisiasi`: `npx skills add` is not needed; installed as a symlink to `skill/inisiasi`.
 - `selera`: installed as a symlink to `skill/selera`.
 - No external skills are required for this repo.
+
+## MCP servers
+
+- `inisiasi` (this repo, stdio): the catalog for this project. Project-doc tools exist only here.
+- `skill-issue` (remote, user-level, `https://skill-issue.in/api/mcp`): exposes the same 5 catalog tools. Duplicate.
+- Decision: keep `inisiasi`. Remove `skill-issue` from the user config (`claude mcp remove skill-issue`). Pending owner confirmation, because it changes the global config for every project.
 
 ## Rejected alternatives
 

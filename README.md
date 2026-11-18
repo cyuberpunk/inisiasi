@@ -12,7 +12,7 @@ mcp/catalog.md    curation criteria and how to add entries
 ## Install
 
 ```sh
-cd mcp && npm i && npm run build   # npm test = validate catalog + build + docs/stack tests + smoke of all 10 tools
+cd mcp && pnpm install && pnpm run build   # npm test = validate catalog + build + docs/stack tests + smoke of all 10 tools
 ln -s "$PWD/../skill/inisiasi" ~/.agents/skills/inisiasi
 ```
 
