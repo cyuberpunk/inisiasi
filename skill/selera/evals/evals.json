@@ -84,6 +84,39 @@
         "Focuses on logic bug, not style"
       ],
       "should_trigger": false
+    },
+    {
+      "id": 8,
+      "name": "preference-npm-not-pnpm",
+      "prompt": "di repo ini kita pakai npm, bukan pnpm ya",
+      "expected_output": "Records packageManager npm via set",
+      "assertions": "Runs set packageManager npm, confirms in one line",
+      "files": [],
+      "should_trigger": true
+    },
+    {
+      "id": 9,
+      "name": "near-miss-tool-howto",
+      "prompt": "how do i set coverage thresholds in vitest?",
+      "expected_output": "Tool how-to, no preference, no profile write",
+      "assertions": [
+        "Does not run set",
+        "Answers the vitest question"
+      ],
+      "files": [],
+      "should_trigger": false
+    },
+    {
+      "id": 10,
+      "name": "near-miss-debug-test",
+      "prompt": "the test in cart.test.ts expects 3 but gets 2, why?",
+      "expected_output": "Debugging, not a convention question",
+      "assertions": [
+        "Does not run apply or set",
+        "Debugs the failing assertion"
+      ],
+      "files": [],
+      "should_trigger": false
     }
   ]
 }

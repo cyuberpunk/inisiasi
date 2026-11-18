@@ -8,7 +8,7 @@ Use `inspect_plan` if available (`path` is `docs/PLAN.md` or the project root), 
 
    1. Did the owner already answer it in this conversation? Then write the answer into PLAN and treat it as settled.
    2. Can it be settled by a default from the SoT or by platform convention? Then decide it, write it into PLAN, and label it as your decision in the reply so the owner can override.
-   3. Otherwise it is a real question. Collect at most 5 of those into one message, each with your recommended answer, and stop.
+   3. Otherwise it is a real question. Collect at most 3 of those into one message, each with your recommended answer, and stop.
 
    Then, if anything is still open: interview, write PLAN, show it, stop. If nothing is still open after folding answers and decisions, do not stop here. Say in one line which questions you settled and how, then continue to step 2 in the same turn. The owner saying "run", "lanjut", "go", or "repo is ready" is intent to proceed, so do not turn it into a question round.
 

@@ -19,10 +19,10 @@
     {
       "id": 2,
       "prompt": "new project, empty repo, i want a small web app to track my motorbike service history. what stack should i use and which agent skills do i need?",
-      "expected_output": "Asks at most 5 short questions because PLAN.md is empty, writes PLAN.md, then stops and waits. Does not pick a final stack or write ARCHITECTURE.md and TASKS.md yet.",
+      "expected_output": "Asks at most 3 short questions because PLAN.md is empty, writes PLAN.md, then stops and waits. Does not pick a final stack or write ARCHITECTURE.md and TASKS.md yet.",
       "files": [],
       "assertions": [
-        "Asks at most 5 questions",
+        "Asks at most 3 questions",
         "Writes docs/PLAN.md",
         "Does not write ARCHITECTURE.md or TASKS.md",
         "Stops and waits",
@@ -106,6 +106,39 @@
       "assertions": [
         "Does not start the inisiasi flow",
         "Answers the comparison"
+      ],
+      "files": [],
+      "should_trigger": false
+    },
+    {
+      "id": 9,
+      "name": "near-positive-new-idea-stack",
+      "prompt": "I have a new idea: a habit tracker for my small team. Before I touch any code, which stack and skills do I need?",
+      "expected_output": "Starts the inisiasi flow",
+      "assertions": "Starts plan gate and proposes stack",
+      "files": [],
+      "should_trigger": true
+    },
+    {
+      "id": 10,
+      "name": "near-miss-library-compare",
+      "prompt": "is zustand or redux better for a counter component? just explain the tradeoff",
+      "expected_output": "Plain comparison, no kickoff",
+      "assertions": [
+        "Does not start the inisiasi flow",
+        "Does not write any doc"
+      ],
+      "files": [],
+      "should_trigger": false
+    },
+    {
+      "id": 11,
+      "name": "near-miss-docs-for-existing-code",
+      "prompt": "write the docs for the auth module we already built, it has no architecture file yet but the code is done",
+      "expected_output": "Documents existing code, not a new-project kickoff",
+      "assertions": [
+        "Does not run the plan gate",
+        "Does not write ARCHITECTURE.md as a new-project kickoff"
       ],
       "files": [],
       "should_trigger": false

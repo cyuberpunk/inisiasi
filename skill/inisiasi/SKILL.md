@@ -28,7 +28,7 @@ The owner's time is the scarce thing. Every question you ask costs a round trip,
 
     1. Already answered in this conversation: write it into PLAN, settled.
     2. Settled by an SoT default or platform convention: decide, write it into PLAN, label it as your decision.
-    3. Otherwise a real question: collect at most 5 in one message, each with your recommended answer, and stop.
+    3. Otherwise a real question: collect at most 3 in one message, each with your recommended answer, and stop.
 
     If nothing is left open, say in one line what you settled and how, then continue to step 2 in the same turn. "run", "lanjut", "go", "repo is ready" mean proceed, not a question round. Back up PLAN before writing it. Details and PLAN format: `references/plan-gate.md`.
 
