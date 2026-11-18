@@ -24,6 +24,7 @@ A local stdio MCP server plus two skills. The server answers catalog and project
 - `mcp/src/drift.ts`: compares selera profile with ARCHITECTURE and TASKS.
 - `skill/inisiasi/`: the kickoff skill and its references.
 - `skill/selera/`: the code-standards skill and its CLI (`scripts/selera.mjs`).
+- `web/`: local Vite + React browser for the catalog and references, built from the same files at build time. Not hosted.
 
 ## System design
 
@@ -49,7 +50,7 @@ A local stdio MCP server plus two skills. The server answers catalog and project
 ## Rejected alternatives
 
 - Vector search for the catalog: 463 entries do not need embeddings.
-- A web UI: the owner uses the terminal and the MCP.
+- A hosted web UI: the owner uses the terminal and the MCP. The local browser in `web/` reads the repo files only.
 
 ## Risks
 

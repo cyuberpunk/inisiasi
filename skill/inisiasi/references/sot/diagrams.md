@@ -3,14 +3,14 @@
 > Last verified: 2026-11-18
 > Status: draft, pending owner review.
 
-Scope: which diagrams to draw, C4 levels, notation, and tooling. Prompts for drawing them: `references/prompts.md` (C4 context, container, component).
+Scope: which diagrams to draw, C4 levels, notation, and tooling. Prompts for drawing them: [prompts.md](../prompts.md) (C4 context, container, component, sequence).
 
 ## Defaults
 
 | Decision | Default | When it differs |
 |-----------|---------|------------|
-| Format | Diagrams as code in the repo (Mermaid) next to the docs they explain | Structurizr DSL when one model must produce many C4 views |
-| Rendering | GitHub and the docs site render Mermaid. No exported images as source | Export SVG only for slides |
+| Format | Diagrams as code in the repo (Mermaid) next to the docs they explain. Mermaid C4 syntax (`C4Context`, `C4Container`, `C4Component`) is experimental with manual layout: if it renders badly, draw a `flowchart` with C4 labels | Structurizr DSL when one model must produce many C4 views |
+| Rendering | GitHub renders Mermaid. Docs sites need their Mermaid plugin. No exported images as source | Export SVG only for slides |
 | Architecture views | C4 context and container in `docs/ARCHITECTURE.md` | Component view only for a container with real internal complexity |
 | Behavior | Sequence diagram per critical flow (payment, auth, sync) | None |
 | State | State diagram for anything with a lifecycle (order, subscription, agent run) | None |

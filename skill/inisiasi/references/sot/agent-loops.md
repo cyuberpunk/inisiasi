@@ -21,7 +21,7 @@ Scope: loop engineering. The observe, decide, act, verify cycle an agent runs, a
 |-----------|---------|------------|
 | Step limit | Fixed max steps per run (start around 20 to 50) | Raise only with evidence that runs finish just past the limit |
 | No-progress detection | Stop after N steps with the same failing check or the same tool call and arguments | None |
-| Retries | Bounded, with backoff and jitter, only for transient errors | Never retry a validation or permission error unchanged |
+| Retries | Bounded, with backoff and jitter, only for transient errors ([mechanisms.md](mechanisms.md)) | Never retry a validation or permission error unchanged |
 | State | Checkpoint after each verified step, so a crash resumes instead of restarting | Short loops (a few seconds) can restart |
 | Human in the loop | Pause and ask at risky actions and at an ambiguous fork | Fully autonomous only inside a sandbox with a predicate |
 | Long-running loops | A durable workflow engine (Temporal, Restate, Cloudflare Workflows, Inngest) | In-process loops for runs under a minute |

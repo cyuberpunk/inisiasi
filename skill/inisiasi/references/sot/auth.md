@@ -31,15 +31,17 @@ Draft, pending owner review.
 | Client | Flow |
 |--------|------|
 | Web app with a server | Authorization code + PKCE, tokens stay on the server, the browser gets a session cookie |
-| SPA without a backend | Add a backend-for-frontend (BFF) that holds the tokens. Tokens in the browser only when no BFF is possible |
+| SPA without a backend | Add a backend-for-frontend (BFF) that holds the tokens (RFC 10017). Tokens in the browser only when no BFF is possible |
 | Native and mobile apps | Authorization code + PKCE through the system browser (ASWebAuthenticationSession, Custom Tabs), never an embedded web view |
 | Service to service | Client credentials, short-lived tokens, one client per service |
-| Devices without a keyboard (TV, CLI) | Device authorization flow |
+| CLI on a machine with a browser | Authorization code + PKCE with a loopback redirect (`http://127.0.0.1:<port>`) |
+| TVs, or CLIs without a local browser (SSH) | Device authorization flow |
 
 - Login is OIDC: validate the ID token (`iss`, `aud`, `exp`, `nonce`, signature from the provider's JWKS). Authorization is OAuth access tokens, checked by the resource server.
-- Always send and check `state`. Exact redirect URI match, no wildcards.
+- Always send and check `state`. Exact redirect URI match, no wildcards (only the loopback port may vary). More than one provider: check `iss` in the response (RFC 9207).
+- Refresh tokens for public clients are rotated or sender-constrained (DPoP).
 - Scopes are coarse (what the client may ask for). Fine-grained permissions live in your app.
-- Do not use the implicit flow or the password grant.
+- Do not use the implicit flow or the password grant (RFC 9700).
 
 ## Avoid
 

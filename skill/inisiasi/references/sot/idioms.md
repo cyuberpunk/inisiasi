@@ -28,7 +28,7 @@ Scope: the idiomatic way to express common ideas in the owner's main languages. 
 | Shared mutable state | An `actor`, or `@MainActor` for UI state |
 | Variants | `enum` with associated values, exhaustive `switch` |
 | Async work | `async/await` and structured concurrency (`async let`, task groups), not callbacks |
-| Expected failure | `throws` with a typed error enum, `Result` only at callback boundaries |
+| Expected failure | `throws` with an error enum. Typed throws (`throws(E)`) only for a closed error set callers must handle exhaustively (SE-0413). `Result` only at callback boundaries |
 
 ## Python
 
@@ -46,7 +46,7 @@ Scope: the idiomatic way to express common ideas in the owner's main languages. 
 |------|-------|
 | Upsert | `INSERT ... ON CONFLICT ... DO UPDATE` |
 | Job queue claim | `SELECT ... FOR UPDATE SKIP LOCKED` |
-| Pagination | Keyset (`WHERE id > $last ORDER BY id LIMIT n`), not `OFFSET` on large tables |
+| Pagination | Keyset (`WHERE (created_at, id) > ($1, $2) ORDER BY created_at, id LIMIT n`) with a unique tie-breaker, not `OFFSET` on large tables |
 | Readable query | CTEs (`WITH`) over nested subqueries |
 
 ## Avoid

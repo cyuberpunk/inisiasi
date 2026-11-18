@@ -23,10 +23,10 @@ Scope: database choice, hosts, ORMs, schema migrations. Pools, N+1, locks: [prob
 
 Draft, pending owner review.
 
-- Start normalized (3NF). Every table has a primary key; prefer `bigint` identity or UUIDv7 over random UUIDv4 for index locality.
+- Start normalized (3NF). Every table has a primary key; prefer `bigint` identity or UUIDv7 (`uuidv7()` is built in since Postgres 18) over random UUIDv4 for index locality. UUIDv7 exposes creation time, so do not use it where that leaks.
 - Relationships: one-to-many is a foreign key on the many side, indexed. Many-to-many is a join table with a composite primary key and its own columns (role, created_at) when the relationship carries data.
 - Put invariants in the database: `NOT NULL`, `UNIQUE`, `CHECK`, foreign keys, exclusion constraints. Application checks alone race.
-- Denormalize only for a measured read problem, and say how the copy stays correct: a generated column, a trigger, a materialized view with a refresh schedule, or an event that updates it.
+- Denormalize only for a measured read problem, and say how the copy stays correct: a trigger, a materialized view with a refresh schedule, or an event that updates it. Values derived from the same row: a generated column.
 - Soft delete only when the domain needs restore or audit. Then every unique index and query must account for `deleted_at`.
 - Store time as `timestamptz` in UTC, money as integers in the smallest unit or `numeric`.
 - JSON columns (`jsonb`) for data the app does not filter or join on. Filtered fields become columns.

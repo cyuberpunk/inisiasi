@@ -23,7 +23,7 @@ Scope: common backend products and the decisions that matter for each. Use as a 
 
 ## Online shop
 
-- Catalog reads cached and searchable (Meilisearch, Typesense). Cart in the database for logged-in users.
+- Catalog reads cached. Search: Postgres FTS first, Meilisearch or Typesense for typo tolerance and facets ([data-services.md](data-services.md)). Cart in the database for logged-in users.
 - Stock: atomic decrement with a guard, or reservations with an expiry. Never read, compute, write.
 - Checkout is a state machine: cart, pending payment, paid, fulfilled, cancelled, refunded. The order is created before payment, with an idempotency key.
 - Emails and fulfillment via the outbox, not inside the checkout transaction.
@@ -46,6 +46,7 @@ Scope: common backend products and the decisions that matter for each. Use as a 
 
 ## Notification system
 
+- Buy first: Novu, Knock, or Courier cover channels, preferences, and batching ([email-notifications.md](email-notifications.md)). Build the shape below only when they do not fit.
 - One `notify(user, event)` entry point that writes a notification row and enqueues delivery per channel (email, push, in-app).
 - User preferences and quiet hours checked at delivery. Digest instead of flooding.
 - Per-channel retries and DLQ, provider failover for email, delivery status stored.
@@ -63,7 +64,7 @@ Scope: common backend products and the decisions that matter for each. Use as a 
 
 | Choice | Pick it when | Otherwise |
 |--------|--------------|-----------|
-| Modular monolith | Default for one team and one database | Services when teams, deploy cadence, or data ownership truly diverge |
+| Modular monolith | Default ([architecture.md](architecture.md)) | Services when teams, deploy cadence, or data ownership truly diverge |
 | Queue | Work is slow, retryable, or can happen after the response | Do it inline and keep it simple |
 | Cache | A read is hot and tolerates staleness | Fix the query first |
 | Event-driven | Several consumers react to one fact | A direct call is easier to trace |

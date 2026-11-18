@@ -14,15 +14,15 @@ Scope: building products where a model calls tools in a loop, and building softw
 | Control flow | Code decides the steps, the model fills them | Let the model choose steps only where the path cannot be known ahead |
 | Tools | Few, narrow, typed (JSON schema, validated at the boundary) | A broad tool (shell, SQL) only in a sandbox with no production credentials |
 | Risky actions | Human approval before send, pay, delete, deploy | None |
-| Evals | A fixed task set with a pass predicate per task, run in CI | Add LLM-as-judge only for outputs no predicate can check |
-| Tracing | Every model call and tool call traced (OpenTelemetry GenAI conventions) | None |
+| Evals | A fixed task set with a pass predicate per task, run in CI with `promptfoo` ([ai-llm.md](ai-llm.md)) | Add LLM-as-judge only for outputs no predicate can check |
+| Tracing | Every model call and tool call traced with OpenTelemetry GenAI semantic conventions. They are still at Development stability: pin the semconv version | None |
 
 ## Building agents
 
 - Write the tool contract first: name, input schema, output shape, errors. A tool returns data the model can act on, not a stack trace.
 - Tools are idempotent or take an idempotency key. The loop will retry them.
 - Context is a budget. Load what the step needs, summarize the rest, keep long-lived facts in storage, not in the transcript.
-- Untrusted content (pages, emails, files) never changes which tools the agent may call. Least privilege per tool.
+- Untrusted content (pages, emails, files) never changes which tools the agent may call. Least privilege per tool. More: [ai-llm.md](ai-llm.md) security, [problems-critical.md](problems-critical.md).
 - A per-run budget: max steps, max tokens, max wall time, max cost. Stopping on budget is a normal outcome, logged as such.
 - Version prompts and tool schemas with the code. A prompt change runs the eval set like a code change.
 

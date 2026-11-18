@@ -34,7 +34,7 @@ Concurrency is many tasks in progress at once (waiting on I/O). Parallelism is m
 | Level | Use when |
 |-------|----------|
 | Read committed (default) | Most work, combined with atomic updates, constraints, and row locks |
-| Repeatable read | A report or export needs one consistent snapshot |
+| Repeatable read | A report or export needs one consistent snapshot. Concurrent writers get `40001`, retry |
 | Serializable | Complex invariants across rows that are hard to lock explicitly. Retry on serialization failure (`40001`) |
 
 ## Cancellation and limits

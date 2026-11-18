@@ -22,8 +22,8 @@ If none of these hold, a single loop with tools is simpler.
 | State | Typed and validated (Zod, Pydantic). Nodes return a partial update, never mutate shared state | None |
 | Branching | Edges decided by code on the state. A model picks a branch only through a typed enum | None |
 | Persistence | Checkpoint state after every node | Pure in-memory only for runs under a minute |
-| TS | Plain functions plus a durable workflow engine (Temporal, Cloudflare Workflows, Inngest) | LangGraph.js when the team already uses LangChain |
-| Python | LangGraph for model-driven flows, Temporal for business workflows | Pydantic AI graphs for small typed flows |
+| Model-driven flow | LangGraph (LangGraph.js in TS), as in [ai-llm.md](ai-llm.md) | Plain functions for a few fixed steps. Pydantic AI graphs (`pydantic-graph`) for small typed Python flows |
+| Business workflow, long pauses, durable steps | A durable workflow engine (Temporal, Restate, Cloudflare Workflows, Inngest) | None |
 | Visualization | Generate the diagram from the graph definition (Mermaid) | None |
 
 ## Rules

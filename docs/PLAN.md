@@ -14,6 +14,7 @@ Goal: turn the goals of a new project into the agent skills to install, a tech s
 - MCP server with 10 tools: catalog lookup, plan inspection, doc validation, stack detection, reference selection, bundle recommendation.
 - Skills `inisiasi` and `selera`, with CLI fallback for every MCP tool.
 - Catalog of 463 skills (all verified) across 16 domains.
+- Local catalog and reference browser in `web/` (Vite + React, `cd web && pnpm dev`), built from `mcp/catalog.json` and the skill references. Not hosted.
 
 ## Constraints
 
@@ -25,7 +26,7 @@ Goal: turn the goals of a new project into the agent skills to install, a tech s
 
 - Installing skills automatically. Install commands are shown, never run without a yes.
 - Scaffolding application code.
-- Hosting or a web UI for the catalog.
+- Hosting the catalog or the browser.
 
 ## Open questions
 
