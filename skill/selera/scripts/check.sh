@@ -1,7 +1,7 @@
 #!/bin/sh
 # Smoke test: every documented command must run. Fails loudly if one disappears.
 set -e
-S="$(dirname "$0")/selera.mjs"
+S="$(cd "$(dirname "$0")" && pwd)/selera.mjs"
 export XDG_CONFIG_HOME="$(mktemp -d)"
 cd "$(mktemp -d)"
 git init -q && echo '{"dependencies":{"zod":"1"}}' > package.json && echo x > pnpm-lock.yaml

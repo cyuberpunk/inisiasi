@@ -87,10 +87,17 @@ export function inspectPlan(path: string, maxQuestions?: number): InspectPlanRes
       byName.set(name, s.body);
     }
   }
+  // A "Goal: ..." line counts as the Goals section when no heading exists.
+  for (const [name, label] of [["Goals", "goals?"], ["MVP", "mvp"], ["Constraints", "constraints?"], ["Non-goals", "non[- ]?goals?"]] as const) {
+    if (byName.has(name)) continue;
+    const line = md.match(new RegExp(`^\\s*(?:[*_]{2})?${label}(?:[*_]{2})?\\s*:\\s*(\\S.*)$`, "im"));
+    if (line) byName.set(name, line[1]);
+  }
 
   const present = REQUIRED.filter((n) => byName.has(n) && !isEmptyBody(byName.get(n)!));
   const missing = REQUIRED.filter((n) => !present.includes(n));
-  const isTitleOnly = !sections.some((s) => !isEmptyBody(s.body));
+  // Title-only means nothing but heading lines, including plans with no ## sections.
+  const isTitleOnly = md.replace(/^#.*$/gm, "").trim() === "";
 
   // "None", "Tidak ada", "(none)" mean the section is empty, not that a question is open.
   const NONE = /^\(?\s*(none|none yet|n\/a|na|nothing|tidak ada|belum ada|kosong|-)\s*\.?\s*\)?$/i;

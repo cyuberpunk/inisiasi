@@ -100,6 +100,11 @@ export function recommendSkills(skills: Skill[], description: string, limit?: nu
     .map((r) => ({ ...summary(r.skill), score: r.score, matched: r.matched }));
 }
 
+const MAX_QUERY = 200;
+const MAX_TERMS = 12;
+
+// One Fuse pass per term, then rank by how many terms hit, then by best score.
+// A multi-word query used to be one fuzzy pattern, so a long phrase matched nothing.
 export function searchSkills(skills: Skill[], query: string, domain?: string, limit?: number) {
   const pool = domain ? skills.filter((s) => s.domain === domain) : skills;
   const fuse = new Fuse(pool, {
@@ -114,8 +119,21 @@ export function searchSkills(skills: Skill[], query: string, domain?: string, li
     ignoreLocation: true,
     includeScore: true,
   });
-  return fuse.search(query).slice(0, clampLimit(limit))
-    .map((r) => ({ ...summary(r.item), match: Number((1 - (r.score ?? 1)).toFixed(3)) }));
+  const terms = [...new Set(query.slice(0, MAX_QUERY).toLowerCase().split(/[^\p{L}\p{N}+#.-]+/u)
+    .filter((t) => t.length >= 2))].slice(0, MAX_TERMS);
+  const hits = new Map<string, { item: Skill; count: number; best: number }>();
+  for (const term of terms) {
+    for (const r of fuse.search(term)) {
+      const prev = hits.get(r.item.id) ?? { item: r.item, count: 0, best: 0 };
+      prev.count += 1;
+      prev.best = Math.max(prev.best, 1 - (r.score ?? 1));
+      hits.set(r.item.id, prev);
+    }
+  }
+  return [...hits.values()]
+    .sort((a, b) => b.count - a.count || b.best - a.best)
+    .slice(0, clampLimit(limit))
+    .map((h) => ({ ...summary(h.item), match: Number(h.best.toFixed(3)) }));
 }
 
 export const summary = (s: Skill) => ({

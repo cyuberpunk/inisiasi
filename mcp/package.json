@@ -12,7 +12,8 @@
     "build": "tsc",
     "start": "node dist/server.js",
     "test": "npm run validate && npm run build && node test/docs.mjs && node test/stack.mjs && node test/drift.mjs && node test/smoke.mjs",
-    "validate": "node validate.mjs"
+    "validate": "node validate.mjs",
+    "qa": "node test/qa.mjs"
   },
   "engines": {
     "node": ">=20"
