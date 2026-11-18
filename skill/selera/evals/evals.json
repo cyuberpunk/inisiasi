@@ -7,8 +7,8 @@
       "prompt": "pakai zod buat validasi",
       "expected_output": "Runs set validation zod, confirms in one line, does not ask permission first.",
       "assertions": [
-        "Runs `selera set validation zod` (or equivalent)",
-        "Does not ask whether to record",
+        "Runs `selera set validation zod` (or equivalent) and the profile file holds it",
+        "Does not ask whether to record before running set",
         "Confirms in one line what was stored",
         "No em dash"
       ],
@@ -32,9 +32,9 @@
       "prompt": "untuk frontend pakai tanstack-query buat fetch",
       "expected_output": "Records under the fe scope, not default.",
       "assertions": [
-        "Runs set with key fe.fetch (not fetch)",
+        "Runs set with key fe.fetch (not fetch) and the profile file holds it",
         "Value is tanstack-query",
-        "Does not overwrite default fetch"
+        "Records fe.fetch and leaves the unscoped fetch key unchanged"
       ],
       "should_trigger": true
     },

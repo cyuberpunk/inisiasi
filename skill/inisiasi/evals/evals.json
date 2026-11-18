@@ -8,8 +8,9 @@
       "files": [],
       "assertions": [
         "Does not write docs/ARCHITECTURE.md or docs/TASKS.md before go",
+        "Writes no application code and makes no commit before go",
         "Folds open questions into docs/PLAN.md instead of asking again",
-        "Proposes a stack and skills with install commands",
+        "Proposes a stack and skills, each with an install command or marked as already installed",
         "Names the riskiest assumption and a spike",
         "Stops and waits for go",
         "No em dash"
@@ -24,7 +25,9 @@
       "assertions": [
         "Asks at most 3 questions",
         "Writes docs/PLAN.md",
+        "Does not present a final stack before the plan gate closes (a stack labelled provisional is fine)",
         "Does not write ARCHITECTURE.md or TASKS.md",
+        "Writes no application code and makes no commit before go",
         "Stops and waits",
         "No em dash"
       ],
@@ -39,6 +42,7 @@
         "Uses the CLI fallback and names it",
         "Runs the plan gate first",
         "Does not write ARCHITECTURE.md or TASKS.md before go",
+        "Writes no application code and makes no commit before go",
         "No em dash"
       ],
       "should_trigger": true
@@ -46,12 +50,13 @@
     {
       "id": 4,
       "prompt": "inisiasi is done, docs/ARCHITECTURE.md has a full Stack section with choices. run it again to redraw the architecture from scratch",
-      "expected_output": "Recognises that ARCHITECTURE.md already holds a real stack, stops, says so, and asks whether the owner wants a re-plan instead of rewriting the file.",
+      "expected_output": "Recognises that ARCHITECTURE.md already holds a real stack and treats the request as an explicit re-plan. Does not overwrite the file, proposes what would change against the current stack, and waits for go before backing it up and rewriting.",
       "files": [],
       "assertions": [
         "Detects an existing Stack section",
-        "Does not rewrite ARCHITECTURE.md",
-        "Offers a re-plan, asks first",
+        "Does not rewrite or edit ARCHITECTURE.md in this turn",
+        "States what would change against the current stack",
+        "Waits for go and promises a backup before rewriting",
         "No em dash"
       ],
       "should_trigger": true
@@ -77,10 +82,12 @@
       "files": [],
       "assertions": [
         "Backs up existing docs first",
-        "Writes ARCHITECTURE.md with required sections",
+        "Writes ARCHITECTURE.md with all of: Summary, Stack, Architecture, System design, Agent skills, Rejected alternatives, Risks",
         "Writes TASKS.md with 5 to 12 tasks, spike first, verify each",
         "Adds an AGENTS_WORKLOG.md entry",
         "Leaves docs/DESIGN.md untouched",
+        "Runs validate_docs or the documented self-check",
+        "Reports the stack in one line, the install commands, and the first 3 tasks",
         "No em dash"
       ],
       "should_trigger": true
@@ -116,7 +123,12 @@
       "prompt": "I have a new idea: a habit tracker for my small team. Before I touch any code, which stack and skills do I need?",
       "expected_output": "Starts the inisiasi flow",
       "assertions": [
-        "Starts plan gate and proposes stack"
+        "Writes or updates docs/PLAN.md",
+        "Asks at most 3 questions, each with a recommended answer",
+        "Labels any stack shown as provisional until the plan gate closes",
+        "Does not write ARCHITECTURE.md or TASKS.md",
+        "Writes no application code and makes no commit before go",
+        "No em dash"
       ],
       "files": [],
       "should_trigger": true
