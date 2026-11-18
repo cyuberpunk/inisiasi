@@ -1,31 +1,31 @@
-# Fungsi, variabel, alur
+# Functions, variables, flow
 
-> Terakhir diverifikasi: 2026-11-16
+> Last verified: 2026-11-16
 
-Scope: bentuk fungsi, batas ukuran, early return, immutability, ternary.
+Scope: function shape, size limits, early return, immutability, ternaries.
 
-## Bentuk
+## Shape
 
-- Arrow function untuk callback dan komponen. `function` untuk deklarasi bernama yang di-hoist.
-- IIFE hanya untuk top-level await di skrip sekali jalan.
-- `async/await` di atas promise chain. `.then` hanya untuk transformasi satu baris.
+- Arrow functions for callbacks and components. `function` for named declarations that get hoisted.
+- IIFEs only for top-level await in one-shot scripts.
+- `async/await` over promise chains. `.then` only for a one-line transform.
 
-## Batas
+## Limits
 
-| Batas | Angka |
+| Limit | Value |
 |---|---|
-| Parameter | 3, lebih dari itu pakai options object |
-| Panjang fungsi | 40 baris atau satu layar |
-| Level indentasi | 3 |
-| Cyclomatic | 10 |
+| Parameters | 3; beyond that, use an options object |
+| Function length | 40 lines or one screen |
+| Indentation depth | 3 |
+| Cyclomatic complexity | 10 |
 
-Early return dan guard clause di atas. Fungsi tanpa efek samping diutamakan; efek samping dinyatakan di nama.
+Early return and guard clauses go first. Pure functions are preferred; side effects are stated in the name.
 
-## Variabel dan alur
+## Variables and flow
 
-- `const` default, `let` hanya kalau diubah. Reassign parameter dilarang.
-- Method non-mutating: `map`, `filter`, `toSorted`. Mutasi hanya di objek lokal baru.
-- `===` dan `!==`. `==` hanya untuk `x == null`.
-- Tanpa magic number atau string. Angkat ke konstanta bernama.
-- Deklaratif untuk transformasi. `for` hanya untuk `break`, indeks, atau performa terukur.
-- Ternary untuk dua pilihan pendek. Ternary bersarang dilarang.
+- `const` by default, `let` only when reassigned. Reassigning parameters is forbidden.
+- Non-mutating methods: `map`, `filter`, `toSorted`. Mutation only on new local objects.
+- `===` and `!==`. `==` only for `x == null`.
+- No magic numbers or strings. Lift them into named constants.
+- Declarative for transforms. `for` only for `break`, indexes, or measured performance.
+- Ternaries for two short choices. Nested ternaries are forbidden.

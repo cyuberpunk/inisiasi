@@ -1,46 +1,46 @@
-# Struktur project
+# Project structure
 
-> Terakhir diverifikasi: 2026-11-16
+> Last verified: 2026-11-16
 
-Scope: bentuk repo, root directory, penempatan tes, pola folder, higiene direktori.
+Scope: repo shape, root directory, test placement, folder patterns, directory hygiene.
 
 ## Repo
 
-Monorepo hanya jika ada lebih dari satu deployable atau paket yang dipakai bersama. Selain itu satu repo satu app. Jangan polyrepo untuk satu produk.
+A monorepo only when there is more than one deployable or a shared package. Otherwise one repo, one app. Do not use polyrepos for a single product.
 
-Monorepo: `apps/`, `packages/`, `tools/`. Package manager satu saja. Runner: Turborepo untuk TypeScript, Nx hanya jika butuh generator dan graph besar.
+Monorepo: `apps/`, `packages/`, `tools/`. One package manager only. Runner: Turborepo for TypeScript, Nx only when you need generators and a large graph.
 
 ## Root directory
 
-| Path | Isi |
+| Path | Contents |
 |------|-----|
-| `src/` | Kode aplikasi. Tidak ada kode di root selain config |
-| `public/` | Aset statis yang disajikan apa adanya |
-| `scripts/` | Otomasi yang dijalankan manusia atau CI |
-| `docs/` | Dokumen, ADR di `docs/adr/` |
-| `tests/` | Hanya jika tidak co-located |
+| `src/` | Application code. No code at the root apart from config |
+| `public/` | Static assets served as-is |
+| `scripts/` | Automation run by humans or CI |
+| `docs/` | Documents, ADRs in `docs/adr/` |
+| `tests/` | Only when tests are not co-located |
 
-Root hanya berisi config, README, lockfile, dan file metadata.
+The root holds only config, README, lockfiles, and metadata files.
 
-## Tes
+## Tests
 
-Default co-located: `order-service.test.ts` di sebelah sumbernya. Pisah ke `tests/` hanya untuk E2E dan fixture lintas fitur. Jangan dua pola dalam satu app.
+Default is co-located: `order-service.test.ts` next to its source. Move tests to `tests/` only for E2E and fixtures shared across features. Do not use two patterns in one app.
 
-## Pola folder
+## Folder patterns
 
-| Pola | Pakai kalau |
+| Pattern | Use when |
 |------|-------------|
-| Feature-based | Default. Satu folder per domain, isi komponen, hook, query, tes |
-| Layer-based | App kecil, atau tim yang berpikir per teknologi |
-| Feature-Sliced Design | Frontend besar, banyak tim, butuh boundary keras |
-| Atomic Design | Design system, bukan app |
-| Clean / Hexagonal | Domain logic kompleks yang harus lepas dari framework |
+| Feature-based | Default. One folder per domain, containing components, hooks, queries, and tests |
+| Layer-based | Small apps, or teams that think in technologies |
+| Feature-Sliced Design | Large frontends, many teams, need hard boundaries |
+| Atomic Design | Design systems, not apps |
+| Clean / Hexagonal | Complex domain logic that must be free of the framework |
 
-Satu pola per app. Jangan campur layer dan feature dalam satu app.
+One pattern per app. Do not mix layers and features in one app.
 
-## Higiene
+## Hygiene
 
-- Kedalaman folder maksimal 4. Lebih dari itu, ratakan.
-- Rule of three: abstraksi setelah tiga kemunculan nyata, bukan dua.
-- Tidak ada folder `misc`, `temp`, `old`, `backup`. Kalau tidak dipakai, hapus.
-- Nama folder tunggal (`order/`), kecuali memang koleksi (`packages/`).
+- Maximum folder depth 4. Beyond that, flatten.
+- Rule of three: abstract after three real occurrences, not two.
+- No `misc`, `temp`, `old`, or `backup` folders. If it is unused, delete it.
+- Singular folder names (`order/`), unless the folder really is a collection (`packages/`).

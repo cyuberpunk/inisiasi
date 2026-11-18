@@ -1,38 +1,38 @@
-# Tes, dokumentasi, keamanan, tooling
+# Tests, documentation, security, tooling
 
-> Terakhir diverifikasi: 2026-11-16
+> Last verified: 2026-11-16
 
-Scope: strategi tes, docs, praktik keamanan, otomasi.
+Scope: test strategy, docs, security practices, automation.
 
-## Tes
+## Tests
 
-- Backend: pyramid. Frontend: trophy. E2E hanya jalur kritis.
-- Struktur AAA atau BDD. Nama tes menyatakan perilaku: `returns 409 when stock is zero`.
-- Deterministik: tanpa `sleep`, waktu dipalsukan, data acak bertingkat. Tes flaky diperbaiki atau dihapus.
-- Integration pakai DB sungguhan (Testcontainers). Jangan mock ORM.
-- Coverage sinyal, bukan target.
+- Backend: pyramid. Frontend: trophy. E2E only for critical paths.
+- AAA or BDD structure. Test names state the behavior: `returns 409 when stock is zero`.
+- Deterministic: no `sleep`, faked time, or nested random data. Flaky tests are fixed or deleted.
+- Integration tests use a real database (Testcontainers). Do not mock the ORM.
+- Coverage is a signal, not a target.
 
-## Dokumentasi
+## Documentation
 
-- Komentar menjelaskan kenapa, bukan apa.
-- API publik didokumentasikan: TSDoc, JSDoc, docstring Python.
-- `TODO`, `FIXME`, `HACK` wajib berisi alasan dan pemilik.
-- Kode mati dihapus, bukan dikomentari.
-- ADR di `docs/adr/` untuk keputusan yang mengubah arah.
+- Comments explain why, not what.
+- Public APIs are documented: TSDoc, JSDoc, Python docstrings.
+- `TODO`, `FIXME`, and `HACK` must include a reason and an owner.
+- Dead code is deleted, not commented out.
+- ADRs in `docs/adr/` for decisions that change direction.
 
-## Keamanan
+## Security
 
-- Secret tidak di kode, log, atau git. Scan di pre-commit dan CI.
-- Query berparameter, escape output, CSP, validasi upload dari isi file.
-- Tutup koneksi dan file di `finally`, batasi pagination, cegah N+1.
+- No secrets in code, logs, or git. Scan in pre-commit and CI.
+- Parameterized queries, escaped output, CSP, upload validation based on file contents.
+- Close connections and files in `finally`, cap pagination, prevent N+1 queries.
 
 ## Tooling
 
-| Kebutuhan | Contoh tool (pilih sesuai bahasa dan repo) |
+| Need | Example tools (pick by language and repo) |
 |---|---|
 | Format | Oxfmt, Prettier, Black, gofmt, rustfmt |
 | Lint | Oxlint, Biome, ESLint, Ruff, golangci-lint, Clippy |
-| Batas arsitektur | dependency-cruiser, eslint-plugin-boundaries |
-| Kode mati | knip |
-| Hook | Lefthook atau Husky + lint-staged |
-| Commit | commitlint di CI |
+| Architecture boundaries | dependency-cruiser, eslint-plugin-boundaries |
+| Dead code | knip |
+| Hooks | Lefthook, or Husky + lint-staged |
+| Commits | commitlint in CI |
