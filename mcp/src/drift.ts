@@ -9,7 +9,7 @@ export type DriftResult = { root: string; profile_path: string | null; items: Dr
 
 // Roles whose value is a tool name, so its presence in the docs can be checked as text.
 // Scoped keys such as "fe.ui" or "be.fetch" match on their last segment.
-const TOOL_KEYS: Record<string, true> = { packageManager: true, validation: true, ui: true, db: true, test: true, lint: true, format: true, fetch: true, state: true, bundler: true, styling: true, form: true, queue: true };
+export const TOOL_KEYS: Record<string, true> = { packageManager: true, validation: true, ui: true, db: true, test: true, lint: true, format: true, fetch: true, state: true, bundler: true, styling: true, form: true, queue: true };
 
 // Same sources and precedence as selera.mjs: global (SELERA_CONFIG or XDG), then the project's .selera, which wins.
 export function loadProfile(root: string, path?: string): { path: string | null; data: Record<string, string> } {

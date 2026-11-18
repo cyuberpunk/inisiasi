@@ -73,4 +73,5 @@ A stated preference is a `set`, not a question. Do not ask permission to record 
 - Never invent a preference. Absent key means the SoT default applies.
 - Universal rules live in the SoT. The profile only adds this owner's choices on top.
 - The SoT describes good practice; the profile describes this owner. Keep them separate.
+- A recorded tool key (`ui`, `test`, `packageManager`, ...) also steers inisiasi's skill recommendations through `recommend_bundle`. Keys name a role, so the value should be the tool's plain name (`shadcn`, `vitest`), the way a skill's tags spell it.
 - No em dashes. Terse.

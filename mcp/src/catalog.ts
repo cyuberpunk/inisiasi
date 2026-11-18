@@ -16,7 +16,15 @@ export type Skill = {
   verified: boolean;
   tier?: "main" | "support";
   unscored?: boolean;
+  // "tech" skills help build software; "general" ones cover writing, research, productivity and the like.
+  scope?: Scope;
+  last_pushed?: string;
+  note?: string;
+  ui_skills_count?: number;
 };
+
+export type Scope = "tech" | "general";
+export type Prefer = { word: string; key: string };
 
 export type Domain = { domain: string; skill_count: number; niches: string[] };
 
@@ -94,7 +102,12 @@ function idfWeights(skills: Skill[]): Map<string, number> {
   return weights;
 }
 
-export function recommendSkills(skills: Skill[], description: string, limit?: number) {
+// Unverified entries are listed but never recommended: their install command did not resolve.
+// A recorded preference (selera) steers ranking only among skills that already fit the project, so it never drags in unrelated ones.
+const PREFER_BOOST = 4;
+
+export function recommendSkills(skills: Skill[], description: string, limit?: number, opts: { scope?: Scope; prefer?: Prefer[] } = {}) {
+  skills = skills.filter((s) => s.verified !== false && (!opts.scope || (s.scope ?? "tech") === opts.scope));
   const words = new Set(tokens(description));
   const text = description.toLowerCase();
   const idf = idfWeights(skills);
@@ -110,13 +123,18 @@ export function recommendSkills(skills: Skill[], description: string, limit?: nu
       if (words.has(t)) { score += 2 * w(t); matched.add(t); }
     }
     for (const t of new Set(s.use_cases.flatMap(tokens))) if (words.has(t)) { score += 1 * w(t); matched.add(t); }
-    return { skill: s, score, matched: [...matched] };
+    const selera: string[] = [];
+    if (score >= MIN_SCORE) {
+      const own = new Set([...s.tags, ...tokens(s.name.replace(/-/g, " ")), s.id]);
+      for (const p of opts.prefer ?? []) if (own.has(p.word)) { score += PREFER_BOOST; selera.push(`${p.key}=${p.word}`); }
+    }
+    return { skill: s, score, matched: [...matched], selera };
   });
   return scored
     .filter((r) => r.score >= MIN_SCORE)
     .sort((a, b) => b.score - a.score || unscoredLast(a.skill, b.skill) || tierRank(a.skill) - tierRank(b.skill) || byPopularity(a.skill, b.skill))
     .slice(0, clampLimit(limit))
-    .map((r) => ({ ...summary(r.skill), score: Number(r.score.toFixed(2)), matched: r.matched }));
+    .map((r) => ({ ...summary(r.skill), score: Number(r.score.toFixed(2)), matched: r.matched, ...(r.selera.length ? { selera: r.selera } : {}) }));
 }
 
 const MAX_QUERY = 200;
@@ -158,5 +176,5 @@ export function searchSkills(skills: Skill[], query: string, domain?: string, li
 export const summary = (s: Skill) => ({
   id: s.id, name: s.name, domain: s.domain, niche: s.niche, creator: s.creator,
   install_command: s.install_command, popularity: s.popularity, verified: s.verified,
-  tier: s.tier ?? null, unscored: !!s.unscored,
+  tier: s.tier ?? null, unscored: !!s.unscored, scope: s.scope ?? "tech", last_pushed: s.last_pushed ?? null,
 });

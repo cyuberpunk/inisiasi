@@ -41,6 +41,7 @@ const TOOLS = [
       type: "object",
       properties: {
         project_description: { type: "string", description: "Plain-language description of the project: frameworks, languages, domain, and what is being built." },
+        scope: { type: "string", enum: ["tech", "general"], description: "Optional. 'tech' for software-building skills only, 'general' for writing, research, productivity and similar. Omit to search both." },
         limit,
       },
       required: ["project_description"],
@@ -113,7 +114,7 @@ const TOOLS = [
   {
     annotations: READONLY,
     name: "recommend_bundle",
-    description: "Single bootstrap context call: inspect_plan + detect_stack + select_references + recommend_skills, with installed flags and coverage holes (testing, security, design, writing). Provide a project_description and/or a project root. Read-only.",
+    description: "Single bootstrap context call: inspect_plan + detect_stack + select_references + recommend_skills (tech scope only, boosted by the owner\'s selera profile), with installed flags and coverage holes (testing, security, design, writing). Provide a project_description and/or a project root. Read-only.",
     inputSchema: {
       type: "object",
       properties: {
@@ -183,7 +184,9 @@ server.setRequestHandler(CallToolRequestSchema, async (req) => {
     case "recommend_skills": {
       const d = str(a.project_description);
       if (!d) return fail("project_description is required.");
-      return ok(recommendSkills(skills, d, a.limit as number));
+      const scope = str(a.scope);
+      if (scope && scope !== "tech" && scope !== "general") return fail("scope must be 'tech' or 'general'.");
+      return ok(recommendSkills(skills, d, a.limit as number, { scope: scope as "tech" | "general" | undefined }));
     }
     case "search_skills": {
       const q = str(a.query);

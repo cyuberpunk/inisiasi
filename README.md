@@ -6,7 +6,7 @@ Project kickoff skill plus a local MCP server. The skill turns `docs/PLAN.md` go
 skill/inisiasi/   SKILL.md, references/templates.md, references/prompts.md, references/sot, evals/evals.json
 skill/selera/     SKILL.md, scripts/selera.mjs, references/sot, evals/evals.json
 mcp/              stdio MCP server (TypeScript, @modelcontextprotocol/sdk)
-mcp/catalog.json  curated skill catalog (407 skills, 15 domains)
+mcp/catalog.json  curated skill catalog (433 skills, 15 domains, tech and general scope)
 mcp/catalog.md    curation criteria and how to add entries
 ```
 
@@ -17,13 +17,23 @@ cd mcp && pnpm install && pnpm run build   # npm test = validate catalog + build
 ln -s "$PWD/../skill/inisiasi" ~/.agents/skills/inisiasi
 ```
 
+## Three tools
+
+| Tool | Scope | Job |
+|---|---|---|
+| MCP (curated catalog) | Wide: tech and general (writing, documents, research, productivity) | Find and recommend skills. Entries are checked for a real source, an install command that resolves, and recent activity |
+| `inisiasi` skill | Tech only | From goals to stack, design and first tasks. Calls `recommend_bundle`, which returns tech-scope skills only |
+| `selera` skill | Tech only | Records the owner's code standards. A recorded tool choice (`fe.ui: shadcn`, `packageManager: pnpm`) steers `recommend_bundle` toward matching skills and labels why (`selera: ["fe.ui=shadcn"]`); `drift` checks the docs against it |
+
+The MCP serves both skills. Anything outside tech goes through `recommend_skills` or `search_skills`, not through inisiasi.
+
 ## Tools
 
 | Tool | Args |
 |---|---|
 | `list_domains` | none |
 | `list_domain_skills` | `domain`, `limit?` |
-| `recommend_skills` | `project_description`, `limit?` |
+| `recommend_skills` | `project_description`, `scope?` (`tech` or `general`), `limit?` |
 | `search_skills` | `query`, `domain?`, `limit?` |
 | `get_skill` | `id` |
 | `inspect_plan` | `path`, `max_questions?` |
@@ -32,7 +42,7 @@ ln -s "$PWD/../skill/inisiasi" ~/.agents/skills/inisiasi
 | `select_references` | `project_description?`, `plan_path?`, `limit?` |
 | `recommend_bundle` | `project_description?`, `root?`, `plan_path?`, `limit?` |
 
-`limit` defaults to 8, max 25. Catalog is re-read on every call. Override the path with `INISIASI_CATALOG=/path/catalog.json`.
+`limit` defaults to 8, max 25. Catalog is re-read on every call. Entries with `verified: false` are never recommended. Audit the catalog with `pnpm run check-catalog` (see `mcp/catalog.md`). Override the path with `INISIASI_CATALOG=/path/catalog.json`.
 
 No MCP? Same queries from the CLI: `node mcp/dist/cli.js recommend "macOS menubar app in SwiftUI"` (`domains`, `domain <slug>`, `search <q>`, `get <id>`, `inspect_plan <path>`, `validate_docs <root>`, `detect_stack <root>`, `select_references [--plan <path>] <description>`, `recommend_bundle [--root <path>] [--plan <path>] [--limit <n>] <description>`).
 
@@ -90,4 +100,4 @@ Domains and niches come from the entries. `popularity` is GitHub stars of the so
 
 ## Catalog
 
-407 curated skills across 15 domains, each checked at its GitHub source. Criteria, domains and the steps to add an entry are in [`mcp/catalog.md`](mcp/catalog.md). Run `npm run validate` after editing.
+433 curated skills across 15 domains, each checked at its GitHub source and against `skills add --list`. Criteria, domains and the steps to add an entry are in [`mcp/catalog.md`](mcp/catalog.md). Run `npm run validate` after editing.

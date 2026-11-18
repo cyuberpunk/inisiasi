@@ -35,6 +35,7 @@ The owner's time is the scarce thing. Every question you ask costs a round trip,
 2. **Context.** Describe the project in one plain sentence. Prefer `recommend_bundle` as the single call (`limit` 10). Otherwise `select_references` plus `recommend_skills` (`limit` 10), and `search_skills` only for a PLAN need still uncovered.
     - Read only the returned reference files. TS projects: `toolchain-ts.md` and `stack-compat-ts.md` are binding. Web UI: the checklist in `frontend-architecture.md`. Note gaps and `stale` flags.
     - Recommend at most 2 to 3 general and 1 to 3 specific skills, 6 active at once, each tied to a PLAN need. Follow `references/skill-rules.md`: no overlap, platform fits, bundles via `--list`. Skip anything `verified: false` unless flagged. If `~/.agents/skills/<id>` exists, mark it installed.
+    - `recommend_bundle` returns tech-scope skills only. A `selera` label on a skill means a recorded preference steered the pick: say so in one line. For a non-tech need (documents, research, writing), call `recommend_skills` with `scope: general`.
 
 3. **Propose.** Pick the simplest stack that meets the goals. Prefer SoT defaults, platform defaults, and what the owner already knows. For each decision, state the choice, one-line why, and the rejected alternative with its reason. Sketch components, data model, data flow, storage, trust boundaries, and failure modes, only as deep as the scale needs. Name the riskiest assumption and a spike to prove it.
 
