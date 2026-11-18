@@ -115,7 +115,9 @@
       "name": "near-positive-new-idea-stack",
       "prompt": "I have a new idea: a habit tracker for my small team. Before I touch any code, which stack and skills do I need?",
       "expected_output": "Starts the inisiasi flow",
-      "assertions": "Starts plan gate and proposes stack",
+      "assertions": [
+        "Starts plan gate and proposes stack"
+      ],
       "files": [],
       "should_trigger": true
     },

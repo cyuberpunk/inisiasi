@@ -27,7 +27,7 @@ Do not mix styles within one layer. If an API sends `snake_case`, convert it at 
 
 ## Files and folders
 
-- File names follow the main export: `OrderCard.tsx`, `order-service.ts`.
+- File names follow the main export, in kebab-case: `order-card.tsx` exports `OrderCard`, `order-service.ts` exports `orderService`.
 - One concept per file. `utils.ts` and `helpers.ts` are forbidden as catch-all buckets.
 - Index files act as barrels only at public module boundaries.
 

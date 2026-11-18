@@ -5,9 +5,9 @@
       "id": 1,
       "name": "record-stated-preference",
       "prompt": "pakai zod buat validasi",
-      "expected_output": "Runs set schema zod, confirms in one line, does not ask permission first.",
+      "expected_output": "Runs set validation zod, confirms in one line, does not ask permission first.",
       "assertions": [
-        "Runs `selera set schema zod` (or equivalent)",
+        "Runs `selera set validation zod` (or equivalent)",
         "Does not ask whether to record",
         "Confirms in one line what was stored",
         "No em dash"
@@ -90,7 +90,9 @@
       "name": "preference-npm-not-pnpm",
       "prompt": "di repo ini kita pakai npm, bukan pnpm ya",
       "expected_output": "Records packageManager npm via set",
-      "assertions": "Runs set packageManager npm, confirms in one line",
+      "assertions": [
+        "Runs set packageManager npm, confirms in one line"
+      ],
       "files": [],
       "should_trigger": true
     },
