@@ -1,41 +1,41 @@
 # Mobile
 
-> Terakhir diverifikasi: 2026-11-16
+> Last verified: 2026-11-16
 
-Scope: framework mobile, state, UI, OTA, update paksa. Native Apple: [apple-macos-swift.md](apple-macos-swift.md).
+Scope: mobile frameworks, state, UI, OTA updates, forced updates. Native Apple: [apple-macos-swift.md](apple-macos-swift.md).
 
-## Default
+## Defaults
 
-| Situasi | Pakai |
-|---------|-------|
-| Tim React/TS | Expo + Expo Router + Uniwind (Tailwind v4) + TanStack Query + Zustand |
-| Polish maksimal per platform | SwiftUI (iOS), Jetpack Compose (Android) |
-| Satu codebase, UI custom | Flutter (Riverpod, GoRouter, Drift) |
-| Share logic, UI native | Kotlin Multiplatform |
-| Desktop dari web app | Tauri, atau Electrobun (lebih ringan) |
+| Situation | Use |
+|---------|-----|
+| React/TS team | Expo + Expo Router + Uniwind (Tailwind v4) + TanStack Query + Zustand |
+| Maximum polish per platform | SwiftUI (iOS), Jetpack Compose (Android) |
+| One codebase, custom UI | Flutter (Riverpod, GoRouter, Drift) |
+| Shared logic, native UI | Kotlin Multiplatform |
+| Desktop from a web app | Tauri, or Electrobun (lighter) |
 
-Expo SDK 55+: New Architecture selalu aktif. Unistyles jika tidak mau Tailwind. NativeWind hanya app existing.
+Expo SDK 55+: the New Architecture is always on. Unistyles if you do not want Tailwind. NativeWind only for existing apps.
 
-| Kebutuhan | Pilihan |
-|-----------|---------|
+| Need | Choice |
+|-----|--------|
 | Local DB | SQLite (expo-sqlite, Drift, Room, SwiftData) |
-| Push | Expo Notifications, atau APNs/FCM langsung |
-| OTA | EAS Update (`expo-updates`). Self-host hanya lewat protokol `expo-updates` |
-| Deep link | Universal links / app links |
+| Push | Expo Notifications, or APNs/FCM directly |
+| OTA | EAS Update (`expo-updates`). Self-hosting only through the `expo-updates` protocol |
+| Deep links | Universal links / app links |
 
-## Update app
+## App updates
 
-- Perubahan API additive. Klien jadi tolerant reader (abaikan field dan enum asing).
-- Endpoint versi di backend: `minimum_version`, `latest_version`, `force_update`, `update_url`. Bandingkan dengan `versionCode` / `CFBundleVersion`, bukan semver.
-- Soft update dulu. Hard update hanya untuk breaking API, celah keamanan, korupsi data, atau kewajiban hukum.
-- `update_url` sesuai sumber instal. Sideload umum di Indonesia, jadi Play In-App Updates tidak cukup.
-- Cek versi gagal: pakai minimum terakhir yang di-cache.
-- OTA hanya untuk JS dan aset. `runtimeVersion` harus cocok dengan binary, kalau tidak update tidak masuk. `runtimeVersion` harus cocok dengan binary. Perubahan native, permission, atau SDK wajib rilis store.
-- Rollout bertahap: Play staged rollout, App Store phased release. Siap halt.
-- Migrasi data lokal: forward-only, dites dari beberapa versi lama.
+- API changes are additive. Clients become tolerant readers (ignore unknown fields and enum values).
+- Version endpoint on the backend: `minimum_version`, `latest_version`, `force_update`, `update_url`. Compare against `versionCode` / `CFBundleVersion`, not semver.
+- Soft update first. Hard update only for breaking API changes, security holes, data corruption, or legal obligations.
+- `update_url` matches the install source. Sideloading is common in Indonesia, so Play In-App Updates alone are not enough.
+- If the version check fails, use the last minimum version you cached.
+- OTA is only for JS and assets. `runtimeVersion` must match the binary, or the update is not delivered. Native changes, permission changes, or SDK changes require a store release.
+- Staged rollout: Play staged rollout, App Store phased release. Be ready to halt.
+- Local data migrations: forward-only, tested from several old versions.
 
-## Hindari
+## Avoid
 
-- CodePush / App Center (mati sejak 2025).
-- Electron untuk app baru tanpa alasan kuat.
-- Capacitor kecuali memang membungkus web app yang sudah ada.
+- CodePush / App Center (shut down in 2025).
+- Electron for new apps without a strong reason.
+- Capacitor unless you are wrapping an existing web app.

@@ -1,45 +1,45 @@
 # Security
 
-> Terakhir diverifikasi: 2026-11-16
+> Last verified: 2026-11-16
 
-Scope: kontrol keamanan aplikasi. Auth: [auth.md](auth.md). Regulasi: [compliance.md](compliance.md). Tooling scan: [ci-cd.md](ci-cd.md).
+Scope: application security controls. Auth: [auth.md](auth.md). Regulations: [compliance.md](compliance.md). Scanning tools: [ci-cd.md](ci-cd.md).
 
-## Wajib
+## Required
 
-| Area | Aturan |
+| Area | Rule |
 |------|--------|
-| Password | Argon2id (m=19 MiB, t=2, p=1). Fallback scrypt. bcrypt hanya sistem lama (cost >= 10, batas 72 byte), rehash ke Argon2id |
-| Session | Cookie `HttpOnly` + `Secure` + `SameSite`, prefix `__Host-`, plus CSRF token |
-| MFA | Passkeys/WebAuthn dulu. Wajib untuk akun privileged. TOTP fallback, bukan SMS saja |
-| Authz | Default deny, cek per path dan per objek |
-| Input | Validasi di boundary. Query berparameter. Batas ukuran request |
-| Output | Auto-escape + CSP. Pertimbangkan Trusted Types |
-| Upload | Cek isi (magic bytes) dan ukuran, simpan di luar webroot |
+| Passwords | Argon2id (m=19 MiB, t=2, p=1). Fallback scrypt. bcrypt only for legacy systems (cost >= 10, 72-byte limit), rehash to Argon2id |
+| Sessions | `HttpOnly` + `Secure` + `SameSite` cookies, `__Host-` prefix, plus a CSRF token |
+| MFA | Passkeys/WebAuthn first. Required for privileged accounts. TOTP as fallback, not SMS alone |
+| Authorization | Deny by default, checked per path and per object |
+| Input | Validate at the boundary. Parameterized queries. Request size limits |
+| Output | Auto-escaping + CSP. Consider Trusted Types |
+| Uploads | Check contents (magic bytes) and size, store outside the web root |
 | Transport | HTTPS + HSTS |
-| Data pribadi | Enkripsi in transit dan at rest |
-| Log | Audit log aksi sensitif, tanpa secret atau PII berlebih |
+| Personal data | Encrypt in transit and at rest |
+| Logs | Audit log for sensitive actions, without secrets or excess PII |
 
-Header: `Strict-Transport-Security`, `Content-Security-Policy` dengan `frame-ancestors`, `nosniff`, `Referrer-Policy`, `Permissions-Policy`. CORS allowlist, jangan `*` dengan credentials. Middleware: `hono/secure-headers`, helmet.
+Headers: `Strict-Transport-Security`, `Content-Security-Policy` with `frame-ancestors`, `nosniff`, `Referrer-Policy`, `Permissions-Policy`. CORS allowlist, never `*` with credentials. Middleware: `hono/secure-headers`, helmet.
 
 ## Secrets
 
-`.env` lokal saja, tidak di git. Tim: Infisical atau Doppler. Produksi: secrets manager cloud dengan OIDC, bukan key panjang. SOPS + age untuk git. Scan gitleaks di pre-commit dan CI.
+`.env` locally only, never in git. Teams: Infisical or Doppler. Production: a cloud secrets manager with OIDC, not long-lived keys. SOPS + age for git. gitleaks scans in pre-commit and CI.
 
 ## Supply chain
 
-Lockfile. Renovate atau Dependabot. SBOM CycloneDX/SPDX untuk project serius. Pin GitHub Actions ke SHA. Publish library dengan provenance. Sebelum tambah dependency: masih dirawat? lisensi? riwayat keamanan? dampak bundle?
+Lockfiles. Renovate or Dependabot. SBOM (CycloneDX/SPDX) for serious projects. Pin GitHub Actions to a SHA. Publish libraries with provenance. Before adding a dependency, ask: is it still maintained? What is the license? What is its security history? What does it add to the bundle?
 
 ## OWASP Top 10:2025
 
-| Risk | Mitigasi |
+| Risk | Mitigation |
 |------|----------|
-| A01 Broken Access Control (termasuk SSRF) | Authz tiap path, allowlist outbound |
-| A02 Misconfiguration | Default aman, tanpa stack trace |
-| A03 Supply Chain Failures | Lockfile, SBOM, provenance, pin CI |
-| A04 Cryptographic Failures | Argon2id, HTTPS, enkripsi at rest |
-| A05 Injection | Query berparameter, encoding, CSP |
-| A06 Insecure Design | Threat modeling sebelum fitur berisiko |
-| A07 Authentication Failures | Rate limit, passkeys/MFA |
-| A08 Integrity Failures | Integritas artefak, hindari deserialisasi tak tepercaya |
-| A09 Logging and Alerting Failures | Audit log + alert |
-| A10 Exceptional Conditions | Fail closed, error konsisten |
+| A01 Broken Access Control (including SSRF) | Authorization on every path, outbound allowlist |
+| A02 Misconfiguration | Secure defaults, no stack traces |
+| A03 Supply Chain Failures | Lockfiles, SBOM, provenance, pinned CI |
+| A04 Cryptographic Failures | Argon2id, HTTPS, encryption at rest |
+| A05 Injection | Parameterized queries, encoding, CSP |
+| A06 Insecure Design | Threat modeling before risky features |
+| A07 Authentication Failures | Rate limits, passkeys/MFA |
+| A08 Integrity Failures | Artifact integrity, avoid deserializing untrusted data |
+| A09 Logging and Alerting Failures | Audit logs + alerts |
+| A10 Exceptional Conditions | Fail closed, consistent errors |

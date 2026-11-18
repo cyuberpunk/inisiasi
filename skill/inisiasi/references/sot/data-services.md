@@ -1,47 +1,47 @@
 # Cache, queue, job, storage, search
 
-> Terakhir diverifikasi: 2026-11-16
+> Last verified: 2026-11-16
 
-Scope: cache, messaging, background job, object storage, full-text search. Realtime: [realtime.md](realtime.md).
+Scope: cache, messaging, background jobs, object storage, full-text search. Realtime: [realtime.md](realtime.md).
 
 ## Cache
 
-- Store: Valkey (BSD, default OSS) atau Redis 8 (lisensi RSALv2/SSPL/AGPLv3). Serverless: Upstash. Workers: KV / Cache API.
-- Pola: cache-aside, selalu TTL, invalidasi TTL + delete saat write, key ber-namespace (`user:{id}`).
-- Stampede: singleflight, early expiration acak, lock saat refresh.
-- HTTP: `Cache-Control` + `stale-while-revalidate`, ETag, cache tag / purge. Jangan cache data personal di cache publik.
-- Lock Redis (`SET NX PX`) hanya advisory. Untuk kebenaran data: conditional write, fencing token, atau lock Postgres.
+- Store: Valkey (BSD, default open source) or Redis 8 (RSALv2/SSPL/AGPLv3 licensing). Serverless: Upstash. Workers: KV / Cache API.
+- Patterns: cache-aside, always with a TTL, invalidation by TTL + delete on write, namespaced keys (`user:{id}`).
+- Stampede: singleflight, randomized early expiration, a lock during refresh.
+- HTTP: `Cache-Control` + `stale-while-revalidate`, ETag, cache tags / purge. Do not cache personal data in a public cache.
+- A Redis lock (`SET NX PX`) is advisory only. For data correctness: conditional writes, fencing tokens, or a Postgres lock.
 
-## Queue dan background job
+## Queues and background jobs
 
-Pakai yang sudah ada di stack dulu.
+Use what the stack already has first.
 
-| Sudah punya | Pakai |
-|-------------|-------|
-| Postgres (TS) | pg-boss atau Graphile Worker |
+| Already have | Use |
+|-------------|-----|
+| Postgres (TS) | pg-boss or Graphile Worker |
 | Postgres (Go) | River |
 | Redis/Valkey | BullMQ (TS), Asynq (Go) |
-| Python | Dramatiq (simpel), Celery (workflow kompleks), procrastinate (Postgres) |
+| Python | Dramatiq (simple), Celery (complex workflows), procrastinate (Postgres) |
 | Cloudflare Workers | Queues + Cron Triggers |
 | Convex | Scheduled functions + cron |
-| Job multi-step SaaS TS | Inngest atau Trigger.dev |
+| Multi-step SaaS jobs in TS | Inngest or Trigger.dev |
 
-Naik ke NATS JetStream (fan-out lintas bahasa) atau Kafka / Redpanda (throughput, retention, replay) hanya jika perlu. Workflow panjang/saga: Temporal atau Restate.
+Move to NATS JetStream (cross-language fan-out) or Kafka / Redpanda (throughput, retention, replay) only when needed. Long-running workflows / sagas: Temporal or Restate.
 
-Aturan: at-least-once + handler idempotent, payload berisi ID saja, unique key, retry backoff, DLQ, enqueue dalam transaksi DB (Postgres queue atau outbox), graceful shutdown, pantau kedalaman antrean. Cron in-process (node-cron) hanya aman di satu instance. Fan-out yang harus durable: Streams/JetStream, bukan Pub/Sub biasa.
+Rules: at-least-once delivery + idempotent handlers, payloads contain only IDs, unique keys, retry with backoff, a DLQ, enqueue inside the DB transaction (Postgres queue or outbox), graceful shutdown, monitor queue depth. In-process cron (node-cron) is only safe on a single instance. Fan-out that must be durable: Streams/JetStream, not plain Pub/Sub.
 
 ## Object storage
 
-- Pakai: S3, Cloudflare R2 (tanpa biaya egress), GCS, Supabase Storage (jika stack Supabase). Self-host: SeaweedFS, Garage, atau Ceph RGW.
-- Bucket privat: Block Public Access + bucket policy. ACL dimatikan (Bucket owner enforced). Akses lewat presigned URL dengan TTL pendek.
-- Upload: klien minta presigned URL (batasi tipe, ukuran, key), upload langsung, lalu server verifikasi objek (ada, ukuran, tipe dari magic bytes) sebelum simpan metadata. Multipart atau TUS untuk file besar.
-- Gambar: resize dan konversi AVIF/WebP (sharp, imgproxy, atau layanan CDN).
-- CDN di depan aset publik. Lifecycle rule untuk file sementara.
-- Hindari: MinIO (repo diarsipkan), header ACL `public-read`.
+- Use: S3, Cloudflare R2 (no egress fees), GCS, Supabase Storage (if the stack is Supabase). Self-hosted: SeaweedFS, Garage, or Ceph RGW.
+- Private buckets: Block Public Access + bucket policy. ACLs disabled (bucket owner enforced). Access through presigned URLs with a short TTL.
+- Uploads: the client requests a presigned URL (restrict type, size, key), uploads directly, then the server verifies the object (exists, size, type from magic bytes) before saving metadata. Multipart or TUS for large files.
+- Images: resize and convert to AVIF/WebP (sharp, imgproxy, or a CDN service).
+- CDN in front of public assets. Lifecycle rules for temporary files.
+- Avoid: MinIO (repository archived), the `public-read` ACL header.
 
 ## Search
 
-- Mulai dari DB yang ada: Postgres FTS (`tsvector`, `pg_trgm`; locale Indonesia pakai config `simple`), SQLite FTS5, Atlas Search, Convex search. Tetap di Postgres tapi butuh BM25/facets: ParadeDB.
-- Search terpisah (typo tolerance, facets, autocomplete): Meilisearch atau Typesense. Skala besar atau log: OpenSearch / Elasticsearch. Managed: Algolia.
-- Vektor: pgvector dulu. Search hybrid (keyword + vektor) jika relevan.
-- Sinkron index lewat outbox atau CDC, bukan dual write di request.
+- Start with the database you have: Postgres FTS (`tsvector`, `pg_trgm`; for Indonesian locale use the `simple` config), SQLite FTS5, Atlas Search, Convex search. Stay in Postgres but need BM25/facets: ParadeDB.
+- Dedicated search (typo tolerance, facets, autocomplete): Meilisearch or Typesense. Large scale or logs: OpenSearch / Elasticsearch. Managed: Algolia.
+- Vectors: pgvector first. Hybrid search (keyword + vector) when relevant.
+- Sync the index through an outbox or CDC, not a dual write in the request.

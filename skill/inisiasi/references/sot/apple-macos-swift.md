@@ -1,38 +1,38 @@
 # Apple, macOS, Swift
 
-> Terakhir diverifikasi: 2026-11-16
+> Last verified: 2026-11-16
 
-Scope: app native Apple (macOS, iOS). Cross-platform: [mobile.md](mobile.md).
+Scope: native Apple apps (macOS, iOS). Cross-platform: [mobile.md](mobile.md).
 
-## Default
+## Defaults
 
-| Area | Pakai | Catatan |
-|------|-------|---------|
-| Bahasa | Swift 6 language mode | Strict concurrency dari awal |
-| UI | SwiftUI | AppKit/UIKit hanya untuk yang belum ada di SwiftUI |
-| Menu bar app | `MenuBarExtra` | Scene SwiftUI |
-| Integrasi Finder | Finder Sync extension | Target extension terpisah |
-| State | `@Observable` (Observation) | Combine hanya kode lama |
-| Concurrency | async/await, actor | |
-| Persistensi | SwiftData, atau SQLite (GRDB) | |
+| Area | Use | Notes |
+|------|-----|-------|
+| Language | Swift 6 language mode | Strict concurrency from the start |
+| UI | SwiftUI | AppKit/UIKit only for what SwiftUI does not cover yet |
+| Menu bar app | `MenuBarExtra` | SwiftUI scene |
+| Finder integration | Finder Sync extension | Separate extension target |
+| State | `@Observable` (Observation) | Combine only in legacy code |
+| Concurrency | async/await, actors | |
+| Persistence | SwiftData, or SQLite (GRDB) | |
 | Build | Xcode + Swift Package Manager | |
-| Test | Swift Testing (unit), XCTest (UI test) | |
-| Secret | Keychain Services | Bukan UserDefaults |
-| Auth lokal | LocalAuthentication | `.deviceOwnerAuthentication` = biometrik + fallback password |
-| Update app (di luar App Store) | Sparkle 2 | |
-| Distribusi di luar App Store | Developer ID + Hardened Runtime + notarization | |
+| Tests | Swift Testing (unit), XCTest (UI tests) | |
+| Secrets | Keychain Services | Not UserDefaults |
+| Local auth | LocalAuthentication | `.deviceOwnerAuthentication` = biometrics + password fallback |
+| App updates (outside the App Store) | Sparkle 2 | |
+| Distribution outside the App Store | Developer ID + Hardened Runtime + notarization | |
 
 ## Notarization
 
-`xcrun notarytool submit --wait`, lalu `xcrun stapler staple`. `altool` sudah tidak diterima untuk notarization.
+`xcrun notarytool submit --wait`, then `xcrun stapler staple`. `altool` is no longer accepted for notarization.
 
-## Aturan
+## Rules
 
-- App Sandbox wajib untuk Mac App Store. Entitlement minimal.
-- Keychain: pilih `kSecAttrAccessible...` yang sesuai dan `SecAccessControl` (misal `.userPresence`) untuk item yang butuh Touch ID atau password.
-- Minta izin (Full Disk Access, extension) dengan penjelasan sebelum prompt sistem.
-- Jangan API private.
+- App Sandbox is required for the Mac App Store. Minimal entitlements.
+- Keychain: choose the right `kSecAttrAccessible...` and a `SecAccessControl` (for example `.userPresence`) for items that require Touch ID or a password.
+- Request permissions (Full Disk Access, extensions) with an explanation before the system prompt.
+- No private APIs.
 
-## Hindari
+## Avoid
 
-`altool`, kernel extension (pakai System Extensions), Carbon, Combine untuk kode baru, Electron untuk app Mac baru tanpa alasan kuat.
+`altool`, kernel extensions (use System Extensions), Carbon, Combine for new code, Electron for new Mac apps without a strong reason.

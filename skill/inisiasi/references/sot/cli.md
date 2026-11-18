@@ -1,34 +1,34 @@
-# CLI dan tool terminal
+# CLI and terminal tools
 
-> Terakhir diverifikasi: 2026-11-16
+> Last verified: 2026-11-16
 
-Scope: program command line dan TUI: parser, kontrak output, distribusi, tes.
+Scope: command-line programs and TUIs: parsers, output contracts, distribution, tests.
 
-## Default
+## Defaults
 
-| Bahasa | Parser | TUI |
+| Language | Parser | TUI |
 |--------|--------|-----|
 | Rust | `clap` (derive) | `ratatui` |
-| Go | `cobra`, atau `urfave/cli` untuk tool kecil | `bubbletea` |
-| TypeScript | `commander`, atau `oclif` jika butuh plugin | `ink` |
+| Go | `cobra`, or `urfave/cli` for small tools | `bubbletea` |
+| TypeScript | `commander`, or `oclif` if you need plugins | `ink` |
 | Python | `typer` | `textual` |
 
-## Kontrak output
+## Output contract
 
-- Data ke stdout, pesan dan error ke stderr.
-- `--json` untuk konsumsi mesin. `--quiet` untuk senyap. Hormati `NO_COLOR`.
-- Exit code berbeda per jenis gagal (0 sukses, 1 error umum, 2 pemakaian salah). Jangan pakai 1 untuk semuanya.
-- `--version` dan shell completion (bash, zsh, fish).
+- Data to stdout, messages and errors to stderr.
+- `--json` for machine consumption. `--quiet` for silence. Respect `NO_COLOR`.
+- Different exit codes per failure type (0 success, 1 general error, 2 usage error). Do not use 1 for everything.
+- `--version` and shell completion (bash, zsh, fish).
 
-## Aturan
+## Rules
 
-- Urutan config: flag > env > file (`~/.config/<app>/`) > default.
-- Aksi destruktif: `--dry-run` dan konfirmasi eksplisit.
-- Pesan error menyebut apa yang salah dan apa langkah berikutnya.
-- Distribusi: binary tunggal. Rilis: goreleaser (Go), cargo-dist (Rust), npm untuk TS, Homebrew tap, plus checksum.
-- Tes CLI: `assert_cmd` / `trycmd` (Rust), `bats` (shell), snapshot output di CI.
-- TUI hanya jika interaksi memang berulang dan butuh layar. Tool satu perintah cukup flag.
+- Config precedence: flag > env > file (`~/.config/<app>/`) > default.
+- Destructive actions: `--dry-run` and explicit confirmation.
+- Error messages say what went wrong and what to do next.
+- Distribution: a single binary. Releases: goreleaser (Go), cargo-dist (Rust), npm for TS, a Homebrew tap, plus checksums.
+- CLI tests: `assert_cmd` / `trycmd` (Rust), `bats` (shell), output snapshots in CI.
+- A TUI only when the interaction is repeated and needs a screen. A single-command tool is fine with flags.
 
-## Hindari
+## Avoid
 
-TUI untuk tool yang bisa satu perintah. Self-update otomatis kecuali produk butuh. Config global tanpa nama aplikasi. Prompt interaktif saat input dari pipe.
+A TUI for a tool that fits in one command. Automatic self-update unless the product needs it. Global config without the app name. Interactive prompts when input comes from a pipe.

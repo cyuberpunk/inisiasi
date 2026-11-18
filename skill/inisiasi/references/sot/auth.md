@@ -1,31 +1,31 @@
 # Auth
 
-> Terakhir diverifikasi: 2026-11-16
+> Last verified: 2026-11-16
 
-Scope: pemilihan auth dan praktik session. Hash password dan OWASP: [security.md](security.md).
+Scope: choosing auth and session practices. Password hashing and OWASP: [security.md](security.md).
 
-## Default
+## Defaults
 
-| Situasi | Pakai |
-|---------|-------|
-| App TypeScript | Better Auth (self-hosted library, plugin passkey dan organization) |
-| Butuh managed + UI jadi | Clerk |
-| SaaS B2B, SSO/SAML/SCIM | WorkOS AuthKit |
-| Stack sudah Supabase | Supabase Auth |
-| SSO self-hosted enterprise | Keycloak, atau Ory (Kratos, Hydra, Keto) |
-| Backend Go, Python, Rust | IdP di atas + validasi session/JWT. Python: Authlib |
+| Situation | Use |
+|---------|-----|
+| TypeScript app | Better Auth (self-hosted library, passkey and organization plugins) |
+| Managed, with ready-made UI | Clerk |
+| B2B SaaS, SSO/SAML/SCIM | WorkOS AuthKit |
+| Stack already on Supabase | Supabase Auth |
+| Self-hosted enterprise SSO | Keycloak, or Ory (Kratos, Hydra, Keto) |
+| Go, Python, Rust backends | An IdP on top + session/JWT validation. Python: Authlib |
 
-## Praktik
+## Practices
 
-- Web: session cookie `HttpOnly`, `Secure`, `SameSite`. Jangan simpan token di localStorage.
-- JWT + refresh hanya jika butuh akses stateless lintas service. Access token pendek, refresh dirotasi, logout mematikan session.
-- Passkeys sebagai opsi default, MFA wajib untuk akun admin.
-- Rate limit login dan endpoint sensitif. Respons tidak membocorkan keberadaan akun.
-- Auth di middleware/guard terpusat. Authorization default deny (RBAC, atau ABAC jika perlu).
-- CSRF token untuk alur berbasis cookie. Audit log untuk aksi sensitif.
+- Web: `HttpOnly`, `Secure`, `SameSite` session cookies. Do not store tokens in localStorage.
+- JWT + refresh only if you need stateless access across services. Short-lived access tokens, rotated refresh tokens, logout ends the session.
+- Passkeys as the default option, MFA required for admin accounts.
+- Rate limit login and other sensitive endpoints. Responses must not reveal whether an account exists.
+- Auth in centralized middleware/guards. Authorization is deny by default (RBAC, or ABAC if needed).
+- CSRF tokens for cookie-based flows. Audit logs for sensitive actions.
 
-## Hindari
+## Avoid
 
-- Auth.js / NextAuth untuk project baru (sekarang bagian dari Better Auth). App existing: rencanakan migrasi.
-- FastAPI Users untuk project baru.
-- Implementasi crypto sendiri. SMS OTP sebagai satu-satunya faktor.
+- Auth.js / NextAuth for new projects (it is now part of Better Auth). Existing apps: plan a migration.
+- FastAPI Users for new projects.
+- Rolling your own cryptography. SMS OTP as the only factor.

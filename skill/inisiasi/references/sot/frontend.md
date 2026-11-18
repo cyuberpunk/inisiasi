@@ -1,42 +1,42 @@
 # Frontend
 
-> Terakhir diverifikasi: 2026-11-16
+> Last verified: 2026-11-16
 
-Scope: framework web, UI kit, design system, state, form, styling. Arsitektur dan checklist: [frontend-architecture.md](frontend-architecture.md). Ikon, motion, loading, chart, diagram, sound: [ui-catalog.md](ui-catalog.md). Mobile: [mobile.md](mobile.md).
+Scope: web frameworks, UI kits, design systems, state, forms, styling. Architecture and checklist: [frontend-architecture.md](frontend-architecture.md). Icons, motion, loading, charts, diagrams, sound: [ui-catalog.md](ui-catalog.md). Mobile: [mobile.md](mobile.md).
 
-## Default
+## Defaults
 
-| Layer | Pakai | Alternatif |
-|-------|-------|------------|
-| Framework SPA | TanStack Router | React Router |
-| Fullstack React | TanStack Start, atau Next.js App Router jika butuh SEO/RSC | |
-| Vue / Svelte / konten | Nuxt / SvelteKit / Astro (API typed: oRPC) | |
-| UI React | shadcn/ui (primitives Base UI, `@base-ui/react`) + Tailwind v4 | Radix untuk project shadcn lama. React Aria jika a11y/i18n ketat |
-| UI non-React | daisyUI 5 + Tailwind v4 | |
-| Server state | TanStack Query | fate jika butuh normalized cache gaya Relay |
-| Client state | Zustand | Jotai. Redux Toolkit hanya kode existing |
-| Form | React Hook Form + Zod | TanStack Form jika stack sudah TanStack |
-| Schema | Zod (share dengan backend) | Valibot jika bundle sensitif |
-| Animasi | CSS dan View Transitions | Motion (`motion/react`), GSAP untuk kasus kompleks |
-| Ikon | Lucide | Phosphor |
-| i18n | Paraglide (library, app baru), next-intl (Next.js) | fbtee (inline, compiler) |
+| Layer | Use | Alternative |
+|-------|-----|------------|
+| SPA framework | TanStack Router | React Router |
+| Fullstack React | TanStack Start, or Next.js App Router if you need SEO/RSC | |
+| Vue / Svelte / content | Nuxt / SvelteKit / Astro (typed API: oRPC) | |
+| React UI | shadcn/ui (Base UI primitives, `@base-ui/react`) + Tailwind v4 | Radix for older shadcn projects. React Aria if a11y/i18n requirements are strict |
+| Non-React UI | daisyUI 5 + Tailwind v4 | |
+| Server state | TanStack Query | fate if you need a Relay-style normalized cache |
+| Client state | Zustand | Jotai. Redux Toolkit only for existing code |
+| Forms | React Hook Form + Zod | TanStack Form if the stack is already TanStack |
+| Schema | Zod (shared with the backend) | Valibot if the bundle size is critical |
+| Animation | CSS and View Transitions | Motion (`motion/react`), GSAP for complex cases |
+| Icons | Lucide | Phosphor |
+| i18n | Paraglide (library, new apps), next-intl (Next.js) | fbtee (inline, compiler) |
 
 ## Design system
 
-- Mulai dari token: warna semantik (`primary`, `destructive`, `muted`), spacing skala 4/8, radius, font. Bukan `blue-500`.
-- Urutan komponen: Button, Input, Label, lalu Card, Dialog, Dropdown, lalu Table, Form, Toast, Navigation, Empty state, Skeleton.
-- Dark mode dan a11y dari awal. Storybook hanya jika ada lebih dari satu app atau tim.
-- Registry komunitas shadcn: review kode sebelum dipakai.
+- Start from tokens: semantic colors (`primary`, `destructive`, `muted`), a 4/8 spacing scale, radius, fonts. Not `blue-500`.
+- Component order: Button, Input, Label, then Card, Dialog, Dropdown, then Table, Form, Toast, Navigation, Empty state, Skeleton.
+- Dark mode and a11y from the start. Storybook only if there is more than one app or team.
+- shadcn community registries: review the code before using it.
 
-## Pakai kalau
+## Use when
 
-- MUI / Chakra: tool internal yang padat data, bukan produk ber-brand.
-- PWA: app perlu installable. Butuh SPA atau Next.js.
-- Qwik: hanya jika tim sudah memakainya.
+- MUI / Chakra: an internal data-dense tool, not a branded product.
+- PWA: the app must be installable. Needs an SPA or Next.js.
+- Qwik: only if the team already uses it.
 
-## Hindari
+## Avoid
 
-- SolidStart untuk project baru (dihentikan di siklus Solid 2.0).
-- NativeWind untuk project baru (pakai Uniwind).
-- Paket `@base-ui-components/react` (nama lama, pakai `@base-ui/react`).
-- UI kit berat sebagai default. Global store untuk data server.
+- SolidStart for new projects (discontinued in the Solid 2.0 cycle).
+- NativeWind for new projects (use Uniwind).
+- The package `@base-ui-components/react` (old name, use `@base-ui/react`).
+- Heavy UI kits as the default. A global store for server data.
