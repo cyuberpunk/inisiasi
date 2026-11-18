@@ -71,7 +71,7 @@ export const listDomainSkills = (skills: Skill[], domain: string, limit?: number
 const GENERIC = new Set([
   "tool", "tools", "cli", "api", "app", "apps", "project", "projects", "code", "write", "build",
   "create", "make", "using", "use", "used", "with", "for", "the", "and", "my", "our", "new",
-  "small", "simple", "personal", "test", "tests", "data", "user", "users", "file", "files",
+  "agent", "agents", "small", "simple", "personal", "test", "tests", "data", "user", "users", "file", "files",
 ]);
 const MIN_SCORE = 3;
 
@@ -120,7 +120,7 @@ export function recommendSkills(skills: Skill[], description: string, limit?: nu
       if (stemHit(words, tag) || (tag.includes("-") && text.includes(tag.replace(/-/g, " ")))) { score += 3 * w(tag); matched.add(tag); }
     }
     for (const t of [...tokens(s.niche.replace(/-/g, " ")), s.domain, ...tokens(s.name.replace(/-/g, " "))]) {
-      if (words.has(t)) { score += 2 * w(t); matched.add(t); }
+      if (!GENERIC.has(t) && words.has(t)) { score += 2 * w(t); matched.add(t); }
     }
     for (const t of new Set(s.use_cases.flatMap(tokens))) if (words.has(t)) { score += 1 * w(t); matched.add(t); }
     const selera: string[] = [];

@@ -15,10 +15,11 @@ assert.ok(tech.every((s) => s.domain !== "document"), "tech scope returned a doc
 console.log("OK: scope filter");
 
 // unverified entries are never recommended, even when their words match exactly
-const flagged = skills.filter((s) => s.verified === false);
-assert.ok(flagged.length > 0, "expected flagged entries in the catalog");
-for (const s of flagged.slice(0, 10)) {
-  const ids = recommendSkills(skills, `${s.name} ${s.tags.join(" ")}`, 25).map((r) => r.id);
+// the catalog may hold no unverified entry, so add a synthetic one that matches its own words exactly
+const flagged = [{ ...skills[0], id: "synthetic-unverified", name: "synthetic-unverified", tags: ["synthetic", "unverified"], use_cases: ["synthetic unverified"], verified: false, note: "test" }];
+const withFlagged = [...skills, ...flagged];
+for (const s of flagged) {
+  const ids = recommendSkills(withFlagged, `${s.name} ${s.tags.join(" ")}`, 25).map((r) => r.id);
   assert.ok(!ids.includes(s.id), `unverified ${s.id} was recommended`);
 }
 console.log("OK: unverified entries excluded");

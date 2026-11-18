@@ -12,7 +12,9 @@ An entry goes in only if all of these hold:
 4. **Useful.** A real need in one of the domains below. Official vendor skills first, then the most used community skill for the job. Skills that maintain a repo's own code (backport, release, triage) are not for users: leave them out.
 5. **Best of its kind.** When several skills do the same job, keep the official one or the most used one, plus at most one alternative.
 
-`popularity` is the GitHub stars of the source repo. For multi-skill repos it is a repo signal, not a per-skill one. 161 older entries also carry `ui_skills_count`, the number the ui-skills.com directory showed; it is not stars and is kept only for reference.
+`creator` is the GitHub owner of the install repo, one spelling per owner. Related orgs of one vendor share a creator (`google` covers google, google-gemini, GoogleChrome, googleworkspace; `vercel` covers vercel-labs). `npm run validate` rejects a split creator.
+
+`popularity` is the GitHub stars of the source repo. For multi-skill repos it is a repo signal, not a per-skill one. 122 older entries also carry `ui_skills_count`, the number the ui-skills.com directory showed; it is not stars and is kept only for reference.
 
 ## Scope
 
@@ -29,25 +31,28 @@ Every entry has a `scope`:
 
 ## Domains
 
-| Domain | Entries | Scope |
-|---|---|---|
-| `design` | 98 | tech |
-| `frontend` | 70 | tech |
-| `core-and-utilities` | 56 | tech |
-| `document` | 24 | general |
-| `backend` | 23 | tech |
-| `ai-and-data-science` | 21 | tech |
-| `testing-and-qa` | 20 | tech |
-| `infrastructure` | 18 | tech |
-| `security` | 18 | tech |
-| `business-and-productivity` | 17 | general |
-| `architecture` | 16 | tech |
-| `automation-tools` | 15 | tech |
-| `social-media` | 14 | general |
-| `research` | 13 | general |
-| `general` | 10 | general |
+| Domain | Entries | Scope | Niches |
+|---|---|---|---|
+| `design` | 87 | tech | visual-style, ui, 3d, animation, design-system, critique, antislop, landing, platform-guidelines, figma, generative-art, accessibility, brand, video |
+| `core-and-utilities` | 63 | tech | review, workflow, skills, tooling, coding-discipline, git, session, debugging, verification, typescript, code-design, agents, python, refactoring, performance, release, prototype |
+| `frontend` | 44 | tech | 3d, animation, react, components, css, web-platform, vue, tooling, performance, figma, accessibility, nextjs, browser-extension, angular |
+| `mobile` | 31 | tech | ios, react-native, android, expo, cross-platform |
+| `architecture` | 28 | tech | planning, patterns, modeling, design, refactoring, codebase-mapping, review, decisions |
+| `ai-and-data-science` | 27 | tech | agents, llm-api, rag, prompting, models, evals, ml-apps, data-viz, mcp |
+| `document` | 24 | general | docs, anti-slop, office, diagrams, agent-docs, copywriting, slides, media |
+| `backend` | 23 | tech | database, node, baas, api, email, python-api, serverless, payments |
+| `automation-tools` | 22 | tech | browser, agents, ci-cd, scripting, figma, video |
+| `security` | 22 | tech | auth, guardrails, appsec, crypto, secrets, agent-security, supply-chain |
+| `testing-and-qa` | 21 | tech | unit, qa, e2e, accessibility, tdd, react, experimentation |
+| `infrastructure` | 18 | tech | release, cloudflare, deploy, iac, monorepo, observability, git-hooks, serverless |
+| `business-and-productivity` | 17 | general | seo, google-workspace, marketing, sales, notes, market-research, product, writing, workflow, issues, decision |
+| `general` | 14 | general | writing, gamedev, inspiration, autonomous, launch, education, learning |
+| `research` | 12 | general | deep-research, scraping, web-search, academic, codebase-mapping, extraction, autonomous, writing |
+| `social-media` | 10 | general | content, x, youtube, research, short-video, linkedin, instagram |
 
-`tier` is `main` or `support`. Older entries use `main`/`support` as the `niche` too; new entries use a topic slug (`auth`, `cloudflare`, `agents`).
+`niche` is the subdomain: a topic inside the domain (`ios`, `react`, `database`, `auth`). Pick one already listed for that domain before inventing a new one. `tier` (`main` or `support`) is separate. `npm run validate` rejects `main`/`support` as a niche, and a scope that does not match the domain.
+
+`mobile` holds native app work (iOS, Android, React Native, Expo). Web UI stays in `frontend`, even for mobile-sized screens.
 
 ## Checking the catalog
 
@@ -70,7 +75,7 @@ Needs `gh` (logged in) and network. The install check runs `npx skills add <repo
      "id": "<name>",
      "name": "<name>",
      "domain": "<domain>",
-     "niche": "<topic-slug>",
+     "niche": "<topic inside the domain>",
      "creator": "<person or org>",
      "use_cases": ["<what it does, one line>", "<when to use it>"],
      "tags": ["<lowercase keywords people use to describe projects>"],

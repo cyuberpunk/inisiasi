@@ -11,7 +11,7 @@ A local stdio MCP server plus two skills. The server answers catalog and project
 | Language | TypeScript, compiled with `tsc` | Typed tool schemas, already in use | Plain JavaScript: no types for tool contracts |
 | Runtime | Node.js 20 or newer | Matches `engines` in `mcp/package.json` | Bun: not needed for a stdio server |
 | MCP | `@modelcontextprotocol/sdk` over stdio | Standard client support | Custom protocol: no benefit |
-| Fuzzy search | `fuse.js` | Already a dependency, no index to maintain | Full-text database: overkill for 407 entries |
+| Fuzzy search | `fuse.js` | Already a dependency, no index to maintain | Full-text database: overkill for 463 entries |
 | Package manager | pnpm 12, `pnpm-lock.yaml`, `packageManager` field | Matches selera (`packageManager: pnpm`) | npm: the lockfile it replaced |
 | Tests | Node scripts using `node:assert` | No test framework to maintain | vitest: recorded in selera, not yet applied here |
 
@@ -32,7 +32,7 @@ A local stdio MCP server plus two skills. The server answers catalog and project
 - Storage: files only. Catalog in the repo, project docs in the caller's project root, selera profile in `~/.config/inisiasi/selera/profile.json` and `./.selera/profile.json`.
 - Trust boundaries: tool arguments that are paths are resolved against the given root. Missing files return a result, never a crash. Search input is capped at 200 characters and 12 terms.
 - Failure modes: a missing catalog or docs returns `isError` with the next step. A malformed plan returns `title_only` instead of guessing.
-- Scale: 407 entries, read in full per call. Fine up to a few thousand entries. Past that, index the catalog once at startup.
+- Scale: 463 entries, read in full per call. Fine up to a few thousand entries. Past that, index the catalog once at startup.
 
 ## Agent skills
 
@@ -48,7 +48,7 @@ A local stdio MCP server plus two skills. The server answers catalog and project
 
 ## Rejected alternatives
 
-- Vector search for the catalog: 407 entries do not need embeddings.
+- Vector search for the catalog: 463 entries do not need embeddings.
 - A web UI: the owner uses the terminal and the MCP.
 
 ## Risks

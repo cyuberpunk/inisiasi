@@ -6,6 +6,7 @@ const { skills } = JSON.parse(readFileSync(path, "utf8"));
 const slug = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 const errors = [];
 const ids = new Set();
+const GENERAL_DOMAINS = new Set(["document", "research", "business-and-productivity", "general", "social-media"]);
 const str = (v) => typeof v === "string" && v.trim().length > 0;
 const strArr = (v) => Array.isArray(v) && v.length > 0 && v.every(str);
 
@@ -25,8 +26,21 @@ for (const [i, s] of skills.entries()) {
   if (str(s.source_url) && !s.source_url.startsWith("https://")) errors.push(`${at}: source_url must be https`);
   if (str(s.install_command) && s.source_url?.startsWith("https://github.com/") && !/^npx skills add [\w.-]+\/[\w.-]+ -g -s [\w.:-]+$/.test(s.install_command))
     errors.push(`${at}: install_command should be 'npx skills add <owner/repo> -g -s <name>'`);
+  if (s.niche === "main" || s.niche === "support") errors.push(`${at}: niche is a topic inside the domain; main/support belong in tier`);
+  if (str(s.domain) && s.scope !== (GENERAL_DOMAINS.has(s.domain) ? "general" : "tech")) errors.push(`${at}: domain '${s.domain}' needs scope '${GENERAL_DOMAINS.has(s.domain) ? "general" : "tech"}'`);
   if (ids.has(s.id)) errors.push(`${at}: duplicate id`);
   ids.add(s.id);
+}
+
+// One creator name per casing, and one repo owner maps to one creator, so the creator tab never splits a group.
+const casings = new Map(), owners = new Map();
+for (const s of skills) {
+  const k = s.creator.toLowerCase();
+  if (casings.has(k) && casings.get(k) !== s.creator) errors.push(`creator '${s.creator}' also spelled '${casings.get(k)}'`);
+  casings.set(k, s.creator);
+  const o = s.install_command.match(/skills add ([^/\s]+)\//)?.[1]?.toLowerCase();
+  if (o && owners.has(o) && owners.get(o) !== s.creator) errors.push(`${s.id}: repo owner '${o}' is under creators '${owners.get(o)}' and '${s.creator}'`);
+  if (o) owners.set(o, s.creator);
 }
 
 if (errors.length) {
