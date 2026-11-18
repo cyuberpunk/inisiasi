@@ -77,27 +77,46 @@ const stemHit = (words: Set<string>, t: string) =>
 const tierRank = (s: Skill) => (s.tier === "main" ? 0 : 1);
 const unscoredLast = (a: Skill, b: Skill) => Number(!!(a as Skill & { unscored?: boolean }).unscored) - Number(!!(b as Skill & { unscored?: boolean }).unscored);
 
+// Inverse document frequency over the catalog: a word on most skills says little about one skill.
+// Weight is 1 for a word on a single skill and falls toward 0 as the word spreads.
+const idfCache = new WeakMap<Skill[], Map<string, number>>();
+function idfWeights(skills: Skill[]): Map<string, number> {
+  const cached = idfCache.get(skills);
+  if (cached) return cached;
+  const df = new Map<string, number>();
+  for (const s of skills) {
+    const words = new Set([...s.tags, s.niche, s.name, ...s.use_cases].flatMap(tokens));
+    for (const w of words) df.set(w, (df.get(w) ?? 0) + 1);
+  }
+  const n = skills.length + 1;
+  const weights = new Map([...df].map(([w, d]) => [w, Math.log((n + 1) / (d + 1)) / Math.log(n + 1)]));
+  idfCache.set(skills, weights);
+  return weights;
+}
+
 export function recommendSkills(skills: Skill[], description: string, limit?: number) {
   const words = new Set(tokens(description));
   const text = description.toLowerCase();
+  const idf = idfWeights(skills);
+  const w = (t: string) => idf.get(t) ?? 1;
   const scored = skills.map((s) => {
     let score = 0;
     const matched = new Set<string>();
     for (const tag of s.tags) {
       if (GENERIC.has(tag)) continue;
-      if (stemHit(words, tag) || (tag.includes("-") && text.includes(tag.replace(/-/g, " ")))) { score += 3; matched.add(tag); }
+      if (stemHit(words, tag) || (tag.includes("-") && text.includes(tag.replace(/-/g, " ")))) { score += 3 * w(tag); matched.add(tag); }
     }
     for (const t of [...tokens(s.niche.replace(/-/g, " ")), s.domain, ...tokens(s.name.replace(/-/g, " "))]) {
-      if (words.has(t)) { score += 2; matched.add(t); }
+      if (words.has(t)) { score += 2 * w(t); matched.add(t); }
     }
-    for (const t of new Set(s.use_cases.flatMap(tokens))) if (words.has(t)) { score += 1; matched.add(t); }
+    for (const t of new Set(s.use_cases.flatMap(tokens))) if (words.has(t)) { score += 1 * w(t); matched.add(t); }
     return { skill: s, score, matched: [...matched] };
   });
   return scored
     .filter((r) => r.score >= MIN_SCORE)
     .sort((a, b) => b.score - a.score || unscoredLast(a.skill, b.skill) || tierRank(a.skill) - tierRank(b.skill) || byPopularity(a.skill, b.skill))
     .slice(0, clampLimit(limit))
-    .map((r) => ({ ...summary(r.skill), score: r.score, matched: r.matched }));
+    .map((r) => ({ ...summary(r.skill), score: Number(r.score.toFixed(2)), matched: r.matched }));
 }
 
 const MAX_QUERY = 200;

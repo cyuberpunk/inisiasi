@@ -4,6 +4,7 @@ Project kickoff skill plus a local MCP server. The skill turns `docs/PLAN.md` go
 
 ```
 skill/inisiasi/   SKILL.md, references/templates.md, references/prompts.md, references/sot, evals/evals.json
+skill/selera/     SKILL.md, scripts/selera.mjs, references/sot, evals/evals.json
 mcp/              stdio MCP server (TypeScript, @modelcontextprotocol/sdk)
 mcp/catalog.json  curated skill catalog (407 skills, 15 domains)
 mcp/catalog.md    curation criteria and how to add entries

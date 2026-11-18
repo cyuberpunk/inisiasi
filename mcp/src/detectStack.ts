@@ -1,7 +1,7 @@
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { homedir } from "node:os";
 import { basename, extname, join, resolve } from "node:path";
-import { isStubMarkdown, readText } from "./md.js";
+import { isStubMarkdown, readText, resolveExisting } from "./md.js";
 
 export type DocInfo = { exists: boolean; stub: boolean; path?: string };
 
@@ -125,7 +125,7 @@ function parsePackageJson(abs: string, languages: string[], frameworks: string[]
 }
 
 export function detectStack(root: string): DetectStackResult {
-  const abs = resolve(root);
+  const abs = resolveExisting(root);
   const emptyDocs = {
     PLAN: { exists: false, stub: true } as DocInfo,
     ARCHITECTURE: { exists: false, stub: true } as DocInfo,

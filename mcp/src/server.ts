@@ -188,7 +188,9 @@ server.setRequestHandler(CallToolRequestSchema, async (req) => {
     case "search_skills": {
       const q = str(a.query);
       if (!q) return fail("query is required.");
-      return ok(searchSkills(skills, q, str(a.domain), a.limit as number));
+      const dom = str(a.domain);
+      if (dom && !listDomains(skills).some((d) => d.domain === dom)) return fail(`Unknown domain '${dom}'. Valid: ${listDomains(skills).map((d) => d.domain).join(", ")}`);
+      return ok(searchSkills(skills, q, dom, a.limit as number));
     }
     default:
       return fail(`Unknown tool '${req.params.name}'.`);
