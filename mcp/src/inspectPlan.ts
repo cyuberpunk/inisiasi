@@ -99,7 +99,7 @@ export function inspectPlan(path: string, maxQuestions?: number): InspectPlanRes
   // Title-only means nothing but heading lines, including plans with no ## sections.
   const isTitleOnly = md.replace(/^#.*$/gm, "").trim() === "";
 
-  // "None", "Tidak ada", "(none)" mean the section is empty, not that a question is open.
+  // "None", "Tidak ada", "(none)" mean the section is empty, not that a question is open. Indonesian words are kept on purpose: owners write PLANs in Indonesian.
   const NONE = /^\(?\s*(none|none yet|n\/a|na|nothing|tidak ada|belum ada|kosong|-)\s*\.?\s*\)?$/i;
   const rawItems = listItems(byName.get("Open questions") ?? "").filter((q) => !NONE.test(q.trim()));
   const { open, deferred } = classifyQuestions(rawItems);

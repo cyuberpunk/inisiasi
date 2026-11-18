@@ -67,7 +67,7 @@ assert.equal(isStale(null), true);
 
 const staleDir = mkdtempSync(join(tmpdir(), "inisiasi-refs-"));
 try {
-  writeFileSync(join(staleDir, "architecture.md"), "# Architecture\n\n> Terakhir diverifikasi: 2024-01-01\n\nBody.\n");
+  writeFileSync(join(staleDir, "architecture.md"), "# Architecture\n\n> Last verified: 2024-01-01\n\nBody.\n");
   writeFileSync(join(staleDir, "testing.md"), "# Testing\n\nNo header here, just body.\n");
   const prev = process.env.INISIASI_REFERENCES;
   process.env.INISIASI_REFERENCES = staleDir;

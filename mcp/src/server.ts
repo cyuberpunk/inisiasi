@@ -100,7 +100,7 @@ const TOOLS = [
   {
     annotations: READONLY,
     name: "select_references",
-    description: "Pick a short reading list from the inisiasi SoT (skill/inisiasi/references/sot) for this project. Returns file names, a one-line reason, Terakhir diverifikasi date, a stale flag (missing header or older than 12 months), and gaps such as a missing Apple/macOS SoT file. Read-only. Use this instead of loading all reference files.",
+    description: "Pick a short reading list from the inisiasi SoT (skill/inisiasi/references/sot) for this project. Returns file names, a one-line reason, Last verified date, a stale flag (missing header or older than 12 months), and gaps such as a missing Apple/macOS SoT file. Read-only. Use this instead of loading all reference files.",
     inputSchema: {
       type: "object",
       properties: {

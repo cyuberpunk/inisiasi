@@ -52,7 +52,8 @@ const RULES: Rule[] = [
 ];
 
 const DEFAULT_ROOT = fileURLToPath(new URL("../../skill/inisiasi/references/sot", import.meta.url));
-const VERIFIED_RE = /^>\s*Terakhir diverifikasi:\s*(\d{4}-\d{2}-\d{2})\s*$/m;
+// Accepts "Last verified" (English) and "Terakhir diverifikasi" (older Indonesian headers).
+const VERIFIED_RE = /^>\s*(?:Last verified|Terakhir diverifikasi):\s*(\d{4}-\d{2}-\d{2})\s*$/m;
 const MAX_FILES = 8;
 
 export function referencesRoot(): string {
