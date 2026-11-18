@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // selera: record the owner's habits and render them as code standards.
-// Profile lands in ~/.config/selera/profile.json, project override in ./.selera/profile.json.
+// Profile lands in ~/.config/inisiasi/selera/profile.json, project override in ./.selera/profile.json.
 import { mkdirSync, readFileSync, writeFileSync, existsSync, readdirSync } from "node:fs";
 import { homedir } from "node:os";
 import { execSync } from "node:child_process";
@@ -287,6 +287,6 @@ else if (cmd === "set") {
   if (!validKey(key)) { console.error(`unknown key. known: ${KEYS.join(", ")}. prefix with a scope: ${SCOPES.slice(1).join(", ")}`); process.exit(1); }
   console.log("wrote " + writeProfile(kind, { [key]: valueParts.join(" ") }));
 } else {
-  console.error("usage: selera <tree|learn|setup|show|set|apply> [scope] [--project] [--write]");
+  console.error("usage: selera <tree [depth]|learn [--write]|setup|show|set <key> <value>|apply> [--project]");
   process.exit(1);
 }

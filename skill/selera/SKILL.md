@@ -30,7 +30,9 @@ A recorded preference beats the SoT default. An unrecorded key means the SoT def
 | `setup --answers "pnpm,uv,zod,..."` | Same, non-interactive, in question order |
 | `show` | Print the merged profile as JSON |
 | `set <key> <value> [--project]` | Record one habit after the owner states it |
-| `tree [scope]` | ASCII project skeleton from the structure keys |
+| `tree [depth]` | ASCII skeleton of the real repo, default depth 2, with the recorded `structure.repo` and `structure.topology` |
+| `learn` | Infer habits from lockfiles, dependencies, configs, and git log. Prints evidence only |
+| `learn --write` | Same, then stores the inferred keys in `./.selera/profile.json` |
 | `apply` | Render the profile as markdown for a review or a doc |
 
 Profiles merge: `~/.config/inisiasi/selera/profile.json` (all projects), then `./.selera/profile.json` (this repo wins).

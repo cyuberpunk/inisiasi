@@ -2,7 +2,7 @@
 
 > Last verified: 2026-11-16
 
-Code standards and practices. Read only the groups the task needs. The owner's profile (`.selera/profile.json` or `~/.config/selera/profile.json`) always wins over the defaults here.
+Code standards and practices. Read only the groups the task needs. The owner's profile (`.selera/profile.json` or `~/.config/inisiasi/selera/profile.json`) always wins over the defaults here.
 
 | File | Contents |
 |------|-----|
