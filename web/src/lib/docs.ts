@@ -55,7 +55,7 @@ const PATTERN_KEYS = [SELERA + "design.md", SOT + "architecture.md", SOT + "fron
 export const standardsSections: Section[] = [
   { name: "Coding standards", docs: [...pick([SELERA + "README.md"]), ...linkedFrom(SELERA + "README.md").filter((d) => !PATTERN_KEYS.includes(d.key))] },
   { name: "Patterns and principles", docs: pick(PATTERN_KEYS) },
-  { name: "Strategies and practices", docs: [...pick(["inisiasi/references/addy-index.md"]), ...under("inisiasi/references/addy/").sort((a, b) => a.title.localeCompare(b.title))] },
+  { name: "Strategies and practices", docs: pick(["inisiasi/references/addy-index.md"]) },
   { name: "Agentic engineering", docs: pick([SOT + "agentic-engineering.md", SOT + "agent-loops.md", SOT + "agent-graphs.md"]) },
   { name: "Idioms and mechanisms", docs: pick([SOT + "idioms.md", SOT + "mechanisms.md"]) },
   { name: "Diagrams (C4)", docs: pick([SOT + "diagrams.md", "inisiasi/references/prompts.md"]) },

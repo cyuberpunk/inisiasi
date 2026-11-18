@@ -1,7 +1,10 @@
 # Addy agent-skills, index for inisiasi
 
-Source: https://github.com/addyosmani/agent-skills (25 skills). Copies of `skills/<name>/SKILL.md`, taken 2026-11-17.
+Source: https://github.com/addyosmani/agent-skills (25 skills, license MIT). Nothing is copied into this repo. Install each skill from source, so the copy matches what users run.
 Meta-skill: `using-agent-skills`. Phase map: pick a skill based on the kind of work at hand.
+
+Every name below is a catalog id in `mcp/catalog.json`. Install with its catalog `install_command`: `npx skills add addyosmani/agent-skills -g -s <id>`.
+Exception: catalog id `test-driven-development` is obra/superpowers. This map means the Addy one. Install it by name: `npx skills add addyosmani/agent-skills -g -s test-driven-development`.
 
 ## Phase map
 
@@ -18,7 +21,7 @@ Meta-skill: `using-agent-skills`. Phase map: pick a skill based on the kind of w
 | Missing context | `context-engineering` |
 | Code must match the docs | `source-driven-development` |
 | High stakes, unfamiliar code | `doubt-driven-development` |
-| Tests | `test-driven-development` |
+| Tests | `test-driven-development` (Addy, see above) |
 | Tests in the browser | `browser-testing-with-devtools` |
 | Something is broken | `debugging-and-error-recovery` |
 | Code review | `code-review-and-quality` |
@@ -37,7 +40,3 @@ Meta-skill: `using-agent-skills`. Phase map: pick a skill based on the kind of w
 1. State assumptions before any non-trivial implementation.
 2. When confused: stop, say so, ask, and wait.
 3. Be willing to reject an approach that is clearly wrong.
-
-## File location
-
-Files already in this folder: `references/addy/<name>.md`. Skills already known in the catalog (12) only need their catalog id.
