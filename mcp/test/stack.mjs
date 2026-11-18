@@ -140,3 +140,17 @@ console.log(JSON.stringify({
     description: fuuBundle.description,
   },
 }, null, 2));
+
+const plain = selectReferences({ project_description: "todo app for families with a simple data model, ready to go" }).files.map((f) => f.file);
+assert.ok(!plain.includes("ai-llm.md") && !plain.includes("backend.md"), "generic 'model' and 'go' pick no AI or backend file: " + plain);
+
+const pick = (d) => selectReferences({ project_description: d });
+const has = (r, f) => r.files.some((x) => x.file === f);
+assert.ok(has(pick("desktop app for windows and linux with tauri"), "desktop.md"), "tauri desktop routes to desktop.md");
+assert.ok(has(pick("iPadOS note-taking app with Apple Pencil"), "apple-macos-swift.md"), "iPadOS routes to the Apple file");
+const flutter = pick("flutter app for ios and android");
+assert.ok(has(flutter, "mobile.md") && !has(flutter, "apple-macos-swift.md"), "flutter skips the native Apple file");
+assert.ok(has(pick("saas with stripe subscriptions and a paywall"), "billing.md"), "subscriptions route to billing.md");
+for (const d of ["laravel php ecommerce", "spring boot java api", "rails app in ruby", "asp.net core api in c#"]) assert.ok(has(pick(d), "backend.md"), d + " routes to backend.md");
+assert.deepEqual(pick("react dashboard with vite").gaps, [], "covered stack reports no gap");
+console.log("OK: platform routing and gaps");

@@ -22,6 +22,10 @@ Use what the stack already has first.
 | Postgres (Go) | River |
 | Redis/Valkey | BullMQ (TS), Asynq (Go) |
 | Python | Dramatiq (simple), Celery (complex workflows), procrastinate (Postgres) |
+| Laravel | Laravel Queues (Redis + Horizon, or the database driver when small) |
+| Spring | JobRunr, Spring for Kafka or AMQP, ShedLock for scheduled jobs |
+| Rails | Solid Queue (database), Sidekiq (Redis, high throughput) |
+| .NET | Hangfire, Quartz.NET, Wolverine |
 | Cloudflare Workers | Queues + Cron Triggers |
 | Convex | Scheduled functions + cron |
 | Multi-step SaaS jobs in TS | Inngest or Trigger.dev |

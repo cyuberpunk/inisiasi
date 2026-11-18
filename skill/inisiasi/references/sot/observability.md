@@ -15,7 +15,7 @@ Scope: logs, metrics, traces, error tracking, alerts, on-call.
 | Logs | Loki, Grafana Cloud, CloudWatch, or Axiom (managed) |
 | Traces | Tempo or Jaeger v2 |
 | Zero-code (legacy services) | OBI (OpenTelemetry eBPF) / Grafana Beyla |
-| Logger | pino (TS), slog (Go), structlog (Python), tracing (Rust) |
+| Logger | pino (TS), slog (Go), structlog (Python), tracing (Rust), Monolog JSON (PHP), SLF4J + Logback (Java), semantic_logger (Ruby), Serilog or `ILogger` (C#) |
 
 MVP: Sentry + structured logs + OTel traces to one backend. Profiling (Pyroscope) is not required yet.
 
@@ -33,6 +33,15 @@ MVP: Sentry + structured logs + OTel traces to one backend. Profiling (Pyroscope
 - Alert on user symptoms. Alerts must be actionable and link to a runbook. Raw thresholds are a fallback only.
 - On-call: PagerDuty, Grafana Cloud IRM, incident.io, Rootly, or Jira Service Management. Status pages: Better Stack, Instatus.
 - Blameless post-mortems.
+
+## Product analytics
+
+Draft, pending owner review.
+
+- Product analytics (funnels, retention): PostHog, which also serves feature flags ([engineering-practices.md](engineering-practices.md)). Privacy-friendly page analytics only: Plausible or Umami.
+- Event names: `object_action` in snake_case (`order_created`), with a small typed list in code, not free strings.
+- Revenue and other critical events are sent from the server, not the browser.
+- Consent and personal data follow [compliance.md](compliance.md). No PII in event properties.
 
 ## Avoid
 

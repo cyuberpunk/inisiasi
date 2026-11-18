@@ -12,7 +12,8 @@ Scope: mobile frameworks, state, UI, OTA updates, forced updates. Native Apple: 
 | Maximum polish per platform | SwiftUI (iOS), Jetpack Compose (Android) |
 | One codebase, custom UI | Flutter (Riverpod, GoRouter, Drift) |
 | Shared logic, native UI | Kotlin Multiplatform |
-| Desktop from a web app | Tauri, or Electrobun (lighter) |
+| C#/.NET team | .NET MAUI |
+| Desktop from a web app | Tauri, or Electrobun (lighter). Details: [desktop.md](desktop.md) |
 
 Expo SDK 55+: the New Architecture is always on. Unistyles if you do not want Tailwind. NativeWind only for existing apps.
 
@@ -33,6 +34,35 @@ Expo SDK 55+: the New Architecture is always on. Unistyles if you do not want Ta
 - OTA is only for JS and assets. `runtimeVersion` must match the binary, or the update is not delivered. Native changes, permission changes, or SDK changes require a store release.
 - Staged rollout: Play staged rollout, App Store phased release. Be ready to halt.
 - Local data migrations: forward-only, tested from several old versions.
+
+## Android native
+
+Draft, pending owner review.
+
+| Area | Use | Notes |
+|------|-----|-------|
+| Language and UI | Kotlin + Jetpack Compose | Views only for existing screens |
+| Build | Gradle Kotlin DSL + a version catalog (`libs.versions.toml`) | |
+| Architecture | ViewModel + Kotlin coroutines and Flow, Navigation Compose | Hilt for DI only when the graph is large |
+| Storage | Room (data), DataStore (settings) | Not SharedPreferences for new code |
+| Background work | WorkManager | Survives restarts and respects battery rules |
+| Secrets and keys | Android Keystore | Never plain files or preferences |
+| Release | Android App Bundle (AAB), Play App Signing, R8 shrinking | The Play target API level requirement rises every year: plan the bump |
+
+## Release and store rules
+
+- Expo: EAS Build + EAS Submit. Native: fastlane (signing, build, upload) or Xcode Cloud for iOS. Flutter: Codemagic or fastlane.
+- iOS betas: TestFlight. Android betas: Play internal and closed testing tracks.
+- iOS: a privacy manifest (`PrivacyInfo.xcprivacy`) for the app and its SDKs, App Tracking Transparency before cross-app tracking, in-app account deletion when the app creates accounts, and a privacy-focused login option (Sign in with Apple or equivalent) when you offer third-party social login.
+- Android: the Data safety form matches what the app and its SDKs collect.
+- Signing keys and store credentials live in CI secrets (fastlane match, EAS credentials), never in the repo.
+- Selling digital goods or subscriptions: [billing.md](billing.md).
+
+## Tests
+
+- E2E across iOS and Android: Maestro (YAML flows). Detox for React Native gray-box tests.
+- Native: XCUITest (iOS), Compose UI tests and Espresso (Android). Flutter: `integration_test`.
+- Unit tests in the app language; run them in CI on every PR. Device farms (Firebase Test Lab, BrowserStack) only for release candidates.
 
 ## Avoid
 

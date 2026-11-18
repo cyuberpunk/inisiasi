@@ -28,6 +28,37 @@ Scope: web frameworks, UI kits, design systems, state, forms, styling. Architect
 - Dark mode and a11y from the start. Storybook only if there is more than one app or team.
 - shadcn community registries: review the code before using it.
 
+## SEO
+
+Draft, pending owner review.
+
+- Pages that must rank render on the server or at build time (SSR/SSG). Client-only SPAs for app screens behind login.
+- Every indexable page: a unique `<title>` and meta description, a canonical URL, Open Graph and Twitter tags with an image.
+- `sitemap.xml` and `robots.txt` generated from routes. Structured data as JSON-LD (schema.org) for products, articles, organizations, FAQs.
+- Multilingual: [i18n.md](i18n.md). Speed is a ranking signal: [performance.md](performance.md).
+
+## Content sites and CMS
+
+Draft, pending owner review.
+
+| Who edits | Use |
+|---------|-----|
+| Developers only | Content in git: Astro content collections or MDX |
+| Non-developers, TS/Next stack, self-hosted | Payload |
+| Non-developers, managed | Sanity |
+| An existing SQL database needs an admin UI | Directus |
+
+Preview drafts before publishing, and rebuild or revalidate pages from a CMS webhook.
+
+## Admin and dashboards
+
+Draft, pending owner review.
+
+- Tables: TanStack Table with server-side pagination, sorting, and filters kept in the URL.
+- Many CRUD resources: Refine on top of your API, instead of hand-building every list and form.
+- Charts: [ui-catalog.md](ui-catalog.md). Permission-based UI, checked again on the server.
+- Exports (CSV) run as background jobs for large data ([data-services.md](data-services.md)).
+
 ## Use when
 
 - MUI / Chakra: an internal data-dense tool, not a branded product.

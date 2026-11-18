@@ -5,6 +5,7 @@
 Score = bundle weight (0-3) + framework neutrality (0-2) + usage evidence from the catalog (0-3) + adoption cost (0-2).
 Bands: 8+ core, 7-7.9 choose if, 5.5-6.9 conditional, below 5.5 avoid.
 The score rates fitness as a default for a new project, not the quality of the library.
+The Avoid list in [ui-catalog.md](ui-catalog.md) overrides any band here: those rows are marked `avoid`.
 
 ## chart
 
@@ -29,7 +30,7 @@ The score rates fitness as a default for a new project, not the quality of the l
 | 9 | core | Mermaid | Agnostic | ~91k★ |  |
 | 8.5 | core | React Flow | React | 38.9k★ |  |
 | 7.5 | choose if | AntV G6 | Agnostic | 12.4k★ |  |
-| 7 | choose if | stack-diagram | Other | New 1 Nov 2026 |  |
+| 7 | avoid | stack-diagram | Other | New 1 Nov 2026 | no stable package (ui-catalog Avoid) |
 | 6 | conditional | AntV X6 | Agnostic | Diagram editor |  |
 | 6 | conditional | Svelte Flow | Svelte | Same team as React Flow |  |
 
@@ -39,16 +40,16 @@ The score rates fitness as a default for a new project, not the quality of the l
 |---|---|---|---|---|---|
 | 8 | core | Heroicons | Multi | 1,288 icons |  |
 | 8 | core | Hugeicons | Multi | 6,000+ free |  |
-| 8 | core | Icon MCP | Agnostic | Agent-editable set |  |
+| 8 | avoid | Icon MCP | Agnostic | Agent-editable set | no stable package (ui-catalog Avoid) |
 | 8 | core | Iconoir | Multi | 1,600+ icons |  |
 | 8 | core | Lucide | Multi | 1,500+ icons |  |
 | 8 | core | Phosphor | Multi | 9,000+ · 6 weights |  |
-| 8 | core | Reicon | Multi | 2,700+ icons |  |
+| 8 | avoid | Reicon | Multi | 2,700+ icons | no stable package (ui-catalog Avoid) |
 | 8 | core | Remix Icon | Multi | 3,000+ pairs |  |
-| 8 | core | Rune Icons | Agnostic | 900+ · 5 styles |  |
+| 8 | avoid | Rune Icons | Agnostic | 900+ · 5 styles | no stable package (ui-catalog Avoid) |
 | 8 | core | Simple Icons | Agnostic | 3,200+ brands |  |
 | 8 | core | Tabler Icons | Multi | 5,800+ icons |  |
-| 7.5 | choose if | Flux Icons | React | 3,700+ React |  |
+| 7.5 | avoid | Flux Icons | React | 3,700+ React | no stable package (ui-catalog Avoid) |
 | 7.5 | choose if | Heroicons Animated | React | 316 animated |  |
 | 7 | choose if | Nano Icons | Other | RN font icons |  |
 | 6.5 | conditional | Animate Icons | React | 1,170 animated |  |
@@ -121,7 +122,7 @@ The score rates fitness as a default for a new project, not the quality of the l
 | 8 | core | Astryx | React | 12.9k★ · 150+ components |  |
 | 8 | core | Park UI | Multi | 2.4k★ · 30+ |  |
 | 8 | core | productdevbook/ui | Multi | 39 components · early |  |
-| 7.5 | choose if | Akaza UI | Vue | 109★ · alpha |  |
+| 7.5 | avoid | Akaza UI | Vue | 109★ · alpha | no stable package (ui-catalog Avoid) |
 | 7.5 | choose if | Base UI | React | Growing · shadcn 2026 default |  |
 | 7.5 | choose if | Beautiful UI | React | AI primitives |  |
 | 7.5 | choose if | CopilotKit | React | 37.3k★ |  |
@@ -135,16 +136,16 @@ The score rates fitness as a default for a new project, not the quality of the l
 | 7 | choose if | 21st.dev | React | 5.4k★ repo · 12k+ catalog |  |
 | 7 | choose if | ARC UI | Multi | 166 web components |  |
 | 7 | choose if | FlyonUI | Agnostic | daisy-scale |  |
-| 7 | choose if | Prism System | Other | White-label monorepo |  |
+| 7 | avoid | Prism System | Other | White-label monorepo | no stable package (ui-catalog Avoid) |
 | 7 | choose if | Storefront UI | Multi | eCom components + blocks |  |
-| 7 | choose if | StyleKit | Other | 148 styles |  |
+| 7 | avoid | StyleKit | Other | 148 styles | no stable package (ui-catalog Avoid) |
 | 6.5 | conditional | Agent Elements | React | 25–26 components |  |
 | 6.5 | conditional | Eldora UI | React | Smaller |  |
 | 6.5 | conditional | Fragments UI | React | 68 components + MCP |  |
 | 6.5 | conditional | Planes | React | 100+ components · paid |  |
 | 6.5 | conditional | Velora UI | React | 64 components + site |  |
 | 6.5 | conditional | XiodUI | React | 89 components · 20 palettes |  |
-| 6 | conditional | Scrolltide | Other | Spatial vault |  |
+| 6 | avoid | Scrolltide | Other | Spatial vault | no stable package (ui-catalog Avoid) |
 | 6 | conditional | SV5UI | Svelte | New 2026 full set |  |
 | 5.5 | conditional | Arc UI | React | 140 components · 83 blocks |  |
 | 5.5 | conditional | Kokonut UI | React | Mid catalog |  |

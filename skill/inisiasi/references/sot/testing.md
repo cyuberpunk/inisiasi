@@ -20,6 +20,15 @@ Scope: test strategy and tools per language. Load tests: [reliability.md](reliab
 | Go | `testing` + testify | testcontainers-go, httptest | Mocks: `go.uber.org/mock` or mockery |
 | Python | pytest | testcontainers-python, httpx | |
 | Rust | `cargo test` | testcontainers-rs | |
+| PHP | Pest, PHPUnit | Laravel HTTP tests, Testcontainers | Static: PHPStan/Larastan |
+| Java / Kotlin | JUnit 5 + AssertJ | Testcontainers, Spring Boot test slices | Boundaries: ArchUnit |
+| Ruby | Minitest or RSpec | Rails integration tests, FactoryBot | System tests: Capybara |
+| C# | xUnit | Testcontainers for .NET, `WebApplicationFactory` | |
+| Swift | Swift Testing | XCTest | UI: XCUITest |
+| Kotlin (Android) | JUnit + coroutines test | Robolectric | UI: Compose UI tests, Espresso |
+| Dart (Flutter) | `flutter test` | `integration_test` | |
+
+Mobile E2E: Maestro or Detox ([mobile.md](mobile.md)). Desktop E2E: `tauri-driver` ([desktop.md](desktop.md)).
 
 Others: visual regression (Playwright screenshots, Chromatic), security (Semgrep, CodeQL, ZAP), a11y (`@axe-core/playwright`).
 

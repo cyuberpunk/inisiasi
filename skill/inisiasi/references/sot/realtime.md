@@ -27,6 +27,10 @@ WebTransport only for advanced cases, with a WebSocket fallback.
 | Go | `net/http` + flush | `github.com/coder/websocket` |
 | Python | FastAPI StreamingResponse | FastAPI WebSocket |
 | Rust | Axum | tokio-tungstenite |
+| PHP (Laravel) | Streamed responses | Laravel Reverb + Echo |
+| Java (Spring) | `SseEmitter` | Spring WebSocket (STOMP) |
+| Ruby (Rails) | `ActionController::Live` | Action Cable |
+| C# (.NET) | `TypedResults.ServerSentEvents` or a streamed response | SignalR |
 
 ## Rules
 

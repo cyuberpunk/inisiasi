@@ -14,6 +14,7 @@ Scope: choosing auth and session practices. Password hashing and OWASP: [securit
 | Stack already on Supabase | Supabase Auth |
 | Self-hosted enterprise SSO | Keycloak, or Ory (Kratos, Hydra, Keto) |
 | Go, Python, Rust backends | An IdP on top + session/JWT validation. Python: Authlib |
+| Laravel, Spring, Rails, ASP.NET Core | The framework's own auth (Sanctum, Spring Security, Rails authentication generator or Devise, ASP.NET Core Identity). Details: [backend.md](backend.md) |
 
 ## Practices
 

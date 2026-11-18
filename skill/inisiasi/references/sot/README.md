@@ -11,10 +11,9 @@ The defaults in this folder reflect the owner's bias (TypeScript with Vite+, App
 | File | Contents |
 |------|-----|
 | [architecture.md](architecture.md) | Architecture defaults, patterns, queues |
-| [multi-tenancy.md](multi-tenancy.md) | RLS and isolation between tenants |
 | [problems-critical.md](problems-critical.md) | Expensive mistakes if wrong from day one (money, authz, RLS, secrets) |
-| [diagnosis.md](diagnosis.md) | Symptoms to causes during an incident |
 | [testing.md](testing.md) | Test strategy and tools |
+| [diagrams.md](diagrams.md) | C4 levels and notation for ARCHITECTURE.md |
 
 ## Stack
 
@@ -22,15 +21,16 @@ The defaults in this folder reflect the owner's bias (TypeScript with Vite+, App
 |------|-----------|
 | [toolchain-ts.md](toolchain-ts.md) | TS/JS project: Vite+, Oxlint, Oxfmt, Vitest, monorepo |
 | [stack-compat-ts.md](stack-compat-ts.md) | Assembling a TS stack (valid and forbidden combinations) |
-| [frontend.md](frontend.md) | Web frameworks, UI, state, forms, i18n |
+| [frontend.md](frontend.md) | Web frameworks, UI, state, forms, SEO, CMS, admin dashboards |
 | [frontend-architecture.md](frontend-architecture.md) | Frontend system design checklist |
 | [ui-catalog.md](ui-catalog.md) | Icons, motion, loading, charts, diagrams, sound |
 | [ui-catalog-scores.md](ui-catalog-scores.md) | 0-10 score per catalog library (script output) |
-| [backend.md](backend.md) | Server frameworks, ORMs, queues per language |
+| [backend.md](backend.md) | Server frameworks, ORMs, queues, and tooling per language: TS, Go, Python, Rust, PHP, JVM, Ruby, .NET |
 | [database.md](database.md) | Databases, hosts, migrations |
 | [api.md](api.md) | REST, tRPC/oRPC, GraphQL, gRPC, versioning, gateways |
 | [mobile.md](mobile.md) | Expo, Flutter, native, app updates |
-| [apple-macos-swift.md](apple-macos-swift.md) | macOS/iOS native, Swift, notarization |
+| [apple-macos-swift.md](apple-macos-swift.md) | macOS/iOS/iPadOS native, Swift, notarization |
+| [desktop.md](desktop.md) | Windows, Linux, cross-platform desktop: Tauri, packaging, signing, updates |
 | [cli.md](cli.md) | Command-line tools: parser, output, distribution, tests |
 | [ai-llm.md](ai-llm.md) | LLM products: SDKs, streaming, RAG, cost, security |
 
@@ -39,6 +39,8 @@ The defaults in this folder reflect the owner's bias (TypeScript with Vite+, App
 | File | Read when |
 |------|-----------|
 | [auth.md](auth.md) | Login, SSO, sessions |
+| [multi-tenancy.md](multi-tenancy.md) | Several customers or organizations share the system (RLS, isolation) |
+| [billing.md](billing.md) | Subscriptions, entitlements, in-app purchases |
 | [security.md](security.md) | Almost always: secrets, supply chain, OWASP 2025 |
 | [compliance.md](compliance.md) | Personal data is involved (Indonesia PDP law, GDPR) |
 | [data-services.md](data-services.md) | Cache, queues, jobs, file uploads, search |
@@ -56,15 +58,19 @@ The defaults in this folder reflect the owner's bias (TypeScript with Vite+, App
 |------|-----------|
 | [infrastructure.md](infrastructure.md) | Hosting, edge, serverless, deployment strategy |
 | [ci-cd.md](ci-cd.md) | Pipelines |
-| [observability.md](observability.md) | Logs, metrics, traces, alerts |
+| [observability.md](observability.md) | Logs, metrics, traces, alerts, product analytics |
 | [reliability.md](reliability.md) | Backups, DR, load tests, chaos, cost |
 | [engineering-practices.md](engineering-practices.md) | Error handling, config, flags, docs, ADRs, local dev |
+| [diagnosis.md](diagnosis.md) | Symptoms to causes during an incident |
+| [problems-data.md](problems-data.md) | Transactions, migrations, deadlocks |
+| [problems-performance.md](problems-performance.md) | Slowness and resource exhaustion |
+| [problems-ops.md](problems-ops.md) | Deploy, dependency, and queue failures |
 
 ## Engineering
 
 | File | Read when |
 |------|-----------|
-| [agentic-engineering.md](agentic-engineering.md) | The product runs agents, or the work is done with coding agents |
+| [agentic-engineering.md](agentic-engineering.md) | The product runs agents or is an MCP server, or the work is done with coding agents |
 | [agent-loops.md](agent-loops.md) | An agent loops: stop conditions, verification, retries, checkpoints |
 | [agent-graphs.md](agent-graphs.md) | A multi-step AI flow with branches, parallel steps, or human pauses |
 | [idioms.md](idioms.md) | Writing TypeScript, Swift, Python, or SQL |
@@ -72,7 +78,6 @@ The defaults in this folder reflect the owner's bias (TypeScript with Vite+, App
 | [scaling.md](scaling.md) | Expected load growth, high traffic, read replicas, partitioning |
 | [concurrency.md](concurrency.md) | Workers, async, race conditions, isolation levels |
 | [scenarios.md](scenarios.md) | The product resembles a known design: shortener, video, shop, payment, chat, notifications |
-| [diagrams.md](diagrams.md) | Writing ARCHITECTURE.md: C4 levels, notation, tooling |
 
 ## Usage rules
 

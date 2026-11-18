@@ -16,12 +16,18 @@ Scope: pipelines, environments, CI secrets, releases. TS toolchain: [toolchain-t
 ## Pipeline
 
 - PR: lint + format check + typecheck + unit + integration (Testcontainers) + build + dependency and SAST scans. Target under 10 minutes, parallel jobs, fail fast.
-- Lint per language: `vp check` or Oxlint + Oxfmt (TS), golangci-lint (Go), ruff + mypy (Python), clippy + rustfmt (Rust).
+- Lint per language: `vp check` or Oxlint + Oxfmt (TS), golangci-lint (Go), ruff + mypy (Python), clippy + rustfmt (Rust), Pint + PHPStan (PHP), Spotless + Error Prone (Java), RuboCop + Brakeman (Ruby), `dotnet format` + analyzers (C#).
 - Main: full tests, build the image with artifact attestation / SLSA provenance, deploy to staging, smoke/E2E, promote to production.
 - Monorepo: run only the packages that changed.
 - Cache: pnpm/bun store, Go modules, cargo, Docker layers.
 - Merge queue for busy repos. Required status checks before merge.
 - DB migrations are part of the deploy. Health checks after deploy, automatic rollback if the error rate rises.
+
+## Mobile and desktop releases
+
+- Mobile: EAS Build + Submit (Expo), fastlane or Xcode Cloud (native), Codemagic (Flutter). iOS builds need macOS runners. Details: [mobile.md](mobile.md).
+- Desktop: a build matrix on Windows, macOS, and Linux runners, signing in CI, a draft release, then publish. Details: [desktop.md](desktop.md).
+- Signing certificates, keystores, and store API keys are CI secrets, rotated and backed up.
 
 ## Environments
 

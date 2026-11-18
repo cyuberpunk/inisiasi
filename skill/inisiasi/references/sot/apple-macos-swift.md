@@ -2,7 +2,7 @@
 
 > Last verified: 2026-11-16
 
-Scope: native Apple apps (macOS, iOS). Cross-platform: [mobile.md](mobile.md).
+Scope: native Apple apps (macOS, iOS, iPadOS). Cross-platform: [mobile.md](mobile.md). Windows and Linux: [desktop.md](desktop.md).
 
 ## Defaults
 
@@ -21,6 +21,19 @@ Scope: native Apple apps (macOS, iOS). Cross-platform: [mobile.md](mobile.md).
 | Local auth | LocalAuthentication | `.deviceOwnerAuthentication` = biometrics + password fallback |
 | App updates (outside the App Store) | Sparkle 2 | |
 | Distribution outside the App Store | Developer ID + Hardened Runtime + notarization | |
+
+## iPadOS
+
+Draft, pending owner review.
+
+- One SwiftUI target for iPhone and iPad. Layout follows size classes, not device checks.
+- Navigation: `NavigationSplitView` for sidebar and detail on iPad, collapsing to a stack on iPhone.
+- Support multitasking (Split View, Slide Over, Stage Manager): every size from compact to full screen works, and multiple windows (scenes) when documents are the product.
+- Keyboard and pointer: `.keyboardShortcut` for main actions, hover states, context menus. Drag and drop between apps where content moves.
+- Apple Pencil: PencilKit for drawing and handwriting.
+- Test on iPad simulators in portrait, landscape, and split sizes.
+
+Store release, TestFlight, privacy manifest: [mobile.md](mobile.md).
 
 ## Notarization
 
