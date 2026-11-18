@@ -1,33 +1,33 @@
-# Reliability, DR, load test, biaya
+# Reliability, DR, load testing, cost
 
-> Terakhir diverifikasi: 2026-11-16
+> Last verified: 2026-11-16
 
-Scope: backup, disaster recovery, load testing, chaos, cost.
+Scope: backups, disaster recovery, load testing, chaos, cost.
 
-## Backup dan DR
+## Backups and DR
 
-- Tentukan RTO dan RPO per service.
-- Baseline 3-2-1 (3 salinan, 2 media, 1 offsite). Tambah salinan immutable (object lock) jika ada risiko ransomware.
-- DB: snapshot harian + PITR, region lain, terenkripsi. Object storage: versioning.
-- Tes restore: produksi kritis bulanan, lainnya minimal kuartalan. Ukur RTO/RPO aktual.
-- IaC agar environment bisa dibuat ulang. Runbook: deteksi, nilai dampak, rollback atau restore, verifikasi, post-mortem.
-- Multi-region hanya jika syarat ketersediaan menuntut. Mulai active-passive.
+- Define RTO and RPO per service.
+- Baseline 3-2-1 (3 copies, 2 media, 1 offsite). Add immutable copies (object lock) if ransomware is a risk.
+- DB: daily snapshots + PITR, another region, encrypted. Object storage: versioning.
+- Restore tests: monthly for critical production, at least quarterly for the rest. Measure the actual RTO/RPO.
+- IaC so environments can be rebuilt. Runbook: detect, assess impact, roll back or restore, verify, post-mortem.
+- Multi-region only if the availability requirements demand it. Start active-passive.
 
-## Load test
+## Load testing
 
-- Tool: k6 (default, termasuk k6 browser untuk journey FE), Locust (Python), ghz (gRPC), Vegeta (HTTP sederhana).
-- Ukur throughput, p50/p95/p99, error rate, resource, titik saturasi.
-- Lingkungan mirip produksi, data realistis, journey kritis, threshold di CI sebelum rilis besar.
-- Latensi tinggi + CPU rendah biasanya DB atau dependency. Error di beban tertentu biasanya pool atau rate limit.
+- Tools: k6 (default, including k6 browser for frontend journeys), Locust (Python), ghz (gRPC), Vegeta (simple HTTP).
+- Measure throughput, p50/p95/p99, error rate, resources, and the saturation point.
+- Production-like environment, realistic data, critical journeys, thresholds in CI before major releases.
+- High latency with low CPU usually means the DB or a dependency. Errors at a certain load are usually pool or rate-limit limits.
 
 ## Chaos
 
-Mulai di staging: Toxiproxy dan tes timeout di integration test. Kubernetes: Chaos Mesh atau Litmus. AWS: Fault Injection Service. Azure: Chaos Studio. Jangan chaos produksi sebelum matang. Jangan Chaos Monkey untuk setup baru.
+Start in staging: Toxiproxy, and timeout tests in integration tests. Kubernetes: Chaos Mesh or Litmus. AWS: Fault Injection Service. Azure: Chaos Studio. Do not run chaos in production until mature. Do not use Chaos Monkey for a new setup.
 
-## Biaya
+## Cost
 
-- Budget + alert, tag resource per tim/project.
-- Compute: right-size, scale to zero, ARM (Graviton), matikan non-prod di luar jam kerja, reserved/savings plan untuk beban stabil.
-- Egress sering kejutan terbesar: CDN, R2 (tanpa biaya egress).
-- Observability: sample trace, retensi log pendek, hindari label high-cardinality.
-- LLM: prompt caching, model kecil untuk tugas ringan, batas pemakaian + alert.
+- Budgets + alerts, tag resources per team/project.
+- Compute: right-size, scale to zero, ARM (Graviton), shut down non-production outside working hours, reserved/savings plans for steady workloads.
+- Egress is often the biggest surprise: CDN, R2 (no egress fees).
+- Observability: sample traces, short log retention, avoid high-cardinality labels.
+- LLMs: prompt caching, small models for light tasks, usage limits + alerts.

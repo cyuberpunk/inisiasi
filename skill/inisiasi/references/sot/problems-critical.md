@@ -1,22 +1,22 @@
-# Masalah kritis
+# Critical problems
 
-> Terakhir diverifikasi: 2026-11-16
+> Last verified: 2026-11-16
 
-Scope: yang paling mahal kalau salah sejak awal. Baca sebelum menulis Risks di ARCHITECTURE.md. Untuk gejala saat incident: [diagnosis.md](diagnosis.md).
+Scope: the most expensive mistakes if made from the start. Read before writing Risks in ARCHITECTURE.md. For symptoms during an incident: [diagnosis.md](diagnosis.md).
 
-| Masalah | Cegah dengan |
+| Problem | Prevent with |
 |---------|--------------|
-| Lost update uang/stok (app baca, hitung, tulis) | Update atomik + guard: `UPDATE ... SET stock = stock - :q WHERE id = :id AND stock >= :q`. Banyak field: optimistic locking (`version`). Beberapa baris: `SELECT ... FOR UPDATE`. Lock Redis bukan pengganti constraint DB |
-| Double charge, order dobel | Idempotency key per aksi bisnis, simpan hasil pertama. Disable tombol tidak cukup |
-| Event pembayaran palsu | Verifikasi signature + timestamp, lalu idempotent |
-| Akses data milik orang lain (IDOR) | Authz di server per record, default deny, tes negatif |
-| RLS bocor antar tenant | `FORCE ROW LEVEL SECURITY`, `SET LOCAL` per transaksi, policy fail-closed, view `security_invoker`, jangan `USING (true)` |
-| Timeout ambil koneksi | Perbaiki query lambat, leak, dan transaksi panjang dulu. `statement_timeout`, `idle_in_transaction_session_timeout` |
-| Uang pakai float | Integer satuan terkecil atau `numeric` |
-| Secret di git atau log | Secrets manager, scan, redaksi log, rotasi bila bocor |
-| Backup tak pernah di-restore | Restore test terjadwal |
-| Injection | Schema di boundary, query berparameter, jangan interpolasi ke shell |
-| CSRF | `SameSite` + CSRF token. Bearer header tidak kena CSRF klasik |
-| JWT tidak divalidasi | Allowlist alg, cek `iss`, `aud`, `exp` |
+| Lost update on money or stock (app reads, computes, writes) | Atomic update + guard: `UPDATE ... SET stock = stock - :q WHERE id = :id AND stock >= :q`. Many fields: optimistic locking (`version`). Several rows: `SELECT ... FOR UPDATE`. A Redis lock is no substitute for a DB constraint |
+| Double charge, duplicate orders | Idempotency key per business action, store the first result. Disabling the button is not enough |
+| Fake payment events | Verify signature + timestamp, then make the handler idempotent |
+| Access to other people's data (IDOR) | Server-side authorization per record, deny by default, negative tests |
+| RLS leaks between tenants | `FORCE ROW LEVEL SECURITY`, `SET LOCAL` per transaction, fail-closed policies, `security_invoker` views, never `USING (true)` |
+| Connection acquisition timeouts | Fix slow queries, leaks, and long transactions first. `statement_timeout`, `idle_in_transaction_session_timeout` |
+| Money stored as float | Integers in the smallest unit, or `numeric` |
+| Secrets in git or logs | Secrets manager, scanning, log redaction, rotation if leaked |
+| Backups never restored | Scheduled restore tests |
+| Injection | Schema validation at the boundary, parameterized queries, never interpolate into a shell |
+| CSRF | `SameSite` + CSRF token. Bearer headers are not subject to classic CSRF |
+| JWT not validated | Allowlist the alg, check `iss`, `aud`, `exp` |
 
-Checkout: lost update, idempotency, webhook, money-float. Stok: lost update. Multi-tenant: RLS, IDOR. Upload: validasi isi, path traversal, ukuran.
+Checkout: lost update, idempotency, webhooks, money as float. Stock: lost update. Multi-tenant: RLS, IDOR. Uploads: content validation, path traversal, size.

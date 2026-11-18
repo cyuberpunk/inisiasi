@@ -1,15 +1,15 @@
-# Masalah data dan transaksi
+# Data and transaction problems
 
-> Terakhir diverifikasi: 2026-11-16
+> Last verified: 2026-11-16
 
-Scope: transaksi, migrasi, konsistensi. Pola: [architecture.md](architecture.md).
+Scope: transactions, migrations, consistency. Patterns: [architecture.md](architecture.md).
 
-| Masalah | Cegah dengan |
+| Problem | Prevent with |
 |---------|--------------|
-| Transaksi terbuka saat HTTP call | I/O di luar transaksi (outbox) |
-| Deadlock / serialization failure | Urutan lock konsisten, transaksi pendek, retry |
-| Satu baris diperebutkan (hot row) | Update atomik, counter dipecah, antrean tulis |
-| DDL mengunci tabel | Expand/contract, `CREATE INDEX CONCURRENTLY`, `lock_timeout` |
-| DB dan broker tidak sinkron | Outbox + consumer idempotent |
+| A transaction is open during an HTTP call | Keep I/O outside the transaction (outbox) |
+| Deadlock / serialization failure | Consistent lock ordering, short transactions, retries |
+| One row is contended (hot row) | Atomic updates, split counters, write queues |
+| DDL locks a table | Expand/contract, `CREATE INDEX CONCURRENTLY`, `lock_timeout` |
+| DB and broker out of sync | Outbox + idempotent consumer |
 
-Postgres tidak pernah dirty read dan tidak melakukan lock escalation (itu SQL Server). Gap lock adalah perilaku MySQL InnoDB. Risiko utama di Postgres adalah lost update di `READ COMMITTED`.
+Postgres never does dirty reads and does not do lock escalation (that is SQL Server). Gap locks are MySQL InnoDB behavior. The main risk in Postgres is lost updates under `READ COMMITTED`.

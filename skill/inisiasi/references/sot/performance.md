@@ -1,32 +1,32 @@
 # Performance
 
-> Terakhir diverifikasi: 2026-11-16
+> Last verified: 2026-11-16
 
-Scope: Core Web Vitals, teknik FE dan BE, urutan optimasi. Masalah umum: [problems-performance.md](problems-performance.md).
+Scope: Core Web Vitals, FE and BE techniques, order of optimization. Common problems: [problems-performance.md](problems-performance.md).
 
-## Target (p75 data lapangan)
+## Targets (p75 field data)
 
-| Metrik | Good | Poor |
+| Metric | Good | Poor |
 |--------|------|------|
 | LCP | <= 2.5s | > 4s |
 | INP | <= 200ms | > 500ms |
 | CLS | <= 0.1 | > 0.25 |
 
-Lulus dinilai dari data lapangan (CrUX, Search Console, RUM `web-vitals`), mobile dan desktop terpisah. Lighthouse hanya untuk diagnosis.
+Pass or fail is judged on field data (CrUX, Search Console, RUM `web-vitals`), with mobile and desktop separate. Lighthouse is for diagnosis only.
 
-## Prinsip
+## Principles
 
-Kurangi JS awal, perpendek critical path, lazy load yang tidak kritis, lindungi main thread, jaga layout stabil, optimasi media, kendalikan script pihak ketiga, cache aset ber-fingerprint, optimasi journey penting dulu.
+Reduce initial JS, shorten the critical path, lazy-load what is not critical, protect the main thread, keep the layout stable, optimize media, control third-party scripts, cache fingerprinted assets, optimize the important journeys first.
 
-## Teknik
+## Techniques
 
-- INP: pecah long task, `scheduler.yield()` (fallback `setTimeout`), `useTransition` / `useDeferredValue`, debug dengan Long Animation Frames.
-- Gambar: AVIF/WebP, ukuran atau `aspect-ratio` eksplisit. Font: subset, preload, `font-display`.
-- Navigasi: Speculation Rules, preconnect. Jangan rusak bfcache (hindari `unload`).
-- Backend: index, connection pooling, cegah N+1, pagination, cache, kompresi.
+- INP: split long tasks, `scheduler.yield()` (fallback `setTimeout`), `useTransition` / `useDeferredValue`, debug with Long Animation Frames.
+- Images: AVIF/WebP, explicit sizes or `aspect-ratio`. Fonts: subset, preload, `font-display`.
+- Navigation: Speculation Rules, preconnect. Do not break bfcache (avoid `unload`).
+- Backend: indexes, connection pooling, no N+1, pagination, caching, compression.
 - DB: `EXPLAIN ANALYZE`, `pg_stat_statements`.
 - Profiling: Chrome DevTools, `node --cpu-prof`, pprof (Go), py-spy (Python).
 
-## Urutan
+## Order
 
-Ukur (lapangan, lalu lab), perbaiki yang jelas (N+1, index, bundle besar), cache, lalu critical path dan INP. Jangan micro-optimasi tanpa data.
+Measure (field first, then lab), fix the obvious issues (N+1, indexes, large bundles), then caching, then the critical path and INP. No micro-optimizations without data.

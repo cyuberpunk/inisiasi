@@ -1,31 +1,31 @@
-# Email dan notifikasi
+# Email and notifications
 
-> Terakhir diverifikasi: 2026-11-16
+> Last verified: 2026-11-16
 
-Scope: email transaksional, push, in-app, local testing.
+Scope: transactional email, push, in-app, local testing.
 
-## Default
+## Defaults
 
-| Kebutuhan | Pakai |
-|-----------|-------|
-| Email transaksional TS | Resend + React Email (paket `react-email`) |
-| Deliverability prioritas | Postmark |
-| Biaya di skala besar | Amazon SES |
+| Need | Use |
+|-----------|-----|
+| Transactional email in TS | Resend + React Email (`react-email` package) |
+| Deliverability as the priority | Postmark |
+| Cost at large scale | Amazon SES |
 | Push | APNs, FCM, Web Push. Expo: `expo-notifications` |
-| Email + push + in-app + preferensi + batching | Novu (OSS), Knock, atau Courier |
-| Local | Mailpit (tangkap email, jangan kirim) |
+| Email + push + in-app + preferences + batching | Novu (OSS), Knock, or Courier |
+| Local | Mailpit (captures email, never sends) |
 
-## Aturan
+## Rules
 
-- Selalu kirim lewat queue, dengan idempotency key agar tidak dobel.
-- Domain pengirim khusus, SPF, DKIM, DMARC. Tangani bounce dan complaint.
-- Transaksional dan marketing pisah domain atau subdomain.
-- Marketing/bulk: header `List-Unsubscribe` + `List-Unsubscribe-Post: List-Unsubscribe=One-Click`, proses dalam 48 jam (syarat Gmail dan Yahoo).
-- Notifikasi keamanan tetap terkirim meski marketing dimatikan. User mengatur kanal dan tipe.
-- Template: HTML + plain text, dites rendering.
-- Better Auth: sambungkan provider email untuk verifikasi dan reset password.
-- In-app: simpan di DB, kirim via SSE/WebSocket, status dibaca.
+- Always send through a queue, with an idempotency key so nothing is sent twice.
+- A dedicated sending domain, SPF, DKIM, DMARC. Handle bounces and complaints.
+- Transactional and marketing mail use separate domains or subdomains.
+- Marketing/bulk: `List-Unsubscribe` header + `List-Unsubscribe-Post: List-Unsubscribe=One-Click`, processed within 48 hours (a Gmail and Yahoo requirement).
+- Security notifications are still sent when marketing is turned off. Users control channels and types.
+- Templates: HTML + plain text, rendering tested.
+- Better Auth: connect an email provider for verification and password reset.
+- In-app: stored in the DB, delivered over SSE/WebSocket, with read status.
 
-## Hindari
+## Avoid
 
-MailHog (tidak dirawat). Provider produksi di environment lokal.
+MailHog (unmaintained). Production providers in local environments.

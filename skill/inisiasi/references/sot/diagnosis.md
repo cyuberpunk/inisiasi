@@ -1,19 +1,19 @@
-# Diagnosis cepat
+# Quick diagnosis
 
-> Terakhir diverifikasi: 2026-11-16
+> Last verified: 2026-11-16
 
-Scope: gejala ke penyebab, urutan cek. Detail cegah: [problems-critical.md](problems-critical.md), [problems-performance.md](problems-performance.md), [problems-data.md](problems-data.md), [problems-ops.md](problems-ops.md).
+Scope: from symptoms to causes, and the order to check them in. Prevention details: [problems-critical.md](problems-critical.md), [problems-performance.md](problems-performance.md), [problems-data.md](problems-data.md), [problems-ops.md](problems-ops.md).
 
-| Gejala | Cek dulu |
+| Symptom | Check first |
 |--------|----------|
-| Lambat hanya di produksi | N+1, index hilang |
-| Data salah intermiten di beban | Lost update, race |
-| Pulih setelah restart lalu menurun lagi | Leak |
-| Lonjakan setelah deploy atau cache expire | Stampede, thundering herd |
-| Request putus saat deploy | Graceful shutdown, readiness |
-| User melihat data user lain | IDOR, RLS |
-| Instance sehat tapi dependency mati | Readiness vs liveness |
-| Error deadlock atau serialization | Transaksi panjang, urutan lock |
-| Timeout ambil koneksi, CPU DB rendah | Pool exhaustion, query lambat |
+| Slow only in production | N+1 queries, missing indexes |
+| Intermittently wrong data under load | Lost updates, races |
+| Recovers after a restart, then degrades again | Leaks |
+| Spike after a deploy or cache expiry | Stampede, thundering herd |
+| Requests drop during a deploy | Graceful shutdown, readiness |
+| Users see other users' data | IDOR, RLS |
+| Instance healthy but a dependency is down | Readiness vs liveness |
+| Deadlock or serialization errors | Long transactions, lock ordering |
+| Connection acquisition timeouts, low DB CPU | Pool exhaustion, slow queries |
 
-Urutan: pastikan gejalanya, cek metrik dan log, lihat perubahan terakhir, baru ubah satu hal.
+Order: confirm the symptom, check metrics and logs, look at the last change, then change one thing at a time.

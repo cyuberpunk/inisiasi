@@ -1,39 +1,39 @@
 # Observability
 
-> Terakhir diverifikasi: 2026-11-16
+> Last verified: 2026-11-16
 
-Scope: log, metrik, trace, error tracking, alert, on-call.
+Scope: logs, metrics, traces, error tracking, alerts, on-call.
 
-## Default
+## Defaults
 
-| Layer | Pakai |
-|-------|-------|
-| Instrumentasi | OpenTelemetry SDK + OTLP, ikut semantic conventions |
-| Collector | OpenTelemetry Collector, atau Grafana Alloy jika stack Grafana |
-| Error tracking | Sentry (cukup juga untuk tracing app kecil) |
-| Metrik | Prometheus + Grafana |
-| Log | Loki, Grafana Cloud, CloudWatch, atau Axiom (managed) |
-| Trace | Tempo atau Jaeger v2 |
-| Zero-code (service lama) | OBI (OpenTelemetry eBPF) / Grafana Beyla |
+| Layer | Use |
+|-------|-----|
+| Instrumentation | OpenTelemetry SDK + OTLP, following semantic conventions |
+| Collector | OpenTelemetry Collector, or Grafana Alloy if you use the Grafana stack |
+| Error tracking | Sentry (also enough for tracing a small app) |
+| Metrics | Prometheus + Grafana |
+| Logs | Loki, Grafana Cloud, CloudWatch, or Axiom (managed) |
+| Traces | Tempo or Jaeger v2 |
+| Zero-code (legacy services) | OBI (OpenTelemetry eBPF) / Grafana Beyla |
 | Logger | pino (TS), slog (Go), structlog (Python), tracing (Rust) |
 
-MVP: Sentry + log terstruktur + OTel trace ke satu backend. Profiling (Pyroscope) belum wajib.
+MVP: Sentry + structured logs + OTel traces to one backend. Profiling (Pyroscope) is not required yet.
 
 ## Logging
 
-- JSON terstruktur, field `timestamp`, `level`, `message`, `service`, `trace_id`, `span_id`, `request_id`.
-- Level: DEBUG, INFO, WARN, ERROR. DEBUG/INFO boleh di-sample di produksi, ERROR tidak.
-- Log di boundary: request masuk, call eksternal, error.
-- Jangan log password, token, API key, kartu penuh, PII yang tidak perlu, payload besar.
-- Retensi bertingkat (misal 7 hari hot, 30-90 hari murah).
+- Structured JSON with the fields `timestamp`, `level`, `message`, `service`, `trace_id`, `span_id`, `request_id`.
+- Levels: DEBUG, INFO, WARN, ERROR. DEBUG/INFO may be sampled in production, ERROR never is.
+- Log at the boundary: incoming requests, external calls, errors.
+- Never log passwords, tokens, API keys, full card numbers, unnecessary PII, or large payloads.
+- Tiered retention (for example 7 days hot, 30-90 days cheap).
 
-## Alert
+## Alerts
 
-- SLI/SLO per journey utama. Alert dari SLO dengan multi-window multi-burn-rate (page: 1j/5m burn 14.4 dan 6j/30m burn 6; ticket: 3h/6j burn 1). Generate dengan Sloth atau Pyrra.
-- Alert pada gejala user, harus actionable, ada link runbook. Threshold mentah hanya cadangan.
-- On-call: PagerDuty, Grafana Cloud IRM, incident.io, Rootly, atau Jira Service Management. Status page: Better Stack, Instatus.
-- Post-mortem tanpa menyalahkan.
+- SLI/SLO per main journey. Alerts from SLOs with multi-window, multi-burn-rate rules (page: 1h/5m at burn 14.4 and 6h/30m at burn 6; ticket: 3h/6h at burn 1). Generate them with Sloth or Pyrra.
+- Alert on user symptoms. Alerts must be actionable and link to a runbook. Raw thresholds are a fallback only.
+- On-call: PagerDuty, Grafana Cloud IRM, incident.io, Rootly, or Jira Service Management. Status pages: Better Stack, Instatus.
+- Blameless post-mortems.
 
-## Hindari
+## Avoid
 
-Opsgenie (end of sale), Grafana OnCall OSS (diarsipkan), Grafana Agent dan Promtail (EOL, pakai Alloy), Winston sebagai default baru, label metrik high-cardinality.
+Opsgenie (end of sale), Grafana OnCall OSS (archived), Grafana Agent and Promtail (EOL, use Alloy), Winston as a new default, high-cardinality metric labels.

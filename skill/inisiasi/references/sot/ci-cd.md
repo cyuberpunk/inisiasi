@@ -1,32 +1,32 @@
 # CI/CD
 
-> Terakhir diverifikasi: 2026-11-16
+> Last verified: 2026-11-16
 
-Scope: pipeline, environment, secrets CI, release. Toolchain TS: [toolchain-ts.md](toolchain-ts.md).
+Scope: pipelines, environments, CI secrets, releases. TS toolchain: [toolchain-ts.md](toolchain-ts.md).
 
-## Default
+## Defaults
 
-| Kategori | Pakai |
-|----------|-------|
-| CI | GitHub Actions. GitLab CI jika repo di GitLab. Self-host: Woodpecker |
-| Container | Docker. Podman di RHEL/rootless |
-| Preview | Vercel atau Cloudflare per PR |
-| Release | Changesets (monorepo TS) atau semantic-release |
+| Category | Use |
+|----------|-----|
+| CI | GitHub Actions. GitLab CI if the repo is on GitLab. Self-hosted: Woodpecker |
+| Containers | Docker. Podman on RHEL/rootless |
+| Previews | Vercel or Cloudflare per PR |
+| Releases | Changesets (TS monorepos) or semantic-release |
 
 ## Pipeline
 
-- PR: lint + format check + typecheck + unit + integration (Testcontainers) + build + scan dependency dan SAST. Target < 10 menit, job paralel, fail fast.
-- Lint per bahasa: `vp check` atau Oxlint + Oxfmt (TS), golangci-lint (Go), ruff + mypy (Python), clippy + rustfmt (Rust).
-- Main: tes penuh, build image dengan artifact attestation / SLSA provenance, deploy staging, smoke/E2E, promote ke produksi.
-- Monorepo: hanya jalankan paket yang berubah.
-- Cache: store pnpm/bun, Go modules, cargo, layer Docker.
-- Merge queue untuk repo ramai. Status check wajib sebelum merge.
-- Migrasi DB bagian dari deploy, health check setelah deploy, rollback otomatis bila error naik.
+- PR: lint + format check + typecheck + unit + integration (Testcontainers) + build + dependency and SAST scans. Target under 10 minutes, parallel jobs, fail fast.
+- Lint per language: `vp check` or Oxlint + Oxfmt (TS), golangci-lint (Go), ruff + mypy (Python), clippy + rustfmt (Rust).
+- Main: full tests, build the image with artifact attestation / SLSA provenance, deploy to staging, smoke/E2E, promote to production.
+- Monorepo: run only the packages that changed.
+- Cache: pnpm/bun store, Go modules, cargo, Docker layers.
+- Merge queue for busy repos. Required status checks before merge.
+- DB migrations are part of the deploy. Health checks after deploy, automatic rollback if the error rate rises.
 
-## Environment
+## Environments
 
-Local (seed), Preview (seed / anonim), Staging (anonim, mirip produksi), Production. Jangan data produksi mentah di preview atau staging.
+Local (seeded), Preview (seeded or anonymous), Staging (anonymous, production-like), Production. Never put raw production data in preview or staging.
 
 ## Secrets
 
-OIDC ke cloud (AWS, GCP, Azure), bukan long-lived key. GitHub Secrets untuk secret statis. Jangan echo ke log. Pin action pihak ketiga ke SHA.
+OIDC to the cloud (AWS, GCP, Azure), not long-lived keys. GitHub Secrets for static secrets. Never echo secrets to logs. Pin third-party actions to a SHA.
