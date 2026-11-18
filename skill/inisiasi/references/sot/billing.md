@@ -1,7 +1,7 @@
 # Billing and in-app purchases
 
 > Last verified: 2026-11-19
-> Status: draft, pending owner review. Store rules change and differ by region: check the current App Store and Google Play policies before launch.
+> Status: draft, pending owner review. Store rules change and differ by region: check the current App Store and Google Play policies before launch. Checked on the web 2026-11-19: US external purchase link rule.
 
 Scope: SaaS subscriptions, entitlements, tax, and mobile in-app purchases. Payment safety (idempotency, webhooks, money as integers): [problems-critical.md](problems-critical.md), [scenarios.md](scenarios.md).
 
@@ -29,7 +29,7 @@ States: trialing, active, past due, cancelled (active until period end), expired
 ## Mobile stores
 
 - Digital content and features sold inside the app go through the store's billing. Physical goods and real-world services use a normal payment provider.
-- Rules on external payment links and alternative billing differ by region and change often. Check before you design the paywall.
+- Rules on external payment links and alternative billing differ by region and change often. Since May 2025 the US App Store storefront allows buttons and links to outside purchases; most other storefronts still require in-app purchase. Check the current guidelines for every storefront you ship to before you design the paywall.
 - Validate receipts or purchase tokens on the server, and handle refunds and revocations from store notifications (App Store Server Notifications, Play Real-time Developer Notifications).
 - Offer restore purchases. The same entitlement table serves web and mobile.
 

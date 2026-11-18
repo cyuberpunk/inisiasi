@@ -1,7 +1,7 @@
 # Desktop
 
 > Last verified: 2026-11-19
-> Status: draft, pending owner review. No versions pinned: check the official docs before you pin one.
+> Status: draft, pending owner review. No versions pinned: check the official docs before you pin one. Checked on the web 2026-11-19: Windows signing service name, tauri-driver platform support.
 
 Scope: desktop apps for Windows, Linux, and macOS: framework choice, packaging, signing, updates, tests. Native Apple: [apple-macos-swift.md](apple-macos-swift.md). Mobile: [mobile.md](mobile.md).
 
@@ -32,7 +32,7 @@ Tauri uses the system webview: WebView2 (Chromium) on Windows, WKWebView (WebKit
 
 ## Signing
 
-- Windows: sign every binary and installer (Authenticode) with a code signing certificate or a cloud signing service (for example Azure Trusted Signing). Unsigned builds trigger SmartScreen warnings.
+- Windows: sign every binary and installer (Authenticode) with a code signing certificate or a cloud signing service (for example Azure Artifact Signing, formerly Trusted Signing). Unsigned builds trigger SmartScreen warnings.
 - macOS: Developer ID + Hardened Runtime + notarization ([apple-macos-swift.md](apple-macos-swift.md)).
 - Linux: sign repositories and release checksums (GPG). Flathub builds and signs Flatpaks.
 - Signing keys live in CI secrets or a cloud signing service, never in the repo.
@@ -52,7 +52,7 @@ Tauri uses the system webview: WebView2 (Chromium) on Windows, WKWebView (WebKit
 ## Tests and CI
 
 - Unit tests in the core language. UI logic tested as a web app (Vitest, Playwright against the dev server).
-- End to end: WebDriver through `tauri-driver` on Windows and Linux. macOS has no WKWebView driver: cover it with manual checks or native UI tests.
+- End to end: WebDriver through `tauri-driver` on Windows and Linux. Apple ships no WKWebView driver, so on macOS use a WebDriver server embedded in the app (WebdriverIO's Tauri service with its plugin) or CrabNebula's driver.
 - CI builds on a matrix of Windows, macOS, and Linux runners (GitHub Actions, `tauri-action`), signs, then publishes to a draft release.
 
 ## Avoid

@@ -54,7 +54,7 @@ Rules:
 - PHP: `declare(strict_types=1)`, typed properties and returns, PHPStan at a high level in CI. Never `$guarded = []` on models that take request input.
 - JVM: constructor injection, Java records for DTOs, `spring.jpa.open-in-view=false`, never return JPA entities from the API. WebFlux only when the whole stack is reactive.
 - Ruby: `strict_loading` or Bullet against N+1, business logic in plain objects rather than callback chains, Brakeman and `bundler-audit` in CI.
-- .NET: nullable reference types on, async all the way (no `.Result` or `.Wait()`), `CancellationToken` passed through. Some popular libraries moved to commercial licenses in new major versions (for example MediatR, MassTransit, FluentAssertions): check before adding.
+- .NET: nullable reference types on, async all the way (no `.Result` or `.Wait()`), `CancellationToken` passed through. Some popular libraries moved to commercial licenses in new major versions (MediatR, MassTransit v9, FluentAssertions v8, checked 2026-11-19). FluentAssertions 7.x and MassTransit v8 stay open source. Check before adding.
 
 ## Backend shape (TS)
 
