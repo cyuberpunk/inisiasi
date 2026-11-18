@@ -60,6 +60,20 @@ The defaults in this folder reflect the owner's bias (TypeScript with Vite+, App
 | [reliability.md](reliability.md) | Backups, DR, load tests, chaos, cost |
 | [engineering-practices.md](engineering-practices.md) | Error handling, config, flags, docs, ADRs, local dev |
 
+## Engineering
+
+| File | Read when |
+|------|-----------|
+| [agentic-engineering.md](agentic-engineering.md) | The product runs agents, or the work is done with coding agents |
+| [agent-loops.md](agent-loops.md) | An agent loops: stop conditions, verification, retries, checkpoints |
+| [agent-graphs.md](agent-graphs.md) | A multi-step AI flow with branches, parallel steps, or human pauses |
+| [idioms.md](idioms.md) | Writing TypeScript, Swift, Python, or SQL |
+| [mechanisms.md](mechanisms.md) | Retries, concurrency, locks, rate limits, caches |
+| [scaling.md](scaling.md) | Expected load growth, high traffic, read replicas, partitioning |
+| [concurrency.md](concurrency.md) | Workers, async, race conditions, isolation levels |
+| [scenarios.md](scenarios.md) | The product resembles a known design: shortener, video, shop, payment, chat, notifications |
+| [diagrams.md](diagrams.md) | Writing ARCHITECTURE.md: C4 levels, notation, tooling |
+
 ## Usage rules
 
 1. A default in a file is a decision, not a menu. Pick an alternative only when its "Use when" condition is met.

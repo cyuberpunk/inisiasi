@@ -48,6 +48,15 @@ const RULES: Rule[] = [
   { file: "ci-cd.md", keywords: ["ci", "cd", "actions", "pipeline", "release"], reason: "CI and release pipelines", weight: 3 },
   { file: "observability.md", keywords: ["observability", "metrics", "tracing", "otel", "monitor", "logging", "alert"], reason: "Logs, metrics, traces, alerting", weight: 3 },
   { file: "reliability.md", keywords: ["backup", "disaster", "recovery", "load", "scale", "cost", "chaos"], reason: "Backup, DR, load test, cost", weight: 3 },
+  { file: "agentic-engineering.md", keywords: ["agent", "agents", "agentic", "tool-calling", "tools", "mcp", "autonomous", "copilot", "assistant"], reason: "Agent shape, tools, guardrails, coding-agent practice", weight: 5 },
+  { file: "agent-loops.md", keywords: ["agent", "agents", "loop", "autonomous", "retry", "react", "self-correct", "iterate"], reason: "Agent loop stop conditions, verification, checkpoints", weight: 4 },
+  { file: "agent-graphs.md", keywords: ["workflow", "graph", "langgraph", "orchestration", "multi-agent", "multi-step", "pipeline", "human-in-the-loop"], reason: "Multi-step AI flows as typed state machines", weight: 4 },
+  { file: "idioms.md", keywords: ["typescript", "ts", "swift", "swiftui", "python", "sql", "idiom", "idioms"], reason: "Idiomatic TS, Swift, Python, SQL", weight: 2 },
+  { file: "mechanisms.md", keywords: ["retry", "idempotency", "idempotent", "lock", "lease", "concurrency", "rate", "cache", "queue", "webhook", "payment", "order"], reason: "Idempotency, locks, retries, rate limits", weight: 3 },
+  { file: "scaling.md", keywords: ["scale", "scaling", "traffic", "high-traffic", "load", "replica", "partition", "shard", "cdn", "autoscale"], reason: "Order of scaling moves, replicas, partitioning", weight: 3 },
+  { file: "concurrency.md", keywords: ["concurrency", "concurrent", "async", "thread", "worker", "race", "parallel", "goroutine", "isolation", "booking", "stock"], reason: "Runtime concurrency models, races, isolation levels", weight: 3 },
+  { file: "scenarios.md", keywords: ["shortener", "url", "video", "upload", "shop", "ecommerce", "e-commerce", "store", "checkout", "payment", "chat", "messaging", "notification", "notifications"], reason: "Known system design scenarios and their key decisions", weight: 4 },
+  { file: "diagrams.md", keywords: ["diagram", "c4", "architecture", "sequence", "erd", "mermaid"], reason: "C4 levels and diagram notation", weight: 2, always: true },
   { file: "engineering-practices.md", keywords: ["adr", "docs", "documentation", "config", "flag", "feature-flag", "onboarding", "error"], reason: "Error handling, config, flags, docs, ADR", weight: 2 },
 ];
 
