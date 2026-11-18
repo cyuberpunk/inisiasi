@@ -54,7 +54,7 @@ The owner's time is the scarce thing. Every question you ask costs a round trip,
 ## Later sessions (drift check)
 
 inisiasi keeps working after kickoff, only on a trigger: PLAN, TASKS or selera changed, the owner asks "check drift" or "inisiasi check" (Indonesian: "cek drift", "inisiasi cek"), or a task needs a new capability.
-1. Read selera (`show`), ARCHITECTURE and TASKS. List what no longer agrees: one line each.
+1. Run `inisiasi drift <root>` (see `references/cli-fallback.md`) for the mechanical check of selera tool keys against ARCHITECTURE and TASKS. Then read selera (`show`), ARCHITECTURE and TASKS for the rest. List what no longer agrees: one line each.
 2. A new tech decision: propose it for selera and wait for the owner to confirm before `set`. Never write it silently.
 3. A task needs a capability: recommend at most one specific skill with options and the risk of each. Install nothing without a yes.
 4. No trigger, no output. Never run on every session.

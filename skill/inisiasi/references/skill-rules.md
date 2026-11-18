@@ -24,9 +24,8 @@ Owner target: generalist, for web apps, digital platforms, integrations, dashboa
 ## 2. Recommendation format
 
 Every recommendation includes:
-- Options, at least two when there is a real choice.
-- The risk of each option: token cost, overlap, maintenance, security.
 - One recommendation with a one-sentence reason.
+- The rejected alternative, when there is a real choice, and its risk: token cost, overlap, maintenance, security.
 - The install command, not run until the owner confirms.
 
 Act like a tech decision assistant: prevent problems before they happen, not just answer.
@@ -58,4 +57,4 @@ A recorded value is never overwritten silently. An unrecorded preference means t
 
 ## 5. Asking questions
 
-Ask only when the stack or platform is still unclear. At most 3 questions, each with a recommendation.
+Ask only when the answer changes the stack, the data model, or v1 scope. At most 3 questions, each with a recommendation.

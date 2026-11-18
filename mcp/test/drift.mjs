@@ -53,3 +53,11 @@ assert.deepEqual(status(merged), { bundler: "ok", db: "ok" });
 assert.ok(merged.profile_path.endsWith(join(".selera", "profile.json")), merged.profile_path);
 
 console.log("OK: drift");
+
+const list = checkDrift(project("we use pnpm and oxlint, oxfmt", "pnpm oxlint oxfmt", { packageManager: "pnpm,bun", lint: "oxlint+oxfmt", format: "biome" }));
+const { packageManager, lint, format } = status(list);
+assert.deepEqual({ packageManager, lint, format }, { packageManager: "ok", lint: "ok", format: "missing_in_architecture" }, "comma list matches any choice, plus needs all");
+
+const broken = project("x", "x", {});
+writeFileSync(join(broken, ".selera/profile.json"), "{bad");
+assert.throws(() => checkDrift(broken), /not valid JSON/, "corrupt profile gives a clear error");

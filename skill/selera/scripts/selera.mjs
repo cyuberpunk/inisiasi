@@ -18,7 +18,7 @@ const SCOPES = ["default", "fe", "be", "mobile", "cli", "infra"];
 const KEYS = [
   "fetch", "state", "form", "validation", "ui", "styling", "db", "queue", "test", "lint", "format",
   "structure", "imports", "exports", "errors", "git", "testing", "formatting", "immutability", "packageManager",
-  "pythonEnv", "folders", "commit", "branching", "merge", "quotes", "semicolons", "lineWidth",
+  "pythonEnv", "commit", "branching", "merge", "quotes", "semicolons", "lineWidth",
   "naming.file", "naming.folder", "naming.component", "naming.hook", "naming.function", "naming.class",
   "naming.module", "naming.package", "naming.constant", "naming.type", "naming.dbTable", "naming.cssClass",
   "bundler", "structure.repo", "structure.topology", "structure.folders", "structure.layers", "structure.boundaries",
@@ -43,7 +43,7 @@ const QUESTIONS = [
   { key: "merge", q: "Merge strategy", options: ["squash", "rebase", "merge-commit"] },
   { key: "exports", q: "Exports", options: ["named", "default-ok", "mixed"] },
   { key: "imports", q: "Import style", options: ["alias", "relative", "mixed"] },
-  { key: "folders", q: "Folder organization", options: ["feature", "layer", "fsd", "atomic"] },
+  { key: "structure.folders", q: "Folder organization", options: ["feature", "layer", "fsd", "atomic"] },
   { key: "errors", q: "Error style", options: ["exceptions", "result", "mixed"] },
   { key: "naming.file", q: "File naming", options: ["kebab-case", "camelCase", "PascalCase"] },
   { key: "naming.function", q: "Function naming", options: ["camelCase", "snake_case", "PascalCase"] },
@@ -64,18 +64,25 @@ function validKey(key) {
 }
 
 function readProfile() {
-  const pick = (p) => (existsSync(p) ? JSON.parse(readFileSync(p, "utf8")) : {});
+  const pick = (p) => (existsSync(p) ? parseProfile(p) : {});
   const legacy = existsSync(LEGACY) && !existsSync(GLOBAL) ? pick(LEGACY) : {};
   const merged = { ...legacy, ...pick(GLOBAL), ...pick(PROJECT) };
   // "schema" was the old name for "validation". Read it as the alias so old profiles keep working.
   if (merged.schema !== undefined) { merged.validation ??= merged.schema; delete merged.schema; }
+  // "folders" was the old name for "structure.folders".
+  if (merged.folders !== undefined) { merged["structure.folders"] ??= merged.folders; delete merged.folders; }
   return merged;
+}
+
+function parseProfile(p) {
+  try { return JSON.parse(readFileSync(p, "utf8")); }
+  catch { console.error(`selera profile ${p} is not valid JSON. Fix or delete it.`); process.exit(1); }
 }
 
 function writeProfile(kind, data) {
   const target = kind === "project" ? PROJECT : GLOBAL;
   mkdirSync(join(target, ".."), { recursive: true });
-  const prev = existsSync(target) ? JSON.parse(readFileSync(target, "utf8")) : {};
+  const prev = existsSync(target) ? parseProfile(target) : {};
   writeFileSync(target, JSON.stringify({ ...prev, ...data, updated: new Date().toISOString().slice(0, 10) }, null, 2));
   return target;
 }
@@ -268,7 +275,12 @@ function cmdLearn(write) {
   console.log("inferred from repo:");
   for (const [k, v] of rows) console.log("  " + k.padEnd(18) + v.value.padEnd(22) + v.evidence);
   if (!write) { console.log("\nrun with --write to store these (project scope)."); return; }
-  console.log("wrote " + writeProfile("project", Object.fromEntries(rows.map(([k, v]) => [k, v.value]))));
+  // An inferred habit never replaces one the owner recorded.
+  const recorded = readProfile();
+  for (const [k] of rows) if (recorded[k] !== undefined) console.log(`skip ${k}: already ${recorded[k]}`);
+  const fresh = rows.filter(([k]) => recorded[k] === undefined);
+  if (!fresh.length) { console.log("nothing new to write."); return; }
+  console.log("wrote " + writeProfile("project", Object.fromEntries(fresh.map(([k, v]) => [k, v.value]))));
 }
 
 const [cmd, ...rest] = process.argv.slice(2);
@@ -285,7 +297,10 @@ else if (cmd === "set") {
   const key = rawKey === "schema" ? "validation" : rawKey;
   if (!key || !valueParts.length) { console.error("usage: selera set <key> <value> [--project]"); process.exit(1); }
   if (!validKey(key)) { console.error(`unknown key. known: ${KEYS.join(", ")}. prefix with a scope: ${SCOPES.slice(1).join(", ")}`); process.exit(1); }
-  console.log("wrote " + writeProfile(kind, { [key]: valueParts.join(" ") }));
+  const value = valueParts.join(" ");
+  const prev = readProfile()[key];
+  if (prev !== undefined && prev !== value) console.log(`replaced ${key}: ${prev} -> ${value}`);
+  console.log("wrote " + writeProfile(kind, { [key]: value }));
 } else {
   console.error("usage: selera <tree [depth]|learn [--write]|setup|show|set <key> <value>|apply> [--project]");
   process.exit(1);

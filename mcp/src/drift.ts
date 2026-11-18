@@ -28,9 +28,19 @@ export const PLATFORMS: Record<string, (s: DetectStackResult) => boolean> = {
 export function loadProfile(root: string, path?: string): { path: string | null; data: Record<string, string> } {
   const global = process.env.SELERA_CONFIG ?? join(process.env.XDG_CONFIG_HOME ?? join(homedir(), ".config"), "inisiasi", "selera", "profile.json");
   const found = (path ? [path] : [global, join(root, ".selera", "profile.json")]).filter(existsSync);
-  const data: Record<string, string> = Object.assign({}, ...found.map((p) => JSON.parse(readFileSync(p, "utf8"))));
+  const data: Record<string, string> = Object.assign({}, ...found.map(parseProfile));
   return { path: found.at(-1) ?? null, data };
 }
+
+function parseProfile(p: string): Record<string, string> {
+  try { return JSON.parse(readFileSync(p, "utf8")); }
+  catch { throw new Error(`selera profile ${p} is not valid JSON. Fix or delete it.`); }
+}
+
+// "pnpm,bun" means pick one; "oxlint+oxfmt" means both are used.
+export const named = (doc: string, value: string) =>
+  value.split(",").map((s) => s.trim()).filter(Boolean)
+    .some((alt) => alt.split("+").every((t) => doc.includes(t.trim())));
 
 export function checkDrift(root: string, profilePath?: string): DriftResult {
   const archPath = join(root, "docs", "ARCHITECTURE.md");
@@ -55,9 +65,9 @@ export function checkDrift(root: string, profilePath?: string): DriftResult {
       items.push({ key, selera: value, status: "missing_in_architecture", note: "docs/ARCHITECTURE.md not found" });
       continue;
     }
-    if (!arch.includes(v)) {
+    if (!named(arch, v)) {
       items.push({ key, selera: value, status: "missing_in_architecture", note: "recorded in selera but not named in ARCHITECTURE" });
-    } else if (tasks !== null && !tasks.includes(v)) {
+    } else if (tasks !== null && !named(tasks, v)) {
       items.push({ key, selera: value, status: "missing_in_tasks", note: "in ARCHITECTURE but no TASKS line mentions it" });
     } else {
       items.push({ key, selera: value, status: "ok", note: "" });
