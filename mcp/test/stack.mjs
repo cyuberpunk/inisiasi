@@ -161,4 +161,5 @@ assert.ok(has(pick("tailwind css design system with style dictionary tokens"), "
 assert.ok(has(pick("vue nuxt admin dashboard with primevue"), "ui-kits-frameworks.md"), "Vue kit routes to ui-kits-frameworks.md");
 assert.ok(has(pick("flutter app with shadcn_ui"), "ui-kits-native.md"), "Flutter kit routes to ui-kits-native.md");
 assert.ok(has(pick("dbt airflow pipeline into a data warehouse with metabase"), "data-analytics.md"), "analytics stack routes to data-analytics.md");
+assert.ok(has(pick("blog and docs site with a headless cms"), "frontend.md"), "CMS routes to frontend.md");
 console.log("OK: platform routing and gaps");
