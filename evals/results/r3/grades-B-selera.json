@@ -1,0 +1,1142 @@
+[
+ {
+  "label": "f07c2dff",
+  "case": "selera#1",
+  "grades": [
+   {
+    "assertion": "Runs `selera set validation zod` (or equivalent) and the profile file holds it",
+    "verdict": "pass",
+    "evidence": "ran set validation zod; profile holds zod"
+   },
+   {
+    "assertion": "Does not ask whether to record before running set",
+    "verdict": "pass",
+    "evidence": "set run without asking"
+   },
+   {
+    "assertion": "Confirms in one line what was stored",
+    "verdict": "fail",
+    "evidence": "confirmation plus long scope paragraph, not one line"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "pass",
+    "evidence": "no U+2014"
+   }
+  ]
+ },
+ {
+  "label": "f5958ed9",
+  "case": "selera#1",
+  "grades": [
+   {
+    "assertion": "Runs `selera set validation zod` (or equivalent) and the profile file holds it",
+    "verdict": "pass",
+    "evidence": "ran set validation zod; profile holds zod"
+   },
+   {
+    "assertion": "Does not ask whether to record before running set",
+    "verdict": "pass",
+    "evidence": "set run without asking"
+   },
+   {
+    "assertion": "Confirms in one line what was stored",
+    "verdict": "pass",
+    "evidence": "short confirmation line stated"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "pass",
+    "evidence": "no U+2014"
+   }
+  ]
+ },
+ {
+  "label": "2636a1d2",
+  "case": "selera#1",
+  "grades": [
+   {
+    "assertion": "Runs `selera set validation zod` (or equivalent) and the profile file holds it",
+    "verdict": "pass",
+    "evidence": "ran set validation zod; profile holds zod"
+   },
+   {
+    "assertion": "Does not ask whether to record before running set",
+    "verdict": "pass",
+    "evidence": "set run without asking"
+   },
+   {
+    "assertion": "Confirms in one line what was stored",
+    "verdict": "pass",
+    "evidence": "confirm sentence first, brief location note"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "pass",
+    "evidence": "no U+2014"
+   }
+  ]
+ },
+ {
+  "label": "b12e586c",
+  "case": "selera#1",
+  "grades": [
+   {
+    "assertion": "Runs `selera set validation zod` (or equivalent) and the profile file holds it",
+    "verdict": "fail",
+    "evidence": "installed zod via npm; no selera set, profile absent"
+   },
+   {
+    "assertion": "Does not ask whether to record before running set",
+    "verdict": "pass",
+    "evidence": "did not ask whether to record"
+   },
+   {
+    "assertion": "Confirms in one line what was stored",
+    "verdict": "fail",
+    "evidence": "no stored-preference confirmation; long report"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "pass",
+    "evidence": "no U+2014"
+   }
+  ]
+ },
+ {
+  "label": "86755bcb",
+  "case": "selera#1",
+  "grades": [
+   {
+    "assertion": "Runs `selera set validation zod` (or equivalent) and the profile file holds it",
+    "verdict": "fail",
+    "evidence": "installed zod via npm; no selera set, profile absent"
+   },
+   {
+    "assertion": "Does not ask whether to record before running set",
+    "verdict": "pass",
+    "evidence": "did not ask whether to record"
+   },
+   {
+    "assertion": "Confirms in one line what was stored",
+    "verdict": "fail",
+    "evidence": "no stored-preference confirmation; long report"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "pass",
+    "evidence": "no U+2014"
+   }
+  ]
+ },
+ {
+  "label": "c63917ad",
+  "case": "selera#1",
+  "grades": [
+   {
+    "assertion": "Runs `selera set validation zod` (or equivalent) and the profile file holds it",
+    "verdict": "fail",
+    "evidence": "installed zod via npm; no selera set, profile absent"
+   },
+   {
+    "assertion": "Does not ask whether to record before running set",
+    "verdict": "pass",
+    "evidence": "did not ask whether to record"
+   },
+   {
+    "assertion": "Confirms in one line what was stored",
+    "verdict": "fail",
+    "evidence": "no stored-preference confirmation; long report"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "pass",
+    "evidence": "no U+2014"
+   }
+  ]
+ },
+ {
+  "label": "69afa605",
+  "case": "selera#2",
+  "grades": [
+   {
+    "assertion": "Does not run set",
+    "verdict": "pass",
+    "evidence": "no set run in actions"
+   },
+   {
+    "assertion": "Does not change profile.json",
+    "verdict": "pass",
+    "evidence": "no profile written; profile None"
+   },
+   {
+    "assertion": "Answers the question about zod",
+    "verdict": "pass",
+    "evidence": "explains zod with example"
+   }
+  ]
+ },
+ {
+  "label": "1f1e082b",
+  "case": "selera#2",
+  "grades": [
+   {
+    "assertion": "Does not run set",
+    "verdict": "pass",
+    "evidence": "no set run in actions"
+   },
+   {
+    "assertion": "Does not change profile.json",
+    "verdict": "pass",
+    "evidence": "no profile written; profile None"
+   },
+   {
+    "assertion": "Answers the question about zod",
+    "verdict": "pass",
+    "evidence": "explains zod with example"
+   }
+  ]
+ },
+ {
+  "label": "75a2c895",
+  "case": "selera#2",
+  "grades": [
+   {
+    "assertion": "Does not run set",
+    "verdict": "pass",
+    "evidence": "no set run in actions"
+   },
+   {
+    "assertion": "Does not change profile.json",
+    "verdict": "pass",
+    "evidence": "no profile written; profile None"
+   },
+   {
+    "assertion": "Answers the question about zod",
+    "verdict": "pass",
+    "evidence": "explains zod with example"
+   }
+  ]
+ },
+ {
+  "label": "45e2fd7a",
+  "case": "selera#2",
+  "grades": [
+   {
+    "assertion": "Does not run set",
+    "verdict": "pass",
+    "evidence": "no set run in actions"
+   },
+   {
+    "assertion": "Does not change profile.json",
+    "verdict": "pass",
+    "evidence": "no profile written; profile None"
+   },
+   {
+    "assertion": "Answers the question about zod",
+    "verdict": "pass",
+    "evidence": "explains zod with example"
+   }
+  ]
+ },
+ {
+  "label": "47468f77",
+  "case": "selera#2",
+  "grades": [
+   {
+    "assertion": "Does not run set",
+    "verdict": "pass",
+    "evidence": "no set run in actions"
+   },
+   {
+    "assertion": "Does not change profile.json",
+    "verdict": "pass",
+    "evidence": "no profile written; profile None"
+   },
+   {
+    "assertion": "Answers the question about zod",
+    "verdict": "pass",
+    "evidence": "explains zod with example"
+   }
+  ]
+ },
+ {
+  "label": "c85d807f",
+  "case": "selera#2",
+  "grades": [
+   {
+    "assertion": "Does not run set",
+    "verdict": "pass",
+    "evidence": "no set run in actions"
+   },
+   {
+    "assertion": "Does not change profile.json",
+    "verdict": "pass",
+    "evidence": "no profile written; profile None"
+   },
+   {
+    "assertion": "Answers the question about zod",
+    "verdict": "pass",
+    "evidence": "explains zod with example"
+   }
+  ]
+ },
+ {
+  "label": "a80ab4b6",
+  "case": "selera#3",
+  "grades": [
+   {
+    "assertion": "Runs set with key fe.fetch (not fetch) and the profile file holds it",
+    "verdict": "pass",
+    "evidence": "ran set fe.fetch tanstack-query"
+   },
+   {
+    "assertion": "Value is tanstack-query",
+    "verdict": "pass",
+    "evidence": "value tanstack-query in profile"
+   },
+   {
+    "assertion": "Records fe.fetch and leaves the unscoped fetch key unchanged",
+    "verdict": "pass",
+    "evidence": "profile only fe.fetch; no bare fetch key"
+   }
+  ]
+ },
+ {
+  "label": "2237c26f",
+  "case": "selera#3",
+  "grades": [
+   {
+    "assertion": "Runs set with key fe.fetch (not fetch) and the profile file holds it",
+    "verdict": "pass",
+    "evidence": "ran set fe.fetch tanstack-query"
+   },
+   {
+    "assertion": "Value is tanstack-query",
+    "verdict": "pass",
+    "evidence": "value tanstack-query in profile"
+   },
+   {
+    "assertion": "Records fe.fetch and leaves the unscoped fetch key unchanged",
+    "verdict": "pass",
+    "evidence": "profile only fe.fetch; no bare fetch key"
+   }
+  ]
+ },
+ {
+  "label": "a5aea54f",
+  "case": "selera#3",
+  "grades": [
+   {
+    "assertion": "Runs set with key fe.fetch (not fetch) and the profile file holds it",
+    "verdict": "pass",
+    "evidence": "ran set fe.fetch tanstack-query"
+   },
+   {
+    "assertion": "Value is tanstack-query",
+    "verdict": "pass",
+    "evidence": "value tanstack-query in profile"
+   },
+   {
+    "assertion": "Records fe.fetch and leaves the unscoped fetch key unchanged",
+    "verdict": "pass",
+    "evidence": "profile only fe.fetch; no bare fetch key"
+   }
+  ]
+ },
+ {
+  "label": "646b7685",
+  "case": "selera#3",
+  "grades": [
+   {
+    "assertion": "Runs set with key fe.fetch (not fetch) and the profile file holds it",
+    "verdict": "fail",
+    "evidence": "no set run; installed package and wrote code"
+   },
+   {
+    "assertion": "Value is tanstack-query",
+    "verdict": "fail",
+    "evidence": "no profile value recorded"
+   },
+   {
+    "assertion": "Records fe.fetch and leaves the unscoped fetch key unchanged",
+    "verdict": "fail",
+    "evidence": "no fe.fetch recorded; no profile"
+   }
+  ]
+ },
+ {
+  "label": "944e22a9",
+  "case": "selera#3",
+  "grades": [
+   {
+    "assertion": "Runs set with key fe.fetch (not fetch) and the profile file holds it",
+    "verdict": "fail",
+    "evidence": "no set run; installed package and wrote code"
+   },
+   {
+    "assertion": "Value is tanstack-query",
+    "verdict": "fail",
+    "evidence": "no profile value recorded"
+   },
+   {
+    "assertion": "Records fe.fetch and leaves the unscoped fetch key unchanged",
+    "verdict": "fail",
+    "evidence": "no fe.fetch recorded; no profile"
+   }
+  ]
+ },
+ {
+  "label": "8cae6a86",
+  "case": "selera#3",
+  "grades": [
+   {
+    "assertion": "Runs set with key fe.fetch (not fetch) and the profile file holds it",
+    "verdict": "fail",
+    "evidence": "no set run; installed package and wrote code"
+   },
+   {
+    "assertion": "Value is tanstack-query",
+    "verdict": "fail",
+    "evidence": "no profile value recorded"
+   },
+   {
+    "assertion": "Records fe.fetch and leaves the unscoped fetch key unchanged",
+    "verdict": "fail",
+    "evidence": "no fe.fetch recorded; no profile"
+   }
+  ]
+ },
+ {
+  "label": "b6722289",
+  "case": "selera#4",
+  "grades": [
+   {
+    "assertion": "Does not store a key named orm-x",
+    "verdict": "pass",
+    "evidence": "profile has db, no orm-x key"
+   },
+   {
+    "assertion": "Shows the known-key list or a close match",
+    "verdict": "pass",
+    "evidence": "said orm-x not a key; mapped to db"
+   },
+   {
+    "assertion": "Asks once what key was meant",
+    "verdict": "fail",
+    "evidence": "did not ask; guessed db and saved"
+   }
+  ]
+ },
+ {
+  "label": "b6b567f6",
+  "case": "selera#4",
+  "grades": [
+   {
+    "assertion": "Does not store a key named orm-x",
+    "verdict": "pass",
+    "evidence": "profile has db, no orm-x key"
+   },
+   {
+    "assertion": "Shows the known-key list or a close match",
+    "verdict": "pass",
+    "evidence": "said orm-x unknown, closest role db"
+   },
+   {
+    "assertion": "Asks once what key was meant",
+    "verdict": "fail",
+    "evidence": "did not ask; guessed db and saved"
+   }
+  ]
+ },
+ {
+  "label": "7825474b",
+  "case": "selera#4",
+  "grades": [
+   {
+    "assertion": "Does not store a key named orm-x",
+    "verdict": "pass",
+    "evidence": "set orm-x attempted but profile None, nothing stored"
+   },
+   {
+    "assertion": "Shows the known-key list or a close match",
+    "verdict": "pass",
+    "evidence": "named nearest key db"
+   },
+   {
+    "assertion": "Asks once what key was meant",
+    "verdict": "pass",
+    "evidence": "asks whether to save as db"
+   }
+  ]
+ },
+ {
+  "label": "32cf0a22",
+  "case": "selera#4",
+  "grades": [
+   {
+    "assertion": "Does not store a key named orm-x",
+    "verdict": "fail",
+    "evidence": "wrote memory note recording orm-x as ORM stack"
+   },
+   {
+    "assertion": "Shows the known-key list or a close match",
+    "verdict": "fail",
+    "evidence": "no key list or close match shown"
+   },
+   {
+    "assertion": "Asks once what key was meant",
+    "verdict": "fail",
+    "evidence": "asked what orm-x is, not which key"
+   }
+  ]
+ },
+ {
+  "label": "a05f8918",
+  "case": "selera#4",
+  "grades": [
+   {
+    "assertion": "Does not store a key named orm-x",
+    "verdict": "fail",
+    "evidence": "wrote memory note storing orm-x with Prisma"
+   },
+   {
+    "assertion": "Shows the known-key list or a close match",
+    "verdict": "fail",
+    "evidence": "no key list or close match"
+   },
+   {
+    "assertion": "Asks once what key was meant",
+    "verdict": "fail",
+    "evidence": "no question asked"
+   }
+  ]
+ },
+ {
+  "label": "751884fc",
+  "case": "selera#4",
+  "grades": [
+   {
+    "assertion": "Does not store a key named orm-x",
+    "verdict": "pass",
+    "evidence": "no orm-x stored; memory note says Prisma only"
+   },
+   {
+    "assertion": "Shows the known-key list or a close match",
+    "verdict": "fail",
+    "evidence": "no key list or close match"
+   },
+   {
+    "assertion": "Asks once what key was meant",
+    "verdict": "fail",
+    "evidence": "no question about key"
+   }
+  ]
+ },
+ {
+  "label": "2c98365e",
+  "case": "selera#5",
+  "grades": [
+   {
+    "assertion": "Runs apply",
+    "verdict": "fail",
+    "evidence": "ran selera show and read naming.md; no apply command"
+   },
+   {
+    "assertion": "Names the source of the value",
+    "verdict": "pass",
+    "evidence": "names profile naming.file and SoT standard"
+   },
+   {
+    "assertion": "Does not invent a value when unset",
+    "verdict": "pass",
+    "evidence": "reports kebab-case from profile; not invented"
+   }
+  ]
+ },
+ {
+  "label": "8ac466e4",
+  "case": "selera#5",
+  "grades": [
+   {
+    "assertion": "Runs apply",
+    "verdict": "fail",
+    "evidence": "ran selera show and read naming.md; no apply command"
+   },
+   {
+    "assertion": "Names the source of the value",
+    "verdict": "pass",
+    "evidence": "names profile naming.file and SoT standard"
+   },
+   {
+    "assertion": "Does not invent a value when unset",
+    "verdict": "pass",
+    "evidence": "reports kebab-case from profile; not invented"
+   }
+  ]
+ },
+ {
+  "label": "2520e9d1",
+  "case": "selera#5",
+  "grades": [
+   {
+    "assertion": "Runs apply",
+    "verdict": "fail",
+    "evidence": "ran selera show and read naming.md; no apply command"
+   },
+   {
+    "assertion": "Names the source of the value",
+    "verdict": "pass",
+    "evidence": "names profile naming.file and SoT standard"
+   },
+   {
+    "assertion": "Does not invent a value when unset",
+    "verdict": "pass",
+    "evidence": "reports kebab-case from profile; not invented"
+   }
+  ]
+ },
+ {
+  "label": "0de94d19",
+  "case": "selera#5",
+  "grades": [
+   {
+    "assertion": "Runs apply",
+    "verdict": "fail",
+    "evidence": "no selera command; only searched repo"
+   },
+   {
+    "assertion": "Names the source of the value",
+    "verdict": "fail",
+    "evidence": "no source named; none found"
+   },
+   {
+    "assertion": "Does not invent a value when unset",
+    "verdict": "pass",
+    "evidence": "said no standard found; kebab only as proposal"
+   }
+  ]
+ },
+ {
+  "label": "caa07648",
+  "case": "selera#5",
+  "grades": [
+   {
+    "assertion": "Runs apply",
+    "verdict": "fail",
+    "evidence": "no selera command; only searched repo"
+   },
+   {
+    "assertion": "Names the source of the value",
+    "verdict": "fail",
+    "evidence": "no source named; none found"
+   },
+   {
+    "assertion": "Does not invent a value when unset",
+    "verdict": "pass",
+    "evidence": "said no standard found; kebab only as proposal"
+   }
+  ]
+ },
+ {
+  "label": "10fcc42c",
+  "case": "selera#5",
+  "grades": [
+   {
+    "assertion": "Runs apply",
+    "verdict": "fail",
+    "evidence": "no selera command; only searched repo"
+   },
+   {
+    "assertion": "Names the source of the value",
+    "verdict": "fail",
+    "evidence": "no source named; none found"
+   },
+   {
+    "assertion": "Does not invent a value when unset",
+    "verdict": "pass",
+    "evidence": "said no standard found; kebab only as proposal"
+   }
+  ]
+ },
+ {
+  "label": "3c69b17d",
+  "case": "selera#6",
+  "grades": [
+   {
+    "assertion": "Runs learn without --write",
+    "verdict": "pass",
+    "evidence": "ran learn without --write"
+   },
+   {
+    "assertion": "Shows evidence per key",
+    "verdict": "pass",
+    "evidence": "table of key, value, evidence"
+   },
+   {
+    "assertion": "Asks before writing",
+    "verdict": "pass",
+    "evidence": "asks before saving with learn --write"
+   }
+  ]
+ },
+ {
+  "label": "4f81f8f1",
+  "case": "selera#6",
+  "grades": [
+   {
+    "assertion": "Runs learn without --write",
+    "verdict": "pass",
+    "evidence": "ran learn without --write"
+   },
+   {
+    "assertion": "Shows evidence per key",
+    "verdict": "pass",
+    "evidence": "table of key, value, evidence"
+   },
+   {
+    "assertion": "Asks before writing",
+    "verdict": "pass",
+    "evidence": "asks before saving with learn --write"
+   }
+  ]
+ },
+ {
+  "label": "1cdcc959",
+  "case": "selera#6",
+  "grades": [
+   {
+    "assertion": "Runs learn without --write",
+    "verdict": "pass",
+    "evidence": "ran learn without --write"
+   },
+   {
+    "assertion": "Shows evidence per key",
+    "verdict": "pass",
+    "evidence": "table of key, value, evidence"
+   },
+   {
+    "assertion": "Asks before writing",
+    "verdict": "pass",
+    "evidence": "asks before saving with learn --write"
+   }
+  ]
+ },
+ {
+  "label": "ebbe029e",
+  "case": "selera#6",
+  "grades": [
+   {
+    "assertion": "Runs learn without --write",
+    "verdict": "fail",
+    "evidence": "no learn run; manual git inspection"
+   },
+   {
+    "assertion": "Shows evidence per key",
+    "verdict": "fail",
+    "evidence": "prose habits, no per-key evidence table"
+   },
+   {
+    "assertion": "Asks before writing",
+    "verdict": "pass",
+    "evidence": "offers to save to memory; nothing written"
+   }
+  ]
+ },
+ {
+  "label": "20fda39c",
+  "case": "selera#6",
+  "grades": [
+   {
+    "assertion": "Runs learn without --write",
+    "verdict": "fail",
+    "evidence": "no learn run"
+   },
+   {
+    "assertion": "Shows evidence per key",
+    "verdict": "fail",
+    "evidence": "no per-key evidence"
+   },
+   {
+    "assertion": "Asks before writing",
+    "verdict": "fail",
+    "evidence": "no ask; says not saving"
+   }
+  ]
+ },
+ {
+  "label": "27f85e83",
+  "case": "selera#6",
+  "grades": [
+   {
+    "assertion": "Runs learn without --write",
+    "verdict": "fail",
+    "evidence": "no learn run"
+   },
+   {
+    "assertion": "Shows evidence per key",
+    "verdict": "fail",
+    "evidence": "no per-key evidence"
+   },
+   {
+    "assertion": "Asks before writing",
+    "verdict": "fail",
+    "evidence": "no ask before saving"
+   }
+  ]
+ },
+ {
+  "label": "940dca96",
+  "case": "selera#7",
+  "grades": [
+   {
+    "assertion": "Does not record or apply selera profile",
+    "verdict": "pass",
+    "evidence": "no selera calls; no profile"
+   },
+   {
+    "assertion": "Focuses on logic bug, not style",
+    "verdict": "pass",
+    "evidence": "found trailing-newline loop bug, verified by run"
+   }
+  ]
+ },
+ {
+  "label": "090e2a9f",
+  "case": "selera#7",
+  "grades": [
+   {
+    "assertion": "Does not record or apply selera profile",
+    "verdict": "pass",
+    "evidence": "no selera calls; no profile"
+   },
+   {
+    "assertion": "Focuses on logic bug, not style",
+    "verdict": "pass",
+    "evidence": "found trailing-newline loop bug, verified by run"
+   }
+  ]
+ },
+ {
+  "label": "6fa5d8fd",
+  "case": "selera#7",
+  "grades": [
+   {
+    "assertion": "Does not record or apply selera profile",
+    "verdict": "pass",
+    "evidence": "no selera calls; no profile"
+   },
+   {
+    "assertion": "Focuses on logic bug, not style",
+    "verdict": "pass",
+    "evidence": "found trailing-newline loop bug, verified by run"
+   }
+  ]
+ },
+ {
+  "label": "9aaef0c1",
+  "case": "selera#7",
+  "grades": [
+   {
+    "assertion": "Does not record or apply selera profile",
+    "verdict": "pass",
+    "evidence": "no selera calls; no profile"
+   },
+   {
+    "assertion": "Focuses on logic bug, not style",
+    "verdict": "pass",
+    "evidence": "found trailing-newline loop bug, verified by run"
+   }
+  ]
+ },
+ {
+  "label": "6c0d4bbb",
+  "case": "selera#7",
+  "grades": [
+   {
+    "assertion": "Does not record or apply selera profile",
+    "verdict": "pass",
+    "evidence": "no selera calls; no profile"
+   },
+   {
+    "assertion": "Focuses on logic bug, not style",
+    "verdict": "pass",
+    "evidence": "found trailing-newline loop bug, verified by run"
+   }
+  ]
+ },
+ {
+  "label": "b0a3b9bf",
+  "case": "selera#7",
+  "grades": [
+   {
+    "assertion": "Does not record or apply selera profile",
+    "verdict": "pass",
+    "evidence": "no selera calls; no profile"
+   },
+   {
+    "assertion": "Focuses on logic bug, not style",
+    "verdict": "pass",
+    "evidence": "found trailing-newline loop bug, verified by run"
+   }
+  ]
+ },
+ {
+  "label": "14093a2e",
+  "case": "selera#8",
+  "grades": [
+   {
+    "assertion": "Runs set packageManager npm, confirms in one line",
+    "verdict": "fail",
+    "evidence": "set --project npm run; confirmation plus extra caveats, over one line"
+   }
+  ]
+ },
+ {
+  "label": "7d7f0c11",
+  "case": "selera#8",
+  "grades": [
+   {
+    "assertion": "Runs set packageManager npm, confirms in one line",
+    "verdict": "pass",
+    "evidence": "set packageManager npm --project; short confirmation"
+   }
+  ]
+ },
+ {
+  "label": "d7aa110a",
+  "case": "selera#8",
+  "grades": [
+   {
+    "assertion": "Runs set packageManager npm, confirms in one line",
+    "verdict": "pass",
+    "evidence": "set packageManager npm --project; short confirmation"
+   }
+  ]
+ },
+ {
+  "label": "138aaae6",
+  "case": "selera#8",
+  "grades": [
+   {
+    "assertion": "Runs set packageManager npm, confirms in one line",
+    "verdict": "fail",
+    "evidence": "no set run; investigated repo and asked"
+   }
+  ]
+ },
+ {
+  "label": "f8128c76",
+  "case": "selera#8",
+  "grades": [
+   {
+    "assertion": "Runs set packageManager npm, confirms in one line",
+    "verdict": "fail",
+    "evidence": "no set run; investigated repo and asked"
+   }
+  ]
+ },
+ {
+  "label": "04cd8e33",
+  "case": "selera#8",
+  "grades": [
+   {
+    "assertion": "Runs set packageManager npm, confirms in one line",
+    "verdict": "fail",
+    "evidence": "no set run; investigated repo and asked"
+   }
+  ]
+ },
+ {
+  "label": "fb7b305d",
+  "case": "selera#9",
+  "grades": [
+   {
+    "assertion": "Does not run set",
+    "verdict": "pass",
+    "evidence": "no set run"
+   },
+   {
+    "assertion": "Answers the vitest question",
+    "verdict": "pass",
+    "evidence": "explains coverage thresholds config"
+   }
+  ]
+ },
+ {
+  "label": "cfc80e34",
+  "case": "selera#9",
+  "grades": [
+   {
+    "assertion": "Does not run set",
+    "verdict": "pass",
+    "evidence": "no set run"
+   },
+   {
+    "assertion": "Answers the vitest question",
+    "verdict": "pass",
+    "evidence": "explains coverage thresholds config"
+   }
+  ]
+ },
+ {
+  "label": "cf76ac59",
+  "case": "selera#9",
+  "grades": [
+   {
+    "assertion": "Does not run set",
+    "verdict": "pass",
+    "evidence": "no set run"
+   },
+   {
+    "assertion": "Answers the vitest question",
+    "verdict": "pass",
+    "evidence": "explains coverage thresholds config"
+   }
+  ]
+ },
+ {
+  "label": "63af382b",
+  "case": "selera#9",
+  "grades": [
+   {
+    "assertion": "Does not run set",
+    "verdict": "pass",
+    "evidence": "no set run"
+   },
+   {
+    "assertion": "Answers the vitest question",
+    "verdict": "pass",
+    "evidence": "explains coverage thresholds config"
+   }
+  ]
+ },
+ {
+  "label": "2aeb237c",
+  "case": "selera#9",
+  "grades": [
+   {
+    "assertion": "Does not run set",
+    "verdict": "pass",
+    "evidence": "no set run"
+   },
+   {
+    "assertion": "Answers the vitest question",
+    "verdict": "pass",
+    "evidence": "explains coverage thresholds config"
+   }
+  ]
+ },
+ {
+  "label": "3855e835",
+  "case": "selera#9",
+  "grades": [
+   {
+    "assertion": "Does not run set",
+    "verdict": "pass",
+    "evidence": "no set run"
+   },
+   {
+    "assertion": "Answers the vitest question",
+    "verdict": "pass",
+    "evidence": "explains coverage thresholds config"
+   }
+  ]
+ },
+ {
+  "label": "3f155e5b",
+  "case": "selera#10",
+  "grades": [
+   {
+    "assertion": "Does not run apply or set",
+    "verdict": "pass",
+    "evidence": "no apply or set run"
+   },
+   {
+    "assertion": "Debugs the failing assertion",
+    "verdict": "pass",
+    "evidence": "identifies Set of SKUs returns 2, needs qty sum"
+   }
+  ]
+ },
+ {
+  "label": "07ef4fb8",
+  "case": "selera#10",
+  "grades": [
+   {
+    "assertion": "Does not run apply or set",
+    "verdict": "pass",
+    "evidence": "no apply or set run"
+   },
+   {
+    "assertion": "Debugs the failing assertion",
+    "verdict": "pass",
+    "evidence": "identifies Set of SKUs returns 2, needs qty sum"
+   }
+  ]
+ },
+ {
+  "label": "73593f45",
+  "case": "selera#10",
+  "grades": [
+   {
+    "assertion": "Does not run apply or set",
+    "verdict": "pass",
+    "evidence": "no apply or set run"
+   },
+   {
+    "assertion": "Debugs the failing assertion",
+    "verdict": "pass",
+    "evidence": "identifies Set of SKUs returns 2, needs qty sum"
+   }
+  ]
+ },
+ {
+  "label": "0b7c64c9",
+  "case": "selera#10",
+  "grades": [
+   {
+    "assertion": "Does not run apply or set",
+    "verdict": "pass",
+    "evidence": "no apply or set run"
+   },
+   {
+    "assertion": "Debugs the failing assertion",
+    "verdict": "pass",
+    "evidence": "identifies Set of SKUs returns 2, needs qty sum"
+   }
+  ]
+ },
+ {
+  "label": "eb19c46e",
+  "case": "selera#10",
+  "grades": [
+   {
+    "assertion": "Does not run apply or set",
+    "verdict": "pass",
+    "evidence": "no apply or set run"
+   },
+   {
+    "assertion": "Debugs the failing assertion",
+    "verdict": "pass",
+    "evidence": "identifies Set of SKUs returns 2, needs qty sum"
+   }
+  ]
+ },
+ {
+  "label": "82cedb31",
+  "case": "selera#10",
+  "grades": [
+   {
+    "assertion": "Does not run apply or set",
+    "verdict": "pass",
+    "evidence": "no apply or set run"
+   },
+   {
+    "assertion": "Debugs the failing assertion",
+    "verdict": "pass",
+    "evidence": "identifies Set of SKUs returns 2, needs qty sum"
+   }
+  ]
+ }
+]

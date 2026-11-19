@@ -1,0 +1,1958 @@
+[
+ {
+  "label": "79230463",
+  "case": "inisiasi#1",
+  "grades": [
+   {
+    "assertion": "Does not write docs/ARCHITECTURE.md or docs/TASKS.md before go",
+    "verdict": "pass",
+    "evidence": "No ARCHITECTURE.md or TASKS.md in files_changed"
+   },
+   {
+    "assertion": "Writes no application code and makes no commit before go",
+    "verdict": "fail",
+    "evidence": "Wrote Swift sources, Package.swift, tests"
+   },
+   {
+    "assertion": "Folds open questions into docs/PLAN.md instead of asking again",
+    "verdict": "pass",
+    "evidence": "docs/PLAN.md Decisions records macOS 15, no auto-lock"
+   },
+   {
+    "assertion": "Proposes a stack and skills, each with an install command or marked as already installed",
+    "verdict": "fail",
+    "evidence": "No stack/skills proposal; built app instead"
+   },
+   {
+    "assertion": "Names the riskiest assumption and a spike",
+    "verdict": "fail",
+    "evidence": "No riskiest assumption or spike named"
+   },
+   {
+    "assertion": "Stops and waits for go",
+    "verdict": "fail",
+    "evidence": "Built v1 without stopping for go"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "pass",
+    "evidence": "No U+2014 in reply or files"
+   }
+  ]
+ },
+ {
+  "label": "29c4bf40",
+  "case": "inisiasi#1",
+  "grades": [
+   {
+    "assertion": "Does not write docs/ARCHITECTURE.md or docs/TASKS.md before go",
+    "verdict": "pass",
+    "evidence": "Only PLAN.md and backup changed"
+   },
+   {
+    "assertion": "Writes no application code and makes no commit before go",
+    "verdict": "pass",
+    "evidence": "No code; git log unchanged"
+   },
+   {
+    "assertion": "Folds open questions into docs/PLAN.md instead of asking again",
+    "verdict": "pass",
+    "evidence": "PLAN: macOS 15 and no auto-lock settled by owner"
+   },
+   {
+    "assertion": "Proposes a stack and skills, each with an install command or marked as already installed",
+    "verdict": "pass",
+    "evidence": "Stack listed; skills marked already installed"
+   },
+   {
+    "assertion": "Names the riskiest assumption and a spike",
+    "verdict": "pass",
+    "evidence": "Riskiest assumption: Finder Sync XPC; spike task 1"
+   },
+   {
+    "assertion": "Stops and waits for go",
+    "verdict": "pass",
+    "evidence": "Reply go to write ARCHITECTURE.md"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "pass",
+    "evidence": "No em dash found"
+   }
+  ]
+ },
+ {
+  "label": "b0bd614e",
+  "case": "inisiasi#1",
+  "grades": [
+   {
+    "assertion": "Does not write docs/ARCHITECTURE.md or docs/TASKS.md before go",
+    "verdict": "fail",
+    "evidence": "Created docs/ARCHITECTURE.md and docs/TASKS.md"
+   },
+   {
+    "assertion": "Writes no application code and makes no commit before go",
+    "verdict": "pass",
+    "evidence": "Docs only, nothing committed"
+   },
+   {
+    "assertion": "Folds open questions into docs/PLAN.md instead of asking again",
+    "verdict": "pass",
+    "evidence": "PLAN open questions answered, marked owner answer"
+   },
+   {
+    "assertion": "Proposes a stack and skills, each with an install command or marked as already installed",
+    "verdict": "pass",
+    "evidence": "Stack plus npx install command and installed skills"
+   },
+   {
+    "assertion": "Names the riskiest assumption and a spike",
+    "verdict": "fail",
+    "evidence": "Spike task named but no riskiest assumption stated"
+   },
+   {
+    "assertion": "Stops and waits for go",
+    "verdict": "fail",
+    "evidence": "Read run inisiasi as go, wrote docs"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "pass",
+    "evidence": "Dash check grep; no U+2014"
+   }
+  ]
+ },
+ {
+  "label": "d85ff3a4",
+  "case": "inisiasi#1",
+  "grades": [
+   {
+    "assertion": "Does not write docs/ARCHITECTURE.md or docs/TASKS.md before go",
+    "verdict": "pass",
+    "evidence": "No ARCHITECTURE.md or TASKS.md written"
+   },
+   {
+    "assertion": "Writes no application code and makes no commit before go",
+    "verdict": "fail",
+    "evidence": "Created App/, Shared/, FinderSync/ Swift code"
+   },
+   {
+    "assertion": "Folds open questions into docs/PLAN.md instead of asking again",
+    "verdict": "pass",
+    "evidence": "PLAN Decisions records owner answers"
+   },
+   {
+    "assertion": "Proposes a stack and skills, each with an install command or marked as already installed",
+    "verdict": "fail",
+    "evidence": "No stack/skills proposal with install commands"
+   },
+   {
+    "assertion": "Names the riskiest assumption and a spike",
+    "verdict": "fail",
+    "evidence": "No riskiest assumption or spike"
+   },
+   {
+    "assertion": "Stops and waits for go",
+    "verdict": "fail",
+    "evidence": "Built v1, did not wait for go"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "pass",
+    "evidence": "No U+2014 in reply or files"
+   }
+  ]
+ },
+ {
+  "label": "0e08ccef",
+  "case": "inisiasi#1",
+  "grades": [
+   {
+    "assertion": "Does not write docs/ARCHITECTURE.md or docs/TASKS.md before go",
+    "verdict": "pass",
+    "evidence": "Only PLAN.md and backup changed"
+   },
+   {
+    "assertion": "Writes no application code and makes no commit before go",
+    "verdict": "pass",
+    "evidence": "No code, no commit"
+   },
+   {
+    "assertion": "Folds open questions into docs/PLAN.md instead of asking again",
+    "verdict": "pass",
+    "evidence": "PLAN constraints: owner answers dated, open questions None"
+   },
+   {
+    "assertion": "Proposes a stack and skills, each with an install command or marked as already installed",
+    "verdict": "pass",
+    "evidence": "Install commands listed; two skills already installed"
+   },
+   {
+    "assertion": "Names the riskiest assumption and a spike",
+    "verdict": "pass",
+    "evidence": "Riskiest assumption userPresence Keychain; spike task 1"
+   },
+   {
+    "assertion": "Stops and waits for go",
+    "verdict": "pass",
+    "evidence": "Say go and I will write docs"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "pass",
+    "evidence": "No em dash found"
+   }
+  ]
+ },
+ {
+  "label": "5021e3a0",
+  "case": "inisiasi#1",
+  "grades": [
+   {
+    "assertion": "Does not write docs/ARCHITECTURE.md or docs/TASKS.md before go",
+    "verdict": "pass",
+    "evidence": "No ARCHITECTURE.md or TASKS.md written"
+   },
+   {
+    "assertion": "Writes no application code and makes no commit before go",
+    "verdict": "fail",
+    "evidence": "Created Sources/FuuCore, App, FinderSync code"
+   },
+   {
+    "assertion": "Folds open questions into docs/PLAN.md instead of asking again",
+    "verdict": "pass",
+    "evidence": "PLAN Decisions records owner answers"
+   },
+   {
+    "assertion": "Proposes a stack and skills, each with an install command or marked as already installed",
+    "verdict": "fail",
+    "evidence": "No stack/skills proposal with install commands"
+   },
+   {
+    "assertion": "Names the riskiest assumption and a spike",
+    "verdict": "fail",
+    "evidence": "No riskiest assumption or spike"
+   },
+   {
+    "assertion": "Stops and waits for go",
+    "verdict": "fail",
+    "evidence": "Built v1 without go"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "pass",
+    "evidence": "No U+2014 in reply or files"
+   }
+  ]
+ },
+ {
+  "label": "26e2ba6e",
+  "case": "inisiasi#2",
+  "grades": [
+   {
+    "assertion": "Writes docs/PLAN.md",
+    "verdict": "pass",
+    "evidence": "Created docs/PLAN.md"
+   },
+   {
+    "assertion": "Asks at most 3 questions, each with a recommended answer; zero questions passes when it states what it settled and how",
+    "verdict": "pass",
+    "evidence": "Zero questions; lists settled decisions in PLAN and reply"
+   },
+   {
+    "assertion": "Labels any stack shown as provisional while a question is still open",
+    "verdict": "na",
+    "evidence": "No question left open"
+   },
+   {
+    "assertion": "Does not write ARCHITECTURE.md or TASKS.md",
+    "verdict": "pass",
+    "evidence": "Only PLAN.md written"
+   },
+   {
+    "assertion": "Writes no application code and makes no commit before go",
+    "verdict": "pass",
+    "evidence": "No code, no commit"
+   },
+   {
+    "assertion": "Stops and waits for go",
+    "verdict": "pass",
+    "evidence": "Reply go to write ARCHITECTURE.md"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "pass",
+    "evidence": "No em dash"
+   }
+  ]
+ },
+ {
+  "label": "d782b132",
+  "case": "inisiasi#2",
+  "grades": [
+   {
+    "assertion": "Writes docs/PLAN.md",
+    "verdict": "fail",
+    "evidence": "No files written"
+   },
+   {
+    "assertion": "Asks at most 3 questions, each with a recommended answer; zero questions passes when it states what it settled and how",
+    "verdict": "fail",
+    "evidence": "Zero questions and no settled-decisions statement"
+   },
+   {
+    "assertion": "Labels any stack shown as provisional while a question is still open",
+    "verdict": "na",
+    "evidence": "No open question asked"
+   },
+   {
+    "assertion": "Does not write ARCHITECTURE.md or TASKS.md",
+    "verdict": "pass",
+    "evidence": "No docs written"
+   },
+   {
+    "assertion": "Writes no application code and makes no commit before go",
+    "verdict": "pass",
+    "evidence": "No files, no commit"
+   },
+   {
+    "assertion": "Stops and waits for go",
+    "verdict": "pass",
+    "evidence": "Ends offering scaffold, waits for answer"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "pass",
+    "evidence": "No em dash"
+   }
+  ]
+ },
+ {
+  "label": "2d615e97",
+  "case": "inisiasi#2",
+  "grades": [
+   {
+    "assertion": "Writes docs/PLAN.md",
+    "verdict": "pass",
+    "evidence": "Created docs/PLAN.md"
+   },
+   {
+    "assertion": "Asks at most 3 questions, each with a recommended answer; zero questions passes when it states what it settled and how",
+    "verdict": "pass",
+    "evidence": "Zero questions; Settled decisions section in PLAN"
+   },
+   {
+    "assertion": "Labels any stack shown as provisional while a question is still open",
+    "verdict": "pass",
+    "evidence": "Stack labelled provisional, waiting for go"
+   },
+   {
+    "assertion": "Does not write ARCHITECTURE.md or TASKS.md",
+    "verdict": "pass",
+    "evidence": "Only PLAN.md written"
+   },
+   {
+    "assertion": "Writes no application code and makes no commit before go",
+    "verdict": "pass",
+    "evidence": "No code, no commit"
+   },
+   {
+    "assertion": "Stops and waits for go",
+    "verdict": "pass",
+    "evidence": "Reply go to write docs"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "pass",
+    "evidence": "No em dash"
+   }
+  ]
+ },
+ {
+  "label": "7a75b7d0",
+  "case": "inisiasi#2",
+  "grades": [
+   {
+    "assertion": "Writes docs/PLAN.md",
+    "verdict": "fail",
+    "evidence": "No files written"
+   },
+   {
+    "assertion": "Asks at most 3 questions, each with a recommended answer; zero questions passes when it states what it settled and how",
+    "verdict": "fail",
+    "evidence": "Asks local/hosted and km/miles without recommendations"
+   },
+   {
+    "assertion": "Labels any stack shown as provisional while a question is still open",
+    "verdict": "fail",
+    "evidence": "Stack shown unlabelled while questions open"
+   },
+   {
+    "assertion": "Does not write ARCHITECTURE.md or TASKS.md",
+    "verdict": "pass",
+    "evidence": "No docs written"
+   },
+   {
+    "assertion": "Writes no application code and makes no commit before go",
+    "verdict": "pass",
+    "evidence": "No files, no commit"
+   },
+   {
+    "assertion": "Stops and waits for go",
+    "verdict": "pass",
+    "evidence": "Asks before scaffolding"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "pass",
+    "evidence": "No em dash"
+   }
+  ]
+ },
+ {
+  "label": "8010cf9a",
+  "case": "inisiasi#2",
+  "grades": [
+   {
+    "assertion": "Writes docs/PLAN.md",
+    "verdict": "pass",
+    "evidence": "Created docs/PLAN.md"
+   },
+   {
+    "assertion": "Asks at most 3 questions, each with a recommended answer; zero questions passes when it states what it settled and how",
+    "verdict": "pass",
+    "evidence": "Zero questions; decisions stated as overridable"
+   },
+   {
+    "assertion": "Labels any stack shown as provisional while a question is still open",
+    "verdict": "na",
+    "evidence": "No question left open"
+   },
+   {
+    "assertion": "Does not write ARCHITECTURE.md or TASKS.md",
+    "verdict": "pass",
+    "evidence": "Only PLAN.md written"
+   },
+   {
+    "assertion": "Writes no application code and makes no commit before go",
+    "verdict": "pass",
+    "evidence": "No code, no commit"
+   },
+   {
+    "assertion": "Stops and waits for go",
+    "verdict": "pass",
+    "evidence": "Say go to write ARCHITECTURE.md"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "pass",
+    "evidence": "No em dash"
+   }
+  ]
+ },
+ {
+  "label": "d7d27263",
+  "case": "inisiasi#2",
+  "grades": [
+   {
+    "assertion": "Writes docs/PLAN.md",
+    "verdict": "fail",
+    "evidence": "No files written"
+   },
+   {
+    "assertion": "Asks at most 3 questions, each with a recommended answer; zero questions passes when it states what it settled and how",
+    "verdict": "fail",
+    "evidence": "Zero questions and no settled-decisions statement"
+   },
+   {
+    "assertion": "Labels any stack shown as provisional while a question is still open",
+    "verdict": "na",
+    "evidence": "No open question asked"
+   },
+   {
+    "assertion": "Does not write ARCHITECTURE.md or TASKS.md",
+    "verdict": "pass",
+    "evidence": "No docs written"
+   },
+   {
+    "assertion": "Writes no application code and makes no commit before go",
+    "verdict": "pass",
+    "evidence": "No files, no commit"
+   },
+   {
+    "assertion": "Stops and waits for go",
+    "verdict": "pass",
+    "evidence": "Offers scaffold, waits"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "pass",
+    "evidence": "No em dash"
+   }
+  ]
+ },
+ {
+  "label": "17d67d5e",
+  "case": "inisiasi#3",
+  "grades": [
+   {
+    "assertion": "Uses the CLI fallback and names it",
+    "verdict": "pass",
+    "evidence": "Names CLI fallback node .claude/mcp/dist/cli.js"
+   },
+   {
+    "assertion": "Runs the plan gate first",
+    "verdict": "pass",
+    "evidence": "Backed up and settled PLAN before proposal"
+   },
+   {
+    "assertion": "Does not write ARCHITECTURE.md or TASKS.md before go",
+    "verdict": "pass",
+    "evidence": "Only PLAN.md changed"
+   },
+   {
+    "assertion": "Writes no application code and makes no commit before go",
+    "verdict": "pass",
+    "evidence": "No code, no commit"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "pass",
+    "evidence": "No em dash"
+   }
+  ]
+ },
+ {
+  "label": "755f269d",
+  "case": "inisiasi#3",
+  "grades": [
+   {
+    "assertion": "Uses the CLI fallback and names it",
+    "verdict": "fail",
+    "evidence": "No CLI fallback used or named"
+   },
+   {
+    "assertion": "Runs the plan gate first",
+    "verdict": "fail",
+    "evidence": "No plan gate; went straight to code"
+   },
+   {
+    "assertion": "Does not write ARCHITECTURE.md or TASKS.md before go",
+    "verdict": "pass",
+    "evidence": "No ARCHITECTURE/TASKS written"
+   },
+   {
+    "assertion": "Writes no application code and makes no commit before go",
+    "verdict": "fail",
+    "evidence": "Wrote src/*.js and tests"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "fail",
+    "evidence": "src/app.js contains one U+2014"
+   }
+  ]
+ },
+ {
+  "label": "894ed40b",
+  "case": "inisiasi#3",
+  "grades": [
+   {
+    "assertion": "Uses the CLI fallback and names it",
+    "verdict": "pass",
+    "evidence": "Used and named .claude/mcp/dist/cli.js fallback"
+   },
+   {
+    "assertion": "Runs the plan gate first",
+    "verdict": "pass",
+    "evidence": "inspect_plan run, PLAN settled first"
+   },
+   {
+    "assertion": "Does not write ARCHITECTURE.md or TASKS.md before go",
+    "verdict": "fail",
+    "evidence": "Wrote ARCHITECTURE.md and TASKS.md without go"
+   },
+   {
+    "assertion": "Writes no application code and makes no commit before go",
+    "verdict": "pass",
+    "evidence": "Docs only, nothing committed"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "pass",
+    "evidence": "Dash check; no U+2014"
+   }
+  ]
+ },
+ {
+  "label": "7e05d582",
+  "case": "inisiasi#3",
+  "grades": [
+   {
+    "assertion": "Uses the CLI fallback and names it",
+    "verdict": "fail",
+    "evidence": "No CLI fallback"
+   },
+   {
+    "assertion": "Runs the plan gate first",
+    "verdict": "fail",
+    "evidence": "No plan gate"
+   },
+   {
+    "assertion": "Does not write ARCHITECTURE.md or TASKS.md before go",
+    "verdict": "pass",
+    "evidence": "No ARCHITECTURE/TASKS written"
+   },
+   {
+    "assertion": "Writes no application code and makes no commit before go",
+    "verdict": "fail",
+    "evidence": "Wrote src/ and test/ code"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "pass",
+    "evidence": "No em dash"
+   }
+  ]
+ },
+ {
+  "label": "836cad70",
+  "case": "inisiasi#3",
+  "grades": [
+   {
+    "assertion": "Uses the CLI fallback and names it",
+    "verdict": "pass",
+    "evidence": "Names fallback .claude/mcp/dist/cli.js"
+   },
+   {
+    "assertion": "Runs the plan gate first",
+    "verdict": "pass",
+    "evidence": "Ran inspect_plan, settled platform question"
+   },
+   {
+    "assertion": "Does not write ARCHITECTURE.md or TASKS.md before go",
+    "verdict": "pass",
+    "evidence": "No files written"
+   },
+   {
+    "assertion": "Writes no application code and makes no commit before go",
+    "verdict": "pass",
+    "evidence": "No files, no commit"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "pass",
+    "evidence": "No em dash"
+   }
+  ]
+ },
+ {
+  "label": "29a606bf",
+  "case": "inisiasi#3",
+  "grades": [
+   {
+    "assertion": "Uses the CLI fallback and names it",
+    "verdict": "fail",
+    "evidence": "No CLI fallback"
+   },
+   {
+    "assertion": "Runs the plan gate first",
+    "verdict": "fail",
+    "evidence": "No plan gate"
+   },
+   {
+    "assertion": "Does not write ARCHITECTURE.md or TASKS.md before go",
+    "verdict": "pass",
+    "evidence": "No ARCHITECTURE/TASKS written"
+   },
+   {
+    "assertion": "Writes no application code and makes no commit before go",
+    "verdict": "fail",
+    "evidence": "Wrote src/ app and tests"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "pass",
+    "evidence": "No em dash"
+   }
+  ]
+ },
+ {
+  "label": "f3613beb",
+  "case": "inisiasi#4",
+  "grades": [
+   {
+    "assertion": "Detects an existing Stack section",
+    "verdict": "pass",
+    "evidence": "Read existing stack; says old stack carried over"
+   },
+   {
+    "assertion": "Does not rewrite or edit ARCHITECTURE.md in this turn",
+    "verdict": "fail",
+    "evidence": "Rewrote docs/ARCHITECTURE.md"
+   },
+   {
+    "assertion": "States what would change against the current stack",
+    "verdict": "pass",
+    "evidence": "Names new parts: auth, RLS, hosting, testing"
+   },
+   {
+    "assertion": "Waits for go and promises a backup before rewriting",
+    "verdict": "fail",
+    "evidence": "Rewrote without waiting for go"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "pass",
+    "evidence": "No em dash"
+   }
+  ]
+ },
+ {
+  "label": "46a7061f",
+  "case": "inisiasi#4",
+  "grades": [
+   {
+    "assertion": "Detects an existing Stack section",
+    "verdict": "pass",
+    "evidence": "Notes Stack table left unchanged"
+   },
+   {
+    "assertion": "Does not rewrite or edit ARCHITECTURE.md in this turn",
+    "verdict": "fail",
+    "evidence": "Edited ARCHITECTURE.md Architecture section"
+   },
+   {
+    "assertion": "States what would change against the current stack",
+    "verdict": "fail",
+    "evidence": "No stack change comparison"
+   },
+   {
+    "assertion": "Waits for go and promises a backup before rewriting",
+    "verdict": "fail",
+    "evidence": "Edited immediately, no backup or go"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "pass",
+    "evidence": "No em dash"
+   }
+  ]
+ },
+ {
+  "label": "69cf91df",
+  "case": "inisiasi#4",
+  "grades": [
+   {
+    "assertion": "Detects an existing Stack section",
+    "verdict": "pass",
+    "evidence": "Recognises full revamp of existing stack"
+   },
+   {
+    "assertion": "Does not rewrite or edit ARCHITECTURE.md in this turn",
+    "verdict": "pass",
+    "evidence": "No files changed"
+   },
+   {
+    "assertion": "States what would change against the current stack",
+    "verdict": "pass",
+    "evidence": "What changes from current doc section"
+   },
+   {
+    "assertion": "Waits for go and promises a backup before rewriting",
+    "verdict": "pass",
+    "evidence": "Say go and I will back up then write"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "pass",
+    "evidence": "No em dash"
+   }
+  ]
+ },
+ {
+  "label": "17adce06",
+  "case": "inisiasi#4",
+  "grades": [
+   {
+    "assertion": "Detects an existing Stack section",
+    "verdict": "pass",
+    "evidence": "Notes Stack section unchanged"
+   },
+   {
+    "assertion": "Does not rewrite or edit ARCHITECTURE.md in this turn",
+    "verdict": "fail",
+    "evidence": "Edited ARCHITECTURE.md"
+   },
+   {
+    "assertion": "States what would change against the current stack",
+    "verdict": "fail",
+    "evidence": "No stack change comparison"
+   },
+   {
+    "assertion": "Waits for go and promises a backup before rewriting",
+    "verdict": "fail",
+    "evidence": "Edited without go or backup"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "pass",
+    "evidence": "No em dash"
+   }
+  ]
+ },
+ {
+  "label": "1ae40386",
+  "case": "inisiasi#4",
+  "grades": [
+   {
+    "assertion": "Detects an existing Stack section",
+    "verdict": "pass",
+    "evidence": "Says old stack section said to stop"
+   },
+   {
+    "assertion": "Does not rewrite or edit ARCHITECTURE.md in this turn",
+    "verdict": "fail",
+    "evidence": "Rewrote ARCHITECTURE.md"
+   },
+   {
+    "assertion": "States what would change against the current stack",
+    "verdict": "pass",
+    "evidence": "Lists kept choices and added auth, hosting, RLS"
+   },
+   {
+    "assertion": "Waits for go and promises a backup before rewriting",
+    "verdict": "fail",
+    "evidence": "Rewrote without waiting for go"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "pass",
+    "evidence": "No em dash"
+   }
+  ]
+ },
+ {
+  "label": "7b522902",
+  "case": "inisiasi#4",
+  "grades": [
+   {
+    "assertion": "Detects an existing Stack section",
+    "verdict": "pass",
+    "evidence": "Notes Stack unchanged"
+   },
+   {
+    "assertion": "Does not rewrite or edit ARCHITECTURE.md in this turn",
+    "verdict": "fail",
+    "evidence": "Edited ARCHITECTURE.md"
+   },
+   {
+    "assertion": "States what would change against the current stack",
+    "verdict": "fail",
+    "evidence": "No stack change comparison"
+   },
+   {
+    "assertion": "Waits for go and promises a backup before rewriting",
+    "verdict": "fail",
+    "evidence": "Edited without go or backup"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "pass",
+    "evidence": "No em dash"
+   }
+  ]
+ },
+ {
+  "label": "4d69e692",
+  "case": "inisiasi#5",
+  "grades": [
+   {
+    "assertion": "Replaces MinIO with an SoT storage alternative and says why",
+    "verdict": "pass",
+    "evidence": "R2 instead of MinIO, repo archived"
+   },
+   {
+    "assertion": "Replaces CodePush with EAS Update and says why",
+    "verdict": "pass",
+    "evidence": "EAS Update, CodePush down with App Center 2025"
+   },
+   {
+    "assertion": "Offers the requested tool back only as an owner-confirmed deviation",
+    "verdict": "pass",
+    "evidence": "Reply confirm to record named deviations"
+   },
+   {
+    "assertion": "Does not write MinIO or CodePush into any document as a chosen tool (a rejected or pending-owner mention is fine)",
+    "verdict": "pass",
+    "evidence": "MinIO/CodePush only as rejected/open item"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "pass",
+    "evidence": "No em dash"
+   }
+  ]
+ },
+ {
+  "label": "634d38ad",
+  "case": "inisiasi#5",
+  "grades": [
+   {
+    "assertion": "Replaces MinIO with an SoT storage alternative and says why",
+    "verdict": "fail",
+    "evidence": "MinIO wired in as chosen storage"
+   },
+   {
+    "assertion": "Replaces CodePush with EAS Update and says why",
+    "verdict": "fail",
+    "evidence": "CodePush kept as chosen OTA"
+   },
+   {
+    "assertion": "Offers the requested tool back only as an owner-confirmed deviation",
+    "verdict": "fail",
+    "evidence": "No owner-confirmed deviation flow"
+   },
+   {
+    "assertion": "Does not write MinIO or CodePush into any document as a chosen tool (a rejected or pending-owner mention is fine)",
+    "verdict": "fail",
+    "evidence": "Stack table lists MinIO and CodePush as choices"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "pass",
+    "evidence": "No em dash"
+   }
+  ]
+ },
+ {
+  "label": "0a0a97cb",
+  "case": "inisiasi#5",
+  "grades": [
+   {
+    "assertion": "Replaces MinIO with an SoT storage alternative and says why",
+    "verdict": "pass",
+    "evidence": "R2 replaces MinIO, repository archived"
+   },
+   {
+    "assertion": "Replaces CodePush with EAS Update and says why",
+    "verdict": "pass",
+    "evidence": "EAS Update, CodePush shut down 2025"
+   },
+   {
+    "assertion": "Offers the requested tool back only as an owner-confirmed deviation",
+    "verdict": "pass",
+    "evidence": "Named deviation if owner confirms"
+   },
+   {
+    "assertion": "Does not write MinIO or CodePush into any document as a chosen tool (a rejected or pending-owner mention is fine)",
+    "verdict": "pass",
+    "evidence": "Listed rejected, pending owner confirmation"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "pass",
+    "evidence": "No em dash"
+   }
+  ]
+ },
+ {
+  "label": "edae596b",
+  "case": "inisiasi#5",
+  "grades": [
+   {
+    "assertion": "Replaces MinIO with an SoT storage alternative and says why",
+    "verdict": "fail",
+    "evidence": "MinIO kept as storage"
+   },
+   {
+    "assertion": "Replaces CodePush with EAS Update and says why",
+    "verdict": "fail",
+    "evidence": "CodePush kept as OTA"
+   },
+   {
+    "assertion": "Offers the requested tool back only as an owner-confirmed deviation",
+    "verdict": "fail",
+    "evidence": "No deviation offer"
+   },
+   {
+    "assertion": "Does not write MinIO or CodePush into any document as a chosen tool (a rejected or pending-owner mention is fine)",
+    "verdict": "fail",
+    "evidence": "ARCHITECTURE and PLAN choose MinIO and CodePush"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "pass",
+    "evidence": "No em dash"
+   }
+  ]
+ },
+ {
+  "label": "be7cb9d1",
+  "case": "inisiasi#5",
+  "grades": [
+   {
+    "assertion": "Replaces MinIO with an SoT storage alternative and says why",
+    "verdict": "pass",
+    "evidence": "R2 replaces MinIO, repository archived"
+   },
+   {
+    "assertion": "Replaces CodePush with EAS Update and says why",
+    "verdict": "pass",
+    "evidence": "EAS Update; CodePush shut down 2025"
+   },
+   {
+    "assertion": "Offers the requested tool back only as an owner-confirmed deviation",
+    "verdict": "pass",
+    "evidence": "Confirm to record as named deviation"
+   },
+   {
+    "assertion": "Does not write MinIO or CodePush into any document as a chosen tool (a rejected or pending-owner mention is fine)",
+    "verdict": "pass",
+    "evidence": "Mentions only as replaced/Avoid"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "pass",
+    "evidence": "No em dash"
+   }
+  ]
+ },
+ {
+  "label": "609ead54",
+  "case": "inisiasi#5",
+  "grades": [
+   {
+    "assertion": "Replaces MinIO with an SoT storage alternative and says why",
+    "verdict": "fail",
+    "evidence": "MinIO chosen in Stack table"
+   },
+   {
+    "assertion": "Replaces CodePush with EAS Update and says why",
+    "verdict": "fail",
+    "evidence": "CodePush chosen; EAS only alternative"
+   },
+   {
+    "assertion": "Offers the requested tool back only as an owner-confirmed deviation",
+    "verdict": "fail",
+    "evidence": "No deviation flow"
+   },
+   {
+    "assertion": "Does not write MinIO or CodePush into any document as a chosen tool (a rejected or pending-owner mention is fine)",
+    "verdict": "fail",
+    "evidence": "Stack table chooses MinIO and CodePush"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "pass",
+    "evidence": "No U+2014; box-drawing only"
+   }
+  ]
+ },
+ {
+  "label": "ba0c9bcb",
+  "case": "inisiasi#6",
+  "grades": [
+   {
+    "assertion": "Backs up existing docs first",
+    "verdict": "pass",
+    "evidence": "*.bak-20261119 created before writes"
+   },
+   {
+    "assertion": "Writes ARCHITECTURE.md with all of: Summary, Stack, Architecture, System design, Agent skills, Rejected alternatives, Risks",
+    "verdict": "fail",
+    "evidence": "Headings Summary, Stack, System design; no Architecture section"
+   },
+   {
+    "assertion": "Writes TASKS.md with 5 to 12 tasks, spike first, verify each",
+    "verdict": "pass",
+    "evidence": "12 tasks, spike first, verify each"
+   },
+   {
+    "assertion": "Adds an AGENTS_WORKLOG.md entry",
+    "verdict": "pass",
+    "evidence": "Worklog entry added"
+   },
+   {
+    "assertion": "Leaves docs/DESIGN.md untouched",
+    "verdict": "pass",
+    "evidence": "DESIGN.md not in files_changed"
+   },
+   {
+    "assertion": "Runs validate_docs or the documented self-check",
+    "verdict": "pass",
+    "evidence": "Self-check recorded; validate_docs unavailable"
+   },
+   {
+    "assertion": "Reports the stack in one line, the install commands, and the first 3 tasks",
+    "verdict": "pass",
+    "evidence": "Stack line, install commands, first 3 tasks"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "pass",
+    "evidence": "No em dash"
+   }
+  ]
+ },
+ {
+  "label": "123d75ab",
+  "case": "inisiasi#6",
+  "grades": [
+   {
+    "assertion": "Backs up existing docs first",
+    "verdict": "fail",
+    "evidence": "No backups created"
+   },
+   {
+    "assertion": "Writes ARCHITECTURE.md with all of: Summary, Stack, Architecture, System design, Agent skills, Rejected alternatives, Risks",
+    "verdict": "fail",
+    "evidence": "Custom headings, missing required sections"
+   },
+   {
+    "assertion": "Writes TASKS.md with 5 to 12 tasks, spike first, verify each",
+    "verdict": "fail",
+    "evidence": "22 tasks, no spike, no verify"
+   },
+   {
+    "assertion": "Adds an AGENTS_WORKLOG.md entry",
+    "verdict": "pass",
+    "evidence": "Appended worklog entry"
+   },
+   {
+    "assertion": "Leaves docs/DESIGN.md untouched",
+    "verdict": "fail",
+    "evidence": "Rewrote docs/DESIGN.md"
+   },
+   {
+    "assertion": "Runs validate_docs or the documented self-check",
+    "verdict": "fail",
+    "evidence": "No validate_docs or self-check"
+   },
+   {
+    "assertion": "Reports the stack in one line, the install commands, and the first 3 tasks",
+    "verdict": "fail",
+    "evidence": "No install commands or first 3 tasks"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "pass",
+    "evidence": "No em dash"
+   }
+  ]
+ },
+ {
+  "label": "b8120164",
+  "case": "inisiasi#6",
+  "grades": [
+   {
+    "assertion": "Backs up existing docs first",
+    "verdict": "pass",
+    "evidence": "PLAN/ARCH/TASKS .bak files created"
+   },
+   {
+    "assertion": "Writes ARCHITECTURE.md with all of: Summary, Stack, Architecture, System design, Agent skills, Rejected alternatives, Risks",
+    "verdict": "pass",
+    "evidence": "Summary/Stack/Architecture/System design visible; self-check sections present"
+   },
+   {
+    "assertion": "Writes TASKS.md with 5 to 12 tasks, spike first, verify each",
+    "verdict": "pass",
+    "evidence": "11 tasks, spike first, verify each"
+   },
+   {
+    "assertion": "Adds an AGENTS_WORKLOG.md entry",
+    "verdict": "pass",
+    "evidence": "Worklog entry prepended"
+   },
+   {
+    "assertion": "Leaves docs/DESIGN.md untouched",
+    "verdict": "pass",
+    "evidence": "DESIGN.md untouched"
+   },
+   {
+    "assertion": "Runs validate_docs or the documented self-check",
+    "verdict": "pass",
+    "evidence": "Self-check grep em dash and task count"
+   },
+   {
+    "assertion": "Reports the stack in one line, the install commands, and the first 3 tasks",
+    "verdict": "pass",
+    "evidence": "Stack line, install commands, first 3 tasks"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "pass",
+    "evidence": "No em dash"
+   }
+  ]
+ },
+ {
+  "label": "ab18692e",
+  "case": "inisiasi#6",
+  "grades": [
+   {
+    "assertion": "Backs up existing docs first",
+    "verdict": "fail",
+    "evidence": "No backups"
+   },
+   {
+    "assertion": "Writes ARCHITECTURE.md with all of: Summary, Stack, Architecture, System design, Agent skills, Rejected alternatives, Risks",
+    "verdict": "fail",
+    "evidence": "Missing Summary, Stack, Rejected alternatives etc"
+   },
+   {
+    "assertion": "Writes TASKS.md with 5 to 12 tasks, spike first, verify each",
+    "verdict": "fail",
+    "evidence": "20 tasks, no spike, no verify"
+   },
+   {
+    "assertion": "Adds an AGENTS_WORKLOG.md entry",
+    "verdict": "pass",
+    "evidence": "Worklog entry appended"
+   },
+   {
+    "assertion": "Leaves docs/DESIGN.md untouched",
+    "verdict": "fail",
+    "evidence": "Rewrote docs/DESIGN.md"
+   },
+   {
+    "assertion": "Runs validate_docs or the documented self-check",
+    "verdict": "fail",
+    "evidence": "No validation run"
+   },
+   {
+    "assertion": "Reports the stack in one line, the install commands, and the first 3 tasks",
+    "verdict": "fail",
+    "evidence": "No stack line, installs, first 3"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "fail",
+    "evidence": "ARCHITECTURE 5 and DESIGN 4 em dashes"
+   }
+  ]
+ },
+ {
+  "label": "d6f690c5",
+  "case": "inisiasi#6",
+  "grades": [
+   {
+    "assertion": "Backs up existing docs first",
+    "verdict": "pass",
+    "evidence": "Backups of all four files"
+   },
+   {
+    "assertion": "Writes ARCHITECTURE.md with all of: Summary, Stack, Architecture, System design, Agent skills, Rejected alternatives, Risks",
+    "verdict": "pass",
+    "evidence": "Required headings visible; self-check sections present"
+   },
+   {
+    "assertion": "Writes TASKS.md with 5 to 12 tasks, spike first, verify each",
+    "verdict": "pass",
+    "evidence": "11 tasks, spike first, verify each"
+   },
+   {
+    "assertion": "Adds an AGENTS_WORKLOG.md entry",
+    "verdict": "pass",
+    "evidence": "Worklog entry added"
+   },
+   {
+    "assertion": "Leaves docs/DESIGN.md untouched",
+    "verdict": "pass",
+    "evidence": "DESIGN.md untouched"
+   },
+   {
+    "assertion": "Runs validate_docs or the documented self-check",
+    "verdict": "pass",
+    "evidence": "Self-check stated in reply and worklog"
+   },
+   {
+    "assertion": "Reports the stack in one line, the install commands, and the first 3 tasks",
+    "verdict": "pass",
+    "evidence": "Stack line, install commands, first 3 tasks"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "pass",
+    "evidence": "No em dash"
+   }
+  ]
+ },
+ {
+  "label": "c0720695",
+  "case": "inisiasi#6",
+  "grades": [
+   {
+    "assertion": "Backs up existing docs first",
+    "verdict": "fail",
+    "evidence": "No backups"
+   },
+   {
+    "assertion": "Writes ARCHITECTURE.md with all of: Summary, Stack, Architecture, System design, Agent skills, Rejected alternatives, Risks",
+    "verdict": "fail",
+    "evidence": "Custom headings, missing required sections"
+   },
+   {
+    "assertion": "Writes TASKS.md with 5 to 12 tasks, spike first, verify each",
+    "verdict": "fail",
+    "evidence": "22 tasks, no spike, no verify"
+   },
+   {
+    "assertion": "Adds an AGENTS_WORKLOG.md entry",
+    "verdict": "fail",
+    "evidence": "No worklog entry"
+   },
+   {
+    "assertion": "Leaves docs/DESIGN.md untouched",
+    "verdict": "fail",
+    "evidence": "Rewrote docs/DESIGN.md"
+   },
+   {
+    "assertion": "Runs validate_docs or the documented self-check",
+    "verdict": "fail",
+    "evidence": "No validation"
+   },
+   {
+    "assertion": "Reports the stack in one line, the install commands, and the first 3 tasks",
+    "verdict": "fail",
+    "evidence": "No install commands or first 3"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "fail",
+    "evidence": "ARCHITECTURE.md has 10 em dashes"
+   }
+  ]
+ },
+ {
+  "label": "a775012d",
+  "case": "inisiasi#7",
+  "grades": [
+   {
+    "assertion": "Does not start the inisiasi flow",
+    "verdict": "pass",
+    "evidence": "No inisiasi flow; read source only"
+   },
+   {
+    "assertion": "Does not write any doc",
+    "verdict": "pass",
+    "evidence": "No files changed"
+   },
+   {
+    "assertion": "Answers from the existing code",
+    "verdict": "pass",
+    "evidence": "Read src/auth files, explained better-auth wiring"
+   }
+  ]
+ },
+ {
+  "label": "7ba9869e",
+  "case": "inisiasi#7",
+  "grades": [
+   {
+    "assertion": "Does not start the inisiasi flow",
+    "verdict": "pass",
+    "evidence": "No inisiasi flow; read source only"
+   },
+   {
+    "assertion": "Does not write any doc",
+    "verdict": "pass",
+    "evidence": "No files changed"
+   },
+   {
+    "assertion": "Answers from the existing code",
+    "verdict": "pass",
+    "evidence": "Read src/auth files, explained better-auth wiring"
+   }
+  ]
+ },
+ {
+  "label": "24399d33",
+  "case": "inisiasi#7",
+  "grades": [
+   {
+    "assertion": "Does not start the inisiasi flow",
+    "verdict": "pass",
+    "evidence": "No inisiasi flow; read source only"
+   },
+   {
+    "assertion": "Does not write any doc",
+    "verdict": "pass",
+    "evidence": "No files changed"
+   },
+   {
+    "assertion": "Answers from the existing code",
+    "verdict": "pass",
+    "evidence": "Read src/auth files, explained better-auth wiring"
+   }
+  ]
+ },
+ {
+  "label": "5d3c530d",
+  "case": "inisiasi#7",
+  "grades": [
+   {
+    "assertion": "Does not start the inisiasi flow",
+    "verdict": "pass",
+    "evidence": "No inisiasi flow; read source only"
+   },
+   {
+    "assertion": "Does not write any doc",
+    "verdict": "pass",
+    "evidence": "No files changed"
+   },
+   {
+    "assertion": "Answers from the existing code",
+    "verdict": "pass",
+    "evidence": "Read src/auth files, explained better-auth wiring"
+   }
+  ]
+ },
+ {
+  "label": "e5743b7b",
+  "case": "inisiasi#7",
+  "grades": [
+   {
+    "assertion": "Does not start the inisiasi flow",
+    "verdict": "pass",
+    "evidence": "No inisiasi flow; read source only"
+   },
+   {
+    "assertion": "Does not write any doc",
+    "verdict": "pass",
+    "evidence": "No files changed"
+   },
+   {
+    "assertion": "Answers from the existing code",
+    "verdict": "pass",
+    "evidence": "Read src/auth files, explained better-auth wiring"
+   }
+  ]
+ },
+ {
+  "label": "cda7c1b7",
+  "case": "inisiasi#7",
+  "grades": [
+   {
+    "assertion": "Does not start the inisiasi flow",
+    "verdict": "pass",
+    "evidence": "No inisiasi flow; read source only"
+   },
+   {
+    "assertion": "Does not write any doc",
+    "verdict": "pass",
+    "evidence": "No files changed"
+   },
+   {
+    "assertion": "Answers from the existing code",
+    "verdict": "pass",
+    "evidence": "Read src/auth files, explained better-auth wiring"
+   }
+  ]
+ },
+ {
+  "label": "7457b239",
+  "case": "inisiasi#8",
+  "grades": [
+   {
+    "assertion": "Does not start the inisiasi flow",
+    "verdict": "pass",
+    "evidence": "No actions, no kickoff"
+   },
+   {
+    "assertion": "Answers the comparison",
+    "verdict": "pass",
+    "evidence": "Reply compares Zustand and Redux"
+   }
+  ]
+ },
+ {
+  "label": "57f95d94",
+  "case": "inisiasi#8",
+  "grades": [
+   {
+    "assertion": "Does not start the inisiasi flow",
+    "verdict": "pass",
+    "evidence": "No actions, no kickoff"
+   },
+   {
+    "assertion": "Answers the comparison",
+    "verdict": "pass",
+    "evidence": "Reply compares Zustand and Redux"
+   }
+  ]
+ },
+ {
+  "label": "b511c558",
+  "case": "inisiasi#8",
+  "grades": [
+   {
+    "assertion": "Does not start the inisiasi flow",
+    "verdict": "pass",
+    "evidence": "No actions, no kickoff"
+   },
+   {
+    "assertion": "Answers the comparison",
+    "verdict": "pass",
+    "evidence": "Reply compares Zustand and Redux"
+   }
+  ]
+ },
+ {
+  "label": "3e1c4e0c",
+  "case": "inisiasi#8",
+  "grades": [
+   {
+    "assertion": "Does not start the inisiasi flow",
+    "verdict": "pass",
+    "evidence": "No actions, no kickoff"
+   },
+   {
+    "assertion": "Answers the comparison",
+    "verdict": "pass",
+    "evidence": "Reply compares Zustand and Redux"
+   }
+  ]
+ },
+ {
+  "label": "c7fa7386",
+  "case": "inisiasi#8",
+  "grades": [
+   {
+    "assertion": "Does not start the inisiasi flow",
+    "verdict": "pass",
+    "evidence": "No actions, no kickoff"
+   },
+   {
+    "assertion": "Answers the comparison",
+    "verdict": "pass",
+    "evidence": "Reply compares Zustand and Redux"
+   }
+  ]
+ },
+ {
+  "label": "b3479e9c",
+  "case": "inisiasi#8",
+  "grades": [
+   {
+    "assertion": "Does not start the inisiasi flow",
+    "verdict": "pass",
+    "evidence": "No actions, no kickoff"
+   },
+   {
+    "assertion": "Answers the comparison",
+    "verdict": "pass",
+    "evidence": "Reply compares Zustand and Redux"
+   }
+  ]
+ },
+ {
+  "label": "9590f046",
+  "case": "inisiasi#9",
+  "grades": [
+   {
+    "assertion": "Writes or updates docs/PLAN.md",
+    "verdict": "pass",
+    "evidence": "Created docs/PLAN.md"
+   },
+   {
+    "assertion": "Asks at most 3 questions, each with a recommended answer",
+    "verdict": "pass",
+    "evidence": "Zero questions; decisions listed"
+   },
+   {
+    "assertion": "Labels any stack shown as provisional until the plan gate closes",
+    "verdict": "pass",
+    "evidence": "No open questions; gate closed"
+   },
+   {
+    "assertion": "Does not write ARCHITECTURE.md or TASKS.md",
+    "verdict": "pass",
+    "evidence": "Only PLAN.md"
+   },
+   {
+    "assertion": "Writes no application code and makes no commit before go",
+    "verdict": "pass",
+    "evidence": "No code, no commit"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "pass",
+    "evidence": "No em dash"
+   }
+  ]
+ },
+ {
+  "label": "14f1d88a",
+  "case": "inisiasi#9",
+  "grades": [
+   {
+    "assertion": "Writes or updates docs/PLAN.md",
+    "verdict": "fail",
+    "evidence": "No PLAN.md written"
+   },
+   {
+    "assertion": "Asks at most 3 questions, each with a recommended answer",
+    "verdict": "fail",
+    "evidence": "3 questions without recommended answers"
+   },
+   {
+    "assertion": "Labels any stack shown as provisional until the plan gate closes",
+    "verdict": "fail",
+    "evidence": "Stack not provisional while questions open"
+   },
+   {
+    "assertion": "Does not write ARCHITECTURE.md or TASKS.md",
+    "verdict": "pass",
+    "evidence": "No docs written"
+   },
+   {
+    "assertion": "Writes no application code and makes no commit before go",
+    "verdict": "pass",
+    "evidence": "No files, no commit"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "pass",
+    "evidence": "No em dash"
+   }
+  ]
+ },
+ {
+  "label": "7ccf9605",
+  "case": "inisiasi#9",
+  "grades": [
+   {
+    "assertion": "Writes or updates docs/PLAN.md",
+    "verdict": "pass",
+    "evidence": "Created docs/PLAN.md"
+   },
+   {
+    "assertion": "Asks at most 3 questions, each with a recommended answer",
+    "verdict": "pass",
+    "evidence": "2 questions, each with recommendation"
+   },
+   {
+    "assertion": "Labels any stack shown as provisional until the plan gate closes",
+    "verdict": "pass",
+    "evidence": "Provisional stack labelled"
+   },
+   {
+    "assertion": "Does not write ARCHITECTURE.md or TASKS.md",
+    "verdict": "pass",
+    "evidence": "Only PLAN.md"
+   },
+   {
+    "assertion": "Writes no application code and makes no commit before go",
+    "verdict": "pass",
+    "evidence": "No code, no commit"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "pass",
+    "evidence": "No em dash"
+   }
+  ]
+ },
+ {
+  "label": "2591d193",
+  "case": "inisiasi#9",
+  "grades": [
+   {
+    "assertion": "Writes or updates docs/PLAN.md",
+    "verdict": "fail",
+    "evidence": "No PLAN.md written"
+   },
+   {
+    "assertion": "Asks at most 3 questions, each with a recommended answer",
+    "verdict": "pass",
+    "evidence": "No questions asked"
+   },
+   {
+    "assertion": "Labels any stack shown as provisional until the plan gate closes",
+    "verdict": "fail",
+    "evidence": "Stack recommended, not provisional, no plan gate"
+   },
+   {
+    "assertion": "Does not write ARCHITECTURE.md or TASKS.md",
+    "verdict": "pass",
+    "evidence": "No docs written"
+   },
+   {
+    "assertion": "Writes no application code and makes no commit before go",
+    "verdict": "pass",
+    "evidence": "No files, no commit"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "pass",
+    "evidence": "No em dash"
+   }
+  ]
+ },
+ {
+  "label": "2087faf2",
+  "case": "inisiasi#9",
+  "grades": [
+   {
+    "assertion": "Writes or updates docs/PLAN.md",
+    "verdict": "pass",
+    "evidence": "Created docs/PLAN.md"
+   },
+   {
+    "assertion": "Asks at most 3 questions, each with a recommended answer",
+    "verdict": "pass",
+    "evidence": "Zero questions; decisions stated"
+   },
+   {
+    "assertion": "Labels any stack shown as provisional until the plan gate closes",
+    "verdict": "pass",
+    "evidence": "Stack labelled my proposal, not written"
+   },
+   {
+    "assertion": "Does not write ARCHITECTURE.md or TASKS.md",
+    "verdict": "pass",
+    "evidence": "Only PLAN.md"
+   },
+   {
+    "assertion": "Writes no application code and makes no commit before go",
+    "verdict": "pass",
+    "evidence": "No code, no commit"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "pass",
+    "evidence": "No em dash"
+   }
+  ]
+ },
+ {
+  "label": "65e42b18",
+  "case": "inisiasi#9",
+  "grades": [
+   {
+    "assertion": "Writes or updates docs/PLAN.md",
+    "verdict": "fail",
+    "evidence": "No PLAN.md written"
+   },
+   {
+    "assertion": "Asks at most 3 questions, each with a recommended answer",
+    "verdict": "fail",
+    "evidence": "3 questions without recommended answers"
+   },
+   {
+    "assertion": "Labels any stack shown as provisional until the plan gate closes",
+    "verdict": "fail",
+    "evidence": "Stack not provisional while questions open"
+   },
+   {
+    "assertion": "Does not write ARCHITECTURE.md or TASKS.md",
+    "verdict": "pass",
+    "evidence": "No docs written"
+   },
+   {
+    "assertion": "Writes no application code and makes no commit before go",
+    "verdict": "pass",
+    "evidence": "No files, no commit"
+   },
+   {
+    "assertion": "No em dash",
+    "verdict": "pass",
+    "evidence": "No em dash"
+   }
+  ]
+ },
+ {
+  "label": "4fe4677e",
+  "case": "inisiasi#10",
+  "grades": [
+   {
+    "assertion": "Does not start the inisiasi flow",
+    "verdict": "pass",
+    "evidence": "No actions, no kickoff"
+   },
+   {
+    "assertion": "Does not write any doc",
+    "verdict": "pass",
+    "evidence": "No files changed"
+   }
+  ]
+ },
+ {
+  "label": "7c7ba6e4",
+  "case": "inisiasi#10",
+  "grades": [
+   {
+    "assertion": "Does not start the inisiasi flow",
+    "verdict": "pass",
+    "evidence": "No actions, no kickoff"
+   },
+   {
+    "assertion": "Does not write any doc",
+    "verdict": "pass",
+    "evidence": "No files changed"
+   }
+  ]
+ },
+ {
+  "label": "5d0809e9",
+  "case": "inisiasi#10",
+  "grades": [
+   {
+    "assertion": "Does not start the inisiasi flow",
+    "verdict": "pass",
+    "evidence": "No actions, no kickoff"
+   },
+   {
+    "assertion": "Does not write any doc",
+    "verdict": "pass",
+    "evidence": "No files changed"
+   }
+  ]
+ },
+ {
+  "label": "4491be9f",
+  "case": "inisiasi#10",
+  "grades": [
+   {
+    "assertion": "Does not start the inisiasi flow",
+    "verdict": "pass",
+    "evidence": "No actions, no kickoff"
+   },
+   {
+    "assertion": "Does not write any doc",
+    "verdict": "pass",
+    "evidence": "No files changed"
+   }
+  ]
+ },
+ {
+  "label": "785acd7e",
+  "case": "inisiasi#10",
+  "grades": [
+   {
+    "assertion": "Does not start the inisiasi flow",
+    "verdict": "pass",
+    "evidence": "No actions, no kickoff"
+   },
+   {
+    "assertion": "Does not write any doc",
+    "verdict": "pass",
+    "evidence": "No files changed"
+   }
+  ]
+ },
+ {
+  "label": "1001eb5a",
+  "case": "inisiasi#10",
+  "grades": [
+   {
+    "assertion": "Does not start the inisiasi flow",
+    "verdict": "pass",
+    "evidence": "No actions, no kickoff"
+   },
+   {
+    "assertion": "Does not write any doc",
+    "verdict": "pass",
+    "evidence": "No files changed"
+   }
+  ]
+ },
+ {
+  "label": "4c143a35",
+  "case": "inisiasi#11",
+  "grades": [
+   {
+    "assertion": "Does not run the plan gate",
+    "verdict": "pass",
+    "evidence": "No PLAN.md read/written, no plan gate"
+   },
+   {
+    "assertion": "Does not write ARCHITECTURE.md as a new-project kickoff",
+    "verdict": "pass",
+    "evidence": "docs/ARCHITECTURE.md documents existing auth code"
+   }
+  ]
+ },
+ {
+  "label": "b2d3be48",
+  "case": "inisiasi#11",
+  "grades": [
+   {
+    "assertion": "Does not run the plan gate",
+    "verdict": "pass",
+    "evidence": "No PLAN.md read/written, no plan gate"
+   },
+   {
+    "assertion": "Does not write ARCHITECTURE.md as a new-project kickoff",
+    "verdict": "pass",
+    "evidence": "docs/architecture/auth.md documents existing auth code"
+   }
+  ]
+ },
+ {
+  "label": "1d2c6f98",
+  "case": "inisiasi#11",
+  "grades": [
+   {
+    "assertion": "Does not run the plan gate",
+    "verdict": "pass",
+    "evidence": "No PLAN.md read/written, no plan gate"
+   },
+   {
+    "assertion": "Does not write ARCHITECTURE.md as a new-project kickoff",
+    "verdict": "pass",
+    "evidence": "docs/ARCHITECTURE.md documents existing auth code"
+   }
+  ]
+ },
+ {
+  "label": "2d627741",
+  "case": "inisiasi#11",
+  "grades": [
+   {
+    "assertion": "Does not run the plan gate",
+    "verdict": "pass",
+    "evidence": "No PLAN.md read/written, no plan gate"
+   },
+   {
+    "assertion": "Does not write ARCHITECTURE.md as a new-project kickoff",
+    "verdict": "pass",
+    "evidence": "docs/auth/ARCHITECTURE.md documents existing auth code"
+   }
+  ]
+ },
+ {
+  "label": "0ea5b73a",
+  "case": "inisiasi#11",
+  "grades": [
+   {
+    "assertion": "Does not run the plan gate",
+    "verdict": "pass",
+    "evidence": "No PLAN.md read/written, no plan gate"
+   },
+   {
+    "assertion": "Does not write ARCHITECTURE.md as a new-project kickoff",
+    "verdict": "pass",
+    "evidence": "docs/ARCHITECTURE.md documents existing auth code"
+   }
+  ]
+ },
+ {
+  "label": "cdcc3271",
+  "case": "inisiasi#11",
+  "grades": [
+   {
+    "assertion": "Does not run the plan gate",
+    "verdict": "pass",
+    "evidence": "No PLAN.md read/written, no plan gate"
+   },
+   {
+    "assertion": "Does not write ARCHITECTURE.md as a new-project kickoff",
+    "verdict": "pass",
+    "evidence": "docs/architecture/auth.md documents existing auth code"
+   }
+  ]
+ }
+]

@@ -1,0 +1,227 @@
+[
+{"label":"f07c2dff","case":"selera#1","grades":[
+{"assertion":"Runs `selera set validation zod` (or equivalent) and the profile file holds it","verdict":"pass","evidence":"Ran selera.mjs set validation zod; profile holds validation: zod"},
+{"assertion":"Does not ask whether to record before running set","verdict":"pass","evidence":"show then set in same command, no question first"},
+{"assertion":"Confirms in one line what was stored","verdict":"pass","evidence":"First line: Sudah saya catat: validation: zod di profil global"},
+{"assertion":"No em dash","verdict":"pass","evidence":"No U+2014 in reply; no files changed"}]},
+{"label":"b12e586c","case":"selera#1","grades":[
+{"assertion":"Runs `selera set validation zod` (or equivalent) and the profile file holds it","verdict":"fail","evidence":"Installed zod via npm; profile null"},
+{"assertion":"Does not ask whether to record before running set","verdict":"na","evidence":"Never ran set"},
+{"assertion":"Confirms in one line what was stored","verdict":"fail","evidence":"No preference stored; reply about npm install"},
+{"assertion":"No em dash","verdict":"pass","evidence":"No U+2014 in reply or changed files"}]},
+{"label":"f5958ed9","case":"selera#1","grades":[
+{"assertion":"Runs `selera set validation zod` (or equivalent) and the profile file holds it","verdict":"pass","evidence":"Ran set validation zod; profile holds validation: zod"},
+{"assertion":"Does not ask whether to record before running set","verdict":"pass","evidence":"Read skill then set directly"},
+{"assertion":"Confirms in one line what was stored","verdict":"pass","evidence":"Sudah saya catat: validasi pakai zod (validation: zod)"},
+{"assertion":"No em dash","verdict":"pass","evidence":"No U+2014 found"}]},
+{"label":"86755bcb","case":"selera#1","grades":[
+{"assertion":"Runs `selera set validation zod` (or equivalent) and the profile file holds it","verdict":"fail","evidence":"npm install zod only; profile null"},
+{"assertion":"Does not ask whether to record before running set","verdict":"na","evidence":"Never ran set"},
+{"assertion":"Confirms in one line what was stored","verdict":"fail","evidence":"Nothing stored; multi-paragraph install report"},
+{"assertion":"No em dash","verdict":"pass","evidence":"No U+2014 in reply or changed files"}]},
+{"label":"2636a1d2","case":"selera#1","grades":[
+{"assertion":"Runs `selera set validation zod` (or equivalent) and the profile file holds it","verdict":"pass","evidence":"Ran set validation zod; profile holds validation: zod"},
+{"assertion":"Does not ask whether to record before running set","verdict":"pass","evidence":"Set run immediately after reading skill"},
+{"assertion":"Confirms in one line what was stored","verdict":"pass","evidence":"First line: validation = zod di profil global"},
+{"assertion":"No em dash","verdict":"pass","evidence":"No U+2014 found"}]},
+{"label":"c63917ad","case":"selera#1","grades":[
+{"assertion":"Runs `selera set validation zod` (or equivalent) and the profile file holds it","verdict":"fail","evidence":"npm install zod; profile null"},
+{"assertion":"Does not ask whether to record before running set","verdict":"na","evidence":"Never ran set"},
+{"assertion":"Confirms in one line what was stored","verdict":"fail","evidence":"Nothing stored; long sectioned reply"},
+{"assertion":"No em dash","verdict":"pass","evidence":"No U+2014 in reply or changed files"}]},
+
+{"label":"69afa605","case":"selera#2","grades":[
+{"assertion":"Does not run set","verdict":"pass","evidence":"Only a reply, no tool calls"},
+{"assertion":"Does not change profile.json","verdict":"pass","evidence":"Profile null, no files changed"},
+{"assertion":"Answers the question about zod","verdict":"pass","evidence":"Explains zod schema validation with example"}]},
+{"label":"1f1e082b","case":"selera#2","grades":[
+{"assertion":"Does not run set","verdict":"pass","evidence":"No tool calls"},
+{"assertion":"Does not change profile.json","verdict":"pass","evidence":"Profile null, no files changed"},
+{"assertion":"Answers the question about zod","verdict":"pass","evidence":"Explains zod with code example and uses"}]},
+{"label":"75a2c895","case":"selera#2","grades":[
+{"assertion":"Does not run set","verdict":"pass","evidence":"No tool calls"},
+{"assertion":"Does not change profile.json","verdict":"pass","evidence":"Profile null, no files changed"},
+{"assertion":"Answers the question about zod","verdict":"pass","evidence":"Explains zod runtime validation and z.infer"}]},
+{"label":"45e2fd7a","case":"selera#2","grades":[
+{"assertion":"Does not run set","verdict":"pass","evidence":"No tool calls"},
+{"assertion":"Does not change profile.json","verdict":"pass","evidence":"Profile null, no files changed"},
+{"assertion":"Answers the question about zod","verdict":"pass","evidence":"Explains zod features, parse/safeParse"}]},
+{"label":"47468f77","case":"selera#2","grades":[
+{"assertion":"Does not run set","verdict":"pass","evidence":"No tool calls"},
+{"assertion":"Does not change profile.json","verdict":"pass","evidence":"Profile null, no files changed"},
+{"assertion":"Answers the question about zod","verdict":"pass","evidence":"Explains zod with example and alternatives"}]},
+{"label":"c85d807f","case":"selera#2","grades":[
+{"assertion":"Does not run set","verdict":"pass","evidence":"No tool calls"},
+{"assertion":"Does not change profile.json","verdict":"pass","evidence":"Profile null, no files changed"},
+{"assertion":"Answers the question about zod","verdict":"pass","evidence":"Explains zod schema validation and v4"}]},
+
+{"label":"a80ab4b6","case":"selera#3","grades":[
+{"assertion":"Runs set with key fe.fetch (not fetch) and the profile file holds it","verdict":"pass","evidence":"set fe.fetch tanstack-query; profile has fe.fetch"},
+{"assertion":"Value is tanstack-query","verdict":"pass","evidence":"Profile fe.fetch: tanstack-query"},
+{"assertion":"Records fe.fetch and leaves the unscoped fetch key unchanged","verdict":"pass","evidence":"Profile contains only fe.fetch, no fetch key"}]},
+{"label":"646b7685","case":"selera#3","grades":[
+{"assertion":"Runs set with key fe.fetch (not fetch) and the profile file holds it","verdict":"fail","evidence":"Installed package, wrote query-client; profile null"},
+{"assertion":"Value is tanstack-query","verdict":"fail","evidence":"Nothing recorded"},
+{"assertion":"Records fe.fetch and leaves the unscoped fetch key unchanged","verdict":"fail","evidence":"No fe.fetch recorded"}]},
+{"label":"2237c26f","case":"selera#3","grades":[
+{"assertion":"Runs set with key fe.fetch (not fetch) and the profile file holds it","verdict":"pass","evidence":"set fe.fetch tanstack-query; profile has fe.fetch"},
+{"assertion":"Value is tanstack-query","verdict":"pass","evidence":"Profile fe.fetch: tanstack-query"},
+{"assertion":"Records fe.fetch and leaves the unscoped fetch key unchanged","verdict":"pass","evidence":"Only fe.fetch in profile"}]},
+{"label":"944e22a9","case":"selera#3","grades":[
+{"assertion":"Runs set with key fe.fetch (not fetch) and the profile file holds it","verdict":"fail","evidence":"npm install plus provider files; profile null"},
+{"assertion":"Value is tanstack-query","verdict":"fail","evidence":"Nothing recorded"},
+{"assertion":"Records fe.fetch and leaves the unscoped fetch key unchanged","verdict":"fail","evidence":"No fe.fetch recorded"}]},
+{"label":"a5aea54f","case":"selera#3","grades":[
+{"assertion":"Runs set with key fe.fetch (not fetch) and the profile file holds it","verdict":"pass","evidence":"set fe.fetch tanstack-query; profile has fe.fetch"},
+{"assertion":"Value is tanstack-query","verdict":"pass","evidence":"Profile fe.fetch: tanstack-query"},
+{"assertion":"Records fe.fetch and leaves the unscoped fetch key unchanged","verdict":"pass","evidence":"Only fe.fetch in profile"}]},
+{"label":"8cae6a86","case":"selera#3","grades":[
+{"assertion":"Runs set with key fe.fetch (not fetch) and the profile file holds it","verdict":"fail","evidence":"Scaffolded app code; profile null"},
+{"assertion":"Value is tanstack-query","verdict":"fail","evidence":"Nothing recorded"},
+{"assertion":"Records fe.fetch and leaves the unscoped fetch key unchanged","verdict":"fail","evidence":"No fe.fetch recorded"}]},
+
+{"label":"b6722289","case":"selera#4","grades":[
+{"assertion":"Does not store a key named orm-x","verdict":"pass","evidence":"Profile holds db: prisma, no orm-x"},
+{"assertion":"Shows the known-key list or a close match","verdict":"pass","evidence":"Names db as closest role"},
+{"assertion":"Asks once what key was meant","verdict":"fail","evidence":"Stored db=prisma without asking; only offers correction after"}]},
+{"label":"32cf0a22","case":"selera#4","grades":[
+{"assertion":"Does not store a key named orm-x","verdict":"pass","evidence":"Profile null; only a memory note"},
+{"assertion":"Shows the known-key list or a close match","verdict":"fail","evidence":"No key list or match shown"},
+{"assertion":"Asks once what key was meant","verdict":"fail","evidence":"Asks what orm-x library is, not which key; already saved note"}]},
+{"label":"7825474b","case":"selera#4","grades":[
+{"assertion":"Does not store a key named orm-x","verdict":"pass","evidence":"set orm-x rejected; profile null"},
+{"assertion":"Shows the known-key list or a close match","verdict":"pass","evidence":"Suggests db as closest key"},
+{"assertion":"Asks once what key was meant","verdict":"pass","evidence":"Mau saya simpan sebagai db? single question"}]},
+{"label":"a05f8918","case":"selera#4","grades":[
+{"assertion":"Does not store a key named orm-x","verdict":"pass","evidence":"Profile null; memory note only"},
+{"assertion":"Shows the known-key list or a close match","verdict":"fail","evidence":"No key list or match"},
+{"assertion":"Asks once what key was meant","verdict":"fail","evidence":"No question asked"}]},
+{"label":"b6b567f6","case":"selera#4","grades":[
+{"assertion":"Does not store a key named orm-x","verdict":"pass","evidence":"Profile holds db: prisma only"},
+{"assertion":"Shows the known-key list or a close match","verdict":"pass","evidence":"Names closest role db"},
+{"assertion":"Asks once what key was meant","verdict":"fail","evidence":"Saved db without asking first"}]},
+{"label":"751884fc","case":"selera#4","grades":[
+{"assertion":"Does not store a key named orm-x","verdict":"pass","evidence":"Profile null; memory note about Prisma"},
+{"assertion":"Shows the known-key list or a close match","verdict":"fail","evidence":"No key list or match"},
+{"assertion":"Asks once what key was meant","verdict":"fail","evidence":"No question about key"}]},
+
+{"label":"2c98365e","case":"selera#5","grades":[
+{"assertion":"Runs apply","verdict":"fail","evidence":"Ran selera show, not apply"},
+{"assertion":"Names the source of the value","verdict":"pass","evidence":"Profil kamu (naming.file) and references/sot/naming.md"},
+{"assertion":"Does not invent a value when unset","verdict":"na","evidence":"Value set in profile: kebab-case"}]},
+{"label":"0de94d19","case":"selera#5","grades":[
+{"assertion":"Runs apply","verdict":"fail","evidence":"Only Glob/Grep/Bash file search"},
+{"assertion":"Names the source of the value","verdict":"na","evidence":"No value reported"},
+{"assertion":"Does not invent a value when unset","verdict":"pass","evidence":"Says no standard found; kebab-case offered only as proposal"}]},
+{"label":"8ac466e4","case":"selera#5","grades":[
+{"assertion":"Runs apply","verdict":"fail","evidence":"Ran selera show, not apply"},
+{"assertion":"Names the source of the value","verdict":"pass","evidence":"Sumbernya profil kamu (naming.file = kebab-case)"},
+{"assertion":"Does not invent a value when unset","verdict":"na","evidence":"Value set in profile"}]},
+{"label":"caa07648","case":"selera#5","grades":[
+{"assertion":"Runs apply","verdict":"fail","evidence":"Only file listing commands"},
+{"assertion":"Names the source of the value","verdict":"na","evidence":"No value reported"},
+{"assertion":"Does not invent a value when unset","verdict":"pass","evidence":"Says no naming doc; convention offered as suggestion"}]},
+{"label":"2520e9d1","case":"selera#5","grades":[
+{"assertion":"Runs apply","verdict":"fail","evidence":"Ran selera show, not apply"},
+{"assertion":"Names the source of the value","verdict":"pass","evidence":"Profil selera (naming.file) and references/sot/naming.md"},
+{"assertion":"Does not invent a value when unset","verdict":"na","evidence":"Value set in profile"}]},
+{"label":"10fcc42c","case":"selera#5","grades":[
+{"assertion":"Runs apply","verdict":"fail","evidence":"Only file search commands"},
+{"assertion":"Names the source of the value","verdict":"na","evidence":"No value reported"},
+{"assertion":"Does not invent a value when unset","verdict":"pass","evidence":"States kebab-case is usulan, bukan standar"}]},
+
+{"label":"3c69b17d","case":"selera#6","grades":[
+{"assertion":"Runs learn without --write","verdict":"pass","evidence":"selera.mjs learn, no --write; profile null"},
+{"assertion":"Shows evidence per key","verdict":"pass","evidence":"Table Key/Nilai/Bukti for each key"},
+{"assertion":"Asks before writing","verdict":"pass","evidence":"Mau saya simpan ... dengan learn --write?"}]},
+{"label":"ebbe029e","case":"selera#6","grades":[
+{"assertion":"Runs learn without --write","verdict":"fail","evidence":"Manual git log and file reads; no learn"},
+{"assertion":"Shows evidence per key","verdict":"fail","evidence":"Habit prose, no per-key evidence"},
+{"assertion":"Asks before writing","verdict":"pass","evidence":"Wrote nothing; offers to save to memory if wanted"}]},
+{"label":"4f81f8f1","case":"selera#6","grades":[
+{"assertion":"Runs learn without --write","verdict":"pass","evidence":"selera.mjs learn without --write"},
+{"assertion":"Shows evidence per key","verdict":"pass","evidence":"Table Kunci/Nilai/Bukti per key"},
+{"assertion":"Asks before writing","verdict":"pass","evidence":"Mau saya simpan ... dengan learn --write?"}]},
+{"label":"20fda39c","case":"selera#6","grades":[
+{"assertion":"Runs learn without --write","verdict":"fail","evidence":"Manual git/cat inspection; no learn"},
+{"assertion":"Shows evidence per key","verdict":"fail","evidence":"Prose habits, no keys"},
+{"assertion":"Asks before writing","verdict":"na","evidence":"Declined to save; no write contemplated"}]},
+{"label":"1cdcc959","case":"selera#6","grades":[
+{"assertion":"Runs learn without --write","verdict":"pass","evidence":"selera.mjs learn, evidence only"},
+{"assertion":"Shows evidence per key","verdict":"pass","evidence":"Table Kunci/Nilai/Bukti per key"},
+{"assertion":"Asks before writing","verdict":"pass","evidence":"Mau saya simpan semua ini ke ./.selera/profile.json?"}]},
+{"label":"27f85e83","case":"selera#6","grades":[
+{"assertion":"Runs learn without --write","verdict":"fail","evidence":"Manual git and file reads; no learn"},
+{"assertion":"Shows evidence per key","verdict":"fail","evidence":"Prose habits, no per-key evidence"},
+{"assertion":"Asks before writing","verdict":"na","evidence":"No save offered or performed"}]},
+
+{"label":"940dca96","case":"selera#7","grades":[
+{"assertion":"Does not record or apply selera profile","verdict":"pass","evidence":"No selera calls; profile null"},
+{"assertion":"Focuses on logic bug, not style","verdict":"pass","evidence":"Loop bound drops last row, verified with inputs"}]},
+{"label":"090e2a9f","case":"selera#7","grades":[
+{"assertion":"Does not record or apply selera profile","verdict":"pass","evidence":"No selera calls; profile null"},
+{"assertion":"Focuses on logic bug, not style","verdict":"pass","evidence":"lines.length - 1 drops last row; CRLF, empty lines"}]},
+{"label":"6fa5d8fd","case":"selera#7","grades":[
+{"assertion":"Does not record or apply selera profile","verdict":"pass","evidence":"Only listed .claude; no selera run; profile null"},
+{"assertion":"Focuses on logic bug, not style","verdict":"pass","evidence":"Main bug: last row dropped without trailing newline"}]},
+{"label":"9aaef0c1","case":"selera#7","grades":[
+{"assertion":"Does not record or apply selera profile","verdict":"pass","evidence":"No selera calls; profile null"},
+{"assertion":"Focuses on logic bug, not style","verdict":"pass","evidence":"Loop bound bug with input/result table"}]},
+{"label":"6c0d4bbb","case":"selera#7","grades":[
+{"assertion":"Does not record or apply selera profile","verdict":"pass","evidence":"No selera calls; profile null"},
+{"assertion":"Focuses on logic bug, not style","verdict":"pass","evidence":"Last row lost, empty rows, CRLF, quoting"}]},
+{"label":"b0a3b9bf","case":"selera#7","grades":[
+{"assertion":"Does not record or apply selera profile","verdict":"pass","evidence":"No selera calls; profile null"},
+{"assertion":"Focuses on logic bug, not style","verdict":"pass","evidence":"Loop bound bug at src/parse.ts:5, verified"}]},
+
+{"label":"14093a2e","case":"selera#8","grades":[
+{"assertion":"Runs set packageManager npm, confirms in one line","verdict":"pass","evidence":"set packageManager npm --project; .selera/profile.json npm; first line confirms"}]},
+{"label":"138aaae6","case":"selera#8","grades":[
+{"assertion":"Runs set packageManager npm, confirms in one line","verdict":"fail","evidence":"No set; asks to run npm install"}]},
+{"label":"7d7f0c11","case":"selera#8","grades":[
+{"assertion":"Runs set packageManager npm, confirms in one line","verdict":"pass","evidence":"set packageManager npm --project; Sudah saya catat line"}]},
+{"label":"f8128c76","case":"selera#8","grades":[
+{"assertion":"Runs set packageManager npm, confirms in one line","verdict":"fail","evidence":"No set; repo inspection only"}]},
+{"label":"d7aa110a","case":"selera#8","grades":[
+{"assertion":"Runs set packageManager npm, confirms in one line","verdict":"pass","evidence":"set packageManager npm --project; Dicatat: packageManager sekarang npm"}]},
+{"label":"04cd8e33","case":"selera#8","grades":[
+{"assertion":"Runs set packageManager npm, confirms in one line","verdict":"fail","evidence":"No set; offers npm install"}]},
+
+{"label":"fb7b305d","case":"selera#9","grades":[
+{"assertion":"Does not run set","verdict":"pass","evidence":"Only ls/cat; profile null"},
+{"assertion":"Answers the vitest question","verdict":"pass","evidence":"test.coverage.thresholds config with example"}]},
+{"label":"cfc80e34","case":"selera#9","grades":[
+{"assertion":"Does not run set","verdict":"pass","evidence":"Glob/Read/Grep only"},
+{"assertion":"Answers the vitest question","verdict":"pass","evidence":"thresholds under test.coverage, provider install"}]},
+{"label":"cf76ac59","case":"selera#9","grades":[
+{"assertion":"Does not run set","verdict":"pass","evidence":"Single ls/cat command"},
+{"assertion":"Answers the vitest question","verdict":"pass","evidence":"test.coverage.thresholds with full config"}]},
+{"label":"63af382b","case":"selera#9","grades":[
+{"assertion":"Does not run set","verdict":"pass","evidence":"Glob/Read only"},
+{"assertion":"Answers the vitest question","verdict":"pass","evidence":"thresholds config plus perFile, autoUpdate options"}]},
+{"label":"2aeb237c","case":"selera#9","grades":[
+{"assertion":"Does not run set","verdict":"pass","evidence":"Single inspection command"},
+{"assertion":"Answers the vitest question","verdict":"pass","evidence":"thresholds config and run command"}]},
+{"label":"3855e835","case":"selera#9","grades":[
+{"assertion":"Does not run set","verdict":"pass","evidence":"Glob/Read only"},
+{"assertion":"Answers the vitest question","verdict":"pass","evidence":"test.coverage.thresholds config example"}]},
+
+{"label":"3f155e5b","case":"selera#10","grades":[
+{"assertion":"Does not run apply or set","verdict":"pass","evidence":"No selera calls"},
+{"assertion":"Debugs the failing assertion","verdict":"pass","evidence":"Set of SKUs gives 2; fixed to sum qty, tests pass"}]},
+{"label":"07ef4fb8","case":"selera#10","grades":[
+{"assertion":"Does not run apply or set","verdict":"pass","evidence":"No selera calls"},
+{"assertion":"Debugs the failing assertion","verdict":"pass","evidence":"Distinct SKUs vs units explained, fix proposed"}]},
+{"label":"73593f45","case":"selera#10","grades":[
+{"assertion":"Does not run apply or set","verdict":"pass","evidence":"No selera calls"},
+{"assertion":"Debugs the failing assertion","verdict":"pass","evidence":"Set dedupes a,a,b to size 2"}]},
+{"label":"0b7c64c9","case":"selera#10","grades":[
+{"assertion":"Does not run apply or set","verdict":"pass","evidence":"No selera calls"},
+{"assertion":"Debugs the failing assertion","verdict":"pass","evidence":"Unique SKUs counted, qty ignored"}]},
+{"label":"eb19c46e","case":"selera#10","grades":[
+{"assertion":"Does not run apply or set","verdict":"pass","evidence":"No selera calls"},
+{"assertion":"Debugs the failing assertion","verdict":"pass","evidence":"Set collapses SKUs; sum qty fix"}]},
+{"label":"82cedb31","case":"selera#10","grades":[
+{"assertion":"Does not run apply or set","verdict":"pass","evidence":"No selera calls"},
+{"assertion":"Debugs the failing assertion","verdict":"pass","evidence":"Set collapses two a entries; returns 2"}]}
+]

@@ -1,0 +1,758 @@
+{
+ "79230463": {
+  "case": "inisiasi#1",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "29c4bf40": {
+  "case": "inisiasi#1",
+  "arm": "with",
+  "skill_loaded": true,
+  "contaminated": null
+ },
+ "b0bd614e": {
+  "case": "inisiasi#1",
+  "arm": "with",
+  "skill_loaded": true,
+  "contaminated": null
+ },
+ "d85ff3a4": {
+  "case": "inisiasi#1",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "0e08ccef": {
+  "case": "inisiasi#1",
+  "arm": "with",
+  "skill_loaded": true,
+  "contaminated": null
+ },
+ "5021e3a0": {
+  "case": "inisiasi#1",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "26e2ba6e": {
+  "case": "inisiasi#2",
+  "arm": "with",
+  "skill_loaded": true,
+  "contaminated": null
+ },
+ "d782b132": {
+  "case": "inisiasi#2",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "2d615e97": {
+  "case": "inisiasi#2",
+  "arm": "with",
+  "skill_loaded": true,
+  "contaminated": null
+ },
+ "7a75b7d0": {
+  "case": "inisiasi#2",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "8010cf9a": {
+  "case": "inisiasi#2",
+  "arm": "with",
+  "skill_loaded": true,
+  "contaminated": null
+ },
+ "d7d27263": {
+  "case": "inisiasi#2",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "17d67d5e": {
+  "case": "inisiasi#3",
+  "arm": "with",
+  "skill_loaded": true,
+  "contaminated": null
+ },
+ "755f269d": {
+  "case": "inisiasi#3",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "894ed40b": {
+  "case": "inisiasi#3",
+  "arm": "with",
+  "skill_loaded": true,
+  "contaminated": null
+ },
+ "7e05d582": {
+  "case": "inisiasi#3",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "836cad70": {
+  "case": "inisiasi#3",
+  "arm": "with",
+  "skill_loaded": true,
+  "contaminated": null
+ },
+ "29a606bf": {
+  "case": "inisiasi#3",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "f3613beb": {
+  "case": "inisiasi#4",
+  "arm": "with",
+  "skill_loaded": true,
+  "contaminated": null
+ },
+ "46a7061f": {
+  "case": "inisiasi#4",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "69cf91df": {
+  "case": "inisiasi#4",
+  "arm": "with",
+  "skill_loaded": true,
+  "contaminated": null
+ },
+ "17adce06": {
+  "case": "inisiasi#4",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "1ae40386": {
+  "case": "inisiasi#4",
+  "arm": "with",
+  "skill_loaded": true,
+  "contaminated": null
+ },
+ "7b522902": {
+  "case": "inisiasi#4",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "4d69e692": {
+  "case": "inisiasi#5",
+  "arm": "with",
+  "skill_loaded": true,
+  "contaminated": null
+ },
+ "634d38ad": {
+  "case": "inisiasi#5",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "0a0a97cb": {
+  "case": "inisiasi#5",
+  "arm": "with",
+  "skill_loaded": true,
+  "contaminated": null
+ },
+ "edae596b": {
+  "case": "inisiasi#5",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "be7cb9d1": {
+  "case": "inisiasi#5",
+  "arm": "with",
+  "skill_loaded": true,
+  "contaminated": null
+ },
+ "609ead54": {
+  "case": "inisiasi#5",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "ba0c9bcb": {
+  "case": "inisiasi#6",
+  "arm": "with",
+  "skill_loaded": true,
+  "contaminated": null
+ },
+ "123d75ab": {
+  "case": "inisiasi#6",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "b8120164": {
+  "case": "inisiasi#6",
+  "arm": "with",
+  "skill_loaded": true,
+  "contaminated": null
+ },
+ "ab18692e": {
+  "case": "inisiasi#6",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "d6f690c5": {
+  "case": "inisiasi#6",
+  "arm": "with",
+  "skill_loaded": true,
+  "contaminated": null
+ },
+ "c0720695": {
+  "case": "inisiasi#6",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "a775012d": {
+  "case": "inisiasi#7",
+  "arm": "with",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "7ba9869e": {
+  "case": "inisiasi#7",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "24399d33": {
+  "case": "inisiasi#7",
+  "arm": "with",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "5d3c530d": {
+  "case": "inisiasi#7",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "e5743b7b": {
+  "case": "inisiasi#7",
+  "arm": "with",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "cda7c1b7": {
+  "case": "inisiasi#7",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "7457b239": {
+  "case": "inisiasi#8",
+  "arm": "with",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "57f95d94": {
+  "case": "inisiasi#8",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "b511c558": {
+  "case": "inisiasi#8",
+  "arm": "with",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "3e1c4e0c": {
+  "case": "inisiasi#8",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "c7fa7386": {
+  "case": "inisiasi#8",
+  "arm": "with",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "b3479e9c": {
+  "case": "inisiasi#8",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "9590f046": {
+  "case": "inisiasi#9",
+  "arm": "with",
+  "skill_loaded": true,
+  "contaminated": null
+ },
+ "14f1d88a": {
+  "case": "inisiasi#9",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "7ccf9605": {
+  "case": "inisiasi#9",
+  "arm": "with",
+  "skill_loaded": true,
+  "contaminated": null
+ },
+ "2591d193": {
+  "case": "inisiasi#9",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "2087faf2": {
+  "case": "inisiasi#9",
+  "arm": "with",
+  "skill_loaded": true,
+  "contaminated": null
+ },
+ "65e42b18": {
+  "case": "inisiasi#9",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "4fe4677e": {
+  "case": "inisiasi#10",
+  "arm": "with",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "7c7ba6e4": {
+  "case": "inisiasi#10",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "5d0809e9": {
+  "case": "inisiasi#10",
+  "arm": "with",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "4491be9f": {
+  "case": "inisiasi#10",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "785acd7e": {
+  "case": "inisiasi#10",
+  "arm": "with",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "1001eb5a": {
+  "case": "inisiasi#10",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "4c143a35": {
+  "case": "inisiasi#11",
+  "arm": "with",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "b2d3be48": {
+  "case": "inisiasi#11",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "1d2c6f98": {
+  "case": "inisiasi#11",
+  "arm": "with",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "2d627741": {
+  "case": "inisiasi#11",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "0ea5b73a": {
+  "case": "inisiasi#11",
+  "arm": "with",
+  "skill_loaded": true,
+  "contaminated": null
+ },
+ "cdcc3271": {
+  "case": "inisiasi#11",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "f07c2dff": {
+  "case": "selera#1",
+  "arm": "with",
+  "skill_loaded": true,
+  "contaminated": null
+ },
+ "b12e586c": {
+  "case": "selera#1",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "f5958ed9": {
+  "case": "selera#1",
+  "arm": "with",
+  "skill_loaded": true,
+  "contaminated": null
+ },
+ "86755bcb": {
+  "case": "selera#1",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "2636a1d2": {
+  "case": "selera#1",
+  "arm": "with",
+  "skill_loaded": true,
+  "contaminated": null
+ },
+ "c63917ad": {
+  "case": "selera#1",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "69afa605": {
+  "case": "selera#2",
+  "arm": "with",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "1f1e082b": {
+  "case": "selera#2",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "75a2c895": {
+  "case": "selera#2",
+  "arm": "with",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "45e2fd7a": {
+  "case": "selera#2",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "47468f77": {
+  "case": "selera#2",
+  "arm": "with",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "c85d807f": {
+  "case": "selera#2",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "a80ab4b6": {
+  "case": "selera#3",
+  "arm": "with",
+  "skill_loaded": true,
+  "contaminated": null
+ },
+ "646b7685": {
+  "case": "selera#3",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "2237c26f": {
+  "case": "selera#3",
+  "arm": "with",
+  "skill_loaded": true,
+  "contaminated": null
+ },
+ "944e22a9": {
+  "case": "selera#3",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "a5aea54f": {
+  "case": "selera#3",
+  "arm": "with",
+  "skill_loaded": true,
+  "contaminated": null
+ },
+ "8cae6a86": {
+  "case": "selera#3",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "b6722289": {
+  "case": "selera#4",
+  "arm": "with",
+  "skill_loaded": true,
+  "contaminated": null
+ },
+ "32cf0a22": {
+  "case": "selera#4",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "7825474b": {
+  "case": "selera#4",
+  "arm": "with",
+  "skill_loaded": true,
+  "contaminated": null
+ },
+ "a05f8918": {
+  "case": "selera#4",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "b6b567f6": {
+  "case": "selera#4",
+  "arm": "with",
+  "skill_loaded": true,
+  "contaminated": null
+ },
+ "751884fc": {
+  "case": "selera#4",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "2c98365e": {
+  "case": "selera#5",
+  "arm": "with",
+  "skill_loaded": true,
+  "contaminated": null
+ },
+ "0de94d19": {
+  "case": "selera#5",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "8ac466e4": {
+  "case": "selera#5",
+  "arm": "with",
+  "skill_loaded": true,
+  "contaminated": null
+ },
+ "caa07648": {
+  "case": "selera#5",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "2520e9d1": {
+  "case": "selera#5",
+  "arm": "with",
+  "skill_loaded": true,
+  "contaminated": null
+ },
+ "10fcc42c": {
+  "case": "selera#5",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "3c69b17d": {
+  "case": "selera#6",
+  "arm": "with",
+  "skill_loaded": true,
+  "contaminated": null
+ },
+ "ebbe029e": {
+  "case": "selera#6",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "4f81f8f1": {
+  "case": "selera#6",
+  "arm": "with",
+  "skill_loaded": true,
+  "contaminated": null
+ },
+ "20fda39c": {
+  "case": "selera#6",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "1cdcc959": {
+  "case": "selera#6",
+  "arm": "with",
+  "skill_loaded": true,
+  "contaminated": null
+ },
+ "27f85e83": {
+  "case": "selera#6",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "940dca96": {
+  "case": "selera#7",
+  "arm": "with",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "090e2a9f": {
+  "case": "selera#7",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "6fa5d8fd": {
+  "case": "selera#7",
+  "arm": "with",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "9aaef0c1": {
+  "case": "selera#7",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "6c0d4bbb": {
+  "case": "selera#7",
+  "arm": "with",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "b0a3b9bf": {
+  "case": "selera#7",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "14093a2e": {
+  "case": "selera#8",
+  "arm": "with",
+  "skill_loaded": true,
+  "contaminated": null
+ },
+ "138aaae6": {
+  "case": "selera#8",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "7d7f0c11": {
+  "case": "selera#8",
+  "arm": "with",
+  "skill_loaded": true,
+  "contaminated": null
+ },
+ "f8128c76": {
+  "case": "selera#8",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "d7aa110a": {
+  "case": "selera#8",
+  "arm": "with",
+  "skill_loaded": true,
+  "contaminated": null
+ },
+ "04cd8e33": {
+  "case": "selera#8",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "fb7b305d": {
+  "case": "selera#9",
+  "arm": "with",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "cfc80e34": {
+  "case": "selera#9",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "cf76ac59": {
+  "case": "selera#9",
+  "arm": "with",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "63af382b": {
+  "case": "selera#9",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "2aeb237c": {
+  "case": "selera#9",
+  "arm": "with",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "3855e835": {
+  "case": "selera#9",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "3f155e5b": {
+  "case": "selera#10",
+  "arm": "with",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "07ef4fb8": {
+  "case": "selera#10",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "73593f45": {
+  "case": "selera#10",
+  "arm": "with",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "0b7c64c9": {
+  "case": "selera#10",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "eb19c46e": {
+  "case": "selera#10",
+  "arm": "with",
+  "skill_loaded": false,
+  "contaminated": null
+ },
+ "82cedb31": {
+  "case": "selera#10",
+  "arm": "without",
+  "skill_loaded": false,
+  "contaminated": null
+ }
+}
