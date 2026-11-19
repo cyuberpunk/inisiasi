@@ -1,6 +1,7 @@
 # Performance problems
 
-> Last verified: 2026-11-16
+> Last verified: 2026-11-19
+> Checked on the web 2026-11-19: INP threshold.
 
 Scope: slowness and resource exhaustion. Target numbers: [performance.md](performance.md).
 

@@ -1,6 +1,7 @@
 # Reliability, DR, load testing, cost
 
-> Last verified: 2026-11-16
+> Last verified: 2026-11-19
+> Checked on the web 2026-11-19: k6, Locust, ghz, Vegeta, Toxiproxy, Chaos Mesh, Litmus, AWS FIS, Azure Chaos Studio, Chaos Monkey, R2 egress.
 
 Scope: backups, disaster recovery, load testing, chaos, cost.
 

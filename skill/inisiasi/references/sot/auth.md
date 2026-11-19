@@ -1,6 +1,7 @@
 # Auth
 
-> Last verified: 2026-11-16
+> Last verified: 2026-11-19
+> Checked on the web 2026-11-19: Better Auth, Auth.js, FastAPI Users, Keycloak, Ory, Authlib, Clerk status and advisories, RFC 10017, RFC 9700, RFC 9207.
 
 Scope: choosing auth and session practices. Password hashing and OWASP: [security.md](security.md).
 
@@ -8,7 +9,7 @@ Scope: choosing auth and session practices. Password hashing and OWASP: [securit
 
 | Situation | Use |
 |---------|-----|
-| TypeScript app | Better Auth (self-hosted library, passkey and organization plugins) |
+| TypeScript app | Better Auth (self-hosted MIT library, owned by Vercel since Jul 2026; passkey and organization plugins) |
 | Managed, with ready-made UI | Clerk |
 | B2B SaaS, SSO/SAML/SCIM | WorkOS AuthKit |
 | Stack already on Supabase | Supabase Auth |
@@ -24,6 +25,7 @@ Scope: choosing auth and session practices. Password hashing and OWASP: [securit
 - Rate limit login and other sensitive endpoints. Responses must not reveal whether an account exists.
 - Auth in centralized middleware/guards. Authorization is deny by default (RBAC, or ABAC if needed).
 - CSRF tokens for cookie-based flows. Audit logs for sensitive actions.
+- Watch your auth library's GitHub security advisories and patch within days. Better Auth, Authlib, Keycloak and Clerk all shipped critical or high fixes in 2026.
 
 ## OAuth 2.0 and OpenID Connect
 
