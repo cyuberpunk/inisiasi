@@ -34,32 +34,47 @@ docs/PLAN.md  ──▶  inisiasi  ──▶  docs/ARCHITECTURE.md
 
 ## Quick start
 
-Requires Node 20 or newer and pnpm.
+Requires Node 20 or newer.
+
+> **Not on npm yet.** The `npx` commands in this section work once the package is published. Until then, use [From a checkout](#from-a-checkout).
+
+### With npx
+
+Install the two skills:
 
 ```sh
-cd mcp
-pnpm install
-pnpm test          # validates the catalog, builds, runs every tool
-```
-
-Install the skills by linking them into your agent's skills folder:
-
-```sh
-ln -s "$PWD/../skill/inisiasi" ~/.agents/skills/inisiasi
-ln -s "$PWD/../skill/selera"   ~/.agents/skills/selera
+npx skills add cyuberpunk/inisiasi --full-depth -g -s inisiasi
+npx skills add cyuberpunk/inisiasi --full-depth -g -s selera
 ```
 
 Register the MCP server (Claude Code shown, others below):
 
 ```sh
-claude mcp add inisiasi --scope user -- node "$PWD/dist/server.js"
+claude mcp add inisiasi --scope user -- npx -y inisiasi-mcp
 ```
 
-Then open an empty repo and tell your agent: `inisiasi`.
+The package carries the catalog and the 55 reference files, so there is nothing else to download. Then open an empty repo and tell your agent: `inisiasi`.
+
+### From a checkout
+
+Also requires pnpm.
+
+```sh
+git clone https://github.com/cyuberpunk/inisiasi.git
+cd inisiasi/mcp
+pnpm install
+pnpm test          # validates the catalog, builds, runs every tool
+
+ln -s "$PWD/../skill/inisiasi" ~/.agents/skills/inisiasi
+ln -s "$PWD/../skill/selera"   ~/.agents/skills/selera
+claude mcp add inisiasi --scope user -- node "$PWD/dist/server.js"
+```
 
 ## Examples
 
 **1. Kick off a project.** Write the goals in `docs/PLAN.md`, then say `inisiasi`. The agent proposes a stack and waits. Say `go` and it writes `docs/ARCHITECTURE.md`, `docs/TASKS.md` (5 to 12 ordered tasks, the first one a risk spike) and a worklog entry. Existing docs are backed up first.
+
+The commands below call the CLI as `node mcp/dist/cli.js` from a checkout. From npm, run `npx -p inisiasi-mcp inisiasi <command>` instead.
 
 **2. Find skills for an idea.** No agent needed.
 
@@ -116,7 +131,7 @@ The defaults lean toward their author: TypeScript with Vite+, native Apple platf
 
 ## Register in other agents
 
-Replace `/absolute/path/to/inisiasi` with your checkout.
+The blocks use a checkout. Replace `/absolute/path/to/inisiasi` with yours. From npm, use `npx` as the command and `["-y", "inisiasi-mcp"]` as the arguments.
 
 <details>
 <summary>Codex</summary>

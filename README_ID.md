@@ -34,32 +34,47 @@ docs/PLAN.md  ──▶  inisiasi  ──▶  docs/ARCHITECTURE.md
 
 ## Mulai cepat
 
-Butuh Node 20 ke atas dan pnpm.
+Butuh Node 20 ke atas.
+
+> **Belum ada di npm.** Perintah `npx` di bagian ini baru berfungsi setelah paketnya dipublikasikan. Sampai saat itu, pakai [Dari checkout](#dari-checkout).
+
+### Dengan npx
+
+Pasang dua skill:
 
 ```sh
-cd mcp
-pnpm install
-pnpm test          # validasi katalog, build, jalankan setiap tool
-```
-
-Pasang skill dengan menautkannya ke folder skill agent kamu:
-
-```sh
-ln -s "$PWD/../skill/inisiasi" ~/.agents/skills/inisiasi
-ln -s "$PWD/../skill/selera"   ~/.agents/skills/selera
+npx skills add cyuberpunk/inisiasi --full-depth -g -s inisiasi
+npx skills add cyuberpunk/inisiasi --full-depth -g -s selera
 ```
 
 Daftarkan MCP server (contoh Claude Code, yang lain di bawah):
 
 ```sh
-claude mcp add inisiasi --scope user -- node "$PWD/dist/server.js"
+claude mcp add inisiasi --scope user -- npx -y inisiasi-mcp
 ```
 
-Lalu buka repo kosong dan bilang ke agent kamu: `inisiasi`.
+Paketnya membawa katalog dan 55 file referensi, jadi tidak ada lagi yang perlu diunduh. Lalu buka repo kosong dan bilang ke agent kamu: `inisiasi`.
+
+### Dari checkout
+
+Butuh pnpm juga.
+
+```sh
+git clone https://github.com/cyuberpunk/inisiasi.git
+cd inisiasi/mcp
+pnpm install
+pnpm test          # validasi katalog, build, jalankan setiap tool
+
+ln -s "$PWD/../skill/inisiasi" ~/.agents/skills/inisiasi
+ln -s "$PWD/../skill/selera"   ~/.agents/skills/selera
+claude mcp add inisiasi --scope user -- node "$PWD/dist/server.js"
+```
 
 ## Contoh
 
 **1. Memulai proyek.** Tulis tujuan di `docs/PLAN.md`, lalu ucapkan `inisiasi`. Agent mengusulkan stack dan menunggu. Bilang `go`, dan ia menulis `docs/ARCHITECTURE.md`, `docs/TASKS.md` (5 sampai 12 tugas berurutan, yang pertama berupa spike risiko), dan satu entri worklog. Dokumen lama dicadangkan dulu.
+
+Perintah di bawah memanggil CLI sebagai `node mcp/dist/cli.js` dari checkout. Dari npm, jalankan `npx -p inisiasi-mcp inisiasi <perintah>`.
 
 **2. Mencari skill untuk sebuah ide.** Tanpa agent.
 
@@ -116,7 +131,7 @@ Defaultnya condong ke penulisnya: TypeScript dengan Vite+, platform Apple native
 
 ## Daftar di agent lain
 
-Ganti `/absolute/path/to/inisiasi` dengan lokasi checkout kamu.
+Blok di bawah memakai checkout. Ganti `/absolute/path/to/inisiasi` dengan milikmu. Dari npm, pakai `npx` sebagai command dan `["-y", "inisiasi-mcp"]` sebagai argumen.
 
 <details>
 <summary>Codex</summary>
