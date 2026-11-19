@@ -1,6 +1,7 @@
 # API
 
-> Last verified: 2026-11-16
+> Last verified: 2026-11-19
+> Checked on the web 2026-11-19: OpenAPI editions, RFC 9457, RFC 9745, RFC 8594, Idempotency-Key draft codes, tool and repo status (tRPC, oRPC, Scalar, Yoga, gqlgen, Connect, Buf, gateways).
 
 Scope: API style, REST, errors, pagination, versioning, idempotency, GraphQL, gRPC, gateways. Rate limits and webhooks: [api-ops.md](api-ops.md).
 
@@ -10,7 +11,7 @@ Scope: API style, REST, errors, pagination, versioning, idempotency, GraphQL, gR
 |---------|-------|
 | TS fullstack, React/Next/TanStack/Expo | tRPC |
 | TS + need public OpenAPI, or Vue/Svelte/Solid/Astro | oRPC |
-| Public API or multi-language clients | REST + OpenAPI 3.1 |
+| Public API or multi-language clients | REST + OpenAPI 3.1 or 3.2 |
 | Polyglot internal services, Protobuf | gRPC. Connect RPC if there are web clients |
 | Many clients with different data shapes, nested data | GraphQL |
 | Lightweight edge / Workers | Hono RPC |

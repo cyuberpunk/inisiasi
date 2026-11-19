@@ -1,8 +1,9 @@
 # UI catalog: icons, motion, loading, charts, diagrams, sound
 
-> Last verified: 2026-11-17
+> Last verified: 2026-11-19
+> Checked on the web 2026-11-19: npm versions of every pinned package, shadcn Base UI default, COSS UI rename, Melt UI npm status, Kumo, cuelume. Not checked: repo status of most small kits (Use when and Avoid lists), Park UI package status.
 
-Scope: UI layers outside [frontend.md](frontend.md) and [mobile.md](mobile.md). Generated from a catalog of 115 libraries (UI kits, icons, motion, loading, charts, diagrams, sound). One default per layer, the rest are conditional. Versions checked on the npm registry 2026-11-17. Scores per library: [ui-catalog-scores.md](ui-catalog-scores.md).
+Scope: UI layers outside [frontend.md](frontend.md) and [mobile.md](mobile.md). Generated from a catalog of 115 libraries (UI kits, icons, motion, loading, charts, diagrams, sound). One default per layer, the rest are conditional. Versions checked on the npm registry 2026-11-19. Scores per library: [ui-catalog-scores.md](ui-catalog-scores.md).
 
 ## Defaults
 
@@ -12,7 +13,7 @@ Scope: UI layers outside [frontend.md](frontend.md) and [mobile.md](mobile.md). 
 | Cross-framework headless | `@ark-ui/react` 5.40 | Park UI if using Panda CSS |
 | Svelte | `bits-ui` 2.21 | none |
 | Chat and AI | `assistant-ui` for threads, AI Elements for widgets | CopilotKit only if you need a full in-app agent |
-| Icons | `lucide-react` 1.74 | `@tabler/icons-react` for dense dashboards, `@hugeicons/react` for rounded, `iconoir-react` for thin strokes |
+| Icons | `lucide-react` 1.76 | `@tabler/icons-react` for dense dashboards, `@hugeicons/react` for rounded, `iconoir-react` for thin strokes |
 | Brand logos | `simple-icons` 16.38 | do not use UI icons for logos |
 | Animated icons | Heroicons Animated | Animate Icons; not for toolbars or dense lists |
 | Motion | CSS and View Transitions (unchanged) | `motion` 14.14 for springs, layout, drag; `gsap` 3.15 only for complex timelines or scroll |
@@ -35,7 +36,7 @@ Scope: UI layers outside [frontend.md](frontend.md) and [mobile.md](mobile.md). 
 
 ## Avoid
 
-- Melt UI. Not on npm, use Bits UI.
+- Melt UI. Old `@melt-ui/svelte` has no release since 2025-03, the Svelte 5 rewrite `melt` is still 0.x. Use Bits UI.
 - Chart.js for new React apps. Canvas-based, no tokens, a11y done by hand.
 - Heavy chart libraries (ECharts, Nivo, Reaviz, Unovis) in the initial bundle. Load them lazily per route.
 - Spinner packs (SpinKit, React Spinners, Soonish) as the default loading state. Skeletons are more honest.

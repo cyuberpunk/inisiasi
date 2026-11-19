@@ -1,13 +1,14 @@
 # Accessibility
 
-> Last verified: 2026-11-16
+> Last verified: 2026-11-19
+> Checked on the web 2026-11-19: WCAG 2.2 status and criteria levels, WCAG 3.0 draft status, European Accessibility Act date, ADA Title II dates, Indonesia standard.
 
 Scope: WCAG target, mandatory rules, tests. Applies to web and mobile.
 
 ## Defaults
 
 - Target: WCAG 2.2 AA. WCAG 3.0 is still a draft, do not use it as a target.
-- Legal triggers (check when relevant): European Accessibility Act (EU consumers, in force June 2025), ADA / Section 508 (US). Indonesia: no binding technical standard yet, still use WCAG 2.2.
+- Legal triggers (check when relevant): European Accessibility Act (EU consumers, applies since 28 June 2025), ADA Title II (US state and local government: WCAG 2.1 AA by 2027-04-26, smaller entities 2028-04-26), Section 508 (US federal). Indonesia: no binding technical standard yet, still use WCAG 2.2.
 - React components: Base UI, Radix, or React Aria.
 
 ## Mandatory rules

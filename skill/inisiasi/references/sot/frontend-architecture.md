@@ -1,6 +1,7 @@
 # Frontend architecture
 
-> Last verified: 2026-11-16
+> Last verified: 2026-11-19
+> Checked on the web 2026-11-19: WCAG 2.2 reference, Module Federation packages. Rest is design guidance, not checkable.
 
 Scope: FE decision rules and the system design checklist for ARCHITECTURE.md. Performance: [performance.md](performance.md).
 

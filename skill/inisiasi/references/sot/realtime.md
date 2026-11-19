@@ -1,6 +1,7 @@
 # Realtime
 
-> Last verified: 2026-11-16
+> Last verified: 2026-11-19
+> Checked on the web 2026-11-19: library and service status (coder/websocket, ws, Socket.io, Reverb, SignalR, TypedResults.ServerSentEvents, Yjs, Liveblocks, Electric, PartyKit, Convex, Supabase Realtime).
 
 Scope: SSE, WebSocket, pub/sub, collaboration.
 
@@ -13,7 +14,7 @@ Scope: SSE, WebSocket, pub/sub, collaboration.
 | Scaling across instances | Redis/Valkey pub/sub or NATS |
 | Backend already on Convex | Convex's built-in subscriptions |
 | Rooms at the edge | Cloudflare Durable Objects, PartyKit |
-| Syncing lists from Postgres | Electric (read path) |
+| Syncing lists from Postgres | Electric (read path), self-hosted. Electric Cloud is winding down |
 | Document collaboration, presence | Yjs + WebSocket, or Liveblocks |
 | Simple managed | Supabase Realtime, Firebase |
 

@@ -1,6 +1,7 @@
 # Rate limits and webhooks
 
-> Last verified: 2026-11-16
+> Last verified: 2026-11-19
+> Checked on the web 2026-11-19: RateLimit headers draft status, Standard Webhooks spec headers and signing, library status (rate-limiter-flexible, redis_rate, slowapi, Svix, Hookdeck).
 
 Scope: rate limiting, inbound and outbound webhooks.
 

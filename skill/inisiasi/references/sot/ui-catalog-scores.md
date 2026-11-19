@@ -1,5 +1,8 @@
 # UI catalog scores
 
+> Last verified: 2026-11-19
+> Checked on the web 2026-11-19: COSS UI (ex-Origin) rename, Base UI as shadcn default, Melt UI npm status, npm versions of default packages. Not checked: existence and repo status of most of the 115 kits, the scores themselves.
+
 > Generated 2026-11-17 from 115 catalog entries. Translated to English by hand on 2026-11-18. The generator (`mcp/curation/score-ui-catalog.mjs`) is no longer in the repo, so edit this file directly.
 
 Score = bundle weight (0-3) + framework neutrality (0-2) + usage evidence from the catalog (0-3) + adoption cost (0-2).
@@ -155,4 +158,4 @@ The Avoid list in [ui-catalog.md](ui-catalog.md) overrides any band here: those 
 | 5 | avoid | Inspira UI | Vue | Vue catalog |  |
 | 4.5 | avoid | Coded Visuals | React | 1,140+ variations |  |
 | 4.5 | avoid | Create UI | Figma | Figma + MCP |  |
-| 3 | avoid | Melt UI | Svelte | ~30+ builders | not on npm |
+| 3 | avoid | Melt UI | Svelte | ~30+ builders | old npm package stale since 2025-03, rewrite is 0.x |
