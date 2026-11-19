@@ -1,6 +1,7 @@
 # Agent graphs
 
-> Last verified: 2026-11-18
+> Last verified: 2026-11-19
+> Checked on the web 2026-11-19: LangGraph and LangGraph.js, pydantic-graph, Temporal, Restate, Cloudflare Workflows, Inngest.
 > Status: draft, pending owner review.
 
 Scope: graph engineering. Modeling an agent or a multi-step AI workflow as nodes, edges, and typed state. Loops inside a node: [agent-loops.md](agent-loops.md). Agent defaults: [agentic-engineering.md](agentic-engineering.md).
@@ -23,7 +24,7 @@ If none of these hold, a single loop with tools is simpler.
 | Branching | Edges decided by code on the state. A model picks a branch only through a typed enum | None |
 | Persistence | Checkpoint state after every node | Pure in-memory only for runs under a minute |
 | Model-driven flow | LangGraph (LangGraph.js in TS), as in [ai-llm.md](ai-llm.md) | Plain functions for a few fixed steps. Pydantic AI graphs (`pydantic-graph`) for small typed Python flows |
-| Business workflow, long pauses, durable steps | A durable workflow engine (Temporal, Restate, Cloudflare Workflows, Inngest) | None |
+| Business workflow, long pauses, durable steps | A durable workflow engine (Temporal, Restate, Cloudflare Workflows, Inngest) | Self-hosting under an open source license: Temporal (MIT). Restate server is BSL 1.1, Inngest server is SSPL (Apache 2.0 after 3 years) |
 | Visualization | Generate the diagram from the graph definition (Mermaid) | None |
 
 ## Rules

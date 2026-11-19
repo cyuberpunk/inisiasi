@@ -1,6 +1,7 @@
 # AI and LLMs
 
-> Last verified: 2026-11-16
+> Last verified: 2026-11-19
+> Checked on the web 2026-11-19: Vercel AI SDK, LiteLLM, LangGraph and LangChain, pgvector, promptfoo, structured output, prompt caching.
 
 Scope: using models in products: SDKs, streaming, structured output, RAG, cost, security, evals.
 
@@ -9,8 +10,8 @@ Scope: using models in products: SDKs, streaming, structured output, RAG, cost, 
 | Need | Use |
 |-----------|-----|
 | TS, multiple providers | Vercel AI SDK |
-| One provider only | The official SDK (OpenAI, Anthropic) |
-| Python, multiple providers | LiteLLM |
+| One provider only | The official SDK (OpenAI, Anthropic). OpenAI: Responses API, not the retired Assistants API |
+| Python, multiple providers | LiteLLM, pinned to an exact version with lockfile hashes. Its PyPI and Docker releases were hijacked twice in 2026 (1.82.7, 1.82.8, 1.107.0): never float latest |
 | Complex orchestration | LangGraph. LangChain only if the tool chain is already complicated |
 
 The last step is deliberate: most products only need one call plus streaming.

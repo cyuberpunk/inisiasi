@@ -1,6 +1,7 @@
 # Mechanisms
 
-> Last verified: 2026-11-18
+> Last verified: 2026-11-19
+> Checked on the web 2026-11-19: Postgres advisory lock functions, PgBouncer transaction pooling limits.
 > Status: draft, pending owner review.
 
 Scope: small, reusable mechanisms that make a system correct under retries, concurrency, and failure. Larger architecture patterns (outbox, saga, CQRS): [architecture.md](architecture.md). Failure catalog: [problems-critical.md](problems-critical.md).

@@ -1,6 +1,7 @@
 # Agent loops
 
-> Last verified: 2026-11-18
+> Last verified: 2026-11-19
+> Checked on the web 2026-11-19: Temporal, Restate, Cloudflare Workflows, Inngest.
 > Status: draft, pending owner review.
 
 Scope: loop engineering. The observe, decide, act, verify cycle an agent runs, and how it stops. Agent defaults: [agentic-engineering.md](agentic-engineering.md). Fixed multi-step flows: [agent-graphs.md](agent-graphs.md).
@@ -24,7 +25,7 @@ Scope: loop engineering. The observe, decide, act, verify cycle an agent runs, a
 | Retries | Bounded, with backoff and jitter, only for transient errors ([mechanisms.md](mechanisms.md)) | Never retry a validation or permission error unchanged |
 | State | Checkpoint after each verified step, so a crash resumes instead of restarting | Short loops (a few seconds) can restart |
 | Human in the loop | Pause and ask at risky actions and at an ambiguous fork | Fully autonomous only inside a sandbox with a predicate |
-| Long-running loops | A durable workflow engine (Temporal, Restate, Cloudflare Workflows, Inngest) | In-process loops for runs under a minute |
+| Long-running loops | A durable workflow engine (Temporal, Restate, Cloudflare Workflows, Inngest) | In-process loops for runs under a minute. Licenses: see agent-graphs.md |
 
 ## Patterns
 

@@ -1,6 +1,7 @@
 # Concurrency
 
-> Last verified: 2026-11-18
+> Last verified: 2026-11-19
+> Checked on the web 2026-11-19: Postgres isolation defaults and 40001, Python TaskGroup (3.11), p-limit, Java 21 virtual threads (JEP 444), Go errgroup and -race, Swift actors and task groups.
 > Status: draft, pending owner review.
 
 Scope: concurrency models per runtime, race conditions, isolation levels, cancellation. Locks, leases, retries as mechanisms: [mechanisms.md](mechanisms.md). Lost updates on money and stock: [problems-critical.md](problems-critical.md). Deadlocks: [problems-data.md](problems-data.md).
@@ -17,7 +18,7 @@ Concurrency is many tasks in progress at once (waiting on I/O). Parallelism is m
 | Go | Goroutines, channels | `context.Context` on every call for cancellation and deadlines. `errgroup` for fan-out. Run `-race` in tests |
 | Python | `asyncio` for I/O, processes for CPU | Do not mix blocking libraries into async code. `TaskGroup` for structured concurrency |
 | Swift | `async/await`, actors | Shared mutable state lives in an actor. Structured concurrency (`async let`, task groups) over detached tasks |
-| JVM, .NET | Threads, virtual threads (Java 21+), `async/await` (.NET) | Bounded thread pools, no unbounded executors |
+| JVM, .NET | Threads, virtual threads (Java 21+), `async/await` (.NET) | Bounded pools for platform threads. Virtual threads: one per task, never pooled, limit concurrency with a semaphore |
 
 ## Race conditions
 
@@ -34,7 +35,7 @@ Concurrency is many tasks in progress at once (waiting on I/O). Parallelism is m
 | Level | Use when |
 |-------|----------|
 | Read committed (default) | Most work, combined with atomic updates, constraints, and row locks |
-| Repeatable read | A report or export needs one consistent snapshot. Concurrent writers get `40001`, retry |
+| Repeatable read | A report or export needs one consistent snapshot. Read-only work never gets `40001`. Updating transactions do on a concurrent update, retry |
 | Serializable | Complex invariants across rows that are hard to lock explicitly. Retry on serialization failure (`40001`) |
 
 ## Cancellation and limits
