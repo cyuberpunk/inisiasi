@@ -185,7 +185,13 @@ function evidence(rec, c) {
   const files = {};
   for (const f of walk(rec.dir)) {
     const before = fx.files[f] ?? (f === ".selera/profile.json" && fx.projectProfile && rec.arm === "with" ? JSON.stringify(fx.projectProfile, null, 2) : undefined);
-    const now = readFileSync(join(rec.dir, f), "utf8");
+    // A run can leave a symlink to a directory (e.g. a build output link); record it instead of reading it.
+    let now;
+    try { now = readFileSync(join(rec.dir, f), "utf8"); } catch (e) {
+      if (e.code !== "EISDIR") throw e;
+      files[f] = { created: "[symlink to a directory]" };
+      continue;
+    }
     if (before !== now) files[f] = before === undefined ? { created: now.slice(0, 6000) } : { changed: now.slice(0, 6000) };
   }
   for (const f of Object.keys(fx.files)) if (!existsSync(join(rec.dir, f))) files[f] = { deleted: true };
