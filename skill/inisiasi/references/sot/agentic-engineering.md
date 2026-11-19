@@ -46,6 +46,29 @@ Checked on the web 2026-11-19: transports, TypeScript and Python SDK package nam
 - A mistake that repeats becomes a lint, a type, or a test, not another line of instructions.
 - Agents work in a branch or worktree. Pushing to shared branches, deploys, and data deletion need a human.
 
+## Agent-generated UI
+
+> Checked on the web 2026-11-20: AG-UI and A2UI protocol pages (copilotkit.ai/ag-ui-and-a2ui, a2ui.org), A2UI 1.0 spec, npm versions and weekly downloads, repo stars. Not checked: the A2A spec text and its governance.
+
+An agent can drive the UI, not just text. Four pieces, often confused because they sit at different layers.
+
+| Protocol | What it is | Maintainer | Version | npm/wk | Stars | Use when |
+|----------|------------|------------|---------|--------|-------|----------|
+| AG-UI | Two-way event stream between an agent backend and the app: messages, state, and UI surfaces one way, actions and function calls back | AG-UI protocol project (CopilotKit publishes the spec and the React client) | 1.0.5 (`@ag-ui/core`) | 7.30M | 20.6k | Any agent that must stream into a live frontend |
+| A2UI | Declarative spec for what to render, from a catalog your app controls, so the agent picks components and never writes code | Google, Apache-2.0, `a2ui-project/a2ui` | 1.0 spec, renderers 0.15 | 369k (`@a2ui/react`) | 17.7k | Agent chooses layout but the app owns every component and its styles |
+| A2A | Agent-to-agent protocol: task handoff between agents, not a UI protocol | `a2aproject` (donated to the Linux Foundation) | 1.3.0 (`@a2a-js/sdk`) | 8.10M | 26.6k | One agent delegates work to another agent, possibly another vendor |
+| MCP Apps | UI inside a tool result: an MCP server ships a component the client renders in a sandboxed frame | MCP project | 2.0.4 (`@modelcontextprotocol/ext-apps`) | 11.5M | 3.1k | A tool needs to show something richer than text |
+
+How they stack. The agent emits A2UI 1.0 messages such as `createSurface`. AG-UI streams them to the app as events. Your renderer (`@a2ui/react`, `@a2ui/lit`, `@a2ui/angular`, `a2ui_flutter`, SwiftUI, Compose) draws them from your catalog. The user acts, and actions and function calls flow back over AG-UI. A2UI 1.0 also names A2A and MCP as transports, and `callAgentFunction` lets the UI call an agent-side function and get a response.
+
+The spectrum. Controlled (you pre-build every component, the agent only fills data) → Declarative (A2UI: the agent picks from your catalog) → Open (MCP Apps and generated HTML: the agent ships markup). Move right only when the left cannot express the task. A generated HTML surface is untrusted content: sandbox it, no credentials, no navigation to arbitrary origins.
+
+- The app owns the component catalog and its tokens. An agent choosing components must not be able to invent styles or break the a11y rules in [accessibility.md](accessibility.md).
+- Validate every surface message against the spec before rendering. It arrives from a model.
+- Renderers are young: `@a2ui/react` 0.15 is pre-1.0. Pin it and read the changelog, and keep a fallback that renders the same data as text or a plain table.
+- AG-UI is the safe default today: it is a transport, so nothing about your components depends on a young renderer.
+- Do not adopt two of these at once. AG-UI plus A2UI is a stack. A2A alongside them is only for multi-agent handoff.
+
 ## Avoid
 
 - Multi-agent setups for a task one agent with tools can do.

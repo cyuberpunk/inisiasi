@@ -155,4 +155,7 @@ for (const d of ["laravel php ecommerce", "spring boot java api", "rails app in 
 assert.deepEqual(pick("react dashboard with vite").gaps, [], "covered stack reports no gap");
 assert.ok(!has(pick("deploy api on windows server"), "desktop.md"), "windows server is not a desktop app");
 assert.ok(has(pick("note taking app for windows"), "desktop.md"), "an app for windows routes to desktop.md");
+assert.ok(has(pick("tailwind css design system with style dictionary tokens"), "design-systems.md"), "tokens route to design-systems.md");
+assert.ok(has(pick("vue nuxt admin dashboard with primevue"), "ui-kits-frameworks.md"), "Vue kit routes to ui-kits-frameworks.md");
+assert.ok(has(pick("flutter app with shadcn_ui"), "ui-kits-native.md"), "Flutter kit routes to ui-kits-native.md");
 console.log("OK: platform routing and gaps");
