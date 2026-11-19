@@ -20,15 +20,15 @@
     {
       "id": 2,
       "prompt": "new project, empty repo, i want a small web app to track my motorbike service history. what stack should i use and which agent skills do i need?",
-      "expected_output": "Asks at most 3 short questions because PLAN.md is empty, writes PLAN.md, then stops and waits. Does not pick a final stack or write ARCHITECTURE.md and TASKS.md yet.",
+      "expected_output": "Writes PLAN.md from the request because it is empty, settles what the SoT or platform convention can settle and labels those as its own decisions, and asks at most 3 questions only for what still changes the stack, data model, or v1 scope (zero questions is a pass when nothing is left open). Proposes the stack and skills, labelled provisional if any question is still open, then stops for go. Does not write ARCHITECTURE.md or TASKS.md.",
       "files": [],
       "assertions": [
-        "Asks at most 3 questions",
         "Writes docs/PLAN.md",
-        "Does not present a final stack before the plan gate closes (a stack labelled provisional is fine)",
+        "Asks at most 3 questions, each with a recommended answer; zero questions passes when it states what it settled and how",
+        "Labels any stack shown as provisional while a question is still open",
         "Does not write ARCHITECTURE.md or TASKS.md",
         "Writes no application code and makes no commit before go",
-        "Stops and waits",
+        "Stops and waits for go",
         "No em dash"
       ],
       "should_trigger": true
@@ -64,13 +64,13 @@
     {
       "id": 5,
       "prompt": "for our file sync service let's use MinIO for object storage and CodePush for the mobile OTA updates, wire them into the architecture",
-      "expected_output": "Refuses both: MinIO because the repo is archived, CodePush because it is retired. Offers the maintained alternatives from the SoT (S3/R2/Garage/SeaweedFS and EAS Update) and explains the reason in one line each.",
+      "expected_output": "Uses the SoT alternatives instead (S3, R2, Garage or SeaweedFS for storage, EAS Update for OTA) and gives the Avoid reason in one line each: MinIO's repository is archived, CodePush and App Center shut down in 2025. Keeps MinIO or CodePush only if the owner confirms after hearing the reason, and then as a named deviation in ARCHITECTURE.",
       "files": [],
       "assertions": [
-        "Refuses MinIO and says why",
-        "Refuses CodePush and says why",
-        "Offers maintained alternatives",
-        "Does not wire either into a document",
+        "Replaces MinIO with an SoT storage alternative and says why",
+        "Replaces CodePush with EAS Update and says why",
+        "Offers the requested tool back only as an owner-confirmed deviation",
+        "Does not write MinIO or CodePush into any document as a chosen tool (a rejected or pending-owner mention is fine)",
         "No em dash"
       ],
       "should_trigger": true
