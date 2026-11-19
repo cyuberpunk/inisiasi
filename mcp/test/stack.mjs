@@ -162,4 +162,10 @@ assert.ok(has(pick("vue nuxt admin dashboard with primevue"), "ui-kits-framework
 assert.ok(has(pick("flutter app with shadcn_ui"), "ui-kits-native.md"), "Flutter kit routes to ui-kits-native.md");
 assert.ok(has(pick("dbt airflow pipeline into a data warehouse with metabase"), "data-analytics.md"), "analytics stack routes to data-analytics.md");
 assert.ok(has(pick("blog and docs site with a headless cms"), "frontend.md"), "CMS routes to frontend.md");
+assert.ok(has(pick("cvss epss scoring for a cve triage process"), "security.md"), "severity routes to security.md");
+assert.ok(has(pick("a/b test experiment with growthbook on the checkout funnel"), "engineering-practices.md"), "experiments route to engineering-practices.md");
+assert.ok(has(pick("webrtc video call with livekit and turn"), "realtime.md"), "voice and video route to realtime.md");
+assert.ok(has(pick("terraform opentofu state backend and drift plan"), "infrastructure.md"), "IaC routes to infrastructure.md");
+assert.ok(has(pick("tracking plan for event taxonomy"), "observability.md"), "tracking plan routes to observability.md");
+assert.ok(has(pick("generate a typed sdk from the openapi spec"), "api.md"), "SDK generation routes to api.md");
 console.log("OK: platform routing and gaps");

@@ -1,9 +1,9 @@
 # Data and analytics
 
 > Last verified: 2026-11-20
-> Checked on the web 2026-11-20: the dbt v1/v2 generation split from docs.getdbt.com, Airflow 3.4.0 release notes, PyPI versions for dbt-core 1.12.7, Airflow 3.4.0, Dagster 1.13.30, Prefect 3.9.4, DuckDB 2.0.0, Polars 2.1.0, dlt 1.32.0, Meltano 4.4.1, SQLMesh 0.236.4, Great Expectations 1.25.0, Soda 4.31.0, PyIceberg 0.12.0, deltalake 1.6.6, Kedro 1.8.0, sqlglot 30.33.0, npm weekly downloads for the DuckDB Node bindings, Arrow, Cube, Evidence, Observable Framework, and GitHub activity for every repo named below. Not checked: cloud warehouse pricing and feature tiers (Snowflake, BigQuery, Databricks), Fivetran and Airbyte connector coverage, Kafka and Flink versions, Spark tuning.
+> Checked on the web 2026-11-20: the dbt v1/v2 generation split from docs.getdbt.com, Airflow 3.4.0 release notes, PyPI versions for dbt-core 1.12.7, Airflow 3.4.0, Dagster 1.13.30, Prefect 3.9.4, DuckDB 2.0.0, Polars 2.1.0, dlt 1.32.0, Meltano 4.4.1, SQLMesh 0.236.4, Great Expectations 1.25.0, Soda 4.31.0, PyIceberg 0.12.0, deltalake 1.6.6, Kedro 1.8.0, sqlglot 30.33.0, datacontract-cli 1.2.11, Apicurio Registry 3.3, npm weekly downloads for the DuckDB Node bindings, Arrow, Cube, Evidence, Observable Framework, and GitHub activity for every repo named below. Not checked: cloud warehouse pricing and feature tiers (Snowflake, BigQuery, Databricks), Fivetran and Airbyte connector coverage, Kafka and Flink versions, Spark tuning.
 
-Scope: batch and micro-batch pipelines, warehouse modelling, dashboards, embedded analytics. Analytics on the app database: [database.md](database.md). Events, queues, uploads: [data-services.md](data-services.md). Product analytics instrumentation: [observability.md](observability.md).
+Scope: batch and micro-batch pipelines, warehouse modelling, contracts and schemas, dashboards, embedded analytics. Analytics on the app database: [database.md](database.md). Events, queues, uploads: [data-services.md](data-services.md). Product analytics instrumentation: [observability.md](observability.md).
 
 ## Defaults
 
@@ -63,6 +63,19 @@ DuckDB in the browser (`@duckdb/duckdb-wasm` 778k/wk) fits a local Explorer, not
 - A BI tool with hand-written metrics that live only in that tool.
 - A notebook run by hand as a production pipeline.
 - Both Iceberg and Delta in one lake, or a table format nobody runs compaction on.
+
+## Contracts and schemas
+
+A pipeline breaks when the producer changes a field and nobody tells the consumer. A contract is how the producer tells.
+
+- Every event and every published table has a contract: the fields, types, nullability, the owner, the retention, and what a breaking change is. Store it in the repo next to the producer.
+- Validate the contract at the boundary, in the producer and again on ingest. A schema that only exists in a document drifts in a week.
+- Zod, Pydantic, or Avro per ecosystem. The same schema generates the types on both sides, so a rename fails the build rather than the dashboard.
+- Events go to a schema registry when several services share a stream: Confluent Schema Registry, Apicurio Registry 3.3, or Buf Schema Registry for Protobuf. Without a shared stream, a checked-in schema file is enough. A registry is infrastructure, not a default.
+- Compatibility mode per subject: backward (the default for events), forward when the consumer upgrades first, full when both must work. Deprecate a field by adding the new one, writing both for a release, then removing the old one. Never rename or reuse a field number.
+- `datacontract-cli` 1.2 turns the contract into a YAML file the pipeline can assert against. Worth it when the consumer is another team; a typed schema and a review is enough for one team.
+
+Avoid: a schema that lives only in a wiki, a nullable field with no owner, and a registry installed to satisfy a checklist that nobody opens.
 
 ## Security and cost
 

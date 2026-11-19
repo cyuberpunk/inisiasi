@@ -1,9 +1,9 @@
 # Observability
 
 > Last verified: 2026-11-20
-> Checked on the web 2026-11-20: repo activity for the OpenTelemetry Collector, Alloy, Loki, Jaeger, Pyroscope, Beyla, Sentry JS and pino, current versions of pino 10.4, `@sentry/node` 11.15, `@opentelemetry/sdk-node` 0.301 (still 0.x, pre-1.0), semantic-conventions 1.45, and the GenAI semantic conventions move to their own repository. Not checked: the alerting math in the multi-window rules, on-call vendor pricing, and the logger list outside TypeScript.
+> Checked on the web 2026-11-20: repo activity for the OpenTelemetry Collector, Alloy, Loki, Jaeger, Pyroscope, Beyla, Sentry JS and pino, current versions of pino 10.4, `@sentry/node` 11.15, `@opentelemetry/sdk-node` 0.301 (still 0.x, pre-1.0), semantic-conventions 1.45, and the GenAI semantic conventions move to their own repository, analytics SDK versions (Segment 1.84, Amplitude 2.49, Snowplow 4.10) and Avo repo activity. Not checked: the alerting math in the multi-window rules, on-call vendor pricing, and the logger list outside TypeScript.
 
-Scope: logs, metrics, traces, error tracking, alerts, on-call.
+Scope: logs, metrics, traces, error tracking, alerts, on-call, tracking plan.
 
 ## Defaults
 
@@ -37,12 +37,36 @@ MVP: Sentry + structured logs + OTel traces to one backend. Profiling (Pyroscope
 
 ## Product analytics
 
-Checked on the web 2026-11-19: PostHog feature flags, Plausible, Umami.
+Checked on the web 2026-11-20: `@segment/analytics-next` 1.84, `@amplitude/analytics-browser` 2.49, `@snowplow/browser-tracker` 4.10, Avo repo activity. Carried over from 2026-11-19: PostHog feature flags, Plausible, Umami.
 
 - Product analytics (funnels, retention): PostHog, which also serves feature flags ([engineering-practices.md](engineering-practices.md)). Privacy-friendly page analytics only: Plausible or Umami.
 - Event names: `object_action` in snake_case (`order_created`), with a small typed list in code, not free strings.
 - Revenue and other critical events are sent from the server, not the browser.
 - Consent and personal data follow [compliance.md](compliance.md). No PII in event properties.
+
+### Tracking plan
+
+One file in the repo lists every event. Without it, two teams invent `signup`, `sign_up`, and `user_registered` for the same thing and the funnel is wrong.
+
+| Column | Content |
+|--------|---------|
+| Event | `object_action`, snake_case, past tense, one meaning only |
+| Description | The user action it records, in one line |
+| Properties | Name, type, required, enum values. No free text, no PII |
+| Source | Server or client, and the exact call site |
+| Owner | The team or person who keeps it true |
+| Version | Bumped on a breaking change to the shape |
+
+Rules:
+
+- Add the event to the plan before adding the call. A code review rejects a tracked event that is not in the plan.
+- Typed wrappers, not raw strings. Generate the client types from the plan schema (Zod or JSON Schema), so a typo is a type error.
+- Track from the server when the action has money or state behind it. Browser events miss ad blockers and closed tabs.
+- Use a contract schema for the event payload ([data-analytics.md](data-analytics.md)). Same idea, same tooling.
+- Version the taxonomy. Keep old events readable for the retention window, and mark removed ones as `deprecated` rather than silently breaking dashboards and experiments.
+- Audit the plan each quarter against what actually fires. The documented plan drifts from the live events.
+
+Tools: Segment 1.84 as the router when several destinations are needed, Amplitude 2.49 or PostHog for analysis, Avo as a type-safe plan that generates the code. Pick one event pipeline and keep it.
 
 ## Avoid
 

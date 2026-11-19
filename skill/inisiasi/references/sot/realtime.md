@@ -1,9 +1,9 @@
 # Realtime
 
-> Last verified: 2026-11-19
-> Checked on the web 2026-11-19: library and service status (coder/websocket, ws, Socket.io, Reverb, SignalR, TypedResults.ServerSentEvents, Yjs, Liveblocks, Electric, PartyKit, Convex, Supabase Realtime).
+> Last verified: 2026-11-20
+> Checked on the web 2026-11-20: `livekit-client` 2.24, `@livekit/components-react` 2.9, `mediasoup-client` 3.26, `@daily-co/daily-js` 0.95, LiveKit repo activity, and their download counts. Carried over from 2026-11-19: library and service status (coder/websocket, ws, Socket.io, Reverb, SignalR, TypedResults.ServerSentEvents, Yjs, Liveblocks, Electric, PartyKit, Convex, Supabase Realtime). Not checked: coturn versions and TURN provider pricing.
 
-Scope: SSE, WebSocket, pub/sub, collaboration.
+Scope: SSE, WebSocket, pub/sub, collaboration, voice and video.
 
 ## Defaults
 
@@ -32,6 +32,30 @@ WebTransport only for advanced cases, with a WebSocket fallback.
 | Java (Spring) | `SseEmitter` | Spring WebSocket (STOMP) |
 | Ruby (Rails) | `ActionController::Live` | Action Cable |
 | C# (.NET) | `TypedResults.ServerSentEvents` or a streamed response | SignalR |
+
+## Voice and video
+
+Checked on the web 2026-11-20: `livekit-client` 2.24, `@livekit/components-react` 2.9, `mediasoup-client` 3.26, `@daily-co/daily-js` 0.95, and their download counts.
+
+| Need | Use | Note |
+|------|-----|------|
+| Video or voice in the product | LiveKit (`livekit-client` 2.24, 8.4M/wk, 22.3k stars; self-host or LiveKit Cloud) | The SFU carries the media, not your backend |
+| Small group call, managed | Daily (`@daily-co/daily-js` 0.95) | Fastest path when paying per minute beats operating an SFU |
+| Rooms and recording you operate | mediasoup 3.26 | SFU you run. Only with media engineering time |
+| One-to-one call, no recording | A plain WebSocket for signaling, no media server | Peer-to-peer fits one listener |
+| Live streaming to many viewers | LiveKit, or HLS through a CDN | Interactive needs WebRTC. One-way scales on HLS |
+
+WebRTC does not replace your realtime layer. Signaling goes over WebSocket or SSE, media goes peer to peer or through an SFU, and TURN relays the connections that fail direct. The media never passes through your application server.
+
+Rules:
+
+- TURN is required in production, not optional. Without it, calls fail on some corporate and mobile networks. Run coturn or use the vendor's TURN.
+- Ask for camera and microphone only when the user joins, with a plain reason shown before the browser prompt.
+- Percent of calls that fail to connect is the metric to watch. Track it per network and per platform, not as a total.
+- Recordings and transcripts are personal data. Retention and consent go through [compliance.md](compliance.md).
+- Never put media content in your application database. Store keys and metadata, and put the object in storage.
+
+Avoid: building the SFU yourself, WebRTC for text chat, and peer-to-peer for more than a small-group call.
 
 ## Rules
 

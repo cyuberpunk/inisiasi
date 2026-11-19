@@ -33,8 +33,8 @@ The defaults in this folder reflect the owner's bias (TypeScript with Vite+, App
 | [ui-catalog-scores.md](ui-catalog-scores.md) | 0-10 score per catalog library (hand-edited) |
 | [backend.md](backend.md) | Server frameworks, ORMs, queues, payments per language: TS, Go, Python, Rust, PHP, JVM, Ruby, .NET |
 | [database.md](database.md) | Databases, hosts, migrations |
-| [data-analytics.md](data-analytics.md) | Pipelines, warehouse, transform, BI: dbt, Airflow, DuckDB, Polars |
-| [api.md](api.md) | REST, tRPC/oRPC, GraphQL, gRPC, versioning, gateways |
+| [data-analytics.md](data-analytics.md) | Pipelines, warehouse, contracts, transform, BI: dbt, Airflow, DuckDB, Polars |
+| [api.md](api.md) | REST, tRPC/oRPC, GraphQL, gRPC, versioning, gateways, docs site, SDK generation |
 | [mobile.md](mobile.md) | Expo, Flutter, native, app updates |
 | [apple-macos-swift.md](apple-macos-swift.md) | macOS/iOS/iPadOS native, Swift, notarization |
 | [desktop.md](desktop.md) | Windows, Linux, cross-platform desktop: Tauri, packaging, signing, updates |
@@ -48,10 +48,10 @@ The defaults in this folder reflect the owner's bias (TypeScript with Vite+, App
 | [auth.md](auth.md) | Login, SSO, sessions |
 | [multi-tenancy.md](multi-tenancy.md) | Several customers or organizations share the system (RLS, isolation) |
 | [billing.md](billing.md) | Subscriptions, entitlements, in-app purchases |
-| [security.md](security.md) | Almost always: secrets, supply chain, OWASP 2025 |
+| [security.md](security.md) | Almost always: secrets, supply chain, severity (CVSS, EPSS, CWE, ASVS), OWASP 2025 |
 | [compliance.md](compliance.md) | Personal data is involved (Indonesia PDP law, GDPR) |
 | [data-services.md](data-services.md) | Cache, queues, jobs, file uploads, search |
-| [realtime.md](realtime.md) | SSE, WebSocket, collaboration |
+| [realtime.md](realtime.md) | SSE, WebSocket, collaboration, voice and video |
 | [offline-sync.md](offline-sync.md) | Offline-first, sync engines |
 | [api-ops.md](api-ops.md) | Rate limits, webhooks |
 | [email-notifications.md](email-notifications.md) | Email, push, in-app |
@@ -63,11 +63,11 @@ The defaults in this folder reflect the owner's bias (TypeScript with Vite+, App
 
 | File | Read when |
 |------|-----------|
-| [infrastructure.md](infrastructure.md) | Hosting, edge, serverless, deployment strategy |
+| [infrastructure.md](infrastructure.md) | Hosting, edge, serverless, IaC (OpenTofu, Terraform), deployment strategy |
 | [ci-cd.md](ci-cd.md) | Pipelines |
-| [observability.md](observability.md) | Logs, metrics, traces, alerts, product analytics |
+| [observability.md](observability.md) | Logs, metrics, traces, alerts, product analytics, tracking plan |
 | [reliability.md](reliability.md) | Backups, DR, load tests, chaos, cost |
-| [engineering-practices.md](engineering-practices.md) | Error handling, config, flags, docs, ADRs, local dev |
+| [engineering-practices.md](engineering-practices.md) | Error handling, config, flags, experiments, docs, ADRs, local dev |
 | [diagnosis.md](diagnosis.md) | Symptoms to causes during an incident |
 | [problems-data.md](problems-data.md) | Transactions, migrations, deadlocks |
 | [problems-performance.md](problems-performance.md) | Slowness and resource exhaustion |

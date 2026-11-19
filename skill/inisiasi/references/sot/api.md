@@ -1,7 +1,7 @@
 # API
 
-> Last verified: 2026-11-19
-> Checked on the web 2026-11-19: OpenAPI editions, RFC 9457, RFC 9745, RFC 8594, Idempotency-Key draft codes, tool and repo status (tRPC, oRPC, Scalar, Yoga, gqlgen, Connect, Buf, gateways).
+> Last verified: 2026-11-20
+> Checked on the web 2026-11-20: OpenAPI client generators (`openapi-typescript` 7.13, orval 8.48, `@hey-api/openapi-ts` 0.99), docs site packages (Docusaurus 3.10, Starlight 0.43, Fumadocs 16.19, Mintlify CLI 4.1), Buf 1.75. Carried over from 2026-11-19: OpenAPI editions, RFC 9457, RFC 9745, RFC 8594, Idempotency-Key draft codes, tool and repo status (tRPC, oRPC, Scalar, Yoga, gqlgen, Connect, Buf, gateways). Not checked: generator output quality per language, Mintlify pricing.
 
 Scope: API style, REST, errors, pagination, versioning, idempotency, GraphQL, gRPC, gateways. Rate limits and webhooks: [api-ops.md](api-ops.md).
 
@@ -23,6 +23,29 @@ Scope: API style, REST, errors, pagination, versioning, idempotency, GraphQL, gR
 - Status codes: 201 create, 202 async, 204 no content, 400/401/403/404/409/422/429, 503 + `Retry-After`.
 - A request ID in every response. Allowlist output fields. Check authorization per object (BOLA/IDOR).
 - Docs: OpenAPI + Scalar or Swagger UI.
+
+## Docs and SDKs
+
+Checked on the web 2026-11-20: `openapi-typescript` 7.13, orval 8.48, `@hey-api/openapi-ts` 0.99, `@docusaurus/core` 3.10, `@astrojs/starlight` 0.43, `fumadocs-core` 16.19, `@mintlify/cli` 4.1, `@bufbuild/buf` 1.75, and their download counts.
+
+The spec is the source. Every artifact below is generated from it in CI, and a hand-edited client is a bug.
+
+| Need | Use | Note |
+|------|-----|------|
+| Typed client from an OpenAPI 3.1 spec | `openapi-typescript` 7.13 | Types only, no runtime. 17.8M/wk |
+| Client plus TanStack Query hooks | orval 8.48 | 4.1M/wk. Also generates Zod and MSW mocks |
+| Full SDK, fastest runtime | `@hey-api/openapi-ts` 0.99 | Pre-1.0 but 8.2M/wk. Generates a fetch client, Zod schemas, and TanStack Query or SWR plugins |
+| Protobuf clients | Buf `protoc-gen-es` 2.17 | With `buf generate`, same as the Connect stack above |
+| Docs site, product with a brand | Docusaurus 3.10, Starlight 0.43, or Fumadocs 16.19 | Match the framework. Fumadocs is fastest to set up on Next.js |
+| Hosted API docs | Mintlify (`@mintlify/cli` 4.1) | Paid. Git-synced, MDX, built-in endpoint playground |
+| Private or internal API | Scalar | Renders from the OpenAPI document inside the repo |
+
+Rules:
+
+- The spec is committed. CI fails if the generated output differs from what is committed, so a spec change cannot ship without regenerating the client.
+- Validate responses against the spec in tests. A generated client only proves the types match the spec, not that the server follows it.
+- One version of a public client per API version, published under the matching major.
+- New endpoints get an example and an error case in the doc. An endpoint with no example is undocumented in practice.
 
 ## Versioning
 
