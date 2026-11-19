@@ -1,6 +1,7 @@
 # SoT inisiasi
 
-> Last verified: 2026-11-16
+> Last verified: 2026-11-19
+> Checked on the web 2026-11-19: index entries against files in this folder, OWASP Top 10:2025, Vite+ and Oxfmt names.
 
 Source-of-truth index for the `inisiasi` skill.
 
@@ -10,7 +11,7 @@ The defaults in this folder reflect the owner's bias (TypeScript with Vite+, App
 
 | File | Contents |
 |------|-----|
-| [architecture.md](architecture.md) | Architecture defaults, patterns, queues |
+| [architecture.md](architecture.md) | Architecture defaults, layering, patterns, Postgres queues, multi-tenancy |
 | [problems-critical.md](problems-critical.md) | Expensive mistakes if wrong from day one (money, authz, RLS, secrets) |
 | [testing.md](testing.md) | Test strategy and tools |
 | [diagrams.md](diagrams.md) | C4 levels and notation for ARCHITECTURE.md |
@@ -24,8 +25,8 @@ The defaults in this folder reflect the owner's bias (TypeScript with Vite+, App
 | [frontend.md](frontend.md) | Web frameworks, UI, state, forms, SEO, CMS, admin dashboards |
 | [frontend-architecture.md](frontend-architecture.md) | Frontend system design checklist |
 | [ui-catalog.md](ui-catalog.md) | Icons, motion, loading, charts, diagrams, sound |
-| [ui-catalog-scores.md](ui-catalog-scores.md) | 0-10 score per catalog library (script output) |
-| [backend.md](backend.md) | Server frameworks, ORMs, queues, and tooling per language: TS, Go, Python, Rust, PHP, JVM, Ruby, .NET |
+| [ui-catalog-scores.md](ui-catalog-scores.md) | 0-10 score per catalog library (hand-edited) |
+| [backend.md](backend.md) | Server frameworks, ORMs, queues, payments per language: TS, Go, Python, Rust, PHP, JVM, Ruby, .NET |
 | [database.md](database.md) | Databases, hosts, migrations |
 | [api.md](api.md) | REST, tRPC/oRPC, GraphQL, gRPC, versioning, gateways |
 | [mobile.md](mobile.md) | Expo, Flutter, native, app updates |
@@ -77,7 +78,7 @@ The defaults in this folder reflect the owner's bias (TypeScript with Vite+, App
 | [mechanisms.md](mechanisms.md) | Retries, concurrency, locks, rate limits, caches |
 | [scaling.md](scaling.md) | Expected load growth, high traffic, read replicas, partitioning |
 | [concurrency.md](concurrency.md) | Workers, async, race conditions, isolation levels |
-| [scenarios.md](scenarios.md) | The product resembles a known design: shortener, video, shop, payment, chat, notifications |
+| [scenarios.md](scenarios.md) | The product resembles a known design: shortener, video, shop, payment, chat, notifications, high-traffic read API |
 
 ## Usage rules
 

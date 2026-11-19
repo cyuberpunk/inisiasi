@@ -1,6 +1,7 @@
 # Architecture
 
-> Last verified: 2026-11-16
+> Last verified: 2026-11-19
+> Checked on the web 2026-11-19: dependency-cruiser, Debezium, Temporal, Restate, Emmett, KurrentDB, pg-boss, Graphile Worker, River, Turso status.
 
 Scope: architecture defaults, patterns, layering, events, multi-tenancy. Common problems: [problems-critical.md](problems-critical.md), [problems-data.md](problems-data.md).
 

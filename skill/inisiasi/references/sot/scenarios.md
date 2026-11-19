@@ -1,7 +1,8 @@
 # System design scenarios
 
-> Last verified: 2026-11-18
+> Last verified: 2026-11-19
 > Status: draft, pending owner review.
+> Checked on the web 2026-11-19: Mux, Cloudflare Stream, Meilisearch, Typesense, Novu, Knock, Courier, Midtrans, Xendit status.
 
 Scope: common backend products and the decisions that matter for each. Use as a starting point for ARCHITECTURE.md, then apply the files linked per scenario. Order of scaling moves: [scaling.md](scaling.md).
 
