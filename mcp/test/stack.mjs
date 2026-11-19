@@ -6,7 +6,7 @@ import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 const HERE = fileURLToPath(new URL(".", import.meta.url));
 import { detectStack } from "../dist/detectStack.js";
-import { selectReferences, isStale } from "../dist/selectReferences.js";
+import { selectReferences, isStale, staleDocs } from "../dist/selectReferences.js";
 import { recommendBundle } from "../dist/recommendBundle.js";
 
 const jsApp = fileURLToPath(new URL("./fixtures/js-app", import.meta.url));
@@ -61,9 +61,11 @@ const ai = selectReferences({ project_description: "AI chatbot with RAG over my 
 assert.ok(ai.files.some((f) => f.file === "ai-llm.md"), ai.files.map((f) => f.file).join(","));
 
 assert.equal(isStale("2026-11-16", new Date("2026-11-16T00:00:00")), false);
-assert.equal(isStale("2025-11-17", new Date("2026-11-16T00:00:00")), false);
-assert.equal(isStale("2025-11-15", new Date("2026-11-16T00:00:00")), true);
+assert.equal(isStale("2026-05-17", new Date("2026-11-16T00:00:00")), false);
+assert.equal(isStale("2026-05-15", new Date("2026-11-16T00:00:00")), true);
 assert.equal(isStale(null), true);
+const stale = staleDocs();
+assert.equal(stale.length, 0, `stale SoT files (older than 6 months): ${stale.map((d) => `${d.file} (${d.verified_at ?? "no header"})`).join(", ")}`);
 
 const staleDir = mkdtempSync(join(tmpdir(), "inisiasi-refs-"));
 try {
@@ -158,4 +160,5 @@ assert.ok(has(pick("note taking app for windows"), "desktop.md"), "an app for wi
 assert.ok(has(pick("tailwind css design system with style dictionary tokens"), "design-systems.md"), "tokens route to design-systems.md");
 assert.ok(has(pick("vue nuxt admin dashboard with primevue"), "ui-kits-frameworks.md"), "Vue kit routes to ui-kits-frameworks.md");
 assert.ok(has(pick("flutter app with shadcn_ui"), "ui-kits-native.md"), "Flutter kit routes to ui-kits-native.md");
+assert.ok(has(pick("dbt airflow pipeline into a data warehouse with metabase"), "data-analytics.md"), "analytics stack routes to data-analytics.md");
 console.log("OK: platform routing and gaps");

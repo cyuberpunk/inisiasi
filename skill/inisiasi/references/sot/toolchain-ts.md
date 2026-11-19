@@ -1,7 +1,7 @@
 # TypeScript toolchain
 
-> Last verified: 2026-11-19
-> Checked on the web 2026-11-19: Vite+ 1.0 and vp commands, Vite 8, Oxlint, tsgolint, TypeScript 7, tsrs, Turborepo filter, Lefthook, gitleaks and Betterleaks, fate, Void, fbtee. Not checked: Oxfmt stability label, Next.js guidance.
+> Last verified: 2026-11-20
+> Checked on the web 2026-11-20: npm latest versions for the Defaults table (Vite 8.3, Vitest 5.1, Oxlint 1.94, Oxfmt 0.79, TypeScript 7.0, Turborepo 2.11, pnpm 12.21, Lefthook 2.2, Biome 2.6), Node 24 as the active LTS line. Carried over from 2026-11-19: Vite+ 1.0 and vp commands, Vite 8, Oxlint, tsgolint, TypeScript 7, tsrs, Turborepo filter, Lefthook, gitleaks and Betterleaks, fate, Void, fbtee. Not checked: Oxfmt stability label, Next.js guidance.
 
 Scope: lint, format, test, typecheck, build, monorepo, and git hooks for TS/JS projects. The owner's default.
 
@@ -9,15 +9,15 @@ Scope: lint, format, test, typecheck, build, monorepo, and git hooks for TS/JS p
 
 | Layer | Use | Notes |
 |-------|-----|-------|
-| Toolchain | Vite+ (CLI `vp`) | One entry point: `vp dev`, `vp build`, `vp test`, `vp check` (format, lint, typecheck; no tests). Stable since 1.0 |
+| Toolchain | Vite+ 1 (CLI `vp`) | One entry point: `vp dev`, `vp build`, `vp test`, `vp check` (format, lint, typecheck; no tests). Stable since 1.0 |
 | Bundler | Vite 8 (Rolldown default) | Stable |
-| Test | Vitest | Through Vite+ |
-| Lint | Oxlint | Stable. Type-aware via `oxlint-tsgolint` |
-| Format | Oxfmt | Still beta, Prettier-compatible |
-| Typecheck | `tsc` or `vp check` | Default stays `tsc` |
-| Monorepo | pnpm workspaces + Turborepo, or Vite+ (`--recursive`, `--filter`) | Nx only for large enterprise monorepos |
-| Package manager | pnpm. Alternative: bun | npm is allowed but slower. Do not use Yarn for new projects |
-| Git hooks | Lefthook, or `vp` hooks when using Vite+ | Husky + lint-staged only for old repos |
+| Test | Vitest 5 | Through Vite+ |
+| Lint | Oxlint 1 | Stable. Type-aware via `oxlint-tsgolint` |
+| Format | Oxfmt 0.79 | Still beta, Prettier-compatible |
+| Typecheck | `tsc` 7.0 or `vp check` | Default stays `tsc` |
+| Monorepo | pnpm 12 workspaces + Turborepo 2, or Vite+ (`--recursive`, `--filter`) | Nx only for large enterprise monorepos |
+| Package manager | pnpm 12. Alternative: bun | npm is allowed but slower. Do not use Yarn for new projects |
+| Git hooks | Lefthook 2, or `vp` hooks when using Vite+ | Husky + lint-staged only for old repos |
 | Secret scan | Betterleaks or trufflehog | In hooks and CI. gitleaks gets security patches only |
 
 ## Use when

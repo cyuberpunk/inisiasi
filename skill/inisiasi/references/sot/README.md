@@ -1,7 +1,7 @@
 # SoT inisiasi
 
 > Last verified: 2026-11-20
-> Checked on the web 2026-11-20: index entries against files in this folder, the stage rule against npm and GitHub release data. Not checked: OWASP Top 10:2025 and Vite+ names, still from the 2026-11-19 pass.
+> Checked on the web 2026-11-20: index entries against files in this folder, the stage rule against npm and GitHub release data, the data analytics defaults in [data-analytics.md](data-analytics.md). Not checked: OWASP Top 10:2025 and Vite+ names, still from the 2026-11-19 pass.
 
 Source-of-truth index for the `inisiasi` skill.
 
@@ -33,6 +33,7 @@ The defaults in this folder reflect the owner's bias (TypeScript with Vite+, App
 | [ui-catalog-scores.md](ui-catalog-scores.md) | 0-10 score per catalog library (hand-edited) |
 | [backend.md](backend.md) | Server frameworks, ORMs, queues, payments per language: TS, Go, Python, Rust, PHP, JVM, Ruby, .NET |
 | [database.md](database.md) | Databases, hosts, migrations |
+| [data-analytics.md](data-analytics.md) | Pipelines, warehouse, transform, BI: dbt, Airflow, DuckDB, Polars |
 | [api.md](api.md) | REST, tRPC/oRPC, GraphQL, gRPC, versioning, gateways |
 | [mobile.md](mobile.md) | Expo, Flutter, native, app updates |
 | [apple-macos-swift.md](apple-macos-swift.md) | macOS/iOS/iPadOS native, Swift, notarization |
@@ -91,3 +92,4 @@ The defaults in this folder reflect the owner's bias (TypeScript with Vite+, App
 2. Do not recommend anything listed under "Avoid".
 3. Versions and tool status change. If you need an exact version number, check the official docs at that time.
 4. A pre-1.0, beta or alpha tool may still be the default when it is widely used and the community keeps using it. Never drop a popular library only because it has not reached 1.0. State its stage next to the name (`0.44`, `beta`, `rc`), and do not pin a version that is not stable unless the file already does. Drop a tool only when it is archived, unmaintained (no release and no push for 12 months), shut down, or niche with no leadership.
+5. Every file here is re-verified at least every 6 months. `pnpm test` in `mcp/` fails when a file is older than that, and CI runs it on every push and once a week. To clear it, check the file against the web, update `Last verified`, and say in the second line what you checked and what you did not.

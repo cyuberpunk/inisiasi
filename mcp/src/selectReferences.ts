@@ -45,6 +45,7 @@ const RULES: Rule[] = [
   { file: "security.md", keywords: ["security", "encrypt", "encryption", "aes", "keychain", "touch", "privacy", "lock", "crypto", "secret", "password", "hdiutil", "llm", "ai"], reason: "Security controls and secrets", weight: 5 },
   { file: "compliance.md", keywords: ["gdpr", "pdp", "privacy", "compliance", "personal", "indonesia", "health", "pci", "payment"], reason: "Privacy law and compliance triggers", weight: 4 },
   { file: "data-services.md", keywords: ["cache", "redis", "valkey", "queue", "job", "worker", "cron", "kafka", "nats", "s3", "upload", "storage", "r2", "search", "file"], reason: "Cache, queue, jobs, storage, search", weight: 4 },
+  { file: "data-analytics.md", keywords: ["etl", "elt", "dbt", "airflow", "dagster", "prefect", "duckdb", "polars", "warehouse", "data warehouse", "bi", "business intelligence", "dashboard", "metabase", "superset", "snowflake", "bigquery", "databricks", "clickhouse", "trino", "iceberg", "delta lake", "data pipeline"], reason: "Pipelines, warehouse, modelling, BI", weight: 5 },
   { file: "realtime.md", keywords: ["realtime", "websocket", "sse", "pubsub", "chat", "collaboration", "live"], reason: "Realtime options", weight: 4 },
   { file: "offline-sync.md", keywords: ["offline", "offline-first", "crdt", "sync", "local-first"], reason: "Offline-first and sync", weight: 4 },
   { file: "api-ops.md", keywords: ["webhook", "rate", "ratelimit", "throttle"], reason: "Rate limiting and webhooks", weight: 4 },
@@ -93,8 +94,19 @@ export function isStale(iso: string | null, now = new Date()): boolean {
   if (!iso) return true;
   const d = new Date(iso + "T00:00:00");
   if (Number.isNaN(+d)) return true;
-  const cutoff = new Date(now.getFullYear(), now.getMonth() - 12, now.getDate());
+  const cutoff = new Date(now.getFullYear(), now.getMonth() - 6, now.getDate());
   return d < cutoff;
+}
+
+export function staleDocs(root = referencesRoot(), now = new Date()): { file: string; verified_at: string | null }[] {
+  return readdirSync(root)
+    .filter((f) => f.endsWith(".md"))
+    .map((file) => {
+      const text = readText(join(root, file)) ?? "";
+      const verified_at = VERIFIED_RE.exec(text.slice(0, 800))?.[1] ?? null;
+      return { file, verified_at };
+    })
+    .filter((d) => isStale(d.verified_at, now));
 }
 
 function meta(root: string, file: string): { verified_at: string | null; stale: boolean } {

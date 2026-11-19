@@ -1,6 +1,7 @@
 # Frontend
 
 > Last verified: 2026-11-20
+> Checked on the web 2026-11-20: npm latest versions for every package in the Defaults table (React 19.3, TanStack Router 1.170, TanStack Start 1.169, Next 16.4, Nuxt 4.6, SvelteKit 3.4, Astro 7.4, Zustand 5.1, Jotai 3.0, Zod 4.6, Valibot 1.5, TanStack Query 5.108, React Hook Form 7.92, Motion 14.14, GSAP 3.15, lucide-react 1.76, Paraglide 3.2, next-intl 4.15, fbtee 6.0, Tailwind 4.3). Carried over from 2026-11-19: JSON-LD and FAQ guidance. Not checked: CMS and admin dashboard entries in this file.
 
 Scope: web frameworks, state, forms, styling entry, SEO, CMS, admin dashboards. Architecture and checklist: [frontend-architecture.md](frontend-architecture.md). Which UI kit, ranked by measured downloads: [ui-kits.md](ui-kits.md) (React), [ui-kits-frameworks.md](ui-kits-frameworks.md) (Vue, Svelte, Angular, Lit). Design systems and tokens: [design-systems.md](design-systems.md). Styling approaches and CSS foundations: [styling.md](styling.md). Icons, motion, loading, charts, diagrams, sound: [ui-catalog.md](ui-catalog.md). Mobile: [mobile.md](mobile.md), [ui-kits-native.md](ui-kits-native.md).
 
@@ -8,19 +9,19 @@ Scope: web frameworks, state, forms, styling entry, SEO, CMS, admin dashboards. 
 
 | Layer | Use | Alternative |
 |-------|-----|------------|
-| SPA framework | TanStack Router | React Router |
-| Fullstack React | TanStack Start, or Next.js App Router if you need SEO/RSC | |
-| Vue / Svelte / content | Nuxt / SvelteKit / Astro (typed API: oRPC) | |
-| React UI | shadcn/ui (Base UI primitives, `@base-ui/react`) + Tailwind v4 | Radix for older shadcn projects. React Aria if a11y/i18n requirements are strict |
+| SPA framework | TanStack Router v1 (React 19) | React Router v7 |
+| Fullstack React | TanStack Start v1, or Next.js 16 App Router if you need SEO/RSC | |
+| Vue / Svelte / content | Nuxt 4 / SvelteKit 3 / Astro 7 (typed API: oRPC) | |
+| React UI | shadcn/ui (Base UI 1.x primitives, `@base-ui/react`) + Tailwind v4 | Radix for older shadcn projects. React Aria if a11y/i18n requirements are strict |
 | Non-React UI | daisyUI 5 + Tailwind v4 | the framework's own kit: [ui-kits-frameworks.md](ui-kits-frameworks.md) |
 | Styling | Tailwind v4 utility CSS | CSS Modules per component. CSS-in-JS only in existing code: [styling.md](styling.md) |
-| Server state | TanStack Query | fate if you need a Relay-style normalized cache |
-| Client state | Zustand | Jotai. Redux Toolkit only for existing code |
-| Forms | React Hook Form + Zod | TanStack Form if the stack is already TanStack |
-| Schema | Zod (shared with the backend) | Valibot if the bundle size is critical |
-| Animation | CSS and View Transitions | Motion (`motion/react`), GSAP for complex cases |
-| Icons | Lucide | Phosphor |
-| i18n | Paraglide (library, new apps), next-intl (Next.js) | fbtee (inline, compiler) |
+| Server state | TanStack Query v5 | fate if you need a Relay-style normalized cache |
+| Client state | Zustand 5 | Jotai 3. Redux Toolkit 2 only for existing code |
+| Forms | React Hook Form 7 + Zod 4 | TanStack Form if the stack is already TanStack |
+| Schema | Zod 4 (shared with the backend) | Valibot 1 if the bundle size is critical |
+| Animation | CSS and View Transitions | Motion 14 (`motion/react`), GSAP 3 for complex cases |
+| Icons | Lucide (`lucide-react` 1.x) | Phosphor 2 |
+| i18n | Paraglide 3 (library, new apps), next-intl 4 (Next.js) | fbtee 6 (inline, compiler) |
 
 ## Design system
 
