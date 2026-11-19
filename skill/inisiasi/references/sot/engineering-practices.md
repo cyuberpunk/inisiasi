@@ -1,6 +1,7 @@
 # Engineering practices
 
-> Last verified: 2026-11-16
+> Last verified: 2026-11-19
+> Checked on the web 2026-11-19: RFC 9457, corepack, OpenFeature providers, varlock, Garage and SeaweedFS. Not checked: opossum, gobreaker, t3-env, caarlos0/env, Scalar, Fumadocs.
 
 Scope: error handling, config, feature flags, documentation, ADRs, onboarding, local dev, code review.
 
@@ -31,7 +32,7 @@ Evaluate through OpenFeature so the provider can be swapped. Providers: PostHog 
 ## Local development and onboarding
 
 - One command (`make dev`, `vp dev`, or `docker compose up`). Target: clone to running in under 30 minutes.
-- Pin runtime versions: mise, `packageManager` + corepack. Optional: Dev Containers / Codespaces.
+- Pin runtime versions: mise, `packageManager` + corepack (not bundled with Node 25+, run `npm install -g corepack`). Optional: Dev Containers / Codespaces.
 - Local compose: Postgres, Redis/Valkey, Garage or SeaweedFS, Mailpit. Docker Compose Watch for reloads.
 - Idempotent seeds, a complete `.env.example`, clear error messages when a service is missing.
 - Day one: access to the repo, CI, secrets, and observability; local setup; run the tests; read the architecture. First task is small: docs, a small bug, or a test.

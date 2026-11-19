@@ -1,6 +1,7 @@
 # Idioms
 
-> Last verified: 2026-11-18
+> Last verified: 2026-11-19
+> Checked on the web 2026-11-19: Swift typed throws SE-0413, using declarations support. Not checked: TS, Python, SQL idioms (language semantics, low drift).
 > Status: draft, pending owner review.
 
 Scope: the idiomatic way to express common ideas in the owner's main languages. Naming, formatting, structure: the selera SoT. Types and boundaries: selera `types.md`.

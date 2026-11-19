@@ -1,6 +1,7 @@
 # CI/CD
 
-> Last verified: 2026-11-16
+> Last verified: 2026-11-19
+> Checked on the web 2026-11-19: Woodpecker, SHA pinning, attestation, Changesets, pull_request_target, workflow lockfiles, immutable releases. Not checked: per-language linters, EAS/fastlane/Codemagic, merge queue, Podman.
 
 Scope: pipelines, environments, CI secrets, releases. TS toolchain: [toolchain-ts.md](toolchain-ts.md).
 
@@ -35,4 +36,4 @@ Local (seeded), Preview (seeded or anonymous), Staging (anonymous, production-li
 
 ## Secrets
 
-OIDC to the cloud (AWS, GCP, Azure), not long-lived keys. GitHub Secrets for static secrets. Never echo secrets to logs. Pin third-party actions to a SHA.
+OIDC to the cloud (AWS, GCP, Azure), not long-lived keys. GitHub Secrets for static secrets. Never echo secrets to logs. Pin third-party actions to a SHA or commit `.github/workflows/actions.lock`. Lint workflows with zizmor. Avoid `pull_request_target` (blocked by default in public repos from 2026-12-02). Enable immutable releases.

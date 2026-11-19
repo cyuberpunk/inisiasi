@@ -1,6 +1,7 @@
 # CLI and terminal tools
 
-> Last verified: 2026-11-16
+> Last verified: 2026-11-19
+> Checked on the web 2026-11-19: cargo-dist rename, bubbletea v2, Textual, ink, oclif, trycmd. Not checked: ratatui, typer, assert_cmd, bats.
 
 Scope: command-line programs and TUIs: parsers, output contracts, distribution, tests.
 
@@ -9,7 +10,7 @@ Scope: command-line programs and TUIs: parsers, output contracts, distribution, 
 | Language | Parser | TUI |
 |--------|--------|-----|
 | Rust | `clap` (derive) | `ratatui` |
-| Go | `cobra`, or `urfave/cli` for small tools | `bubbletea` |
+| Go | `cobra`, or `urfave/cli` for small tools | `bubbletea` v2 (`charm.land/bubbletea/v2`, v1 API breaks) |
 | TypeScript | `commander`, or `oclif` if you need plugins | `ink` |
 | Python | `typer` | `textual` |
 
@@ -25,7 +26,7 @@ Scope: command-line programs and TUIs: parsers, output contracts, distribution, 
 - Config precedence: flag > env > file (`~/.config/<app>/`) > default.
 - Destructive actions: `--dry-run` and explicit confirmation.
 - Error messages say what went wrong and what to do next.
-- Distribution: a single binary. Releases: goreleaser (Go), cargo-dist (Rust), npm for TS, a Homebrew tap, plus checksums.
+- Distribution: a single binary. Releases: goreleaser (Go), `dist` (formerly cargo-dist, Rust), npm for TS, a Homebrew tap, plus checksums.
 - CLI tests: `assert_cmd` / `trycmd` (Rust), `bats` (shell), output snapshots in CI.
 - A TUI only when the interaction is repeated and needs a screen. A single-command tool is fine with flags.
 

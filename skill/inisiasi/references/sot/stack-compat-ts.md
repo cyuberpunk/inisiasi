@@ -1,6 +1,7 @@
 # TypeScript stack compatibility
 
-> Last verified: 2026-11-16
+> Last verified: 2026-11-19
+> Checked on the web 2026-11-19: SolidStart, Auth.js, Vercel Edge, Better Auth, Polar, Prisma MongoDB. Not checked: Uniwind, Electrobun, Hyperdrive, Convex, tRPC/oRPC integrations.
 
 Scope: frontend, backend, runtime, database, ORM, and API combinations that are safe to assemble. Read this before writing ARCHITECTURE.md for a TS stack.
 
@@ -14,7 +15,7 @@ Scope: frontend, backend, runtime, database, ORM, and API combinations that are 
 
 | If | Then | Do not |
 |-------|-------|---------|
-| MongoDB | Mongoose or Prisma | Drizzle (no MongoDB support) |
+| MongoDB | Mongoose, or Prisma 6 (Prisma 7 has no MongoDB, Prisma 8 MongoDB is early access) | Drizzle (no MongoDB support) |
 | SQLite, Postgres, MySQL | Drizzle or Prisma | Mongoose |
 | Cloudflare Workers | Hono, Drizzle or Prisma, D1, Turso, or Postgres via Hyperdrive | Express/Fastify as the default (they depend on the Node compatibility layer), Mongoose |
 | D1 | SQLite database, Workers runtime | Postgres/MySQL ORM dialects |
@@ -34,6 +35,6 @@ Scope: frontend, backend, runtime, database, ORM, and API combinations that are 
 
 ## Avoid
 
-- SolidStart for new projects (discontinued in the Solid 2.0 cycle).
+- SolidStart for new projects (maintenance releases only; Solid 2.0 replaces it with the Vite plugin start mode).
 - Auth.js for new projects (it is now part of Better Auth).
 - Vercel Edge Functions (deprecated). Use Vercel Functions (Node, Fluid compute).

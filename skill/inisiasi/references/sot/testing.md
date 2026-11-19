@@ -1,6 +1,7 @@
 # Testing
 
-> Last verified: 2026-11-16
+> Last verified: 2026-11-19
+> Checked on the web 2026-11-19: golang/mock archive, tauri-driver macOS, Detox, ZAP. Not checked: Vitest, Testcontainers ports, Pact, Pest, Swift Testing, Robolectric, Chromatic, axe-core, Cypress/Jest guidance.
 
 Scope: test strategy and tools per language. Load tests: [reliability.md](reliability.md). a11y: [accessibility.md](accessibility.md).
 
