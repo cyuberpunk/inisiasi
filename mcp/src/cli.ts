@@ -9,7 +9,7 @@ import { recommendBundle } from "./recommendBundle.js";
 import { checkDrift } from "./drift.js";
 
 const [cmd, ...rest] = process.argv.slice(2);
-const usage = "usage: inisiasi <domains | domain <slug> | recommend <description> | search <query> | get <id> | inspect_plan <path> | validate_docs <root> | detect_stack <root> | drift [root] | select_references [--plan <path>] <description> | recommend_bundle [--root <path>] [--plan <path>] [--limit <n>] <description>>";
+const usage = "usage: inisiasi <domains | domain <slug> | recommend [--scope tech|general] <description> | search <query> | get <id> | inspect_plan <path> | validate_docs <root> | detect_stack <root> | drift [root] | select_references [--plan <path>] <description> | recommend_bundle [--root <path>] [--plan <path>] [--limit <n>] <description>>";
 
 function flags(args: string[]): { opts: Record<string, string>; rest: string[] } {
   const opts: Record<string, string> = {};
@@ -52,11 +52,13 @@ if (cmd === "inspect_plan") {
   }), null, 2));
 } else {
   const skills = loadCatalog();
-  const arg = rest.join(" ");
+  const { opts: o, rest: words } = flags(rest);
+  if (o.scope && o.scope !== "tech" && o.scope !== "general") { console.error("scope must be tech or general"); process.exit(1); }
+  const arg = words.join(" ");
   const out: Record<string, () => unknown> = {
     domains: () => listDomains(skills),
     domain: () => listDomainSkills(skills, rest[0]),
-    recommend: () => recommendSkills(skills, arg),
+    recommend: () => recommendSkills(skills, arg, undefined, { scope: o.scope as "tech" | "general" | undefined }),
     search: () => searchSkills(skills, arg),
     get: () => getSkill(skills, rest[0]) ?? null,
   };

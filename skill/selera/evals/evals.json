@@ -5,10 +5,10 @@
       "id": 1,
       "name": "record-stated-preference",
       "prompt": "pakai zod buat validasi",
-      "expected_output": "Runs set schema zod, confirms in one line, does not ask permission first.",
+      "expected_output": "Runs set validation zod, confirms in one line, does not ask permission first.",
       "assertions": [
-        "Runs `selera set schema zod` (or equivalent)",
-        "Does not ask whether to record",
+        "Runs `selera set validation zod` (or equivalent) and the profile file holds it",
+        "Does not ask whether to record before running set",
         "Confirms in one line what was stored",
         "No em dash"
       ],
@@ -32,9 +32,9 @@
       "prompt": "untuk frontend pakai tanstack-query buat fetch",
       "expected_output": "Records under the fe scope, not default.",
       "assertions": [
-        "Runs set with key fe.fetch (not fetch)",
+        "Runs set with key fe.fetch (not fetch) and the profile file holds it",
         "Value is tanstack-query",
-        "Does not overwrite default fetch"
+        "Records fe.fetch and leaves the unscoped fetch key unchanged"
       ],
       "should_trigger": true
     },
@@ -83,6 +83,41 @@
         "Does not record or apply selera profile",
         "Focuses on logic bug, not style"
       ],
+      "should_trigger": false
+    },
+    {
+      "id": 8,
+      "name": "preference-npm-not-pnpm",
+      "prompt": "di repo ini kita pakai npm, bukan pnpm ya",
+      "expected_output": "Records packageManager npm via set",
+      "assertions": [
+        "Runs set packageManager npm, confirms in one line"
+      ],
+      "files": [],
+      "should_trigger": true
+    },
+    {
+      "id": 9,
+      "name": "near-miss-tool-howto",
+      "prompt": "how do i set coverage thresholds in vitest?",
+      "expected_output": "Tool how-to, no preference, no profile write",
+      "assertions": [
+        "Does not run set",
+        "Answers the vitest question"
+      ],
+      "files": [],
+      "should_trigger": false
+    },
+    {
+      "id": 10,
+      "name": "near-miss-debug-test",
+      "prompt": "the test in cart.test.ts expects 3 but gets 2, why?",
+      "expected_output": "Debugging, not a convention question",
+      "assertions": [
+        "Does not run apply or set",
+        "Debugs the failing assertion"
+      ],
+      "files": [],
       "should_trigger": false
     }
   ]

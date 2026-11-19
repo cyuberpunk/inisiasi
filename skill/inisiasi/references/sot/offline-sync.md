@@ -1,34 +1,34 @@
-# Offline-first dan sync
+# Offline-first and sync
 
-> Terakhir diverifikasi: 2026-11-16
+> Last verified: 2026-11-16
 
-Scope: local-first, sync engine, konflik.
+Scope: local-first, sync engines, conflicts.
 
-## Default
+## Defaults
 
-Mulai online-only. Naik bertahap: optimistic update + retry, lalu persistensi lokal untuk data kritis, lalu sync engine hanya jika offline benar-benar wajib.
+Start online-only. Grow step by step: optimistic updates + retries, then local persistence for critical data, and only then a sync engine if offline use is truly required.
 
 | Platform | Local store |
 |----------|-------------|
-| Web | IndexedDB (Dexie), SQLite WASM, PGlite (persist IndexedDB/OPFS) |
+| Web | IndexedDB (Dexie), SQLite WASM, PGlite (persisted to IndexedDB/OPFS) |
 | Expo / RN | expo-sqlite |
 | Flutter | Drift |
 | Native | SwiftData, Room, SQLite |
 
-| Sync engine | Pakai kalau |
+| Sync engine | Use when |
 |-------------|-------------|
 | Zero | Web + Postgres, partial query-based sync |
-| PowerSync | Postgres ke mobile (termasuk RN) |
-| Turso sync | DB sudah SQLite/Turso (offline write masih beta) |
-| Electric | Read-path dari Postgres; write lewat API sendiri |
-| Yjs, Automerge, Loro | Kolaborasi CRDT |
+| PowerSync | Postgres to mobile (including RN) |
+| Turso sync | The DB is already SQLite/Turso (offline writes still in beta) |
+| Electric | Read path from Postgres; writes go through your own API |
+| Yjs, Automerge, Loro | CRDT collaboration |
 
-## Konflik
+## Conflicts
 
-- Server authority untuk data bisnis. Field-level merge untuk dokumen. CRDT untuk kolaborasi.
-- Last-write-wins jangan untuk pembayaran atau stok.
-- Mutasi offline masuk antrean, operasi server idempotent, tampilkan status sync.
+- The server is the authority for business data. Field-level merge for documents. CRDTs for collaboration.
+- Never use last-write-wins for payments or stock.
+- Offline mutations go into a queue, server operations are idempotent, and the sync status is shown to the user.
 
-## Hindari
+## Avoid
 
-WatermelonDB, Isar resmi (tidak di-maintain), Replicache untuk project baru.
+WatermelonDB, the official Isar (no longer maintained), Replicache for new projects.

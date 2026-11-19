@@ -1,19 +1,19 @@
-# Masalah performa
+# Performance problems
 
-> Terakhir diverifikasi: 2026-11-16
+> Last verified: 2026-11-16
 
-Scope: lambat dan habis resource. Target angka: [performance.md](performance.md).
+Scope: slowness and resource exhaustion. Target numbers: [performance.md](performance.md).
 
-| Masalah | Cegah dengan |
+| Problem | Prevent with |
 |---------|--------------|
-| Query per item di loop (N+1) | Join/include, batch `IN (...)`, DataLoader |
-| Scan penuh | Index kolom filter/join, `EXPLAIN ANALYZE`, `pg_stat_statements` |
-| Koneksi habis di serverless (Prisma/Neon) | URL pooled untuk runtime, direct URL untuk migrate, pool 1-2 per isolate, client di-cache global |
-| PgBouncer mematahkan session | `SET LOCAL`, direct URL untuk migrate |
-| `OFFSET` besar di list | Cursor/keyset dengan tie-breaker unik |
-| INP > 200ms | Pecah long task, tunda script pihak ketiga |
-| Fetch berurutan di RSC | `Promise.all`, prefetch, cache per request |
-| CPU berat di thread utama Node/Bun | Worker thread atau proses terpisah |
-| Lonjakan saat cache expire | Singleflight, early expiration, TTL jitter |
+| One query per item in a loop (N+1) | Join/include, batch `IN (...)`, DataLoader |
+| Full table scans | Indexes on filter/join columns, `EXPLAIN ANALYZE`, `pg_stat_statements` |
+| Connections exhausted in serverless (Prisma/Neon) | A pooled URL for runtime, a direct URL for migrations, pool of 1-2 per isolate, client cached globally |
+| PgBouncer breaks sessions | `SET LOCAL`, direct URL for migrations |
+| Large `OFFSET` in lists | Cursor/keyset pagination with a unique tie-breaker |
+| INP > 200 ms | Split long tasks, defer third-party scripts |
+| Sequential fetches in RSC | `Promise.all`, prefetching, per-request cache |
+| Heavy CPU work on the Node/Bun main thread | Worker threads or a separate process |
+| Spike when a cache expires | Singleflight, early expiration, TTL jitter |
 
-Query dan index dulu. Cache dan optimasi mikro hanya setelah diukur.
+Queries and indexes first. Caching and micro-optimizations only after measuring.

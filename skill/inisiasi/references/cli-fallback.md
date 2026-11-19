@@ -15,5 +15,6 @@ Run `inisiasi <command>` if it is on PATH, else `node <skill-real-path>/../../mc
 | `domains` / `domain <slug>` | list_domains / list_domain_skills |
 | `get <id>` | get_skill |
 | `validate_docs <root>` | validate_docs |
+| `drift [root]` | CLI only: selera tool keys vs ARCHITECTURE and TASKS |
 
 No `dist/` either: read `<skill-real-path>/../../mcp/catalog.json` and pick by `tags` and `domain`.

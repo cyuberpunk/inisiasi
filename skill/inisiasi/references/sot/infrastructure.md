@@ -1,46 +1,46 @@
-# Infrastruktur dan deploy
+# Infrastructure and deployment
 
-> Terakhir diverifikasi: 2026-11-16
+> Last verified: 2026-11-16
 
-Scope: compute, hosting, edge, serverless, IaC, strategi deploy. CI: [ci-cd.md](ci-cd.md).
+Scope: compute, hosting, edge, serverless, IaC, deploy strategies. CI: [ci-cd.md](ci-cd.md).
 
-## Default
+## Defaults
 
-Mulai sederhana: single binary atau Docker Compose / PaaS. Naik bertahap: self-host VPS (Coolify, Dokploy, Kamal), lalu container managed (Cloud Run, ECS Fargate), baru Kubernetes jika banyak tim dan service.
+Start simple: a single binary or Docker Compose / PaaS. Grow step by step: a self-hosted VPS (Coolify, Dokploy, Kamal), then managed containers (Cloud Run, ECS Fargate), and only then Kubernetes when there are many teams and services.
 
-| Kebutuhan | Pakai |
-|-----------|-------|
-| Fullstack TS, frontend | Vercel (Functions Node + Fluid compute) atau Cloudflare (Workers) |
-| Container cepat | Fly.io, Railway, Render |
+| Need | Use |
+|-----------|-----|
+| Fullstack TS, frontend | Vercel (Node Functions + Fluid compute) or Cloudflare (Workers) |
+| Fast containers | Fly.io, Railway, Render |
 | Edge + data | Cloudflare Workers + D1, KV, R2, Durable Objects, Hyperdrive (Postgres), Containers |
-| Backend terkelola | Convex |
-| IaC | OpenTofu. Terraform jika butuh HCP. Cloudflare: Alchemy. Alternatif: Pulumi |
-| Reverse proxy | Caddy (TLS otomatis), Traefik (container) |
+| Managed backend | Convex |
+| IaC | OpenTofu. Terraform if you need HCP. Cloudflare: Alchemy. Alternative: Pulumi |
+| Reverse proxy | Caddy (automatic TLS), Traefik (containers) |
 | CDN | Cloudflare |
 
-## Runtime
+## Runtimes
 
-- Node: kompatibilitas paling luas. Bun: dev cepat, Elysia. Workers: pakai framework berbasis Web API (Hono), Node API hanya subset (`nodejs_compat` default sejak compat date 2026-08-04).
-- Batas Workers: CPU time per request (Free 10 ms, Paid default 30 detik). Kerja berat: Durable Objects, Queues, atau Containers.
+- Node: widest compatibility. Bun: fast dev, Elysia. Workers: use a framework built on Web APIs (Hono); Node APIs are a subset (`nodejs_compat` is default since compat date 2026-08-04).
+- Workers limits: CPU time per request (Free 10 ms, Paid default 30 seconds). Heavy work: Durable Objects, Queues, or Containers.
 
 ## Serverless
 
-Cocok untuk traffic spiky, event-driven, webhook, cron. Traffic stabil tinggi atau compute berat: container. Reuse koneksi DB di luar handler, pakai pooler. Handler idempotent karena retry. Workflow panjang: Inngest, Trigger.dev, Temporal, Cloudflare Workflows.
+Good for spiky traffic, event-driven work, webhooks, and cron. Steady high traffic or heavy compute: containers. Reuse DB connections outside the handler, use a pooler. Handlers must be idempotent because of retries. Long workflows: Inngest, Trigger.dev, Temporal, Cloudflare Workflows.
 
-## Strategi deploy
+## Deploy strategies
 
-| Tahap | Strategi |
+| Stage | Strategy |
 |-------|----------|
-| Kecil | Recreate atau rolling |
-| Berkembang | Rolling + readiness probe |
-| Kritis | Blue-green atau canary |
-| Kubernetes matang | Canary otomatis (Argo Rollouts, Flagger) |
+| Small | Recreate or rolling |
+| Growing | Rolling + readiness probe |
+| Critical | Blue-green or canary |
+| Mature Kubernetes | Automated canary (Argo Rollouts, Flagger) |
 
-Syarat zero-downtime: health check (liveness, readiness, startup), graceful shutdown, connection draining, API dan skema DB kompatibel lama dan baru selama transisi. Rollback harus pernah dites. Artefak immutable.
+Zero-downtime requirements: health checks (liveness, readiness, startup), graceful shutdown, connection draining, the API and DB schema stay compatible with both old and new versions during the transition. Rollback must be tested. Artifacts are immutable.
 
-## Hindari
+## Avoid
 
-- Vercel Edge Functions (deprecated) dan `runtime = 'edge'` di Next.js baru.
-- Deno Deploy untuk project baru (tutup sekitar Apr 2027).
-- MinIO (repo diarsipkan).
-- Kubernetes untuk satu tim dengan beberapa service.
+- Vercel Edge Functions (deprecated) and `runtime = 'edge'` in new Next.js apps.
+- Deno Deploy for new projects (shutting down around Apr 2027).
+- MinIO (repository archived).
+- Kubernetes for one team with a few services.

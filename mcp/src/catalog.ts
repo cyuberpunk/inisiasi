@@ -16,7 +16,15 @@ export type Skill = {
   verified: boolean;
   tier?: "main" | "support";
   unscored?: boolean;
+  // "tech" skills help build software; "general" ones cover writing, research, productivity and the like.
+  scope?: Scope;
+  last_pushed?: string;
+  note?: string;
+  ui_skills_count?: number;
 };
+
+export type Scope = "tech" | "general";
+export type Prefer = { word: string; key: string };
 
 export type Domain = { domain: string; skill_count: number; niches: string[] };
 
@@ -63,7 +71,7 @@ export const listDomainSkills = (skills: Skill[], domain: string, limit?: number
 const GENERIC = new Set([
   "tool", "tools", "cli", "api", "app", "apps", "project", "projects", "code", "write", "build",
   "create", "make", "using", "use", "used", "with", "for", "the", "and", "my", "our", "new",
-  "small", "simple", "personal", "test", "tests", "data", "user", "users", "file", "files",
+  "agent", "agents", "small", "simple", "personal", "test", "tests", "data", "user", "users", "file", "files",
 ]);
 const MIN_SCORE = 3;
 
@@ -77,29 +85,63 @@ const stemHit = (words: Set<string>, t: string) =>
 const tierRank = (s: Skill) => (s.tier === "main" ? 0 : 1);
 const unscoredLast = (a: Skill, b: Skill) => Number(!!(a as Skill & { unscored?: boolean }).unscored) - Number(!!(b as Skill & { unscored?: boolean }).unscored);
 
-export function recommendSkills(skills: Skill[], description: string, limit?: number) {
+// Inverse document frequency over the catalog: a word on most skills says little about one skill.
+// Weight is 1 for a word on a single skill and falls toward 0 as the word spreads.
+const idfCache = new WeakMap<Skill[], Map<string, number>>();
+function idfWeights(skills: Skill[]): Map<string, number> {
+  const cached = idfCache.get(skills);
+  if (cached) return cached;
+  const df = new Map<string, number>();
+  for (const s of skills) {
+    const words = new Set([...s.tags, s.niche, s.name, ...s.use_cases].flatMap(tokens));
+    for (const w of words) df.set(w, (df.get(w) ?? 0) + 1);
+  }
+  const n = skills.length + 1;
+  const weights = new Map([...df].map(([w, d]) => [w, Math.log((n + 1) / (d + 1)) / Math.log(n + 1)]));
+  idfCache.set(skills, weights);
+  return weights;
+}
+
+// Unverified entries are listed but never recommended: their install command did not resolve.
+// A recorded preference (selera) steers ranking only among skills that already fit the project, so it never drags in unrelated ones.
+const PREFER_BOOST = 4;
+
+export function recommendSkills(skills: Skill[], description: string, limit?: number, opts: { scope?: Scope; prefer?: Prefer[] } = {}) {
+  skills = skills.filter((s) => s.verified !== false && (!opts.scope || (s.scope ?? "tech") === opts.scope));
   const words = new Set(tokens(description));
   const text = description.toLowerCase();
+  const idf = idfWeights(skills);
+  const w = (t: string) => idf.get(t) ?? 1;
   const scored = skills.map((s) => {
     let score = 0;
     const matched = new Set<string>();
     for (const tag of s.tags) {
       if (GENERIC.has(tag)) continue;
-      if (stemHit(words, tag) || (tag.includes("-") && text.includes(tag.replace(/-/g, " ")))) { score += 3; matched.add(tag); }
+      if (stemHit(words, tag) || (tag.includes("-") && text.includes(tag.replace(/-/g, " ")))) { score += 3 * w(tag); matched.add(tag); }
     }
     for (const t of [...tokens(s.niche.replace(/-/g, " ")), s.domain, ...tokens(s.name.replace(/-/g, " "))]) {
-      if (words.has(t)) { score += 2; matched.add(t); }
+      if (!GENERIC.has(t) && words.has(t)) { score += 2 * w(t); matched.add(t); }
     }
-    for (const t of new Set(s.use_cases.flatMap(tokens))) if (words.has(t)) { score += 1; matched.add(t); }
-    return { skill: s, score, matched: [...matched] };
+    for (const t of new Set(s.use_cases.flatMap(tokens))) if (words.has(t)) { score += 1 * w(t); matched.add(t); }
+    const selera: string[] = [];
+    if (score >= MIN_SCORE) {
+      const own = new Set([...s.tags, ...tokens(s.name.replace(/-/g, " ")), s.id]);
+      for (const p of opts.prefer ?? []) if (own.has(p.word)) { score += PREFER_BOOST; selera.push(`${p.key}=${p.word}`); }
+    }
+    return { skill: s, score, matched: [...matched], selera };
   });
   return scored
     .filter((r) => r.score >= MIN_SCORE)
     .sort((a, b) => b.score - a.score || unscoredLast(a.skill, b.skill) || tierRank(a.skill) - tierRank(b.skill) || byPopularity(a.skill, b.skill))
     .slice(0, clampLimit(limit))
-    .map((r) => ({ ...summary(r.skill), score: r.score, matched: r.matched }));
+    .map((r) => ({ ...summary(r.skill), score: Number(r.score.toFixed(2)), matched: r.matched, ...(r.selera.length ? { selera: r.selera } : {}) }));
 }
 
+const MAX_QUERY = 200;
+const MAX_TERMS = 12;
+
+// One Fuse pass per term, then rank by how many terms hit, then by best score.
+// A multi-word query used to be one fuzzy pattern, so a long phrase matched nothing.
 export function searchSkills(skills: Skill[], query: string, domain?: string, limit?: number) {
   const pool = domain ? skills.filter((s) => s.domain === domain) : skills;
   const fuse = new Fuse(pool, {
@@ -114,12 +156,25 @@ export function searchSkills(skills: Skill[], query: string, domain?: string, li
     ignoreLocation: true,
     includeScore: true,
   });
-  return fuse.search(query).slice(0, clampLimit(limit))
-    .map((r) => ({ ...summary(r.item), match: Number((1 - (r.score ?? 1)).toFixed(3)) }));
+  const terms = [...new Set(query.slice(0, MAX_QUERY).toLowerCase().split(/[^\p{L}\p{N}+#.-]+/u)
+    .filter((t) => t.length >= 2))].slice(0, MAX_TERMS);
+  const hits = new Map<string, { item: Skill; count: number; best: number }>();
+  for (const term of terms) {
+    for (const r of fuse.search(term)) {
+      const prev = hits.get(r.item.id) ?? { item: r.item, count: 0, best: 0 };
+      prev.count += 1;
+      prev.best = Math.max(prev.best, 1 - (r.score ?? 1));
+      hits.set(r.item.id, prev);
+    }
+  }
+  return [...hits.values()]
+    .sort((a, b) => b.count - a.count || b.best - a.best)
+    .slice(0, clampLimit(limit))
+    .map((h) => ({ ...summary(h.item), match: Number(h.best.toFixed(3)) }));
 }
 
 export const summary = (s: Skill) => ({
   id: s.id, name: s.name, domain: s.domain, niche: s.niche, creator: s.creator,
   install_command: s.install_command, popularity: s.popularity, verified: s.verified,
-  tier: s.tier ?? null, unscored: !!s.unscored,
+  tier: s.tier ?? null, unscored: !!s.unscored, scope: s.scope ?? "tech", last_pushed: s.last_pushed ?? null,
 });

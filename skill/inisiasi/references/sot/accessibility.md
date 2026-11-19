@@ -1,35 +1,35 @@
 # Accessibility
 
-> Terakhir diverifikasi: 2026-11-16
+> Last verified: 2026-11-16
 
-Scope: target WCAG, aturan wajib, tes. Berlaku web dan mobile.
+Scope: WCAG target, mandatory rules, tests. Applies to web and mobile.
 
-## Default
+## Defaults
 
-- Target: WCAG 2.2 AA. WCAG 3.0 masih draft, jangan dijadikan target.
-- Trigger hukum (cek jika relevan): European Accessibility Act (konsumen UE, berlaku Jun 2025), ADA / Section 508 (AS). Indonesia: belum ada standar teknis mengikat, tetap pakai WCAG 2.2.
-- Komponen React: Base UI, Radix, atau React Aria.
+- Target: WCAG 2.2 AA. WCAG 3.0 is still a draft, do not use it as a target.
+- Legal triggers (check when relevant): European Accessibility Act (EU consumers, in force June 2025), ADA / Section 508 (US). Indonesia: no binding technical standard yet, still use WCAG 2.2.
+- React components: Base UI, Radix, or React Aria.
 
-## Aturan wajib
+## Mandatory rules
 
-- Semantic HTML dulu. ARIA hanya menambah, bukan mengganti.
-- Semua interaksi bisa keyboard, fokus terlihat (`:focus-visible`), tanpa keyboard trap, modal mengelola fokus.
-- Kontras 4.5:1 (teks normal), 3:1 (teks besar). Jangan andalkan warna saja.
-- Form: label terhubung, error diumumkan.
-- Zoom 200% dan reflow lebar 320px tetap usable. Hormati `prefers-reduced-motion`.
-- Media: caption dan transkrip.
+- Semantic HTML first. ARIA only adds, it never replaces.
+- Everything works with the keyboard, focus is visible (`:focus-visible`), no keyboard traps, modals manage focus.
+- Contrast 4.5:1 (normal text), 3:1 (large text). Never rely on color alone.
+- Forms: labels are connected, errors are announced.
+- 200% zoom and 320px reflow stay usable. Respect `prefers-reduced-motion`.
+- Media: captions and transcripts.
 
-| WCAG 2.2 baru | Aturan |
+| New in WCAG 2.2 | Rule |
 |---------------|--------|
-| 2.4.11 Focus Not Obscured (AA) | Sticky header, banner, chat widget tidak menutupi fokus |
-| 2.5.7 Dragging (AA) | Drag punya alternatif klik |
-| 2.5.8 Target Size (AA) | Minimal 24x24 CSS px. 44x44 itu AAA / Apple HIG (44pt). Android 48dp |
-| 3.2.6 Consistent Help (A) | Bantuan di posisi sama |
-| 3.3.7 Redundant Entry (A) | Jangan minta data sama dua kali |
-| 3.3.8 Accessible Auth (AA) | Izinkan paste dan password manager |
+| 2.4.11 Focus Not Obscured (AA) | Sticky headers, banners, and chat widgets must not cover the focused element |
+| 2.5.7 Dragging (AA) | Dragging has a click alternative |
+| 2.5.8 Target Size (AA) | At least 24x24 CSS px. 44x44 is AAA / Apple HIG (44pt). Android 48dp |
+| 3.2.6 Consistent Help (A) | Help stays in the same place |
+| 3.3.7 Redundant Entry (A) | Do not ask for the same data twice |
+| 3.3.8 Accessible Authentication (AA) | Allow paste and password managers |
 
-## Tes
+## Tests
 
-- CI: `@axe-core/playwright` di alur kritis, gagal pada pelanggaran serius.
+- CI: `@axe-core/playwright` on critical journeys, fails on serious violations.
 - Manual: keyboard, VoiceOver, NVDA, TalkBack.
 - Unit: Testing Library `getByRole`.

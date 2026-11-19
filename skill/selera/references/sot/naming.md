@@ -1,36 +1,36 @@
 # Naming
 
-> Terakhir diverifikasi: 2026-11-16
+> Last verified: 2026-11-16
 
-Scope: nama variabel, fungsi, file, folder, objek database, kelas CSS.
+Scope: variable, function, file, folder, database object, and CSS class names.
 
-## Case style
+## Case styles
 
-| Bentuk | Pakai untuk |
+| Style | Use for |
 |---|---|
-| `camelCase` | Variabel, fungsi, properti, parameter |
-| `PascalCase` | Tipe, kelas, komponen, enum |
-| `SCREAMING_SNAKE_CASE` | Konstanta modul yang benar-benar tetap |
-| `kebab-case` | Nama file, folder, route, paket, CSS class |
-| `snake_case` | Kolom database, kunci JSON API eksternal |
+| `camelCase` | Variables, functions, properties, parameters |
+| `PascalCase` | Types, classes, components, enums |
+| `SCREAMING_SNAKE_CASE` | Module constants that are truly fixed |
+| `kebab-case` | File, folder, route, package, and CSS class names |
+| `snake_case` | Database columns, external API JSON keys |
 
-Jangan campur dalam satu lapisan. Kalau API mengirim `snake_case`, ubah di boundary, bukan di seluruh app. Hungarian notation: jangan.
+Do not mix styles within one layer. If an API sends `snake_case`, convert it at the boundary, not across the whole app. Hungarian notation: no.
 
-## Nama semantik
+## Semantic names
 
-- Boolean: `is`, `has`, `can`, `should`, `did`. `isLoading`, bukan `loading`.
-- Fungsi: kata kerja + objek. `fetchOrders`, `parsePlan`, `canRetry`.
-- Handler: `handleSubmit` (internal), `onSubmit` (prop).
-- Larangan: singkatan yang tidak umum, angka ajaib di nama (`data2`), awalan tipe (`strName`), negasi ganda (`isNotDisabled`).
-- Koleksi jamak, elemen tunggal: `orders` / `order`.
-- Nama harus bisa dibaca sebagai kalimat tanpa komentar.
+- Booleans: `is`, `has`, `can`, `should`, `did`. `isLoading`, not `loading`.
+- Functions: verb plus object. `fetchOrders`, `parsePlan`, `canRetry`.
+- Handlers: `handleSubmit` (internal), `onSubmit` (prop).
+- Forbidden: uncommon abbreviations, magic numbers in names (`data2`), type prefixes (`strName`), double negatives (`isNotDisabled`).
+- Plural collections, singular elements: `orders` / `order`.
+- A name must read as a sentence without a comment.
 
-## File dan folder
+## Files and folders
 
-- Nama file mengikuti yang diekspor: `OrderCard.tsx`, `order-service.ts`.
-- Satu konsep per file. `utils.ts` dan `helpers.ts` dilarang sebagai keranjang.
-- Index sebagai barrel hanya di batas modul publik.
+- File names follow the main export, in kebab-case: `order-card.tsx` exports `OrderCard`, `order-service.ts` exports `orderService`.
+- One concept per file. `utils.ts` and `helpers.ts` are forbidden as catch-all buckets.
+- Index files act as barrels only at public module boundaries.
 
-## Database dan CSS
+## Database and CSS
 
-Tabel jamak `orders`. Foreign key `<tabel>_id`. Index `idx_<tabel>_<kolom>`. Constraint `<tabel>_<kolom>_<jenis>`. CSS: satu metodologi per project. Tailwind utility-first untuk React baru; BEM hanya untuk CSS biasa.
+Plural table names: `orders`. Foreign keys: `<table>_id`. Indexes: `idx_<table>_<column>`. Constraints: `<table>_<column>_<kind>`. CSS: one methodology per project. Utility-first Tailwind for new React code; BEM only for plain CSS.

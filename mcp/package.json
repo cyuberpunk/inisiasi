@@ -11,8 +11,10 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/server.js",
-    "test": "npm run validate && npm run build && node test/docs.mjs && node test/stack.mjs && node test/drift.mjs && node test/smoke.mjs",
-    "validate": "node validate.mjs"
+    "test": "npm run validate && npm run build && node test/docs.mjs && node test/stack.mjs && node test/drift.mjs && node test/catalog.mjs && node test/smoke.mjs",
+    "validate": "node validate.mjs",
+    "qa": "node test/qa.mjs",
+    "check-catalog": "node check-catalog.mjs"
   },
   "engines": {
     "node": ">=20"
@@ -24,5 +26,6 @@
   "devDependencies": {
     "@types/node": "^26.6.6",
     "typescript": "^7.0.2"
-  }
+  },
+  "packageManager": "pnpm@12.18.0"
 }

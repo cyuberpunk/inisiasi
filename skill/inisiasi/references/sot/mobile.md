@@ -1,41 +1,76 @@
 # Mobile
 
-> Terakhir diverifikasi: 2026-11-16
+> Last verified: 2026-11-16
 
-Scope: framework mobile, state, UI, OTA, update paksa. Native Apple: [apple-macos-swift.md](apple-macos-swift.md).
+Scope: mobile frameworks, state, UI, OTA updates, forced updates. Native Apple: [apple-macos-swift.md](apple-macos-swift.md).
 
-## Default
+## Defaults
 
-| Situasi | Pakai |
-|---------|-------|
-| Tim React/TS | Expo + Expo Router + Uniwind (Tailwind v4) + TanStack Query + Zustand |
-| Polish maksimal per platform | SwiftUI (iOS), Jetpack Compose (Android) |
-| Satu codebase, UI custom | Flutter (Riverpod, GoRouter, Drift) |
-| Share logic, UI native | Kotlin Multiplatform |
-| Desktop dari web app | Tauri, atau Electrobun (lebih ringan) |
+| Situation | Use |
+|---------|-----|
+| React/TS team | Expo + Expo Router + Uniwind (Tailwind v4) + TanStack Query + Zustand |
+| Maximum polish per platform | SwiftUI (iOS), Jetpack Compose (Android) |
+| One codebase, custom UI | Flutter (Riverpod, GoRouter, Drift) |
+| Shared logic, native UI | Kotlin Multiplatform |
+| C#/.NET team | .NET MAUI |
+| Desktop from a web app | Tauri, or Electrobun (TS/Bun core). Details: [desktop.md](desktop.md) |
 
-Expo SDK 55+: New Architecture selalu aktif. Unistyles jika tidak mau Tailwind. NativeWind hanya app existing.
+Expo SDK 55+: the New Architecture is always on. Unistyles if you do not want Tailwind. NativeWind only for existing apps.
 
-| Kebutuhan | Pilihan |
-|-----------|---------|
+| Need | Choice |
+|-----|--------|
 | Local DB | SQLite (expo-sqlite, Drift, Room, SwiftData) |
-| Push | Expo Notifications, atau APNs/FCM langsung |
-| OTA | EAS Update (`expo-updates`). Self-host hanya lewat protokol `expo-updates` |
-| Deep link | Universal links / app links |
+| Push | Expo Notifications, or APNs/FCM directly |
+| OTA | EAS Update (`expo-updates`). Self-hosting only through the `expo-updates` protocol |
+| Deep links | Universal links / app links |
 
-## Update app
+## App updates
 
-- Perubahan API additive. Klien jadi tolerant reader (abaikan field dan enum asing).
-- Endpoint versi di backend: `minimum_version`, `latest_version`, `force_update`, `update_url`. Bandingkan dengan `versionCode` / `CFBundleVersion`, bukan semver.
-- Soft update dulu. Hard update hanya untuk breaking API, celah keamanan, korupsi data, atau kewajiban hukum.
-- `update_url` sesuai sumber instal. Sideload umum di Indonesia, jadi Play In-App Updates tidak cukup.
-- Cek versi gagal: pakai minimum terakhir yang di-cache.
-- OTA hanya untuk JS dan aset. `runtimeVersion` harus cocok dengan binary, kalau tidak update tidak masuk. `runtimeVersion` harus cocok dengan binary. Perubahan native, permission, atau SDK wajib rilis store.
-- Rollout bertahap: Play staged rollout, App Store phased release. Siap halt.
-- Migrasi data lokal: forward-only, dites dari beberapa versi lama.
+- API changes are additive. Clients become tolerant readers (ignore unknown fields and enum values).
+- Version endpoint on the backend: `minimum_version`, `latest_version`, `force_update`, `update_url`. Compare against `versionCode` / `CFBundleVersion`, not semver.
+- Soft update first. Hard update only for breaking API changes, security holes, data corruption, or legal obligations.
+- `update_url` matches the install source. Sideloading is common in Indonesia, so Play In-App Updates alone are not enough.
+- If the version check fails, use the last minimum version you cached.
+- OTA is only for JS and assets. `runtimeVersion` must match the binary, or the update is not delivered. Native changes, permission changes, or SDK changes require a store release.
+- Staged rollout: Play staged rollout, App Store phased release. Be ready to halt.
+- Local data migrations: forward-only, tested from several old versions.
 
-## Hindari
+## Android native
 
-- CodePush / App Center (mati sejak 2025).
-- Electron untuk app baru tanpa alasan kuat.
-- Capacitor kecuali memang membungkus web app yang sudah ada.
+Draft, pending owner review.
+Checked on the web 2026-11-19: Google Play target API rule, WorkManager, DataStore.
+
+| Area | Use | Notes |
+|------|-----|-------|
+| Language and UI | Kotlin + Jetpack Compose | Views only for existing screens |
+| Build | Gradle Kotlin DSL + a version catalog (`libs.versions.toml`) | |
+| Architecture | ViewModel + Kotlin coroutines and Flow, Navigation Compose | Hilt for DI only when the graph is large |
+| Storage | Room (data), DataStore (settings) | Not SharedPreferences for new code |
+| Background work | WorkManager | Survives restarts and respects battery rules |
+| Secrets and keys | Android Keystore | Never plain files or preferences |
+| Release | Android App Bundle (AAB), Play App Signing, R8 shrinking | The Play target API level requirement rises every year: plan the bump |
+
+## Release and store rules
+
+Checked on the web 2026-11-19: Data safety form, App Store guidelines 4.8, 5.1.1 and 5.1.2, privacy manifest.
+
+- Expo: EAS Build + EAS Submit. Native: fastlane (signing, build, upload) or Xcode Cloud for iOS. Flutter: Codemagic or fastlane.
+- iOS betas: TestFlight. Android betas: Play internal and closed testing tracks.
+- iOS: a privacy manifest (`PrivacyInfo.xcprivacy`) for the app and its SDKs, App Tracking Transparency before cross-app tracking, in-app account deletion when the app creates accounts, and a privacy-focused login option (Sign in with Apple or equivalent) when you offer third-party social login.
+- Android: the Data safety form matches what the app and its SDKs collect.
+- Signing keys and store credentials live in CI secrets (fastlane match, EAS credentials), never in the repo.
+- Selling digital goods or subscriptions: [billing.md](billing.md).
+
+## Tests
+
+Checked on the web 2026-11-19: Maestro, Detox.
+
+- E2E across iOS and Android: Maestro (YAML flows). Detox for React Native gray-box tests.
+- Native: XCUITest (iOS), Compose UI tests and Espresso (Android). Flutter: `integration_test`.
+- Unit tests in the app language; run them in CI on every PR. Device farms (Firebase Test Lab, BrowserStack) only for release candidates.
+
+## Avoid
+
+- CodePush / App Center (shut down in 2025).
+- Electron for new apps without a strong reason.
+- Capacitor unless you are wrapping an existing web app.

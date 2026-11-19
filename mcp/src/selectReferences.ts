@@ -24,15 +24,18 @@ const RULES: Rule[] = [
   { file: "multi-tenancy.md", keywords: ["tenant", "multi-tenant", "saas", "rls", "organization", "workspace"], reason: "Tenant isolation and RLS", weight: 5 },
   { file: "toolchain-ts.md", keywords: ["typescript", "javascript", "ts", "js", "vite", "vitest", "oxlint", "oxfmt", "oxc", "monorepo", "turborepo", "pnpm", "react", "nextjs", "next", "frontend", "web", "node", "nodejs", "bun"], reason: "TypeScript toolchain default (Vite+, Oxlint, Oxfmt, Vitest)", weight: 6 },
   { file: "stack-compat-ts.md", keywords: ["typescript", "javascript", "hono", "elysia", "drizzle", "prisma", "trpc", "orpc", "workers", "cloudflare", "convex", "fullstack"], reason: "Valid TypeScript stack combinations", weight: 4 },
-  { file: "frontend.md", keywords: ["frontend", "react", "vue", "svelte", "next", "nextjs", "ui", "web", "tailwind", "css", "shadcn", "dashboard"], reason: "Frontend framework, UI, state", weight: 5 },
+  { file: "frontend.md", keywords: ["frontend", "react", "vue", "svelte", "next", "nextjs", "ui", "web", "tailwind", "css", "shadcn", "dashboard", "seo", "cms", "blog", "landing", "admin", "backoffice", "astro"], reason: "Frontend framework, UI, state, SEO, CMS, admin", weight: 5 },
   { file: "frontend-architecture.md", keywords: ["frontend", "react", "vue", "svelte", "next", "nextjs", "spa", "ssr", "web"], reason: "FE system design checklist for ARCHITECTURE.md", weight: 4 },
-  { file: "backend.md", keywords: ["backend", "hono", "elysia", "express", "fastify", "nestjs", "server", "go", "golang", "python", "fastapi", "django", "rust", "axum"], reason: "Backend frameworks, ORM, queues per language", weight: 4 },
+  { file: "backend.md", keywords: ["backend", "hono", "elysia", "express", "fastify", "nestjs", "server", "golang", "python", "fastapi", "django", "rust", "axum", "php", "laravel", "symfony", "java", "spring", "quarkus", "ruby", "rails", "dotnet", "c#", "csharp", "asp.net", "blazor"], reason: "Backend frameworks, ORM, queues per language", weight: 4 },
   { file: "database.md", keywords: ["database", "postgres", "postgresql", "sqlite", "mysql", "prisma", "drizzle", "orm", "sql", "mongodb", "migration"], reason: "Database, hosting, migrations", weight: 4 },
   { file: "cli.md", keywords: ["cli", "command", "command-line", "terminal", "shell", "tui", "binary", "argv", "cobra", "clap"], reason: "CLI and terminal tool rules", weight: 6 },
-  { file: "ai-llm.md", keywords: ["llm", "ai", "agent", "agents", "rag", "embedding", "embeddings", "prompt", "prompts", "chatbot", "openai", "anthropic", "gemini", "vector", "inference", "model"], reason: "LLM product defaults, cost, safety, evals", weight: 6 },
+  { file: "ai-llm.md", keywords: ["llm", "ai", "agent", "agents", "rag", "embedding", "embeddings", "prompt", "prompts", "chatbot", "openai", "anthropic", "gemini", "vector", "inference"], reason: "LLM product defaults, cost, safety, evals", weight: 6 },
   { file: "api.md", keywords: ["api", "rest", "trpc", "orpc", "openapi", "endpoint", "graphql", "grpc", "gateway"], reason: "API style, errors, versioning", weight: 4 },
-  { file: "mobile.md", keywords: ["mobile", "ios", "android", "react-native", "expo", "flutter", "ota"], reason: "Mobile frameworks and app updates", weight: 5 },
-  { file: "apple-macos-swift.md", keywords: ["macos", "osx", "swift", "swiftui", "xcode", "menubar", "finder", "apple", "appkit", "keychain", "notarization", "ios"], reason: "Native Apple stack, Keychain, notarization", weight: 6 },
+  { file: "mobile.md", keywords: ["mobile", "ios", "ipados", "ipad", "android", "kotlin", "compose", "react-native", "expo", "flutter", "ota", "testflight", "play-store", "app-store"], reason: "Mobile frameworks, Android, store release, app updates", weight: 5 },
+  // "ios" alone is left to mobile.md so a Flutter or Expo app does not pull in the native Apple file.
+  { file: "apple-macos-swift.md", keywords: ["macos", "osx", "swift", "swiftui", "xcode", "menubar", "finder", "apple", "appkit", "keychain", "notarization", "ipados", "ipad"], reason: "Native Apple stack, iPadOS, Keychain, notarization", weight: 6 },
+  { file: "desktop.md", keywords: ["desktop", "tauri", "electron", "electrobun", "for windows", "windows app", "windows desktop", "gtk", "gnome", "kde", "installer", "tray", "flatpak", "appimage", "msix"], reason: "Desktop apps: packaging, signing, updates per OS", weight: 6 },
+  { file: "billing.md", keywords: ["billing", "subscription", "subscriptions", "paywall", "iap", "in-app", "revenuecat", "storekit", "pricing", "entitlement", "midtrans", "xendit"], reason: "Subscriptions, entitlements, in-app purchases", weight: 5 },
   { file: "auth.md", keywords: ["auth", "login", "jwt", "clerk", "session", "oauth", "sso", "passkey", "signup"], reason: "Authentication options", weight: 5 },
   { file: "security.md", keywords: ["security", "encrypt", "encryption", "aes", "keychain", "touch", "privacy", "lock", "crypto", "secret", "password", "hdiutil", "llm", "ai"], reason: "Security controls and secrets", weight: 5 },
   { file: "compliance.md", keywords: ["gdpr", "pdp", "privacy", "compliance", "personal", "indonesia", "health", "pci", "payment"], reason: "Privacy law and compliance triggers", weight: 4 },
@@ -46,13 +49,23 @@ const RULES: Rule[] = [
   { file: "performance.md", keywords: ["performance", "vital", "lcp", "inp", "cls", "latency", "seo"], reason: "Performance targets and techniques", weight: 4 },
   { file: "infrastructure.md", keywords: ["docker", "deploy", "k8s", "kubernetes", "infra", "hosting", "serverless", "edge", "vercel"], reason: "Hosting, edge, deploy strategy", weight: 3 },
   { file: "ci-cd.md", keywords: ["ci", "cd", "actions", "pipeline", "release"], reason: "CI and release pipelines", weight: 3 },
-  { file: "observability.md", keywords: ["observability", "metrics", "tracing", "otel", "monitor", "logging", "alert"], reason: "Logs, metrics, traces, alerting", weight: 3 },
+  { file: "observability.md", keywords: ["observability", "metrics", "tracing", "otel", "monitor", "logging", "alert", "analytics", "posthog", "funnel", "tracking"], reason: "Logs, metrics, traces, alerting, product analytics", weight: 3 },
   { file: "reliability.md", keywords: ["backup", "disaster", "recovery", "load", "scale", "cost", "chaos"], reason: "Backup, DR, load test, cost", weight: 3 },
+  { file: "agentic-engineering.md", keywords: ["agent", "agents", "agentic", "tool-calling", "tools", "mcp", "autonomous", "copilot", "assistant"], reason: "Agent shape, tools, guardrails, coding-agent practice", weight: 5 },
+  { file: "agent-loops.md", keywords: ["agent", "agents", "loop", "autonomous", "retry", "react", "self-correct", "iterate"], reason: "Agent loop stop conditions, verification, checkpoints", weight: 4 },
+  { file: "agent-graphs.md", keywords: ["workflow", "graph", "langgraph", "orchestration", "multi-agent", "multi-step", "pipeline", "human-in-the-loop"], reason: "Multi-step AI flows as typed state machines", weight: 4 },
+  { file: "idioms.md", keywords: ["typescript", "ts", "swift", "swiftui", "python", "sql", "idiom", "idioms"], reason: "Idiomatic TS, Swift, Python, SQL", weight: 2 },
+  { file: "mechanisms.md", keywords: ["retry", "idempotency", "idempotent", "lock", "lease", "concurrency", "rate", "cache", "queue", "webhook", "payment", "order"], reason: "Idempotency, locks, retries, rate limits", weight: 3 },
+  { file: "scaling.md", keywords: ["scale", "scaling", "traffic", "high-traffic", "load", "replica", "partition", "shard", "cdn", "autoscale"], reason: "Order of scaling moves, replicas, partitioning", weight: 3 },
+  { file: "concurrency.md", keywords: ["concurrency", "concurrent", "async", "thread", "worker", "race", "parallel", "goroutine", "isolation", "booking", "stock"], reason: "Runtime concurrency models, races, isolation levels", weight: 3 },
+  { file: "scenarios.md", keywords: ["shortener", "url", "video", "upload", "shop", "ecommerce", "e-commerce", "store", "checkout", "payment", "chat", "messaging", "notification", "notifications"], reason: "Known system design scenarios and their key decisions", weight: 4 },
+  { file: "diagrams.md", keywords: ["diagram", "c4", "architecture", "sequence", "erd", "mermaid"], reason: "C4 levels and diagram notation", weight: 2, always: true },
   { file: "engineering-practices.md", keywords: ["adr", "docs", "documentation", "config", "flag", "feature-flag", "onboarding", "error"], reason: "Error handling, config, flags, docs, ADR", weight: 2 },
 ];
 
 const DEFAULT_ROOT = fileURLToPath(new URL("../../skill/inisiasi/references/sot", import.meta.url));
-const VERIFIED_RE = /^>\s*Terakhir diverifikasi:\s*(\d{4}-\d{2}-\d{2})\s*$/m;
+// Accepts "Last verified" (English) and "Terakhir diverifikasi" (older Indonesian headers).
+const VERIFIED_RE = /^>\s*(?:Last verified|Terakhir diverifikasi):\s*(\d{4}-\d{2}-\d{2})\s*$/m;
 const MAX_FILES = 8;
 
 export function referencesRoot(): string {
@@ -98,6 +111,7 @@ const NEEDS = [
   { label: "Apple/macOS/Swift", re: /\b(macos|osx|swiftui|\bswift\b|xcode|menubar|finder|apple)\b/i, files: ["apple", "macos", "swift"] },
   { label: "CLI/terminal", re: /\b(cli|command-line|command line|terminal tool|tui)\b/i, files: ["cli"] },
   { label: "AI/LLM", re: /\b(llm|rag|chatbot|embedding|inference|ai agent)\b/i, files: ["ai-llm", "llm"] },
+  { label: "Desktop", re: /\b(desktop|tauri|electron|electrobun)\b/i, files: ["desktop"] },
 ];
 
 export function selectReferences(input: { project_description?: string; plan_path?: string; limit?: number }): SelectReferencesResult {

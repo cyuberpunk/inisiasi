@@ -1,27 +1,27 @@
 # Formatting
 
-> Terakhir diverifikasi: 2026-11-16
+> Last verified: 2026-11-16
 
-Scope: indentasi, lebar baris, kutip, semicolon, brace. Diputuskan formatter, bukan debat.
+Scope: indentation, line width, quotes, semicolons, braces. The formatter decides, not debate.
 
-## Aturan mesin
+## Machine rules
 
-Formatter memutuskan, bukan reviewer. Nilai di bawah contoh, bukan wajib: yang penting satu nilai dipilih, ditulis di config, dan dipatuhi semua orang. Konfigurasi di repo, jalan di pre-commit dan CI.
+The formatter decides, not the reviewer. The values below are examples, not requirements: what matters is that one value is chosen, written in the config, and followed by everyone. Config lives in the repo and runs in pre-commit and CI.
 
-| Item | Contoh pilihan (satu per repo, tulis di config) |
+| Item | Example choice (one per repo, written in the config) |
 |------|---------|
-| Indentasi | 2 spasi (TS/JS/JSON/CSS), tab untuk Go, 4 spasi untuk Python/Rust |
-| Lebar baris | 100. 80 hanya kode lama, 120 untuk repo yang sudah begitu |
-| Kutip | Double untuk TS/JS, single untuk Python |
-| Semicolon | Wajib di TS/JS |
+| Indentation | 2 spaces (TS/JS/JSON/CSS), tabs for Go, 4 spaces for Python/Rust |
+| Line width | 100. 80 only for old code, 120 for repos that already use it |
+| Quotes | Double for TS/JS, single for Python |
+| Semicolons | Required in TS/JS |
 | Trailing comma | `all` |
-| Akhir file | Satu newline, tanpa trailing whitespace |
-| Brace | K&R. Allman hanya jika bahasa menuntut |
+| End of file | One newline, no trailing whitespace |
+| Braces | K&R. Allman only when the language requires it |
 
-## Aturan manusia
+## Human rules
 
-- Jangan memecah baris manual kalau formatter bisa.
-- Chained call panjang: satu method per baris setelah titik pertama.
-- Parameter lebih dari 3: satu per baris.
-- String multi-baris pakai template literal, bukan konkatenasi.
-- Diff besar karena reformat dipisah dari commit logika.
+- Do not break lines by hand when the formatter can do it.
+- Long chained calls: one method per line after the first dot.
+- More than 3 parameters: one per line.
+- Multi-line strings use template literals, not concatenation.
+- Large diffs caused by reformatting are split from logic commits.

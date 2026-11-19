@@ -1,19 +1,19 @@
 # Selera SoT
 
-> Terakhir diverifikasi: 2026-11-16
+> Last verified: 2026-11-16
 
-Standar kode dan praktik. Baca hanya grup yang dibutuhkan tugas. Profil owner (`.selera/profile.json` atau `~/.config/selera/profile.json`) selalu menang atas default di sini.
+Code standards and practices. Read only the groups the task needs. The owner's profile (`.selera/profile.json` or `~/.config/inisiasi/selera/profile.json`) always wins over the defaults here.
 
-| File | Isi |
+| File | Contents |
 |------|-----|
-| [naming.md](naming.md) | Case style, nama semantik, nama file, objek database, CSS |
-| [structure.md](structure.md) | Repo, root directory, penempatan tes, pola folder, higiene |
-| [imports.md](imports.md) | Path, alias, export, barrel, public API, urutan dan arah dependensi |
-| [formatting.md](formatting.md) | Indentasi, line width, kutip, semicolon, brace style |
-| [functions.md](functions.md) | Deklarasi fungsi, batas parameter, early return, immutability, ternary |
-| [design.md](design.md) | SOLID, DRY/KISS/YAGNI, komposisi, separation of concerns |
-| [types.md](types.md) | Strict typing, validasi boundary, null safety, error, logging |
-| [git.md](git.md) | Commit, branching, PR, merge, review comment |
-| [testing.md](testing.md) | Pyramid, AAA, penamaan tes, coverage, dokumentasi, keamanan, tooling |
+| [naming.md](naming.md) | Case styles, semantic names, file names, database objects, CSS |
+| [structure.md](structure.md) | Repo, root directory, test placement, folder patterns, hygiene |
+| [imports.md](imports.md) | Paths, aliases, exports, barrels, public API, import order and direction |
+| [formatting.md](formatting.md) | Indentation, line width, quotes, semicolons, brace style |
+| [functions.md](functions.md) | Function declarations, parameter limits, early return, immutability, ternary |
+| [design.md](design.md) | SOLID, DRY/KISS/YAGNI, composition, separation of concerns |
+| [types.md](types.md) | Strict typing, boundary validation, null safety, errors, logging |
+| [git.md](git.md) | Commits, branching, PRs, merge, review comments |
+| [testing.md](testing.md) | Pyramid, AAA, test naming, coverage, docs, security, tooling |
 
-Urutan baca: naming, structure, imports untuk kerja harian. design dan types untuk keputusan. git dan testing sebelum merge.
+Reading order: naming, structure, imports for daily work. design and types for decisions. git and testing before a merge.

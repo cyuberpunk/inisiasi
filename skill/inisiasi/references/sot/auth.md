@@ -1,31 +1,51 @@
 # Auth
 
-> Terakhir diverifikasi: 2026-11-16
+> Last verified: 2026-11-16
 
-Scope: pemilihan auth dan praktik session. Hash password dan OWASP: [security.md](security.md).
+Scope: choosing auth and session practices. Password hashing and OWASP: [security.md](security.md).
 
-## Default
+## Defaults
 
-| Situasi | Pakai |
-|---------|-------|
-| App TypeScript | Better Auth (self-hosted library, plugin passkey dan organization) |
-| Butuh managed + UI jadi | Clerk |
-| SaaS B2B, SSO/SAML/SCIM | WorkOS AuthKit |
-| Stack sudah Supabase | Supabase Auth |
-| SSO self-hosted enterprise | Keycloak, atau Ory (Kratos, Hydra, Keto) |
-| Backend Go, Python, Rust | IdP di atas + validasi session/JWT. Python: Authlib |
+| Situation | Use |
+|---------|-----|
+| TypeScript app | Better Auth (self-hosted library, passkey and organization plugins) |
+| Managed, with ready-made UI | Clerk |
+| B2B SaaS, SSO/SAML/SCIM | WorkOS AuthKit |
+| Stack already on Supabase | Supabase Auth |
+| Self-hosted enterprise SSO | Keycloak, or Ory (Kratos, Hydra, Keto) |
+| Go, Python, Rust backends | An IdP on top + session/JWT validation. Python: Authlib |
+| Laravel, Spring, Rails, ASP.NET Core | The framework's own auth (Sanctum, Spring Security, Rails authentication generator or Devise, ASP.NET Core Identity). Details: [backend.md](backend.md) |
 
-## Praktik
+## Practices
 
-- Web: session cookie `HttpOnly`, `Secure`, `SameSite`. Jangan simpan token di localStorage.
-- JWT + refresh hanya jika butuh akses stateless lintas service. Access token pendek, refresh dirotasi, logout mematikan session.
-- Passkeys sebagai opsi default, MFA wajib untuk akun admin.
-- Rate limit login dan endpoint sensitif. Respons tidak membocorkan keberadaan akun.
-- Auth di middleware/guard terpusat. Authorization default deny (RBAC, atau ABAC jika perlu).
-- CSRF token untuk alur berbasis cookie. Audit log untuk aksi sensitif.
+- Web: `HttpOnly`, `Secure`, `SameSite` session cookies. Do not store tokens in localStorage.
+- JWT + refresh only if you need stateless access across services. Short-lived access tokens, rotated refresh tokens, logout ends the session.
+- Passkeys as the default option, MFA required for admin accounts.
+- Rate limit login and other sensitive endpoints. Responses must not reveal whether an account exists.
+- Auth in centralized middleware/guards. Authorization is deny by default (RBAC, or ABAC if needed).
+- CSRF tokens for cookie-based flows. Audit logs for sensitive actions.
 
-## Hindari
+## OAuth 2.0 and OpenID Connect
 
-- Auth.js / NextAuth untuk project baru (sekarang bagian dari Better Auth). App existing: rencanakan migrasi.
-- FastAPI Users untuk project baru.
-- Implementasi crypto sendiri. SMS OTP sebagai satu-satunya faktor.
+Draft, pending owner review.
+
+| Client | Flow |
+|--------|------|
+| Web app with a server | Authorization code + PKCE, tokens stay on the server, the browser gets a session cookie |
+| SPA without a backend | Add a backend-for-frontend (BFF) that holds the tokens (RFC 10017). Tokens in the browser only when no BFF is possible |
+| Native and mobile apps | Authorization code + PKCE through the system browser (ASWebAuthenticationSession, Custom Tabs), never an embedded web view |
+| Service to service | Client credentials, short-lived tokens, one client per service |
+| CLI on a machine with a browser | Authorization code + PKCE with a loopback redirect (`http://127.0.0.1:<port>`) |
+| TVs, or CLIs without a local browser (SSH) | Device authorization flow |
+
+- Login is OIDC: validate the ID token (`iss`, `aud`, `exp`, `nonce`, signature from the provider's JWKS). Authorization is OAuth access tokens, checked by the resource server.
+- Always send and check `state`. Exact redirect URI match, no wildcards (only the loopback port may vary). More than one provider: check `iss` in the response (RFC 9207).
+- Refresh tokens for public clients are rotated or sender-constrained (DPoP).
+- Scopes are coarse (what the client may ask for). Fine-grained permissions live in your app.
+- Do not use the implicit flow or the password grant (RFC 9700).
+
+## Avoid
+
+- Auth.js / NextAuth for new projects (it is now part of Better Auth). Existing apps: plan a migration.
+- FastAPI Users for new projects.
+- Rolling your own cryptography. SMS OTP as the only factor.

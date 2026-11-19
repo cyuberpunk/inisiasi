@@ -1,3 +1,4 @@
+import { homedir } from "node:os";
 import { existsSync, readFileSync, statSync } from "node:fs";
 import { join, resolve } from "node:path";
 
@@ -10,12 +11,13 @@ export function readText(path: string): string | undefined {
   return readFileSync(path, "utf8");
 }
 
+// Tool arguments arrive unexpanded from MCP clients, so "~/x" must resolve against the home directory.
 export function resolveExisting(path: string): string {
-  return resolve(path);
+  return resolve(path === "~" || path.startsWith("~/") ? join(homedir(), path.slice(1)) : path);
 }
 
 export function resolvePlanPath(input: string): string {
-  const abs = resolve(input);
+  const abs = resolveExisting(input);
   if (existsSync(abs) && statSync(abs).isDirectory()) {
     const inDocs = join(abs, "docs", "PLAN.md");
     if (existsSync(inDocs)) return inDocs;

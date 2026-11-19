@@ -1,39 +1,39 @@
-# Kompatibilitas stack TypeScript
+# TypeScript stack compatibility
 
-> Terakhir diverifikasi: 2026-11-16
+> Last verified: 2026-11-16
 
-Scope: kombinasi frontend, backend, runtime, database, ORM, API yang aman dirakit. Baca sebelum menulis ARCHITECTURE.md untuk stack TS.
+Scope: frontend, backend, runtime, database, ORM, and API combinations that are safe to assemble. Read this before writing ARCHITECTURE.md for a TS stack.
 
-## Default
+## Defaults
 
-- Prototipe: TanStack Router atau TanStack Start + Hono + SQLite + Drizzle + Better Auth + pnpm workspaces.
-- Produksi: ganti SQLite ke Postgres (Neon, Supabase, atau Postgres sendiri).
-- Edge di Cloudflare: Workers + Hono + D1 (SQLite) + Drizzle.
+- Prototype: TanStack Router or TanStack Start + Hono + SQLite + Drizzle + Better Auth + pnpm workspaces.
+- Production: swap SQLite for Postgres (Neon, Supabase, or self-hosted Postgres).
+- Edge on Cloudflare: Workers + Hono + D1 (SQLite) + Drizzle.
 
-## Aturan kombinasi
+## Combination rules
 
-| Kalau | Maka | Jangan |
-|-------|------|--------|
-| MongoDB | Mongoose atau Prisma | Drizzle (tidak mendukung MongoDB) |
-| SQLite, Postgres, MySQL | Drizzle atau Prisma | Mongoose |
-| Cloudflare Workers | Hono, Drizzle atau Prisma, D1, Turso, atau Postgres via Hyperdrive | Express/Fastify sebagai default (bergantung lapisan kompatibilitas Node), Mongoose |
-| D1 | Database SQLite, runtime Workers | Postgres/MySQL ORM dialect |
-| Vue, Svelte, Solid, Astro | oRPC | tRPC (integrasi resminya untuk React/Next) |
-| React, Next, TanStack, Expo | tRPC atau oRPC | |
-| Convex | Convex menggantikan DB, ORM, dan API layer | Menambah Drizzle/Prisma/tRPC di atasnya |
-| Better Auth | Butuh server dan, jika ada DB, adapter ORM | Dipakai tanpa backend |
-| Desktop (Tauri, Electrobun) | Frontend web yang bisa di-export statis | App SSR-only tanpa export |
+| If | Then | Do not |
+|-------|-------|---------|
+| MongoDB | Mongoose or Prisma | Drizzle (no MongoDB support) |
+| SQLite, Postgres, MySQL | Drizzle or Prisma | Mongoose |
+| Cloudflare Workers | Hono, Drizzle or Prisma, D1, Turso, or Postgres via Hyperdrive | Express/Fastify as the default (they depend on the Node compatibility layer), Mongoose |
+| D1 | SQLite database, Workers runtime | Postgres/MySQL ORM dialects |
+| Vue, Svelte, Solid, Astro | oRPC | tRPC (its official integration targets React/Next) |
+| React, Next, TanStack, Expo | tRPC or oRPC | |
+| Convex | Convex replaces the DB, ORM, and API layer | Adding Drizzle/Prisma/tRPC on top |
+| Better Auth | Needs a server and, if there is a DB, an ORM adapter | Use without a backend |
+| Desktop (Tauri, Electrobun) | A web frontend that can be exported statically | SSR-only apps without an export |
 
-## Pilihan cepat
+## Quick picks
 
-- SEO, RSC: Next.js. API boleh di dalam app (route handler) jika kecil.
-- SPA, kontrol routing: TanStack Router. Fullstack: TanStack Start.
-- Web + mobile share kode: TanStack/Next + Expo + Uniwind, tipe dan schema di `packages/`.
-- Pembayaran/subscription: Polar atau Stripe. Polar punya plugin Better Auth.
-- Realtime + backend terkelola: Convex.
+- SEO, RSC: Next.js. The API can live inside the app (route handlers) if it is small.
+- SPA, routing control: TanStack Router. Fullstack: TanStack Start.
+- Web + mobile sharing code: TanStack/Next + Expo + Uniwind, with types and schemas in `packages/`.
+- Payments/subscriptions: Polar or Stripe. Polar has a Better Auth plugin.
+- Realtime + managed backend: Convex.
 
-## Hindari
+## Avoid
 
-- SolidStart untuk project baru (dihentikan di siklus Solid 2.0).
-- Auth.js untuk project baru (sekarang bagian dari Better Auth).
-- Vercel Edge Functions (deprecated). Pakai Vercel Functions (Node, Fluid compute).
+- SolidStart for new projects (discontinued in the Solid 2.0 cycle).
+- Auth.js for new projects (it is now part of Better Auth).
+- Vercel Edge Functions (deprecated). Use Vercel Functions (Node, Fluid compute).

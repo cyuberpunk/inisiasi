@@ -1,28 +1,28 @@
-# Type, error, logging
+# Types, errors, logging
 
-> Terakhir diverifikasi: 2026-11-16
+> Last verified: 2026-11-16
 
-Scope: strict typing, validasi boundary, null safety, error, log.
+Scope: strict typing, boundary validation, null safety, errors, logs.
 
-## Type
+## Types
 
-- TypeScript `strict` penuh, termasuk `noUncheckedIndexedAccess` dan `exactOptionalPropertyTypes`. `any` dilarang; pakai `unknown` lalu sempitkan.
-- Python: annotation di fungsi publik, `mypy` atau `pyright` di CI.
-- Data dari luar (API, env, form) divalidasi di boundary dengan schema (Zod, pydantic). Setelah itu tipe dipercaya.
-- Union bukan string bebas: `"pending" | "paid"`.
-- `null` untuk tidak ada nilai, `undefined` untuk tidak diberikan. Pilih satu per konteks.
+- Full TypeScript `strict`, including `noUncheckedIndexedAccess` and `exactOptionalPropertyTypes`. `any` is forbidden; use `unknown` and narrow it.
+- Python: annotations on public functions, `mypy` or `pyright` in CI.
+- Data from outside (APIs, env vars, forms) is validated at the boundary with a schema (Zod, pydantic). After that, the type is trusted.
+- Unions, not free strings: `"pending" | "paid"`.
+- `null` for no value, `undefined` for not provided. Pick one per context.
 
-## Error
+## Errors
 
-- Error kelas sendiri: kode mesin, pesan untuk pengguna, detail internal di `cause`.
-- Result/Either untuk kegagalan yang diharapkan. Exception untuk bug dan kegagalan tak terduga.
-- Jangan menelan error. `catch` tanpa aksi atau rethrow dilarang.
-- Handler global di boundary: log lengkap, respons generik, tanpa stack trace.
-- Fail closed untuk auth dan otorisasi.
+- Own error classes: a machine code, a message for the user, and internal details in `cause`.
+- Result/Either for expected failures. Exceptions for bugs and unexpected failures.
+- Do not swallow errors. A `catch` with no action or rethrow is forbidden.
+- Global handler at the boundary: full log, generic response, no stack trace.
+- Fail closed for authentication and authorization.
 
-## Log
+## Logging
 
-- Level: DEBUG, INFO, WARN, ERROR. FATAL hanya untuk proses yang berhenti.
-- Terstruktur JSON dengan `request_id`, `trace_id`, `user_id` (hash bila sensitif).
-- Log di boundary: request masuk, panggilan keluar, error.
-- Jangan log secret, token, atau PII mentah.
+- Levels: DEBUG, INFO, WARN, ERROR. FATAL only for a process that is stopping.
+- Structured JSON with `request_id`, `trace_id`, `user_id` (hashed if sensitive).
+- Log at the boundary: incoming requests, outgoing calls, errors.
+- Never log secrets, tokens, or raw PII.

@@ -1,26 +1,26 @@
-# Rate limit dan webhook
+# Rate limits and webhooks
 
-> Terakhir diverifikasi: 2026-11-16
+> Last verified: 2026-11-16
 
-Scope: rate limiting, webhook masuk dan keluar.
+Scope: rate limiting, inbound and outbound webhooks.
 
-## Rate limit
+## Rate limits
 
-- Kunci: user ID atau API key setelah login. IP hanya untuk anonim (NAT, IPv6 membuat IP tidak adil).
-- Algoritma: GCRA atau sliding window di Redis/Valkey untuk multi-instance. Token bucket jika burst boleh. Berbasis biaya untuk GraphQL atau endpoint mahal.
-- Lapisan: app (Redis/Valkey), gateway/proxy, CDN.
-- Respons: `429` + `Retry-After`. Header `RateLimit` / `RateLimit-Policy` (draft IETF), plus `X-RateLimit-*` untuk klien lama.
-- Library: `rate-limiter-flexible` (Node), `go-redis/redis_rate` (Go, GCRA), `slowapi` (Python).
-- Titik awal: login 5/menit/IP, API 100/menit/user, publik 30/menit/IP. Sesuaikan dengan data.
+- Key: user ID or API key after login. Use IP only for anonymous traffic (NAT and IPv6 make IP unfair).
+- Algorithm: GCRA or a sliding window in Redis/Valkey for multiple instances. Token bucket if bursts are allowed. Cost-based for GraphQL or expensive endpoints.
+- Layers: app (Redis/Valkey), gateway/proxy, CDN.
+- Response: `429` + `Retry-After`. `RateLimit` / `RateLimit-Policy` headers (IETF draft), plus `X-RateLimit-*` for older clients.
+- Libraries: `rate-limiter-flexible` (Node), `go-redis/redis_rate` (Go, GCRA), `slowapi` (Python).
+- Starting point: login 5/minute per IP, API 100/minute per user, public 30/minute per IP. Tune with real data.
 
-## Webhook keluar
+## Outbound webhooks
 
-- Kontrak: Standard Webhooks (header `webhook-id`, `webhook-timestamp`, `webhook-signature`, HMAC SHA256 atas `{id}.{timestamp}.{body}`).
-- Jangan kirim sinkron. Enqueue, kirim dari worker, timeout 5-10 detik, retry backoff, dead letter, log delivery.
-- SSRF: blokir IP privat, loopback, link-local, metadata cloud. Jangan ikuti redirect. Cek IP saat koneksi (DNS rebinding).
-- Rotasi secret: tanda tangan ganda (lama + baru) selama transisi.
-- Tidak mau bangun infrastruktur: Svix atau Hookdeck.
+- Contract: Standard Webhooks (headers `webhook-id`, `webhook-timestamp`, `webhook-signature`, HMAC SHA256 over `{id}.{timestamp}.{body}`).
+- Do not send synchronously. Enqueue, send from a worker, timeout 5-10 seconds, retry with backoff, dead letter, log deliveries.
+- SSRF: block private IPs, loopback, link-local, and cloud metadata addresses. Do not follow redirects. Check the IP at connection time (DNS rebinding).
+- Secret rotation: dual signatures (old + new) during the transition.
+- If you do not want to build the infrastructure: Svix or Hookdeck.
 
-## Webhook masuk
+## Inbound webhooks
 
-Verifikasi signature dan jendela timestamp, simpan event ID (idempotent), balas `200` cepat, proses async.
+Verify the signature and the timestamp window, store the event ID (idempotent), reply `200` quickly, process asynchronously.

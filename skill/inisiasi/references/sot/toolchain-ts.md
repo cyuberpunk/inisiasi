@@ -1,51 +1,51 @@
-# Toolchain TypeScript
+# TypeScript toolchain
 
-> Terakhir diverifikasi: 2026-11-16
+> Last verified: 2026-11-16
 
-Scope: lint, format, test, typecheck, build, monorepo, git hooks untuk project TS/JS. Default owner.
+Scope: lint, format, test, typecheck, build, monorepo, and git hooks for TS/JS projects. The owner's default.
 
-## Default
+## Defaults
 
-| Layer | Pakai | Catatan |
-|-------|-------|---------|
-| Toolchain | Vite+ (CLI `vp`) | Satu pintu: `vp dev`, `vp build`, `vp test`, `vp check` (lint, format, typecheck, test). Stabil sejak 1.0 |
-| Bundler | Vite 8 (Rolldown default) | Stabil |
-| Test | Vitest | Lewat Vite+ |
-| Lint | Oxlint | Stabil. Type-aware lewat `oxlint-tsgolint` |
-| Format | Oxfmt | Masih beta, Prettier-compatible |
-| Typecheck | `tsc` atau `vp check` | Default tetap `tsc` |
-| Monorepo | pnpm workspaces + Turborepo, atau Vite+ (`--recursive`, `--filter`) | Nx hanya monorepo enterprise besar |
-| Package manager | pnpm. Alternatif: bun | npm boleh, lebih lambat. Yarn jangan untuk project baru |
-| Git hooks | Lefthook, atau `vp` hooks bila pakai Vite+ | Husky + lint-staged hanya repo lama |
-| Secret scan | gitleaks atau trufflehog | Di hook dan CI |
+| Layer | Use | Notes |
+|-------|-----|-------|
+| Toolchain | Vite+ (CLI `vp`) | One entry point: `vp dev`, `vp build`, `vp test`, `vp check` (lint, format, typecheck, test). Stable since 1.0 |
+| Bundler | Vite 8 (Rolldown default) | Stable |
+| Test | Vitest | Through Vite+ |
+| Lint | Oxlint | Stable. Type-aware via `oxlint-tsgolint` |
+| Format | Oxfmt | Still beta, Prettier-compatible |
+| Typecheck | `tsc` or `vp check` | Default stays `tsc` |
+| Monorepo | pnpm workspaces + Turborepo, or Vite+ (`--recursive`, `--filter`) | Nx only for large enterprise monorepos |
+| Package manager | pnpm. Alternative: bun | npm is allowed but slower. Do not use Yarn for new projects |
+| Git hooks | Lefthook, or `vp` hooks when using Vite+ | Husky + lint-staged only for old repos |
+| Secret scan | gitleaks or trufflehog | In hooks and CI |
 
-## Pakai kalau
+## Use when
 
-- Biome: tim mau satu binary lint+format di luar Oxc. Bukan default.
-- ESLint + Prettier: repo lama, atau butuh plugin yang belum ada di Oxlint.
-- Next.js: Oxlint + Oxfmt saja. Jangan paksa Vite+ sebagai bundler Next.
-- TypeScript 7 native preview (`tsgo`, `@typescript/native-preview`) atau `tsrs` (port Rust): eksperimen saja, bukan default.
+- Biome: the team wants one lint+format binary outside Oxc. Not a default.
+- ESLint + Prettier: an old repo, or you need a plugin Oxlint does not have yet.
+- Next.js: Oxlint + Oxfmt only. Do not force Vite+ as the bundler for Next.
+- TypeScript 7 native preview (`tsgo`, `@typescript/native-preview`) or `tsrs` (Rust port): experiments only, not defaults.
 
-## Data dan ekosistem VoidZero terkait
+## Related data and VoidZero ecosystem
 
-| Nama | Apa | Status di inisiasi |
-|------|-----|--------------------|
-| fate (`react-fate`) | Data client React/Vue, gaya Relay: normalized cache, data masking, live view SSE. Template: `vp create fate` | Pilih jika backend tRPC, GraphQL, atau Void dan butuh normalized cache. Selain itu TanStack Query |
-| Void (void.cloud) | CLI, platform, dan SDK fullstack yang deploy ke Cloudflare | Opsional, bukan default |
-| fbtee | i18n inline berbasis compiler, penerus `fbt` | Opsi i18n, lihat [frontend.md](frontend.md) |
+| Name | What it is | Status in inisiasi |
+|------|--------------------|--------------------|
+| fate (`react-fate`) | React/Vue data client, Relay-style: normalized cache, data masking, live view over SSE. Template: `vp create fate` | Pick it if the backend is tRPC, GraphQL, or Void and you need a normalized cache. Otherwise TanStack Query |
+| Void (void.cloud) | Fullstack CLI, platform, and SDK that deploys to Cloudflare | Optional, not a default |
+| fbtee | Compiler-based inline i18n, successor to `fbt` | An i18n option, see [frontend.md](frontend.md) |
 
-Paket npm `void` tidak terkait. Jangan dipasang.
+The npm package `void` is unrelated. Do not install it.
 
-## Aturan
+## Rules
 
-1. CI menjalankan `vp check` (atau lint + format check + typecheck + test) dan gagal bila ada error lint.
-2. Monorepo: `apps/web`, `apps/server`, `apps/native`, `packages/*` (ui, db, auth, config). Paket internal pakai workspace protocol, nama `@repo/*`.
-3. CI hanya menjalankan paket yang berubah (`turbo run build test --filter=...[origin/main]` atau `vp --filter`).
-4. Commit lockfile. Bun pakai `bun.lock` (teks), bukan `bun.lockb`.
+1. CI runs `vp check` (or lint + format check + typecheck + test) and fails on any lint error.
+2. Monorepo layout: `apps/web`, `apps/server`, `apps/native`, `packages/*` (ui, db, auth, config). Internal packages use the workspace protocol and are named `@repo/*`.
+3. CI runs only the packages that changed (`turbo run build test --filter=...[origin/main]` or `vp --filter`).
+4. Commit the lockfile. Bun uses `bun.lock` (text), not `bun.lockb`.
 5. Conventional Commits.
 
-## Hindari
+## Avoid
 
-- Menumpuk ESLint + Prettier + Biome + Oxlint di satu repo.
-- Monorepo untuk satu app kecil atau proyek yang tidak saling terkait.
-- Git submodules untuk berbagi kode.
+- Stacking ESLint + Prettier + Biome + Oxlint in one repo.
+- A monorepo for one small app or for unrelated projects.
+- Git submodules to share code.

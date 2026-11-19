@@ -1,61 +1,60 @@
-# Aturan inisiasi, MCP, dan selera
+# Rules for inisiasi, MCP, and selera
 
-Tiga pilar. Tiap pilar punya satu tugas. Jangan campur.
+Three pillars. Each pillar has one job. Do not mix them.
 
-| Pilar | Tugas |
+| Pillar | Job |
 |---|---|
-| MCP | Cari dan rekomendasikan skill |
-| inisiasi | Blueprint: PLAN menjadi ARCHITECTURE dan TASKS, berjalan sepanjang proyek |
-| selera | Rekam preferensi, keputusan tech, dan standar kode owner |
+| MCP | Find and recommend skills |
+| inisiasi | Blueprint: PLAN becomes ARCHITECTURE and TASKS, and it runs for the whole project |
+| selera | Record the owner's preferences, tech decisions, and code standards |
 
-Target owner: generalis untuk web app, platform digital, integrasi, dashboard, AI agent, SaaS, tools. Platform: web, desktop (Linux, Windows, macOS), iOS, iPadOS, Android, hybrid. Bukan specialist, bukan korporat.
+Owner target: generalist, for web apps, digital platforms, integrations, dashboards, AI agents, SaaS, and tools. Platforms: web, desktop (Linux, Windows, macOS), iOS, iPadOS, Android, hybrid. Not a specialist, not a corporate team.
 
-## 1. Memilih skill (MCP)
+## 1. Choosing skills (MCP)
 
-1. Batas aktif: 2 sampai 3 skill general dan 1 sampai 3 skill specific. Maksimal 6 sekaligus.
-2. Lepas dulu yang sudah selesai dipakai sebelum memasang yang baru.
-3. Skill harus relevan dengan task saat ini dan cocok dengan platform target. Tidak ada skill antisipasi.
-4. Dua skill dengan peran sama tidak aktif bersamaan. Pilih satu dan sebut alasannya.
-5. Urutan: `main` dulu, `support` hanya bila task punya kebutuhan konkret. Skor menjadi urutan, bukan satu-satunya alasan.
-6. Cek sebelum merekomendasikan: skill hidup, `verified`, tidak tumpang tindih, platform cocok.
-7. Hemat token: baca ringkasan, buka SKILL.md hanya untuk kandidat yang akan direkomendasikan.
-8. Bundle (`bundle: true`): selalu `--list` dulu dan pilih per skill. Jangan pasang utuh.
+1. Active limit: 2 to 3 general skills and 1 to 3 specific skills. At most 6 at once.
+2. Remove what is finished before installing something new.
+3. A skill must be relevant to the current task and fit the target platform. No speculative skills.
+4. Two skills with the same role are not active together. Pick one and state why.
+5. Order: `main` first, `support` only when the task has a concrete need. The score sets the order but is not the only reason.
+6. Check before recommending: the skill is live, `verified`, does not overlap, and fits the platform.
+7. Save tokens: read the summary, and open SKILL.md only for candidates you will recommend.
+8. Bundle (`bundle: true`): always run `--list` first and pick per skill. Never install a whole bundle.
 
-## 2. Format rekomendasi
+## 2. Recommendation format
 
-Setiap rekomendasi memuat:
-- Opsi, minimal dua bila ada pilihan nyata.
-- Risiko tiap opsi: biaya token, tumpang tindih, perawatan, keamanan.
-- Satu rekomendasi dengan alasan satu kalimat.
-- Perintah install, tidak dijalankan sebelum owner mengonfirmasi.
+Every recommendation includes:
+- One recommendation with a one-sentence reason.
+- The rejected alternative, when there is a real choice, and its risk: token cost, overlap, maintenance, security.
+- The install command, not run until the owner confirms.
 
-Bersikap seperti asisten keputusan tech: cegah masalah sebelum terjadi, bukan hanya menjawab.
+Act like a tech decision assistant: prevent problems before they happen, not just answer.
 
-## 3. inisiasi berjalan sepanjang proyek
+## 3. inisiasi runs for the whole project
 
-Tidak sekali di kickoff. Tugas diulang saat dipicu.
+Not only once at kickoff. Work repeats when triggered.
 
-| Pemicu | Tindakan |
+| Trigger | Action |
 |---|---|
-| PLAN, TASKS, atau selera berubah | Cek drift antara selera, ARCHITECTURE, dan TASKS |
-| Owner menjalankan perintah cek | Cek drift sekarang, lalu laporkan |
-| Task butuh kemampuan baru | Rekomendasikan maksimal satu skill specific, dengan opsi dan risiko |
-| Tidak ada pemicu | Diam. Tidak ada rekomendasi |
+| PLAN, TASKS, or selera changes | Check drift between selera, ARCHITECTURE, and TASKS |
+| Owner runs the check command | Check drift now, then report |
+| A task needs a new capability | Recommend at most one specific skill, with options and risks |
+| No trigger | Silent. No recommendations |
 
-Tidak ada cek otomatis tiap sesi.
+No automatic check runs on every session.
 
-## 4. Menulis ke selera
+## 4. Writing to selera
 
-Tiga jalur:
+Three paths:
 
-| Jalur | Kapan | Izin |
+| Path | When | Permission |
 |---|---|---|
-| Owner menyatakan preferensi | Kapan saja dalam sesi | Tidak minta izin, langsung `set` dan konfirmasi satu baris |
-| `selera setup` | Owner memanggil | Owner mengisi atau melewati |
-| inisiasi menyimpulkan keputusan tech baru | Saat PLAN, ARCHITECTURE, atau TASKS berubah | Mengusulkan, owner mengonfirmasi |
+| Owner states a preference | Any time in the session | No permission asked. Run `set` and confirm in one line |
+| `selera setup` | Owner runs it | Owner fills in or skips |
+| inisiasi infers a new tech decision | When PLAN, ARCHITECTURE, or TASKS changes | Propose it, owner confirms |
 
-Nilai yang sudah tercatat tidak boleh ditimpa diam-diam. Preferensi yang tidak tercatat berarti SoT berlaku, bukan tebakan.
+A recorded value is never overwritten silently. An unrecorded preference means the SoT applies, not a guess.
 
-## 5. Bertanya
+## 5. Asking questions
 
-Tanya hanya bila stack atau platform belum jelas. Maksimal 3 pertanyaan, tiap pilihan disertai rekomendasi.
+Ask only when the answer changes the stack, the data model, or v1 scope. At most 3 questions, each with a recommendation.

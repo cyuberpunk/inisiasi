@@ -1,47 +1,47 @@
 # API
 
-> Terakhir diverifikasi: 2026-11-16
+> Last verified: 2026-11-16
 
-Scope: gaya API, REST, error, pagination, versi, idempotency, GraphQL, gRPC, gateway. Rate limit dan webhook: [api-ops.md](api-ops.md).
+Scope: API style, REST, errors, pagination, versioning, idempotency, GraphQL, gRPC, gateways. Rate limits and webhooks: [api-ops.md](api-ops.md).
 
-## Pilih gaya
+## Choosing a style
 
-| Situasi | Pakai |
+| Situation | Use |
 |---------|-------|
 | TS fullstack, React/Next/TanStack/Expo | tRPC |
-| TS + butuh OpenAPI publik, atau Vue/Svelte/Solid/Astro | oRPC |
-| API publik atau klien multi-bahasa | REST + OpenAPI 3.1 |
-| Service internal polyglot, Protobuf | gRPC. Connect RPC jika ada klien web |
-| Banyak klien dengan bentuk data berbeda, data nested | GraphQL |
-| Edge / Workers ringan | Hono RPC |
+| TS + need public OpenAPI, or Vue/Svelte/Solid/Astro | oRPC |
+| Public API or multi-language clients | REST + OpenAPI 3.1 |
+| Polyglot internal services, Protobuf | gRPC. Connect RPC if there are web clients |
+| Many clients with different data shapes, nested data | GraphQL |
+| Lightweight edge / Workers | Hono RPC |
 
 ## REST
 
-- Resource jamak, method HTTP benar, cursor pagination (offset hanya list kecil).
-- Error: RFC 9457 Problem Details, `application/problem+json`, `type` berupa URI.
-- Status: 201 create, 202 async, 204 no content, 400/401/403/404/409/422/429, 503 + `Retry-After`.
-- Request ID di setiap response. Allowlist field output. Cek authorization per objek (BOLA/IDOR).
-- Docs: OpenAPI + Scalar atau Swagger UI.
+- Plural resources, correct HTTP methods, cursor pagination (offset only for small lists).
+- Errors: RFC 9457 Problem Details, `application/problem+json`, `type` as a URI.
+- Status codes: 201 create, 202 async, 204 no content, 400/401/403/404/409/422/429, 503 + `Retry-After`.
+- A request ID in every response. Allowlist output fields. Check authorization per object (BOLA/IDOR).
+- Docs: OpenAPI + Scalar or Swagger UI.
 
-## Versi
+## Versioning
 
-- Package: SemVer. HTTP API publik: `/v1` (default) atau versi tanggal (header `API-Version`). Hindari `?version=`.
-- tRPC/oRPC internal: evolusi additive. Breaking = procedure baru, deprecate yang lama.
-- Breaking: hapus field, ubah tipe, jadikan required. Additive: field opsional, endpoint baru. Enum baru bisa merusak klien dengan exhaustive switch.
-- Deprecation: umumkan, header `Deprecation` (RFC 9745) dan `Sunset` (RFC 8594) + `Link` panduan migrasi, lalu hapus setelah tanggal sunset.
+- Packages: SemVer. Public HTTP API: `/v1` (default) or date-based versions (`API-Version` header). Avoid `?version=`.
+- Internal tRPC/oRPC: additive evolution. Breaking change = a new procedure, deprecate the old one.
+- Breaking: removing a field, changing a type, making a field required. Additive: optional fields, new endpoints. A new enum value can break clients with exhaustive switches.
+- Deprecation: announce it, send the `Deprecation` header (RFC 9745), the `Sunset` header (RFC 8594), and a `Link` to the migration guide, then remove it after the sunset date.
 
 ## Idempotency
 
-`Idempotency-Key` untuk POST/PATCH kritis. Simpan key + response. Key sama body beda: 422. Request pertama masih diproses: 409.
+`Idempotency-Key` for critical POST/PATCH requests. Store the key and the response. Same key with a different body: 422. First request still processing: 409.
 
 ## GraphQL
 
-Server: GraphQL Yoga (TS), gqlgen (Go). Klien: urql, Apollo Client, Relay. Wajib: DataLoader (cegah N+1), batas depth dan complexity, persisted queries, auth di resolver. Mulai satu schema. Federation (Apollo, Hive, Cosmo) hanya jika banyak tim.
+Server: GraphQL Yoga (TS), gqlgen (Go). Clients: urql, Apollo Client, Relay. Required: DataLoader (prevents N+1), depth and complexity limits, persisted queries, auth in resolvers. Start with one schema. Federation (Apollo, Hive, Cosmo) only with many teams.
 
 ## gRPC
 
-Connect RPC (connect-go, Connect-ES + Buf) melayani Connect, gRPC, dan gRPC-Web dari satu server. Buf + protovalidate untuk lint dan cek breaking change. Selalu pakai deadline. Jangan gRPC biner untuk API browser publik.
+Connect RPC (connect-go, Connect-ES + Buf) serves Connect, gRPC, and gRPC-Web from one server. Buf + protovalidate for linting and breaking-change checks. Always use deadlines. Do not use binary gRPC for public browser APIs.
 
 ## Gateway
 
-Satu backend: reverse proxy (Caddy, Traefik) + middleware app. Banyak service atau API publik dikelola: Kong, Apache APISIX, atau managed (AWS HTTP API). Kubernetes: Envoy Gateway. Gateway tetap tipis, tanpa business logic.
+One backend: a reverse proxy (Caddy, Traefik) + app middleware. Many services or a managed public API: Kong, Apache APISIX, or managed (AWS HTTP API). Kubernetes: Envoy Gateway. The gateway stays thin, with no business logic.

@@ -1,11 +1,11 @@
 # Multi-tenancy
 
-> Terakhir diverifikasi: 2026-11-16
+> Last verified: 2026-11-16
 
-Scope: isolasi data antar tenant. Pola umum: [architecture.md](architecture.md). RLS salah: [problems-critical.md](problems-critical.md).
+Scope: data isolation between tenants. Common patterns: [architecture.md](architecture.md). Wrong RLS: [problems-critical.md](problems-critical.md).
 
-- Default: shared DB + kolom `tenant_id` + Row Level Security.
-- RLS aman: set tenant per transaksi dengan `SET LOCAL app.tenant_id` (atau `set_config(..., true)`), aktifkan `FORCE ROW LEVEL SECURITY`, policy fail-closed: `tenant_id = nullif(current_setting('app.tenant_id', true), '')::uuid`. App connect sebagai role non-owner tanpa `BYPASSRLS`.
-- `SET` tingkat session bocor antar tenant di PgBouncer transaction pooling. Selalu `SET LOCAL` dalam transaksi.
-- Schema per tenant atau DB per tenant hanya untuk isolasi kontraktual, dengan biaya operasional lebih tinggi.
-- Index diawali `tenant_id`. Rate limit dan kuota per tenant. Tes lintas tenant di CI.
+- Default: shared DB + a `tenant_id` column + Row Level Security.
+- Safe RLS: set the tenant per transaction with `SET LOCAL app.tenant_id` (or `set_config(..., true)`), enable `FORCE ROW LEVEL SECURITY`, and use a fail-closed policy: `tenant_id = nullif(current_setting('app.tenant_id', true), '')::uuid`. The app connects as a non-owner role without `BYPASSRLS`.
+- Session-level `SET` leaks between tenants under PgBouncer transaction pooling. Always use `SET LOCAL` inside a transaction.
+- Schema per tenant or database per tenant only for contractual isolation, at higher operational cost.
+- Indexes start with `tenant_id`. Rate limits and quotas per tenant. Cross-tenant tests in CI.

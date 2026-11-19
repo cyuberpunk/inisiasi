@@ -31,7 +31,21 @@ assert.deepEqual(status(drifted), { "fe.ui": "ok", bundler: "missing_in_architec
 const noTask = checkDrift(project("shadcn vite bun", "nothing here", profile));
 assert.deepEqual(status(noTask), { "fe.ui": "missing_in_tasks", bundler: "missing_in_tasks", packageManager: "missing_in_tasks" });
 
-const globalProfile = join(tmpdir(), `drift-global-${process.pid}.json`);
+const scoped = { "fe.ui": "shadcn", "fe.fetch": "tanstack-query", "cli.test": "vitest", validation: "zod" };
+const noFe = project("zod vitest", "zod vitest", scoped);
+write(noFe, "package.json", JSON.stringify({ dependencies: { "@modelcontextprotocol/sdk": "1", zod: "3" } }));
+const backend = checkDrift(noFe);
+assert.deepEqual(status(backend), { "cli.test": "ok", validation: "ok" });
+assert.deepEqual(backend.skipped.map((s) => s.key), ["fe.ui", "fe.fetch"]);
+assert.match(backend.skipped[0].reason, /no fe platform detected/);
+
+const withFe = project("zod vitest", "zod vitest", scoped);
+write(withFe, "package.json", JSON.stringify({ dependencies: { react: "19", zod: "3" } }));
+const frontend = checkDrift(withFe);
+assert.deepEqual(status(frontend), { "fe.ui": "missing_in_architecture", "fe.fetch": "missing_in_architecture", "cli.test": "ok", validation: "ok" });
+assert.deepEqual(frontend.skipped, []);
+
+const globalProfile =join(tmpdir(), `drift-global-${process.pid}.json`);
 writeFileSync(globalProfile, JSON.stringify({ bundler: "webpack", db: "postgres" }));
 process.env.SELERA_CONFIG = globalProfile;
 const merged = checkDrift(project("vite postgres", "vite postgres", { bundler: "vite" }));
@@ -39,3 +53,11 @@ assert.deepEqual(status(merged), { bundler: "ok", db: "ok" });
 assert.ok(merged.profile_path.endsWith(join(".selera", "profile.json")), merged.profile_path);
 
 console.log("OK: drift");
+
+const list = checkDrift(project("we use pnpm and oxlint, oxfmt", "pnpm oxlint oxfmt", { packageManager: "pnpm,bun", lint: "oxlint+oxfmt", format: "biome" }));
+const { packageManager, lint, format } = status(list);
+assert.deepEqual({ packageManager, lint, format }, { packageManager: "ok", lint: "ok", format: "missing_in_architecture" }, "comma list matches any choice, plus needs all");
+
+const broken = project("x", "x", {});
+writeFileSync(join(broken, ".selera/profile.json"), "{bad");
+assert.throws(() => checkDrift(broken), /not valid JSON/, "corrupt profile gives a clear error");

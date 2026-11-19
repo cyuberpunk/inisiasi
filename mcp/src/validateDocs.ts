@@ -1,6 +1,6 @@
 import { existsSync, statSync } from "node:fs";
 import { join, resolve } from "node:path";
-import { dashHits, isStubMarkdown, readText, splitSections } from "./md.js";
+import { dashHits, isStubMarkdown, readText, splitSections, resolveExisting } from "./md.js";
 
 export type DesignInfo = { exists: boolean; stub: boolean; size: number; path?: string };
 
@@ -116,7 +116,7 @@ function validateWorklog(root: string, errors: string[], warnings: string[]): vo
 }
 
 export function validateDocs(root: string): ValidateDocsResult {
-  const abs = resolve(root);
+  const abs = resolveExisting(root);
   const errors: string[] = [];
   const warnings: string[] = [];
   if (!existsSync(abs)) {
@@ -142,7 +142,7 @@ export function validateDocs(root: string): ValidateDocsResult {
 
   const architectureStub = isStubMarkdown(archMd) || !stackHasChoice(sectionMap(archMd ?? "").get("Stack") ?? "");
   if (archMd !== undefined && architectureStub) {
-    errors.push("docs/ARCHITECTURE.md is a stub or has no Stack choice");
+    errors.push("docs/ARCHITECTURE.md is a stub or has no Stack choice (expected a '## Stack' section with a table: | Layer | Choice | Why | Rejected |)");
   }
 
   if (archMd !== undefined && !architectureStub) {

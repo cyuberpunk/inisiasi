@@ -1,29 +1,29 @@
-# Prinsip desain
+# Design principles
 
-> Terakhir diverifikasi: 2026-11-16
+> Last verified: 2026-11-16
 
-Scope: SOLID, DRY/KISS/YAGNI, komposisi, pemisahan tanggung jawab.
+Scope: SOLID, DRY/KISS/YAGNI, composition, separation of concerns.
 
 ## SOLID
 
-- SRP: satu alasan untuk berubah, per fungsi, modul, file.
-- OCP: perluas dengan kode baru, bukan menambah cabang di kode stabil.
-- LSP: implementasi tidak boleh melanggar kontrak induk.
-- ISP: interface kecil sesuai pemakai.
-- DIP: logika bisnis bergantung pada abstraksi, I/O di adapter.
+- SRP: one reason to change, per function, module, file.
+- OCP: extend with new code, not by adding branches to stable code.
+- LSP: an implementation must not break its parent's contract.
+- ISP: small interfaces, sized to their users.
+- DIP: business logic depends on abstractions, I/O lives in adapters.
 
-## Sehari-hari
+## Day to day
 
-- DRY setelah dua kemunculan nyata. Abstraksi prematur lebih mahal daripada duplikasi kecil.
-- KISS: pilih yang paling mudah dihapus, bukan paling umum.
-- YAGNI: tanpa parameter, cabang, atau lapisan untuk kebutuhan yang belum ada.
-- Komposisi di atas inheritance. Inheritance maksimal satu level.
-- SoC: parsing, aturan bisnis, I/O, presentasi tidak dalam satu fungsi.
+- DRY after two real occurrences. A premature abstraction costs more than a small duplication.
+- KISS: pick the option that is easiest to delete, not the most general one.
+- YAGNI: no parameters, branches, or layers for needs that do not exist yet.
+- Composition over inheritance. Inheritance at most one level deep.
+- SoC: parsing, business rules, I/O, and presentation do not share one function.
 
-## Tanda perlu dipecah
+## Signs it needs splitting
 
-Nama mengandung "dan". Komentar panjang menjelaskan blok di dalam fungsi. Test butuh setup besar untuk satu cabang. Perubahan kecil menyentuh banyak file.
+The name contains "and". A long comment explains a block inside a function. A test needs a large setup for one branch. A small change touches many files.
 
-## Hindari
+## Avoid
 
-Utilitas generik tanpa pemakai. Factory untuk satu produk. Singleton untuk state yang bisa diteruskan. Wrapper yang hanya meneruskan parameter.
+Generic utilities with no users. A factory for one product. A singleton for state that can be passed in. A wrapper that only forwards its parameters.

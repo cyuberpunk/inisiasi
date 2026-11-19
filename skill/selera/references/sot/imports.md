@@ -1,30 +1,30 @@
-# Import dan export
+# Imports and exports
 
-> Terakhir diverifikasi: 2026-11-16
+> Last verified: 2026-11-16
 
-Scope: path, alias, bentuk export, barrel, arah dependensi.
+Scope: paths, aliases, export shape, barrels, dependency direction.
 
-## Path
+## Paths
 
-Default alias absolut: `@/` untuk `src/`. Relative import hanya untuk sibling dalam folder yang sama.
+Default absolute alias: `@/` for `src/`. Relative imports only for siblings in the same folder.
 
-Jangan lebih dari dua level relative (`../../`). Kalau perlu naik tiga, alias atau struktur yang salah.
+Never go up more than two relative levels (`../../`). If you need to go up three, use an alias or the structure is wrong.
 
-## Export
+## Exports
 
-- Default: named export. Memudahkan rename, pencarian pemakaian, dan tree shaking.
-- Default export hanya untuk file yang dituntut framework (page, layout Next.js) dan file config.
-- `export *` dilarang di luar barrel modul publik.
-- Type: `import type` / `export type` supaya hilang saat compile.
+- Default: named exports. They make renames, usage search, and tree shaking easier.
+- Default exports only for files the framework requires (Next.js pages and layouts) and config files.
+- `export *` is forbidden outside a public module barrel.
+- Types: `import type` / `export type`, so they disappear at compile time.
 
-## Barrel dan batas publik
+## Barrels and public boundaries
 
-Barrel (`index.ts`) hanya di batas modul publik: `packages/ui/index.ts`, `modules/order/index.ts`. Di dalam modul, import langsung ke file.
+Barrels (`index.ts`) exist only at public module boundaries: `packages/ui/index.ts`, `modules/order/index.ts`. Inside a module, import the file directly.
 
-Yang diekspor dari index adalah API; sisanya internal. Linter batas (`eslint-plugin-boundaries`, `dependency-cruiser`) menegakkan ini di CI.
+What a barrel exports is the API; everything else is internal. Boundary linters (`eslint-plugin-boundaries`, `dependency-cruiser`) enforce this in CI.
 
-## Urutan dan arah
+## Order and direction
 
-1. Node builtin, 2. dependency eksternal, 3. paket internal, 4. alias lokal, 5. relative, 6. style. Satu baris kosong antar grup, alfabetis di dalam grup. Formatter atau `eslint-plugin-import` yang mengurutkan.
+1. Node built-ins, 2. external dependencies, 3. internal packages, 4. local aliases, 5. relative, 6. styles. One blank line between groups, alphabetical within a group. The formatter or `eslint-plugin-import` sorts them.
 
-Arah satu arah: `app -> features -> shared`. Tidak ada import balik. Siklus dilarang; deteksi dengan `madge` atau `dependency-cruiser`.
+Dependencies flow one way: `app -> features -> shared`. No imports back. Cycles are forbidden; detect them with `madge` or `dependency-cruiser`.
