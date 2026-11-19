@@ -1,6 +1,6 @@
 ---
 name: inisiasi
-description: Project kickoff. Turns the goals in docs/PLAN.md into the agent skills to install, the tech stack, the architecture and the system design, then writes docs/ARCHITECTURE.md and docs/TASKS.md. Use at the start of any new project or when docs/ARCHITECTURE.md is empty, and whenever the user says inisiasi, bootstrap, kickoff, "start a new project", "which stack fits", "which skills do I need", "bootstrap this project", "ok go, write the docs", or asks for architecture or system design for something not built yet. Also triggers on Indonesian equivalents, "mulai project baru", "pilih stack", "stack apa yang cocok", "skill apa yang perlu", "tulis docs-nya". Use it even if they only mention a new idea and an empty repo.
+description: Project kickoff. Turns the goals in docs/PLAN.md into the agent skills to install, the tech stack, the architecture and the system design, then writes docs/ARCHITECTURE.md and docs/TASKS.md. Use at the start of any new project or when docs/ARCHITECTURE.md is empty, and whenever the user says inisiasi, bootstrap, kickoff, "start a new project", "which stack fits", "which skills do I need", "bootstrap this project", "ok go, write the docs", or asks for architecture or system design for something not built yet. Also triggers on Indonesian equivalents, "mulai project baru", "pilih stack", "stack apa yang cocok", "skill apa yang perlu", "tulis docs-nya". Use it even if they only mention a new idea and an empty repo. Not for documenting or explaining code that is already built.
 ---
 
 # inisiasi
@@ -24,11 +24,11 @@ The owner's time is the scarce thing. Every question you ask costs a round trip,
 
 0. **Detect.** Use `detect_stack` if available (`root` is the project root), otherwise scan the project root yourself: `package.json`, `Package.swift`, `*.xcodeproj`, `Cargo.toml`, `go.mod`, `pyproject.toml`, lockfiles, and `docs/`. Read `AGENTS.md` if present. Reuse anything already decided. Do not ask questions the repo or the chat already answers.
 
-1. **Plan gate.** Use `inspect_plan`, or read `docs/PLAN.md` for Goals, MVP, Constraints, Non-goals. An open question blocks only if it changes the stack, the data model, or v1 scope. For each, in order:
+1. **Plan gate.** Use `inspect_plan`, or read `docs/PLAN.md` for Goals, MVP, Constraints, Non-goals. If `docs/PLAN.md` is missing or empty, write it first from the request and this conversation (Goals, MVP, Constraints, Non-goals, Open questions), then run the checks below on its open questions. An open question blocks only if it changes the stack, the data model, or v1 scope. For each, in order:
 
     1. Already answered in this conversation: write it into PLAN, settled.
     2. Settled by an SoT default or platform convention: decide, write it into PLAN, label it as your decision.
-    3. Otherwise a real question: collect at most 3 in one message, each with your recommended answer, and stop.
+    3. Otherwise a real question: collect at most 3 in one message, each with your recommended answer, and stop. If you show a stack while questions are open, label it provisional in its first line.
 
     If nothing is left open, say in one line what you settled and how, then continue to step 2 in the same turn. "run", "lanjut", "go", "repo is ready" mean proceed, not a question round. Back up PLAN before writing it. Details and PLAN format: `references/plan-gate.md`.
 
@@ -49,7 +49,7 @@ The owner's time is the scarce thing. Every question you ask costs a round trip,
    - `AGENTS_WORKLOG.md`: one entry, newest first, using the worklog template in `references/templates.md`.
    - Do not touch `docs/DESIGN.md`. Do not install skills or scaffold app code unless asked.
 
-5. **Validate and report.** Use `validate_docs` if available (`root` is the project root), otherwise self-check: required sections present, TASKS 5 to 12 items with verify checks and the spike as #1, no em dashes, worklog shape, DESIGN.md untouched, ARCHITECTURE not a stub. Fix failures. Reply with the stack in one line, the install commands in one copy-paste block, and the first 3 tasks.
+5. **Validate and report.** Use `validate_docs` if available (`root` is the project root), otherwise self-check: required sections present, TASKS 5 to 12 items with verify checks and the spike as #1, no em dashes, worklog shape, DESIGN.md untouched, ARCHITECTURE not a stub. Either way, check every chosen tool against the Avoid lists in the SoT files you read; only an owner-confirmed deviation named in ARCHITECTURE may stay. Fix failures. Reply with the stack in one line, the install commands in one copy-paste block, and the first 3 tasks.
 
 ## Later sessions (drift check)
 
@@ -62,5 +62,6 @@ inisiasi keeps working after kickoff, only on a trigger: PLAN, TASKS or selera c
 ## Rules
 
 - Decide. Do not present menus: one choice, one rejected alternative, and its risk. Ask only product or taste calls that nothing else can settle.
+- When the owner asks for something listed under Avoid, use the SoT alternative instead and give the Avoid reason in one line. Use the requested tool only if the owner confirms after hearing the reason, and then record it in ARCHITECTURE as a named deviation with that reason.
 - No speculative infra (queues, microservices, k8s) unless a goal needs it.
 - Terse. No em dashes.

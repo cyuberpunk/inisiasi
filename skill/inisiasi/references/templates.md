@@ -58,6 +58,6 @@
 - **Status:** `completed`
 - **Update:** Stack <one line>. <n> skills picked. MCP or fallback used.
 - **Files:** `docs/PLAN.md`, `docs/ARCHITECTURE.md`, `docs/TASKS.md`
-- **Validation:** Not run
+- **Validation:** <validate_docs result, or self-check>
 - **Next:** Task 1 spike.
 ```

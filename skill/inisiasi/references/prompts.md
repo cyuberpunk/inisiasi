@@ -1,12 +1,12 @@
 # Example prompts
 
-Copy-paste into a chat that has the `inisiasi` skill. Swap the bits in `<angle brackets>`. The skill still follows its confirmation gates: it stops after writing or changing PLAN, and again before writing ARCHITECTURE or TASKS.
+Copy-paste into a chat that has the `inisiasi` skill. Swap the bits in `<angle brackets>`. The skill still follows its confirmation gates: it stops when PLAN still has open questions, and before writing ARCHITECTURE or TASKS unless you already told it to write the docs.
 
 ## Init from an idea
 
 Use when the repo is empty or `docs/PLAN.md` does not exist yet.
 
-Expected: at most 3 short questions if anything is missing, then a draft `docs/PLAN.md`, then a stop for confirmation. No ARCHITECTURE or TASKS yet.
+Expected: a draft `docs/PLAN.md`. If it still has open questions, at most 3 of them with recommended answers, then a stop. Otherwise the stack proposal, then a stop until you say go. No ARCHITECTURE or TASKS yet.
 
 ```
 inisiasi first. I want to build a <app/cli/web> for <who>, the core idea is <goal>. MVP: <feature 1, feature 2>. Constraints: <for example offline, macOS 15, no account>. Non-goals: <what is explicitly out of v1>. Fill in docs/PLAN.md, do not write ARCHITECTURE or TASKS until I say go.
