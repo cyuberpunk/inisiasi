@@ -1,7 +1,7 @@
 # SoT inisiasi
 
-> Last verified: 2026-11-19
-> Checked on the web 2026-11-19: index entries against files in this folder, OWASP Top 10:2025, Vite+ and Oxfmt names.
+> Last verified: 2026-11-20
+> Checked on the web 2026-11-20: index entries against files in this folder, the stage rule against npm and GitHub release data. Not checked: OWASP Top 10:2025 and Vite+ names, still from the 2026-11-19 pass.
 
 Source-of-truth index for the `inisiasi` skill.
 
@@ -22,8 +22,13 @@ The defaults in this folder reflect the owner's bias (TypeScript with Vite+, App
 |------|-----------|
 | [toolchain-ts.md](toolchain-ts.md) | TS/JS project: Vite+, Oxlint, Oxfmt, Vitest, monorepo |
 | [stack-compat-ts.md](stack-compat-ts.md) | Assembling a TS stack (valid and forbidden combinations) |
-| [frontend.md](frontend.md) | Web frameworks, UI, state, forms, SEO, CMS, admin dashboards |
+| [frontend.md](frontend.md) | Web frameworks, state, forms, SEO, CMS, admin dashboards |
 | [frontend-architecture.md](frontend-architecture.md) | Frontend system design checklist |
+| [styling.md](styling.md) | CSS approach: utility, CSS Modules, CSS-in-JS. Foundations: Tailwind, Bootstrap, tokens |
+| [ui-kits.md](ui-kits.md) | React and framework-neutral component libraries, ranked by downloads |
+| [ui-kits-frameworks.md](ui-kits-frameworks.md) | Vue, Svelte, Angular, Lit kits |
+| [ui-kits-native.md](ui-kits-native.md) | React Native, Expo, Flutter kits |
+| [design-systems.md](design-systems.md) | Tokens and published systems: Material, Carbon, USWDS, GOV.UK, and the mandated cases |
 | [ui-catalog.md](ui-catalog.md) | Icons, motion, loading, charts, diagrams, sound |
 | [ui-catalog-scores.md](ui-catalog-scores.md) | 0-10 score per catalog library (hand-edited) |
 | [backend.md](backend.md) | Server frameworks, ORMs, queues, payments per language: TS, Go, Python, Rust, PHP, JVM, Ruby, .NET |
@@ -85,3 +90,4 @@ The defaults in this folder reflect the owner's bias (TypeScript with Vite+, App
 1. A default in a file is a decision, not a menu. Pick an alternative only when its "Use when" condition is met.
 2. Do not recommend anything listed under "Avoid".
 3. Versions and tool status change. If you need an exact version number, check the official docs at that time.
+4. A pre-1.0, beta or alpha tool may still be the default when it is widely used and the community keeps using it. Never drop a popular library only because it has not reached 1.0. State its stage next to the name (`0.44`, `beta`, `rc`), and do not pin a version that is not stable unless the file already does. Drop a tool only when it is archived, unmaintained (no release and no push for 12 months), shut down, or niche with no leadership.

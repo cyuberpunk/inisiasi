@@ -1,8 +1,8 @@
 # Frontend
 
-> Last verified: 2026-11-16
+> Last verified: 2026-11-20
 
-Scope: web frameworks, UI kits, design systems, state, forms, styling. Architecture and checklist: [frontend-architecture.md](frontend-architecture.md). Icons, motion, loading, charts, diagrams, sound: [ui-catalog.md](ui-catalog.md). Mobile: [mobile.md](mobile.md).
+Scope: web frameworks, state, forms, styling entry, SEO, CMS, admin dashboards. Architecture and checklist: [frontend-architecture.md](frontend-architecture.md). Which UI kit, ranked by measured downloads: [ui-kits.md](ui-kits.md) (React), [ui-kits-frameworks.md](ui-kits-frameworks.md) (Vue, Svelte, Angular, Lit). Design systems and tokens: [design-systems.md](design-systems.md). Styling approaches and CSS foundations: [styling.md](styling.md). Icons, motion, loading, charts, diagrams, sound: [ui-catalog.md](ui-catalog.md). Mobile: [mobile.md](mobile.md), [ui-kits-native.md](ui-kits-native.md).
 
 ## Defaults
 
@@ -12,7 +12,8 @@ Scope: web frameworks, UI kits, design systems, state, forms, styling. Architect
 | Fullstack React | TanStack Start, or Next.js App Router if you need SEO/RSC | |
 | Vue / Svelte / content | Nuxt / SvelteKit / Astro (typed API: oRPC) | |
 | React UI | shadcn/ui (Base UI primitives, `@base-ui/react`) + Tailwind v4 | Radix for older shadcn projects. React Aria if a11y/i18n requirements are strict |
-| Non-React UI | daisyUI 5 + Tailwind v4 | |
+| Non-React UI | daisyUI 5 + Tailwind v4 | the framework's own kit: [ui-kits-frameworks.md](ui-kits-frameworks.md) |
+| Styling | Tailwind v4 utility CSS | CSS Modules per component. CSS-in-JS only in existing code: [styling.md](styling.md) |
 | Server state | TanStack Query | fate if you need a Relay-style normalized cache |
 | Client state | Zustand | Jotai. Redux Toolkit only for existing code |
 | Forms | React Hook Form + Zod | TanStack Form if the stack is already TanStack |

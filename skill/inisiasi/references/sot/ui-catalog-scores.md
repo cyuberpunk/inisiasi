@@ -1,7 +1,7 @@
 # UI catalog scores
 
-> Last verified: 2026-11-19
-> Checked on the web 2026-11-19: COSS UI (ex-Origin) rename, Base UI as shadcn default, Melt UI npm status, npm versions of default packages. Not checked: existence and repo status of most of the 115 kits, the scores themselves.
+> Last verified: 2026-11-20
+> Checked on the web 2026-11-20: the `ui` section was split into [ui-kits.md](ui-kits.md), [ui-kits-frameworks.md](ui-kits-frameworks.md), [ui-kits-native.md](ui-kits-native.md), and [design-systems.md](design-systems.md). Not checked: existence and repo status of the catalog kits still scored below, and the scores themselves.
 
 > Generated 2026-11-17 from 115 catalog entries. Translated to English by hand on 2026-11-18. The generator (`mcp/curation/score-ui-catalog.mjs`) is no longer in the repo, so edit this file directly.
 
@@ -9,6 +9,7 @@ Score = bundle weight (0-3) + framework neutrality (0-2) + usage evidence from t
 Bands: 8+ core, 7-7.9 choose if, 5.5-6.9 conditional, below 5.5 avoid.
 The score rates fitness as a default for a new project, not the quality of the library.
 The Avoid list in [ui-catalog.md](ui-catalog.md) overrides any band here: those rows are marked `avoid`.
+Sections below: chart, diagram, icons, loading, motion, sound. The `ui` section moved to the downloaded-ranked files named at the end.
 
 ## chart
 
@@ -114,48 +115,6 @@ The Avoid list in [ui-catalog.md](ui-catalog.md) overrides any band here: those 
 
 ## ui
 
-| Score | Band | Library | Framework | Evidence | Note |
-|---|---|---|---|---|---|
-| 10 | core | Ark UI | Multi | ~200k npm/wk @ark-ui/react |  |
-| 10 | core | daisyUI | Agnostic | ~39–42k★ · 60+ · ~510k npm/wk |  |
-| 9 | core | Bits UI | Svelte | 3.5k★ · 1–4.2M npm/mo |  |
-| 8.5 | core | 8bitcn | React | 2.0k★ |  |
-| 8.5 | core | AI Elements | React | 2.4k★ · 20+ |  |
-| 8 | core | assistant-ui | React | 12.1k★ |  |
-| 8 | core | Astryx | React | 12.9k★ · 150+ components |  |
-| 8 | core | Park UI | Multi | 2.4k★ · 30+ |  |
-| 8 | core | productdevbook/ui | Multi | 39 components · early |  |
-| 7.5 | avoid | Akaza UI | Vue | 109★ · alpha | no stable package (ui-catalog Avoid) |
-| 7.5 | choose if | Base UI | React | Growing · shadcn 2026 default |  |
-| 7.5 | choose if | Beautiful UI | React | AI primitives |  |
-| 7.5 | choose if | CopilotKit | React | 37.3k★ |  |
-| 7.5 | choose if | COSS UI (ex-Origin) | React | ~10.6k site · 50+ primitives / 600 Origin |  |
-| 7.5 | choose if | HeroUI | React | ~31k★ · full set |  |
-| 7.5 | choose if | Kibo UI | React | 41 core · 1,000+ variants |  |
-| 7.5 | choose if | Kumo | React | 4.2k★ · Base UI |  |
-| 7.5 | choose if | Lobe UI | React | 2.2k★ |  |
-| 7.5 | choose if | Merid | React | 60+ components |  |
-| 7.5 | choose if | Syntax UI | React | Small |  |
-| 7 | choose if | 21st.dev | React | 5.4k★ repo · 12k+ catalog |  |
-| 7 | choose if | ARC UI | Multi | 166 web components |  |
-| 7 | choose if | FlyonUI | Agnostic | daisy-scale |  |
-| 7 | avoid | Prism System | Other | White-label monorepo | no stable package (ui-catalog Avoid) |
-| 7 | choose if | Storefront UI | Multi | eCom components + blocks |  |
-| 7 | avoid | StyleKit | Other | 148 styles | no stable package (ui-catalog Avoid) |
-| 6.5 | conditional | Agent Elements | React | 25–26 components |  |
-| 6.5 | conditional | Eldora UI | React | Smaller |  |
-| 6.5 | conditional | Fragments UI | React | 68 components + MCP |  |
-| 6.5 | conditional | Planes | React | 100+ components · paid |  |
-| 6.5 | conditional | Velora UI | React | 64 components + site |  |
-| 6.5 | conditional | XiodUI | React | 89 components · 20 palettes |  |
-| 6 | avoid | Scrolltide | Other | Spatial vault | no stable package (ui-catalog Avoid) |
-| 6 | conditional | SV5UI | Svelte | New 2026 full set |  |
-| 5.5 | conditional | Arc UI | React | 140 components · 83 blocks |  |
-| 5.5 | conditional | Kokonut UI | React | Mid catalog |  |
-| 5.5 | conditional | Tailark | React | 300+ blocks |  |
-| 5.5 | conditional | Tremor | React | Dashboard set |  |
-| 5.5 | conditional | Untitled UI React | Figma | 1.9k★ · ~8.9k npm/wk |  |
-| 5 | avoid | Inspira UI | Vue | Vue catalog |  |
-| 4.5 | avoid | Coded Visuals | React | 1,140+ variations |  |
-| 4.5 | avoid | Create UI | Figma | Figma + MCP |  |
-| 3 | avoid | Melt UI | Svelte | ~30+ builders | old npm package stale since 2025-03, rewrite is 0.x |
+Moved. React and framework-neutral kits, ranked by measured npm weekly downloads: [ui-kits.md](ui-kits.md). Vue, Svelte, Angular, Lit: [ui-kits-frameworks.md](ui-kits-frameworks.md). React Native, Flutter: [ui-kits-native.md](ui-kits-native.md). Published design systems and tokens: [design-systems.md](design-systems.md). Styling engines: [styling.md](styling.md).
+
+The old 0-10 scores for that section are gone. The split files rank by measured downloads and stars instead, which is the same evidence the score formula was approximating.
