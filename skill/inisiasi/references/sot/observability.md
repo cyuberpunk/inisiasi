@@ -36,7 +36,7 @@ MVP: Sentry + structured logs + OTel traces to one backend. Profiling (Pyroscope
 
 ## Product analytics
 
-Draft, pending owner review. Checked on the web 2026-11-19: PostHog feature flags, Plausible, Umami.
+Checked on the web 2026-11-19: PostHog feature flags, Plausible, Umami.
 
 - Product analytics (funnels, retention): PostHog, which also serves feature flags ([engineering-practices.md](engineering-practices.md)). Privacy-friendly page analytics only: Plausible or Umami.
 - Event names: `object_action` in snake_case (`order_created`), with a small typed list in code, not free strings.

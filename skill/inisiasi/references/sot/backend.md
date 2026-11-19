@@ -29,7 +29,7 @@ Scope: server frameworks, ORMs, queues, payments per language. TS combinations: 
 
 ## PHP, JVM, Ruby, .NET
 
-Draft, pending owner review. No versions pinned: use the current LTS or supported release, and check licenses before adding a library. Checked on the web 2026-11-19: Aspire name, Spring Authorization Server, SseEmitter, ActionController::Live, TypedResults.ServerSentEvents, Reverb, Laravel Cloud, Spring Modulith, ShedLock, JobRunr, Wolverine, Jib, packwerk, rubocop-rails-omakase, strong_migrations, Telescope.
+No versions pinned: use the current LTS or supported release, and check licenses before adding a library. Checked on the web 2026-11-19: Aspire name, Spring Authorization Server, SseEmitter, ActionController::Live, TypedResults.ServerSentEvents, Reverb, Laravel Cloud, Spring Modulith, ShedLock, JobRunr, Wolverine, Jib, packwerk, rubocop-rails-omakase, strong_migrations, Telescope.
 
 | Layer | PHP | Java / Kotlin (JVM) | Ruby | C# (.NET) |
 |-------|-----|------|------|------|

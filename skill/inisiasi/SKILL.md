@@ -19,6 +19,7 @@ The owner's time is the scarce thing. Every question you ask costs a round trip,
 
 - `docs/ARCHITECTURE.md` is missing, empty, or title-only (a heading with no stack or body) → run.
 - It already has a real stack (a Stack section with choices) → stop and say so. Re-run only if the owner asks to re-plan.
+- The owner asks to add or change one part of an existing ARCHITECTURE ("wire X into the architecture") → back it up, edit only that part, and run the step 5 Avoid check. No re-plan, no TASKS rewrite.
 
 ## Steps
 

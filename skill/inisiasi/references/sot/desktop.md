@@ -1,7 +1,7 @@
 # Desktop
 
 > Last verified: 2026-11-19
-> Status: draft, pending owner review. No versions pinned: check the official docs before you pin one. Checked on the web 2026-11-19: Windows signing service name, tauri-driver platform support, Tauri webviews and updater, tauri-action draft releases, Flathub signing, Sparkle, Avalonia platforms, MSIX Store signing, SmartScreen, WebdriverIO Tauri service, CrabNebula driver.
+> No versions pinned: check the official docs before you pin one. Checked on the web 2026-11-19: Windows signing service name, tauri-driver platform support, Tauri webviews and updater, tauri-action draft releases, Flathub signing, Sparkle, Avalonia platforms, MSIX Store signing, SmartScreen, WebdriverIO Tauri service, CrabNebula driver.
 
 Scope: desktop apps for Windows, Linux, and macOS: framework choice, packaging, signing, updates, tests. Native Apple: [apple-macos-swift.md](apple-macos-swift.md). Mobile: [mobile.md](mobile.md).
 

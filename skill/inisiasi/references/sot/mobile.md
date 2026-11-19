@@ -37,7 +37,6 @@ Expo SDK 55+: the New Architecture is always on. Unistyles if you do not want Ta
 
 ## Android native
 
-Draft, pending owner review.
 Checked on the web 2026-11-19: Google Play target API rule, WorkManager, DataStore.
 
 | Area | Use | Notes |

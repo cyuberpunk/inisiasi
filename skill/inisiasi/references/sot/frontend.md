@@ -30,8 +30,6 @@ Scope: web frameworks, UI kits, design systems, state, forms, styling. Architect
 
 ## SEO
 
-Draft, pending owner review.
-
 Checked on the web 2026-11-19: JSON-LD guidance, FAQ rich results, Core Web Vitals as a ranking input.
 
 - Pages that must rank render on the server or at build time (SSR/SSG). Client-only SPAs for app screens behind login.
@@ -40,8 +38,6 @@ Checked on the web 2026-11-19: JSON-LD guidance, FAQ rich results, Core Web Vita
 - Multilingual: [i18n.md](i18n.md). Speed is a ranking signal: [performance.md](performance.md).
 
 ## Content sites and CMS
-
-Draft, pending owner review.
 
 Checked on the web 2026-11-19: Astro content collections, Payload (now part of Figma, still open source), Sanity, Directus.
 
@@ -55,8 +51,6 @@ Checked on the web 2026-11-19: Astro content collections, Payload (now part of F
 Preview drafts before publishing, and rebuild or revalidate pages from a CMS webhook.
 
 ## Admin and dashboards
-
-Draft, pending owner review.
 
 Checked on the web 2026-11-19: TanStack Table, Refine.
 

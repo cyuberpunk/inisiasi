@@ -24,7 +24,6 @@ Scope: native Apple apps (macOS, iOS, iPadOS). Cross-platform: [mobile.md](mobil
 
 ## iPadOS
 
-Draft, pending owner review.
 Checked on the web 2026-11-19: iPad multitasking modes, NavigationSplitView, PencilKit.
 
 - One SwiftUI target for iPhone and iPad. Layout follows size classes, not device checks.

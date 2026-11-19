@@ -1,7 +1,7 @@
 # Billing and in-app purchases
 
 > Last verified: 2026-11-19
-> Status: draft, pending owner review. Store rules change and differ by region: check the current App Store and Google Play policies before launch. Checked on the web 2026-11-19: US external purchase link rule, merchant of record vendors and Lemon Squeezy shutdown, Stripe Managed Payments and Stripe Tax, Midtrans and Xendit methods, StoreKit 2, Google Play Billing and US alternative billing, store notification names, RevenueCat platforms.
+> Store rules change and differ by region: check the current App Store and Google Play policies before launch. Checked on the web 2026-11-19: US external purchase link rule, merchant of record vendors and Lemon Squeezy shutdown, Stripe Managed Payments and Stripe Tax, Midtrans and Xendit methods, StoreKit 2, Google Play Billing and US alternative billing, store notification names, RevenueCat platforms.
 
 Scope: SaaS subscriptions, entitlements, tax, and mobile in-app purchases. Payment safety (idempotency, webhooks, money as integers): [problems-critical.md](problems-critical.md), [scenarios.md](scenarios.md).
 
