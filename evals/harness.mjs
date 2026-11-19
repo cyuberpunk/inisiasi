@@ -2,10 +2,10 @@
 // once with the skill installed and once without. Agents (subagents or `claude -p`) run each
 // prepared prompt and record its transcript path in runs.json. Snapshot then writes blind packets
 // for two judges, and score aggregates their grades.
-// usage: node evals/harness.mjs kit | prepare [filter] [--reps N] | snapshot | score <grades.json>...
+// usage: node evals/harness.mjs kit | prepare [filter] [--reps N] | run [--concurrency N] | snapshot | score <grades.json>...
 // env: EVAL_WORK (default $TMPDIR/inisiasi-evals), EVAL_OUT (run name, default "run").
-import { cpSync, existsSync, mkdirSync, readFileSync, readdirSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
-import { execFileSync } from "node:child_process";
+import { closeSync, cpSync, existsSync, openSync, mkdirSync, readFileSync, readdirSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
+import { execFileSync, spawn } from "node:child_process";
 import { randomBytes } from "node:crypto";
 import { tmpdir } from "node:os";
 import { dirname, join, relative, resolve } from "node:path";
@@ -216,6 +216,33 @@ function snapshot() {
   for (const [label, k] of dirty) console.log(`  ${label} ${k.case}: ${[...new Set(k.contaminated)].join(", ")}`);
 }
 
+// ---------- run: headless candidates with no MCP servers and no user-level settings or skills ----------
+async function runAll(concurrency) {
+  const file = join(OUT, "runs.json");
+  const runs = JSON.parse(readFileSync(file, "utf8"));
+  const todo = runs.filter((r) => !r.transcript);
+  let done = 0;
+  const one = (r) => new Promise((ok) => {
+    const transcript = join(r.root, "transcript.jsonl");
+    const out = openSync(transcript, "w");
+    const child = spawn("claude", ["-p", r.prompt, "--strict-mcp-config", "--mcp-config", '{"mcpServers":{}}', "--setting-sources", "project,local",
+      "--permission-mode", "acceptEdits", "--allowedTools", "Bash,Read,Write,Edit,Glob,Grep", "--output-format", "stream-json", "--verbose"],
+      { cwd: r.dir, stdio: ["ignore", out, "ignore"] });
+    const timer = setTimeout(() => child.kill("SIGTERM"), 15 * 60 * 1000);
+    child.on("close", (code) => {
+      clearTimeout(timer);
+      closeSync(out);
+      r.transcript = transcript;
+      r.exit = code;
+      writeFileSync(file, JSON.stringify(runs, null, 1));
+      console.log(`${++done}/${todo.length} ${r.key} ${r.arm} exit ${code}`);
+      ok();
+    });
+  });
+  const queue = [...todo];
+  await Promise.all(Array.from({ length: concurrency }, async () => { while (queue.length) await one(queue.shift()); }));
+}
+
 // ---------- score: pass rate per skill and arm, one row per judge, contaminated runs left out ----------
 // grades file: [{ label, case, grades: [{ verdict: "pass" | "fail" | "na" }] }]
 export function tally(key, grades) {
@@ -255,10 +282,13 @@ const [cmd, ...rest] = process.argv.slice(2);
 const ri = rest.indexOf("--reps");
 const reps = ri >= 0 ? Number(rest[ri + 1]) : 1;
 assert.ok(Number.isInteger(reps) && reps > 0, "--reps takes a positive integer");
-const args = rest.filter((r, i) => !r.startsWith("--") && rest[i - 1] !== "--reps");
+const ci = rest.indexOf("--concurrency");
+const concurrency = ci >= 0 ? Number(rest[ci + 1]) : 4;
+const args = rest.filter((r, i) => !r.startsWith("--") && rest[i - 1] !== "--reps" && rest[i - 1] !== "--concurrency");
 if (cmd === "kit") buildKit();
 else if (cmd === "prepare") prepare(args[0], reps);
+else if (cmd === "run") await runAll(concurrency);
 else if (cmd === "snapshot") snapshot();
 else if (cmd === "score") score(args);
 else if (cmd === "self-test") selfTest();
-else { console.error("usage: harness.mjs kit | prepare [filter] [--reps N] | snapshot | score <grades.json>... | self-test"); process.exit(2); }
+else { console.error("usage: harness.mjs kit | prepare [filter] [--reps N] | run [--concurrency N] | snapshot | score <grades.json>... | self-test"); process.exit(2); }
