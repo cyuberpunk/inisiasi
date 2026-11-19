@@ -1,6 +1,7 @@
 # Mobile
 
-> Last verified: 2026-11-16
+> Last verified: 2026-11-20
+> Checked on the web 2026-11-20: Expo SDK 58 with React Native 0.88 and the New Architecture always-on statement, Expo Router and expo-updates versions, Uniwind 1.14 versus NativeWind 4.2, Reanimated 4.8, Flutter stable 3.50.0, Riverpod 3.5, GoRouter 18.1, Drift 2.35, Kotlin 2.4 stable, Compose Multiplatform 1.12 stable with a Beta web target, .NET MAUI 11. Carried over from 2026-11-19: Google Play target API rule, WorkManager, DataStore, the Data safety form, App Store guidelines 4.8, 5.1.1, 5.1.2, privacy manifest, Maestro, Detox. Not checked: per-store policy dates beyond those carried over.
 
 Scope: mobile frameworks, state, UI, OTA updates, forced updates. Native Apple: [apple-macos-swift.md](apple-macos-swift.md).
 
@@ -11,11 +12,12 @@ Scope: mobile frameworks, state, UI, OTA updates, forced updates. Native Apple: 
 | React/TS team | Expo + Expo Router + Uniwind (Tailwind v4) + TanStack Query + Zustand |
 | Maximum polish per platform | SwiftUI (iOS), Jetpack Compose (Android) |
 | One codebase, custom UI | Flutter (Riverpod, GoRouter, Drift) |
-| Shared logic, native UI | Kotlin Multiplatform |
-| C#/.NET team | .NET MAUI |
+| Shared logic, native UI | Kotlin Multiplatform (Kotlin 2.4 stable line) |
+| Shared UI across Android and iOS | Compose Multiplatform 1.12 (stable; web target still Beta). Skip when the team cannot own a Kotlin build |
+| C#/.NET team | .NET MAUI 11, on .NET 10 LTS |
 | Desktop from a web app | Tauri, or Electrobun (TS/Bun core). Details: [desktop.md](desktop.md) |
 
-Expo SDK 55+: the New Architecture is always on. Unistyles if you do not want Tailwind. NativeWind only for existing apps.
+Expo SDK 58 (React Native 0.88) is current. From SDK 55 the New Architecture is always on and cannot be disabled, so New Architecture blockers must be solved, not deferred. Unistyles if you do not want Tailwind. NativeWind only for existing apps; Uniwind 1.14 is the current Tailwind engine for React Native.
 
 | Need | Choice |
 |-----|--------|

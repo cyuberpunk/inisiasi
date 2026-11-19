@@ -1,6 +1,7 @@
 # Operational problems
 
-> Last verified: 2026-11-16
+> Last verified: 2026-11-20
+> Reviewed 2026-11-20 on a re-read. No tool versions here, content unchanged. Confirm the SIGTERM and readiness behaviour against your platform's docs before relying on it.
 
 Scope: deploys, dependencies, queues, resources. Observability: [observability.md](observability.md).
 

@@ -1,6 +1,7 @@
 # Apple, macOS, Swift
 
-> Last verified: 2026-11-16
+> Last verified: 2026-11-20
+> Checked on the web 2026-11-20: Swift 6.4.2 release line, Swift Testing moving into the toolchain, Sparkle 2.10, GRDB 7.12, repo activity for both, Xcode 27 and Xcode Cloud from developer.apple.com. Carried over from 2026-11-19: iPad multitasking modes, NavigationSplitView, PencilKit. Not checked: exact macOS and iOS SDK version numbers, notarization flag changes, SwiftData migration behaviour.
 
 Scope: native Apple apps (macOS, iOS, iPadOS). Cross-platform: [mobile.md](mobile.md). Windows and Linux: [desktop.md](desktop.md).
 
@@ -15,8 +16,8 @@ Scope: native Apple apps (macOS, iOS, iPadOS). Cross-platform: [mobile.md](mobil
 | State | `@Observable` (Observation) | Combine only in legacy code |
 | Concurrency | async/await, actors | |
 | Persistence | SwiftData, or SQLite (GRDB) | |
-| Build | Xcode + Swift Package Manager | |
-| Tests | Swift Testing (unit), XCTest (UI tests) | |
+| Build | Xcode 27 + Swift Package Manager | Xcode Cloud for CI |
+| Tests | Swift Testing for unit tests, XCTest for UI tests | Swift Testing ships with the toolchain since Swift 6.0 |
 | Secrets | Keychain Services | Not UserDefaults |
 | Local auth | LocalAuthentication | `.deviceOwnerAuthentication` = biometrics + password fallback |
 | App updates (outside the App Store) | Sparkle 2 | |

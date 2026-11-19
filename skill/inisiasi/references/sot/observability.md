@@ -1,6 +1,7 @@
 # Observability
 
-> Last verified: 2026-11-16
+> Last verified: 2026-11-20
+> Checked on the web 2026-11-20: repo activity for the OpenTelemetry Collector, Alloy, Loki, Jaeger, Pyroscope, Beyla, Sentry JS and pino, current versions of pino 10.4, `@sentry/node` 11.15, `@opentelemetry/sdk-node` 0.301 (still 0.x, pre-1.0), semantic-conventions 1.45, and the GenAI semantic conventions move to their own repository. Not checked: the alerting math in the multi-window rules, on-call vendor pricing, and the logger list outside TypeScript.
 
 Scope: logs, metrics, traces, error tracking, alerts, on-call.
 
@@ -8,7 +9,7 @@ Scope: logs, metrics, traces, error tracking, alerts, on-call.
 
 | Layer | Use |
 |-------|-----|
-| Instrumentation | OpenTelemetry SDK + OTLP, following semantic conventions |
+| Instrumentation | OpenTelemetry SDK + OTLP, following semantic conventions. SDKs are still pre-1.0 (`@opentelemetry/sdk-node` 0.301), so pin the version. GenAI conventions live in their own repo since 2026 (`open-telemetry/semantic-conventions-genai`) |
 | Collector | OpenTelemetry Collector, or Grafana Alloy if you use the Grafana stack |
 | Error tracking | Sentry (also enough for tracing a small app) |
 | Metrics | Prometheus + Grafana |

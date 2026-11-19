@@ -1,6 +1,7 @@
 # Backend
 
-> Last verified: 2026-11-16
+> Last verified: 2026-11-20
+> Checked on the web 2026-11-20: npm and PyPI versions of the TS and Python defaults, maintenance status of ARQ and FastAPI Users, repo activity for Chi, sqlc, pgx, Axum, SQLx, SeaORM, Laravel, Spring Boot, Spring Modulith, Quarkus, Micronaut, Rails, Turbo, Express, FastAPI, Starlette, Spring Security releases, Spring Authorization Server archived into Spring Security, .NET support phases, Spring Boot, Rails, and Laravel release lines. Carried over from 2026-11-19: Aspire name, SseEmitter, ActionController::Live, TypedResults.ServerSentEvents, Reverb, Laravel Cloud, ShedLock, JobRunr, Wolverine, Jib, packwerk, rubocop-rails-omakase, strong_migrations, Telescope, the commercial license changes (MediatR, MassTransit v9, FluentAssertions v8). Not checked: ORM behaviour changes between versions, PHP and Ruby ecosystem versions.
 
 Scope: server frameworks, ORMs, queues, payments per language. TS combinations: [stack-compat-ts.md](stack-compat-ts.md). Architecture patterns: [architecture.md](architecture.md).
 
@@ -29,7 +30,7 @@ Scope: server frameworks, ORMs, queues, payments per language. TS combinations: 
 
 ## PHP, JVM, Ruby, .NET
 
-No versions pinned: use the current LTS or supported release, and check licenses before adding a library. Checked on the web 2026-11-19: Aspire name, Spring Authorization Server, SseEmitter, ActionController::Live, TypedResults.ServerSentEvents, Reverb, Laravel Cloud, Spring Modulith, ShedLock, JobRunr, Wolverine, Jib, packwerk, rubocop-rails-omakase, strong_migrations, Telescope.
+No versions pinned: use the current LTS or supported release, and check licenses before adding a library. Current lines on 2026-11-20: Spring Boot 4.2, Rails 8.1, Laravel 13, ASP.NET Core on .NET 10 LTS (11.0 is STS, 9.0 is end of life), Spring Security 7.2.
 
 | Layer | PHP | Java / Kotlin (JVM) | Ruby | C# (.NET) |
 |-------|-----|------|------|------|

@@ -1,6 +1,7 @@
 # Data and transaction problems
 
-> Last verified: 2026-11-16
+> Last verified: 2026-11-20
+> Reviewed 2026-11-20 on a re-read. No tool versions here, content unchanged.
 
 Scope: transactions, migrations, consistency. Patterns: [architecture.md](architecture.md).
 

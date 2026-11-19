@@ -1,7 +1,7 @@
 # Security
 
-> Last verified: 2026-11-19
-> Checked on the web 2026-11-19: OWASP password storage parameters, OWASP Top 10:2025 names, secrets tools status (gitleaks frozen), npm/pnpm/PyPI supply chain controls. Not checked: cookie guidance, header list, Trusted Types.
+> Last verified: 2026-11-20
+> Checked on the web 2026-11-20: RFC 9116 `security.txt` fields and location, Dependabot alert and security-update settings, `osv-scanner` and `audit-ci` versions and repo activity, Trivy and Grype repo status, the GitHub Advisory Database. Carried over from 2026-11-19: OWASP password storage parameters, OWASP Top 10:2025 names, secrets tools status (gitleaks frozen), npm/pnpm/PyPI supply chain controls. Not checked: cookie guidance, header list, Trusted Types.
 
 Scope: application security controls. Auth: [auth.md](auth.md). Regulations: [compliance.md](compliance.md). Scanning tools: [ci-cd.md](ci-cd.md).
 
@@ -29,6 +29,19 @@ Headers: `Strict-Transport-Security`, `Content-Security-Policy` with `frame-ance
 ## Supply chain
 
 Lockfiles. Renovate or Dependabot with a release-age cooldown (npm `min-release-age`, pnpm `minimumReleaseAge`). Dependency install scripts off except an allowlist (default in npm 12 and pnpm: `npm approve-scripts`, pnpm `allowBuilds`). SBOM (CycloneDX/SPDX) for serious projects. Pin GitHub Actions to a SHA, never run fork code in `pull_request_target`, do not share caches with untrusted workflows. Publish with trusted publishing (OIDC, npm and PyPI) and provenance, no long-lived publish tokens. Before adding a dependency, ask: is it still maintained? What is the license? What is its security history? What does it add to the bundle?
+
+## Vulnerability response
+
+Prevention is above. This is what happens when an advisory lands for a dependency you already ship.
+
+- Publish `/.well-known/security.txt` (RFC 9116). Required fields are `Contact` and `Expires`. An inbound report needs a route before one exists.
+- Turn on Dependabot alerts and "Dependabot security updates" per repository (Settings, Security and quality, Advanced Security). Add `dependabot.yml` with `groups` and `applies-to: security-updates`, and `open-pull-requests-limit: 0` if you want security PRs only. The GitHub Advisory Database is the source. OSV mirrors it and adds others.
+- Scan in CI and fail the build on a fixable high or critical. `osv-scanner` 2.7 (Google, lockfiles for every ecosystem), `npm audit --audit-level=high`, `grype` or `trivy` for container images, `audit-ci` 7.1 if you want a plain threshold gate.
+- Triage order: reachable in production, then dev only, then not installed at all. A CVE in a transitive package you never call is still yours to patch or pin, but it is not the same risk as a reachable gadget chain.
+- Patch SLA. Critical and reachable: same day. High: within 7 days. Moderate: next release. Low: with routine updates.
+- When no fix exists: pin the last good version, remove the dependency, or write a dated exception with an owner and an expiry. Never a silent ignore in the lockfile.
+- Never patch by editing `node_modules` or vendoring a fork with no plan to upstream it.
+- Keep the SBOM current, so a new advisory can be matched against what you actually ship.
 
 ## OWASP Top 10:2025
 

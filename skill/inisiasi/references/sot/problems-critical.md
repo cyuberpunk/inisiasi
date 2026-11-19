@@ -1,6 +1,7 @@
 # Critical problems
 
-> Last verified: 2026-11-16
+> Last verified: 2026-11-20
+> Reviewed 2026-11-20 on a re-read. No tool versions here, content unchanged.
 
 Scope: the most expensive mistakes if made from the start. Read before writing Risks in ARCHITECTURE.md. For symptoms during an incident: [diagnosis.md](diagnosis.md).
 

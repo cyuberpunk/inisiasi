@@ -15,7 +15,7 @@ Scope: building products where a model calls tools in a loop, and building softw
 | Tools | Few, narrow, typed (JSON schema, validated at the boundary) | A broad tool (shell, SQL) only in a sandbox with no production credentials |
 | Risky actions | Human approval before send, pay, delete, deploy | None |
 | Evals | A fixed task set with a pass predicate per task, run in CI with `promptfoo` ([ai-llm.md](ai-llm.md)) | Add LLM-as-judge only for outputs no predicate can check |
-| Tracing | Every model call and tool call traced with OpenTelemetry GenAI semantic conventions. They are still at Development stability: pin the semconv version | None |
+| Tracing | Every model call and tool call traced with OpenTelemetry GenAI semantic conventions. They are still at Development stability: pin the semconv version. Since 2026 they live in `open-telemetry/semantic-conventions-genai`, not the main semconv repo | None |
 
 ## Building agents
 

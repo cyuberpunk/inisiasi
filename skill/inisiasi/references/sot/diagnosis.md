@@ -1,6 +1,7 @@
 # Quick diagnosis
 
-> Last verified: 2026-11-16
+> Last verified: 2026-11-20
+> Reviewed 2026-11-20 on a re-read. No tool versions here, content unchanged.
 
 Scope: from symptoms to causes, and the order to check them in. Prevention details: [problems-critical.md](problems-critical.md), [problems-performance.md](problems-performance.md), [problems-data.md](problems-data.md), [problems-ops.md](problems-ops.md).
 
