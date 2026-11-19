@@ -22,11 +22,11 @@ A recorded preference beats the SoT default. An unrecorded key means the SoT def
 
 ## Commands
 
-`node <skill-real-path>/scripts/selera.mjs <command>`
+`node <skill-real-path>/scripts/selera.mjs <command>`, where `<skill-real-path>` is the directory this SKILL.md lives in, with symlinks resolved.
 
 | Command | Use |
 |---|---|
-| `setup` | Interactive pass over the recorded keys (about 27 questions). Enter skips a question, leaving it unset. `--project` writes to the repo |
+| `setup` | Interactive pass over the recorded keys (28 questions). Enter skips a question, leaving it unset. `--project` writes to the repo |
 | `setup --answers "pnpm,uv,zod,..."` | Same, non-interactive, in question order |
 | `show` | Print the merged profile as JSON |
 | `set <key> <value> [--project]` | Record one habit after the owner states it |
@@ -65,7 +65,7 @@ A stated preference is a `set`, not a question. Do not ask permission to record 
 ## Steps
 
 1. **Check.** Run `show`. An empty profile is normal: the SoT already covers universal practice. Offer `setup` only when the owner asks, and let them skip anything.
-2. **Record.** When the owner states a preference in passing (`use pnpm`, `no chakra, use heroui`), run `set` immediately and say one line about what you stored. Do not ask permission for this, and never overwrite a recorded value silently.
+2. **Record.** When the owner states a preference in passing (`use pnpm`, `no chakra, use heroui`), run `set` immediately and say one line about what you stored. A preference stated about this repo ("di repo ini", "here", "in this project") uses `--project`; a general habit goes to the global profile. Do not ask permission for this, and never overwrite a recorded value silently.
 3. **Read the standards.** Open `references/sot/README.md`, then only the files matching the task. Nine groups: naming, structure, imports, formatting, functions, design, types, git, testing.
 4. **Apply.** Follow the profile first, SoT second, generic convention last. When they conflict, the profile wins and you name the deviation in one line.
 5. **Report.** When you wrote or reviewed code, state the conventions you applied in one short line. No essay.

@@ -87,10 +87,21 @@ function writeProfile(kind, data) {
   return target;
 }
 
+// Compares with the file being written, not the merged view, so a project value that shadows a global write is named instead of hidden.
+function reportChanges(kind, data) {
+  const own = existsSync(kind === "project" ? PROJECT : GLOBAL) ? parseProfile(kind === "project" ? PROJECT : GLOBAL) : {};
+  const shadow = kind === "global" && existsSync(PROJECT) ? parseProfile(PROJECT) : {};
+  for (const [k, v] of Object.entries(data)) {
+    if (own[k] !== undefined && String(own[k]) !== v) console.log(`replaced ${k}: ${own[k]} -> ${v}`);
+    if (shadow[k] !== undefined && String(shadow[k]) !== v) console.log(`note ${k}: project profile keeps ${shadow[k]}`);
+  }
+}
+
 async function setup(kind, prefill) {
   const answers = {};
   if (prefill) {
     prefill.split(",").map((v) => v.trim()).forEach((v, i) => { if (QUESTIONS[i] && v && v !== "-") answers[QUESTIONS[i].key] = v; });
+    reportChanges(kind, answers);
     console.log("wrote " + writeProfile(kind, answers));
     return;
   }
@@ -109,6 +120,7 @@ async function setup(kind, prefill) {
     answers[item.key] = byNumber ?? raw;
   }
   if (!piped) rl.close();
+  reportChanges(kind, answers);
   const target = writeProfile(kind, answers);
   console.log(`wrote ${target}`);
 }
@@ -298,8 +310,7 @@ else if (cmd === "set") {
   if (!key || !valueParts.length) { console.error("usage: selera set <key> <value> [--project]"); process.exit(1); }
   if (!validKey(key)) { console.error(`unknown key. known: ${KEYS.join(", ")}. prefix with a scope: ${SCOPES.slice(1).join(", ")}`); process.exit(1); }
   const value = valueParts.join(" ");
-  const prev = readProfile()[key];
-  if (prev !== undefined && prev !== value) console.log(`replaced ${key}: ${prev} -> ${value}`);
+  reportChanges(kind, { [key]: value });
   console.log("wrote " + writeProfile(kind, { [key]: value }));
 } else {
   console.error("usage: selera <tree [depth]|learn [--write]|setup|show|set <key> <value>|apply> [--project]");
