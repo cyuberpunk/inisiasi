@@ -28,7 +28,7 @@ Scope: test strategy and tools per language. Load tests: [reliability.md](reliab
 | Kotlin (Android) | JUnit + coroutines test | Robolectric | UI: Compose UI tests, Espresso |
 | Dart (Flutter) | `flutter test` | `integration_test` | |
 
-Mobile E2E: Maestro or Detox ([mobile.md](mobile.md)). Desktop E2E: `tauri-driver` ([desktop.md](desktop.md)).
+Mobile E2E: Maestro or Detox ([mobile.md](mobile.md)). Desktop E2E: `tauri-driver` (Windows and Linux; macOS needs a WebdriverIO service) ([desktop.md](desktop.md)).
 
 Others: visual regression (Playwright screenshots, Chromatic), security (Semgrep, CodeQL, ZAP), a11y (`@axe-core/playwright`).
 

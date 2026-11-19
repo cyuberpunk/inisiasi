@@ -32,14 +32,18 @@ Scope: web frameworks, UI kits, design systems, state, forms, styling. Architect
 
 Draft, pending owner review.
 
+Checked on the web 2026-11-19: JSON-LD guidance, FAQ rich results, Core Web Vitals as a ranking input.
+
 - Pages that must rank render on the server or at build time (SSR/SSG). Client-only SPAs for app screens behind login.
 - Every indexable page: a unique `<title>` and meta description, a canonical URL, Open Graph and Twitter tags with an image.
-- `sitemap.xml` and `robots.txt` generated from routes. Structured data as JSON-LD (schema.org) for products, articles, organizations, FAQs.
+- `sitemap.xml` and `robots.txt` generated from routes. Structured data as JSON-LD (schema.org) for products, articles, organizations. Google no longer shows FAQ rich results.
 - Multilingual: [i18n.md](i18n.md). Speed is a ranking signal: [performance.md](performance.md).
 
 ## Content sites and CMS
 
 Draft, pending owner review.
+
+Checked on the web 2026-11-19: Astro content collections, Payload (now part of Figma, still open source), Sanity, Directus.
 
 | Who edits | Use |
 |---------|-----|
@@ -53,6 +57,8 @@ Preview drafts before publishing, and rebuild or revalidate pages from a CMS web
 ## Admin and dashboards
 
 Draft, pending owner review.
+
+Checked on the web 2026-11-19: TanStack Table, Refine.
 
 - Tables: TanStack Table with server-side pagination, sorting, and filters kept in the URL.
 - Many CRUD resources: Refine on top of your API, instead of hand-building every list and form.

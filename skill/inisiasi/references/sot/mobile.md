@@ -13,7 +13,7 @@ Scope: mobile frameworks, state, UI, OTA updates, forced updates. Native Apple: 
 | One codebase, custom UI | Flutter (Riverpod, GoRouter, Drift) |
 | Shared logic, native UI | Kotlin Multiplatform |
 | C#/.NET team | .NET MAUI |
-| Desktop from a web app | Tauri, or Electrobun (lighter). Details: [desktop.md](desktop.md) |
+| Desktop from a web app | Tauri, or Electrobun (TS/Bun core). Details: [desktop.md](desktop.md) |
 
 Expo SDK 55+: the New Architecture is always on. Unistyles if you do not want Tailwind. NativeWind only for existing apps.
 
@@ -38,6 +38,7 @@ Expo SDK 55+: the New Architecture is always on. Unistyles if you do not want Ta
 ## Android native
 
 Draft, pending owner review.
+Checked on the web 2026-11-19: Google Play target API rule, WorkManager, DataStore.
 
 | Area | Use | Notes |
 |------|-----|-------|
@@ -51,6 +52,8 @@ Draft, pending owner review.
 
 ## Release and store rules
 
+Checked on the web 2026-11-19: Data safety form, App Store guidelines 4.8, 5.1.1 and 5.1.2, privacy manifest.
+
 - Expo: EAS Build + EAS Submit. Native: fastlane (signing, build, upload) or Xcode Cloud for iOS. Flutter: Codemagic or fastlane.
 - iOS betas: TestFlight. Android betas: Play internal and closed testing tracks.
 - iOS: a privacy manifest (`PrivacyInfo.xcprivacy`) for the app and its SDKs, App Tracking Transparency before cross-app tracking, in-app account deletion when the app creates accounts, and a privacy-focused login option (Sign in with Apple or equivalent) when you offer third-party social login.
@@ -59,6 +62,8 @@ Draft, pending owner review.
 - Selling digital goods or subscriptions: [billing.md](billing.md).
 
 ## Tests
+
+Checked on the web 2026-11-19: Maestro, Detox.
 
 - E2E across iOS and Android: Maestro (YAML flows). Detox for React Native gray-box tests.
 - Native: XCUITest (iOS), Compose UI tests and Espresso (Android). Flutter: `integration_test`.

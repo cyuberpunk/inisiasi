@@ -28,8 +28,10 @@ Scope: building products where a model calls tools in a loop, and building softw
 
 ## Building MCP servers
 
+Checked on the web 2026-11-19: transports, TypeScript and Python SDK package names, tool annotations, isError results, stdio logging, MCP Inspector.
+
 - Transport: stdio for local tools a client launches. Streamable HTTP for remote servers (the older SSE transport is deprecated). Remote servers authenticate with OAuth as the MCP spec defines.
-- SDK: the official one (`@modelcontextprotocol/sdk` in TS, `mcp` in Python). No hand-rolled JSON-RPC.
+- SDK: the official one (`@modelcontextprotocol/server` in TS, `mcp` in Python; the older v1 TS package is `@modelcontextprotocol/sdk`). No hand-rolled JSON-RPC.
 - Tools follow the rules above: few, narrow, typed, with annotations (`readOnlyHint`, `destructiveHint`) that match what they do.
 - Return a tool error as a result with `isError: true` and a message the model can act on, not a protocol error.
 - stdio servers write logs to stderr only. Anything else on stdout breaks the protocol.

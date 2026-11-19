@@ -1,7 +1,7 @@
 # Billing and in-app purchases
 
 > Last verified: 2026-11-19
-> Status: draft, pending owner review. Store rules change and differ by region: check the current App Store and Google Play policies before launch. Checked on the web 2026-11-19: US external purchase link rule.
+> Status: draft, pending owner review. Store rules change and differ by region: check the current App Store and Google Play policies before launch. Checked on the web 2026-11-19: US external purchase link rule, merchant of record vendors and Lemon Squeezy shutdown, Stripe Managed Payments and Stripe Tax, Midtrans and Xendit methods, StoreKit 2, Google Play Billing and US alternative billing, store notification names, RevenueCat platforms.
 
 Scope: SaaS subscriptions, entitlements, tax, and mobile in-app purchases. Payment safety (idempotency, webhooks, money as integers): [problems-critical.md](problems-critical.md), [scenarios.md](scenarios.md).
 
@@ -9,7 +9,7 @@ Scope: SaaS subscriptions, entitlements, tax, and mobile in-app purchases. Payme
 
 | Situation | Use |
 |---------|-----|
-| SaaS, you want tax handled for you | A merchant of record: Polar, Paddle, or Lemon Squeezy |
+| SaaS, you want tax handled for you | A merchant of record: Polar, Paddle, or Stripe Managed Payments (not open to Indonesia-based businesses). Lemon Squeezy stops processing payments on 2027-03-31 and takes no new sign-ups |
 | SaaS, you handle tax and want full control | Stripe Billing (+ Stripe Tax) |
 | Indonesian local methods (QRIS, virtual account, e-wallet) | Midtrans or Xendit |
 | Digital goods inside an iOS or Android app | StoreKit 2 (iOS), Google Play Billing (Android) |
@@ -28,9 +28,9 @@ States: trialing, active, past due, cancelled (active until period end), expired
 
 ## Mobile stores
 
-- Digital content and features sold inside the app go through the store's billing. Physical goods and real-world services use a normal payment provider.
-- Rules on external payment links and alternative billing differ by region and change often. Since May 2025 the US App Store storefront allows buttons and links to outside purchases; most other storefronts still require in-app purchase. Check the current guidelines for every storefront you ship to before you design the paywall.
-- Validate receipts or purchase tokens on the server, and handle refunds and revocations from store notifications (App Store Server Notifications, Play Real-time Developer Notifications).
+- Digital content and features sold inside the app usually go through the store's billing. Physical goods and real-world services use a normal payment provider.
+- Rules on external payment links and alternative billing differ by region and change often. Since May 2025 the US App Store storefront allows buttons and links to outside purchases; most other storefronts still require in-app purchase. Check the current guidelines for every storefront you ship to before you design the paywall. On Google Play, Google does not require Play Billing for US users and runs alternative billing programs and an external content links program there, with reporting and fees. Other regions follow their own rules.
+- Validate receipts or purchase tokens on the server, and handle refunds and revocations from store notifications (App Store Server Notifications, Google Play real-time developer notifications).
 - Offer restore purchases. The same entitlement table serves web and mobile.
 
 ## Avoid

@@ -25,10 +25,11 @@ Scope: native Apple apps (macOS, iOS, iPadOS). Cross-platform: [mobile.md](mobil
 ## iPadOS
 
 Draft, pending owner review.
+Checked on the web 2026-11-19: iPad multitasking modes, NavigationSplitView, PencilKit.
 
 - One SwiftUI target for iPhone and iPad. Layout follows size classes, not device checks.
 - Navigation: `NavigationSplitView` for sidebar and detail on iPad, collapsing to a stack on iPhone.
-- Support multitasking (Split View, Slide Over, Stage Manager): every size from compact to full screen works, and multiple windows (scenes) when documents are the product.
+- Support multitasking (windowed apps, Split View, Slide Over, Stage Manager): every size from compact to full screen works, and multiple windows (scenes) when documents are the product.
 - Keyboard and pointer: `.keyboardShortcut` for main actions, hover states, context menus. Drag and drop between apps where content moves.
 - Apple Pencil: PencilKit for drawing and handwriting.
 - Test on iPad simulators in portrait, landscape, and split sizes.
