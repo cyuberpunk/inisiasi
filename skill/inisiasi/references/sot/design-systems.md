@@ -1,7 +1,7 @@
 # Design systems
 
 > Last verified: 2026-11-20
-> Checked on the web 2026-11-20: npm versions and weekly downloads for every token and component package (`api.npmjs.org/downloads/point/last-week`, 2026-11-12..2026-11-18), GitHub stars and last push, Polaris archived, Shoelace archived. Not checked: the release cadence of each vendor's roadmap.
+> Checked on the web 2026-11-20: npm versions and weekly downloads for every token and component package (`api.npmjs.org/downloads/point/last-week`, 2026-11-12..2026-11-18), GitHub stars and last push, Polaris archived, Shoelace archived, Web Awesome's free and Pro split, MUI Joy's 2023-08 beta start. Not checked: the release cadence of each vendor's roadmap.
 
 Scope: tokens, published design systems, and the ones a project is required to use. Component libraries that are not a full system: [ui-kits.md](ui-kits.md). Styling engines: [styling.md](styling.md). Product tokens and component order: [frontend.md](frontend.md).
 
