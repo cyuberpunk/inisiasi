@@ -1,5 +1,10 @@
 # Worklog
 
+## 2026-11-20: candidate reference repos (not decided)
+
+- Owner-supplied references for stack exploration: `https://github.com/nkzw-tech/fate` (MIT, pushed 2026-11-18, data client with normalized cache, pnpm 12.21.0, vite-plus, oxlint 1.94.0, oxfmt 0.79.0) and `https://github.com/cyuberpunk/sprint-hq` (private, no license, TanStack Start and Router 1.95, Drizzle with Neon, Radix and shadcn-style components, Bun lockfile). Recorded as references only. No selera or ARCHITECTURE change yet.
+
+
 ## 2026-11-18: catalog audit and three-tool alignment
 
 - Audited `mcp/catalog.json` against GitHub and `skills add --list`: 49 of 407 entries were not installable as written (now `verified: false` with a note), 16 repos not pushed in 6 months, `popularity` mixed stars with directory counts (now repo stars; old numbers kept as `ui_skills_count`).

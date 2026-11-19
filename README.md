@@ -1,39 +1,169 @@
+<div align="center">
+
 # inisiasi
 
-Project kickoff skill plus a local MCP server. The skill turns `docs/PLAN.md` goals into agent skills to install, a tech stack, architecture and system design (`docs/ARCHITECTURE.md`, `docs/TASKS.md`). The MCP serves the skill catalog with the same 5 catalog tools as [skill-issue.in](https://skill-issue.in/), plus project-doc tools (`inspect_plan`, `validate_docs`, `detect_stack`, `select_references`, `recommend_bundle`). Backed by a local file. No network.
+**Goals in. Stack, architecture and first tasks out.**
+
+A kickoff skill and a local MCP server for coding agents.
+It reads `docs/PLAN.md`, decides, and writes `docs/ARCHITECTURE.md` and `docs/TASKS.md`.
+
+[![License](https://img.shields.io/badge/license-GPL--3.0--or--later-informational)](LICENSE)
+[![Node](https://img.shields.io/badge/node-%E2%89%A5%2020-informational)](mcp/package.json)
+[![Tools](https://img.shields.io/badge/MCP%20tools-10-informational)](#tools)
+
+English · [Bahasa Indonesia](README_ID.md)
+
+</div>
+
+---
+
+## Why
+
+Starting a project with an agent usually means re-deciding the stack in every session. inisiasi settles it once, writes it down, and lets later sessions build.
+
+- **It decides.** One choice per decision, one rejected alternative, and the reason. No menus.
+- **It stops twice for you.** Once to confirm the plan, once to confirm the stack. Nothing is written before you say go.
+- **It cites a source of truth.** 55 reference files, each stamped with the date it was last checked on the web. A file older than six months fails the test suite.
+- **It runs locally.** The catalog is one JSON file. No network calls at runtime.
 
 ```
-skill/inisiasi/   SKILL.md, references/templates.md, references/prompts.md, references/sot, evals/evals.json
-skill/selera/     SKILL.md, scripts/selera.mjs, references/sot, evals/evals.json
-mcp/              stdio MCP server (TypeScript, @modelcontextprotocol/sdk)
-mcp/catalog.json  curated skill catalog (463 skills, 16 domains, tech and general scope)
-mcp/catalog.md    curation criteria and how to add entries
+docs/PLAN.md  ──▶  inisiasi  ──▶  docs/ARCHITECTURE.md
+                                  docs/TASKS.md
+                                  AGENTS_WORKLOG.md
 ```
 
-## Install
+## Quick start
+
+Requires Node 20 or newer and pnpm.
 
 ```sh
-cd mcp && pnpm install && pnpm run build   # npm test = validate catalog + build + docs/stack tests + smoke of all 10 tools
-ln -s "$PWD/../skill/inisiasi" ~/.agents/skills/inisiasi
+cd mcp
+pnpm install
+pnpm test          # validates the catalog, builds, runs every tool
 ```
 
-## Three tools
+Install the skills by linking them into your agent's skills folder:
 
-| Tool | Scope | Job |
-|---|---|---|
-| MCP (curated catalog) | Wide: tech and general (writing, documents, research, productivity) | Find and recommend skills. Entries are checked for a real source, an install command that resolves, and recent activity |
-| `inisiasi` skill | Tech only | From goals to stack, design and first tasks. Calls `recommend_bundle`, which returns tech-scope skills only |
-| `selera` skill | Tech only | Records the owner's code standards. A recorded tool choice (`fe.ui: shadcn`, `packageManager: pnpm`) steers `recommend_bundle` toward matching skills and labels why (`selera: ["fe.ui=shadcn"]`); `drift` checks the docs against it |
+```sh
+ln -s "$PWD/../skill/inisiasi" ~/.agents/skills/inisiasi
+ln -s "$PWD/../skill/selera"   ~/.agents/skills/selera
+```
 
-The MCP serves both skills. Anything outside tech goes through `recommend_skills` or `search_skills`, not through inisiasi.
+Register the MCP server (Claude Code shown, others below):
+
+```sh
+claude mcp add inisiasi --scope user -- node "$PWD/dist/server.js"
+```
+
+Then open an empty repo and tell your agent: `inisiasi`.
+
+## Examples
+
+**1. Kick off a project.** Write the goals in `docs/PLAN.md`, then say `inisiasi`. The agent proposes a stack and waits. Say `go` and it writes `docs/ARCHITECTURE.md`, `docs/TASKS.md` (5 to 12 ordered tasks, the first one a risk spike) and a worklog entry. Existing docs are backed up first.
+
+**2. Find skills for an idea.** No agent needed.
+
+```sh
+node mcp/dist/cli.js recommend "macOS menubar app in SwiftUI"
+```
+
+Output, trimmed to a few fields of the first match:
+
+```json
+[{ "id": "swiftui-expert-skill", "domain": "mobile", "creator": "AvdLee",
+   "install_command": "npx skills add AvdLee/SwiftUI-Agent-Skill -g -s swiftui-expert-skill",
+   "verified": true, "matched": ["swift", "swiftui", "macos"] }, …]
+```
+
+**3. See which references apply.**
+
+```sh
+node mcp/dist/cli.js select_references "SaaS app with Stripe billing and multi-tenant Postgres"
+```
+
+```
+problems-critical.md, billing.md, multi-tenancy.md, architecture.md,
+database.md, diagrams.md, problems-data.md, testing.md
+```
+
+**4. Check your docs against your own habits.** This reads the standards you recorded with the `selera` skill. With none recorded, the list is empty.
+
+```sh
+node mcp/dist/cli.js drift .
+```
+
+```
+packageManager=ok | validation=ok | fe.ui=ok | fe.fetch=ok | lint=ok | test=ok | bundler=ok
+```
+
+## How the three parts fit
+
+| Part | Scope | Job |
+|------|-------|-----|
+| **MCP server** | Tech and general | Serves a curated catalog of 463 skills across 16 domains. Every entry was checked against its source and its install command |
+| **`inisiasi` skill** | Tech | From goals to stack, design and first tasks. Reads the source of truth, never recommends anything on an Avoid list |
+| **`selera` skill** | Tech | Records your code standards, such as `fe.ui: shadcn` or `packageManager: pnpm`. A recorded choice steers recommendations, and `drift` flags docs that stopped matching it |
+
+*Selera* is Indonesian for taste.
+
+## Source of truth
+
+`skill/inisiasi/references/sot/` holds 55 files: stack defaults, versions, patterns, security severity, and what to avoid. Each one starts with a `Last verified` date and a note on what was checked and what was not.
+
+`pnpm test` fails when any file is older than six months. A GitHub Actions workflow runs it on every push, every pull request, and once a week.
+
+The defaults lean toward their author: TypeScript with Vite+, native Apple platforms, Postgres, Cloudflare. If your project needs something else, name the deviation and the reason. Do not follow a default silently.
+
+## Register in other agents
+
+Replace `/absolute/path/to/inisiasi` with your checkout.
+
+<details>
+<summary>Codex</summary>
+
+```toml
+# ~/.codex/config.toml
+[mcp_servers.inisiasi]
+command = "node"
+args = ["/absolute/path/to/inisiasi/mcp/dist/server.js"]
+```
+</details>
+
+<details>
+<summary>opencode</summary>
+
+```json
+{
+  "mcp": {
+    "inisiasi": {
+      "type": "local",
+      "command": ["node", "/absolute/path/to/inisiasi/mcp/dist/server.js"],
+      "enabled": true
+    }
+  }
+}
+```
+</details>
+
+<details>
+<summary>Cursor</summary>
+
+```json
+{
+  "mcpServers": {
+    "inisiasi": { "command": "node", "args": ["/absolute/path/to/inisiasi/mcp/dist/server.js"] }
+  }
+}
+```
+</details>
 
 ## Tools
 
-| Tool | Args |
-|---|---|
+| Tool | Arguments |
+|------|-----------|
 | `list_domains` | none |
 | `list_domain_skills` | `domain`, `limit?` |
-| `recommend_skills` | `project_description`, `scope?` (`tech` or `general`), `limit?` |
+| `recommend_skills` | `project_description`, `scope?`, `limit?` |
 | `search_skills` | `query`, `domain?`, `limit?` |
 | `get_skill` | `id` |
 | `inspect_plan` | `path`, `max_questions?` |
@@ -42,62 +172,24 @@ The MCP serves both skills. Anything outside tech goes through `recommend_skills
 | `select_references` | `project_description?`, `plan_path?`, `limit?` |
 | `recommend_bundle` | `project_description?`, `root?`, `plan_path?`, `limit?` |
 
-`limit` defaults to 8, max 25. Catalog is re-read on every call. Entries with `verified: false` are never recommended. Audit the catalog with `pnpm run check-catalog` (see `mcp/catalog.md`). Override the path with `INISIASI_CATALOG=/path/catalog.json`.
+Every tool has a CLI twin: `node mcp/dist/cli.js <command>`. `limit` defaults to 8 and caps at 25. Entries marked `verified: false` are never recommended.
 
-No MCP? Same queries from the CLI: `node mcp/dist/cli.js recommend "macOS menubar app in SwiftUI"` (`domains`, `domain <slug>`, `search <q>`, `get <id>`, `inspect_plan <path>`, `validate_docs <root>`, `detect_stack <root>`, `select_references [--plan <path>] <description>`, `recommend_bundle [--root <path>] [--plan <path>] [--limit <n>] <description>`).
+## Browse the catalog
 
-## Register the MCP
-
-Server command: `node /Users/cyuber/project/inisiasi/mcp/dist/server.js`
-
-**Claude Code**
 ```sh
-claude mcp add inisiasi --scope user -- node /Users/cyuber/project/inisiasi/mcp/dist/server.js
+cd web && pnpm install && pnpm dev
 ```
 
-**Codex** (`~/.codex/config.toml`)
-```toml
-[mcp_servers.inisiasi]
-command = "node"
-args = ["/Users/cyuber/project/inisiasi/mcp/dist/server.js"]
-```
-or `codex mcp add inisiasi -- node /Users/cyuber/project/inisiasi/mcp/dist/server.js`
+A local Vite and React browser for the catalog and the references. It is not hosted.
 
-**opencode** (`~/.config/opencode/opencode.json`)
-```json
-{
-  "mcp": {
-    "inisiasi": {
-      "type": "local",
-      "command": ["node", "/Users/cyuber/project/inisiasi/mcp/dist/server.js"],
-      "enabled": true
-    }
-  }
-}
-```
+![The inisiasi catalog browser, listing 16 domains and 463 skills](docs/assets/web-catalog.png)
 
-**Cursor** (`~/.cursor/mcp.json`)
-```json
-{
-  "mcpServers": {
-    "inisiasi": { "command": "node", "args": ["/Users/cyuber/project/inisiasi/mcp/dist/server.js"] }
-  }
-}
-```
+## Contributing
 
-## Catalog entry shape
+Pull requests are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) first. Adding a catalog entry? Follow [mcp/catalog.md](mcp/catalog.md) and run `pnpm test` before you open the PR.
 
-```json
-{
-  "id": "swiftui-pro", "name": "swiftui-pro", "domain": "apple", "niche": "swiftui",
-  "creator": "Paul Hudson", "use_cases": ["..."], "tags": ["swift", "swiftui"],
-  "source_url": "https://github.com/...", "install_command": "npx skills add twostraws/SwiftUI-Agent-Skill -g -s swiftui-pro",
-  "popularity": 6566, "verified": true
-}
-```
+## License
 
-Domains and niches come from the entries. `popularity` is GitHub stars of the source repo. `verified` means the SKILL.md was fetched from the linked path.
+[GPL-3.0-or-later](LICENSE). Use it for anything, commercial work included. If you distribute a modified version, you must release its source under the same license.
 
-## Catalog
-
-463 curated skills across 16 domains, each checked at its GitHub source and against `skills add --list`. Criteria, domains and the steps to add an entry are in [`mcp/catalog.md`](mcp/catalog.md). Run `npm run validate` after editing.
+Changes to this project go through pull requests. See [CONTRIBUTING.md](CONTRIBUTING.md).
