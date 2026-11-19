@@ -2,14 +2,22 @@
   "name": "inisiasi-mcp",
   "version": "0.1.0",
   "private": true,
+  "license": "GPL-3.0-or-later",
   "description": "Local stdio MCP server that recommends agent skills from a curated catalog. Same tool surface as skill-issue.in.",
   "type": "module",
+  "files": [
+    "dist",
+    "catalog.json",
+    "sot"
+  ],
   "bin": {
     "inisiasi-mcp": "dist/server.js",
     "inisiasi": "dist/cli.js"
   },
   "scripts": {
     "build": "tsc",
+    "prepack": "tsc && node -e \"require('node:fs').cpSync('../skill/inisiasi/references/sot','sot',{recursive:true})\"",
+    "postpack": "node -e \"require('node:fs').rmSync('sot',{recursive:true,force:true})\"",
     "start": "node dist/server.js",
     "test": "npm run validate && npm run build && node test/docs.mjs && node test/stack.mjs && node test/drift.mjs && node test/catalog.mjs && node test/smoke.mjs",
     "validate": "node validate.mjs",

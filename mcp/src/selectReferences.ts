@@ -69,7 +69,10 @@ const RULES: Rule[] = [
   { file: "engineering-practices.md", keywords: ["adr", "docs", "documentation", "config", "flag", "feature-flag", "onboarding", "error", "experiment", "a/b test", "ab test", "growthbook", "statsig", "rollout"], reason: "Error handling, config, flags, docs, ADR", weight: 2 },
 ];
 
-const DEFAULT_ROOT = fileURLToPath(new URL("../../skill/inisiasi/references/sot", import.meta.url));
+// An npm package carries its own copy in ../sot (copied by prepack). In the repo that folder is absent, so it reads the source files.
+const BUNDLED_ROOT = fileURLToPath(new URL("../sot", import.meta.url));
+const REPO_ROOT = fileURLToPath(new URL("../../skill/inisiasi/references/sot", import.meta.url));
+const DEFAULT_ROOT = existsSync(BUNDLED_ROOT) ? BUNDLED_ROOT : REPO_ROOT;
 // Accepts "Last verified" (English) and "Terakhir diverifikasi" (older Indonesian headers).
 const VERIFIED_RE = /^>\s*(?:Last verified|Terakhir diverifikasi):\s*(\d{4}-\d{2}-\d{2})\s*$/m;
 const MAX_FILES = 8;
