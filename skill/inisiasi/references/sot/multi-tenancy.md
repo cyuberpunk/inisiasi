@@ -1,6 +1,7 @@
 # Multi-tenancy
 
-> Last verified: 2026-11-16
+> Last verified: 2026-11-19
+> Checked on the web 2026-11-19: Postgres RLS owner and BYPASSRLS behavior, FORCE ROW LEVEL SECURITY, default deny.
 
 Scope: data isolation between tenants. Common patterns: [architecture.md](architecture.md). Wrong RLS: [problems-critical.md](problems-critical.md).
 

@@ -1,6 +1,7 @@
 # Database
 
-> Last verified: 2026-11-16
+> Last verified: 2026-11-19
+> Checked on the web 2026-11-19: PostgreSQL uuidv7 and version support, Neon, PlanetScale Postgres, Prisma Postgres, MongoDB ORM support, migration tools, Redis/Valkey.
 
 Scope: database choice, hosts, ORMs, schema migrations. Pools, N+1, locks: [problems-data.md](problems-data.md).
 
@@ -15,7 +16,7 @@ Scope: database choice, hosts, ORMs, schema migrations. Pools, N+1, locks: [prob
 | PostgreSQL | Almost any app | Default |
 | SQLite | Local, edge, mobile, prototypes | Limited ALTER TABLE |
 | MySQL | Existing systems, Vitess | |
-| MongoDB | Pure document workloads | Mongoose or Prisma, not Drizzle |
+| MongoDB | Pure document workloads | Mongoose or Prisma 6 (Prisma 7 has no MongoDB support yet), not Drizzle |
 | Redis / Valkey | Cache, sessions, queues | Not a primary store |
 | ClickHouse / DuckDB | Analytics | Keep separate from the main DB |
 
@@ -33,7 +34,7 @@ Draft, pending owner review.
 
 ## Migrations
 
-- Tools: Drizzle Kit, Prisma Migrate, Atlas, golang-migrate, Alembic, sqlx-cli. Lint: Atlas lint or Squawk.
+- Tools: Drizzle Kit, Prisma Migrate, Atlas, golang-migrate, Alembic, sqlx-cli. Lint: Squawk, or Atlas lint (paid Atlas Pro).
 - Breaking changes: Expand (add, nullable) → Migrate (dual write + batched backfill) → Contract (remove the old column after cutover). Postgres automation: pgroll.
 - Never rename or change a column type in place.
 - Postgres 11+: `ADD COLUMN ... DEFAULT <constant>` is instant. A volatile default (`gen_random_uuid()`) rewrites the table: add it nullable, `SET DEFAULT`, then backfill in batches.

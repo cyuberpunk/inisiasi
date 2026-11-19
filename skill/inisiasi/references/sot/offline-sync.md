@@ -1,6 +1,7 @@
 # Offline-first and sync
 
-> Last verified: 2026-11-16
+> Last verified: 2026-11-19
+> Checked on the web 2026-11-19: Turso sync beta, Replicache, Isar, WatermelonDB, Zero, Electric, PowerSync.
 
 Scope: local-first, sync engines, conflicts.
 
@@ -20,7 +21,7 @@ Start online-only. Grow step by step: optimistic updates + retries, then local p
 | Zero | Web + Postgres, partial query-based sync |
 | PowerSync | Postgres to mobile (including RN) |
 | Turso sync | The DB is already SQLite/Turso (offline writes still in beta) |
-| Electric | Read path from Postgres; writes go through your own API |
+| Electric | Read path from Postgres; writes go through your own API. Self-host: Electric Cloud is winding down |
 | Yjs, Automerge, Loro | CRDT collaboration |
 
 ## Conflicts
@@ -31,4 +32,4 @@ Start online-only. Grow step by step: optimistic updates + retries, then local p
 
 ## Avoid
 
-WatermelonDB, the official Isar (no longer maintained), Replicache for new projects.
+WatermelonDB, the official Isar (no longer maintained; the isar_community fork is active), Replicache for new projects.

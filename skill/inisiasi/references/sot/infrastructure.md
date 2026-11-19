@@ -1,6 +1,7 @@
 # Infrastructure and deployment
 
-> Last verified: 2026-11-16
+> Last verified: 2026-11-19
+> Checked on the web 2026-11-19: Workers CPU limits and nodejs_compat default, Vercel Edge deprecation, Deno Deploy sunset, MinIO, OpenTofu, Alchemy, Cloudflare Containers.
 
 Scope: compute, hosting, edge, serverless, IaC, deploy strategies. CI: [ci-cd.md](ci-cd.md).
 

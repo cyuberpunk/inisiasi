@@ -1,6 +1,7 @@
 # Cache, queue, job, storage, search
 
-> Last verified: 2026-11-16
+> Last verified: 2026-11-19
+> Checked on the web 2026-11-19: Redis 8 and Valkey licenses, MinIO, R2, queue and search tools, Postgres FTS languages.
 
 Scope: cache, messaging, background jobs, object storage, full-text search. Realtime: [realtime.md](realtime.md).
 
@@ -30,7 +31,7 @@ Use what the stack already has first.
 | Convex | Scheduled functions + cron |
 | Multi-step SaaS jobs in TS | Inngest or Trigger.dev |
 
-Move to NATS JetStream (cross-language fan-out) or Kafka / Redpanda (throughput, retention, replay) only when needed. Long-running workflows / sagas: Temporal or Restate.
+Move to NATS JetStream (cross-language fan-out) or Kafka (throughput, retention, replay) only when needed. Redpanda's free edition now ships under a no-source license (50-core cap, internal use only). Long-running workflows / sagas: Temporal or Restate.
 
 Rules: at-least-once delivery + idempotent handlers, payloads contain only IDs, unique keys, retry with backoff, a DLQ, enqueue inside the DB transaction (Postgres queue or outbox), graceful shutdown, monitor queue depth. In-process cron (node-cron) is only safe on a single instance. Fan-out that must be durable: Streams/JetStream, not plain Pub/Sub.
 
@@ -45,7 +46,7 @@ Rules: at-least-once delivery + idempotent handlers, payloads contain only IDs, 
 
 ## Search
 
-- Start with the database you have: Postgres FTS (`tsvector`, `pg_trgm`; for Indonesian locale use the `simple` config), SQLite FTS5, Atlas Search, Convex search. Stay in Postgres but need BM25/facets: ParadeDB.
+- Start with the database you have: Postgres FTS (`tsvector`, `pg_trgm`; for Indonesian locale use the built-in `indonesian` config, or `simple` to skip stemming), SQLite FTS5, Atlas Search, Convex search. Stay in Postgres but need BM25/facets: ParadeDB.
 - Dedicated search (typo tolerance, facets, autocomplete): Meilisearch or Typesense. Large scale or logs: OpenSearch / Elasticsearch. Managed: Algolia.
 - Vectors: pgvector first. Hybrid search (keyword + vector) when relevant.
 - Sync the index through an outbox or CDC, not a dual write in the request.

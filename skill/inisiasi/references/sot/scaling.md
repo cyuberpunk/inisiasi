@@ -1,6 +1,7 @@
 # Scaling
 
-> Last verified: 2026-11-18
+> Last verified: 2026-11-19
+> Checked on the web 2026-11-19: named tools (PgBouncer, Envoy, HAProxy) still maintained. Rest is design guidance.
 > Status: draft, pending owner review.
 
 Scope: handling more load: vertical and horizontal scaling, load balancing, read scaling, partitioning, and when to split services. Caches: [data-services.md](data-services.md). Load tests: [reliability.md](reliability.md). Slowness symptoms: [problems-performance.md](problems-performance.md).

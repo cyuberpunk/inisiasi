@@ -1,6 +1,7 @@
 # Performance
 
-> Last verified: 2026-11-16
+> Last verified: 2026-11-19
+> Checked on the web 2026-11-19: Core Web Vitals thresholds, scheduler.yield, Speculation Rules, web-vitals library.
 
 Scope: Core Web Vitals, FE and BE techniques, order of optimization. Common problems: [problems-performance.md](problems-performance.md).
 
