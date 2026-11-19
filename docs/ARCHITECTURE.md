@@ -14,6 +14,11 @@ A local stdio MCP server plus two skills. The server answers catalog and project
 | Fuzzy search | `fuse.js` | Already a dependency, no index to maintain | Full-text database: overkill for 463 entries |
 | Package manager | pnpm 12, `pnpm-lock.yaml`, `packageManager` field | Matches selera (`packageManager: pnpm`) | npm: the lockfile it replaced |
 | Tests | Node scripts using `node:assert` | No test framework to maintain | vitest: recorded in selera, not yet applied here |
+| Lint | `oxlint` in `web/`. `oxfmt` not used yet | Matches selera `lint: oxlint+oxfmt` for lint only | Not recorded. Adding `oxfmt` is pending, see TASKS 7 |
+| Bundler | Vite in `web/` | Matches selera `bundler: vite` | Not recorded |
+| Validation | Hand-written checks in `mcp/src`. zod not used | Tool inputs are few and fixed | zod (selera `validation: zod`): not applied, no runtime schema needed yet |
+| Web UI | React 19, Tailwind, `react-aria-components` | Already built. Not shadcn | shadcn (selera `fe.ui: shadcn`): not applied, `web/` does not use it |
+| Web data | No remote fetching in `web/`. Data is built in | Reads files at build time | tanstack-query (selera `fe.fetch`): not applied, nothing to fetch |
 
 ## Architecture
 
