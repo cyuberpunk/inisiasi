@@ -48,7 +48,7 @@ Reading the tables. Popularity is npm weekly downloads, then GitHub stars. Stage
 | Blueprint | 6.23.1 | 382k | 22.2k | React | Sass plus own CSS | Yes | Dense desktop-like web apps, Palantir style |
 | Adobe Spectrum | 3.47.7 | 2.28M | 16.1k | React | Own CSS, React Aria underneath | Partly | Adobe-adjacent products, strict a11y |
 | MUI Joy | 5.0.0-beta.52 | 191k | with MUI | React | Emotion | No | Skip. Beta since 2023, MUI now points to Material 3 |
-| daisyUI | 5.8.1 | 1.50M | 39k | Agnostic | Tailwind plugin, CSS only | Yes | Non-React UI with ready-made parts |
+| daisyUI | 5.8.1 | 1.50M | 42.9k | Agnostic | Tailwind plugin, CSS only | Yes | Non-React UI with ready-made parts |
 | Bootstrap | 5.3.9 | 8.04M | 175k | Agnostic | Own CSS plus optional JS | Yes (JS only for interactive parts) | Server-rendered pages, a team that knows it |
 
 ## Registries and blocks

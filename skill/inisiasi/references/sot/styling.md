@@ -1,7 +1,7 @@
 # Styling
 
 > Last verified: 2026-11-20
-> Checked on the web 2026-11-20: npm versions and weekly downloads of every package below (`api.npmjs.org/downloads/point/last-week`, 2026-11-12..2026-11-18), GitHub stars and last push, Stitches archived, WindiCSS last push. Not checked: runtime behaviour of each option inside RSC and streaming SSR.
+> Checked on the web 2026-11-20: npm versions and weekly downloads of every package below (`api.npmjs.org/downloads/point/last-week`, 2026-11-12..2026-11-18), GitHub stars and last push, Stitches archived, WindiCSS last push, Vite+ docs. Not checked: runtime behaviour of each option inside RSC and streaming SSR.
 
 Scope: how CSS is written and shipped, plus the CSS foundations a project starts from. Component libraries: [ui-kits.md](ui-kits.md). Design systems and tokens: [design-systems.md](design-systems.md).
 
@@ -22,7 +22,7 @@ Scope: how CSS is written and shipped, plus the CSS foundations a project starts
 | Plain CSS (native) | Small sites, content, or no-build pages | Manual structure and naming; no theming layer unless you write tokens | Native `@layer`, nesting, `:has()`, `container` queries, `oklch()`, `color-mix()`, `light-dark()` |
 | Preprocessor | Existing Sass/SCSS codebase | Extra build step that native CSS now covers for variables, nesting and functions | Sass 1.108.2 (44.1M) |
 
-The pipeline is separate from the approach: PostCSS 441M and Lightning CSS 260M both transform CSS (nesting, vendor prefixes, minification). Vite+ configures this already.
+The pipeline is separate from the approach: PostCSS 441M and Lightning CSS 260M both transform CSS (nesting, vendor prefixes, minification). Vite provides both. The Vite+ docs checked on 2026-11-20 do not name CSS processing at all, so confirm it in `vp` before relying on a custom PostCSS chain there.
 
 Why utility CSS is the default: one source of styles for every component, no naming invented per file, the design tokens and the components share one scale. Why CSS Modules still earns its place: a component that owns a non-trivial style block reads better as CSS than as 40 class names, and it needs no tooling.
 
