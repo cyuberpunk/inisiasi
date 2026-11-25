@@ -1,14 +1,34 @@
 {
   "name": "inisiasi-mcp",
   "version": "0.1.0",
-  "private": true,
   "license": "GPL-3.0-or-later",
   "description": "Local MCP server for inisiasi, which turns PLAN.md into a decided stack, architecture, first tasks, and the skills to install.",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "agent-skills",
+    "claude-code",
+    "codex",
+    "cursor",
+    "kickoff",
+    "architecture"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cyuberpunk/inisiasi.git",
+    "directory": "mcp"
+  },
+  "homepage": "https://github.com/cyuberpunk/inisiasi#readme",
+  "bugs": {
+    "url": "https://github.com/cyuberpunk/inisiasi/issues"
+  },
   "type": "module",
   "files": [
     "dist",
     "catalog.json",
-    "sot"
+    "sot",
+    "README.md",
+    "LICENSE"
   ],
   "bin": {
     "inisiasi-mcp": "dist/server.js",
@@ -16,8 +36,8 @@
   },
   "scripts": {
     "build": "tsc",
-    "prepack": "tsc && node -e \"require('node:fs').cpSync('../skill/inisiasi/references/sot','sot',{recursive:true})\"",
-    "postpack": "node -e \"require('node:fs').rmSync('sot',{recursive:true,force:true})\"",
+    "prepack": "tsc && node -e \"require('node:fs').cpSync('../skill/inisiasi/references/sot','sot',{recursive:true}); require('node:fs').copyFileSync('../LICENSE','LICENSE')\"",
+    "postpack": "node -e \"require('node:fs').rmSync('sot',{recursive:true,force:true}); require('node:fs').rmSync('LICENSE',{force:true})\"",
     "start": "node dist/server.js",
     "test": "npm run validate && npm run build && node test/docs.mjs && node test/stack.mjs && node test/drift.mjs && node test/catalog.mjs && node test/smoke.mjs",
     "validate": "node validate.mjs",
