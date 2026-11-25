@@ -7,6 +7,7 @@
 Tell your coding agent what you want to build. inisiasi helps it choose the tools,<br>
 plan the work, and write a step-by-step guide you can follow, even if you have never coded.
 
+[![npm](https://img.shields.io/npm/v/inisiasi-mcp)](https://www.npmjs.com/package/inisiasi-mcp)
 [![License](https://img.shields.io/badge/license-GPL--3.0--or--later-informational)](LICENSE)
 [![Node](https://img.shields.io/badge/node-%E2%89%A5%2022-informational)](mcp/package.json)
 [![MCP tools](https://img.shields.io/badge/MCP%20tools-10-informational)](#mcp-tools)
@@ -54,12 +55,23 @@ inisiasi makes the agent decide first, explain the decisions at your level, writ
 
 ## Quick start
 
-Requires Node 22 or newer and pnpm. Not a developer? Your coding agent can run these commands for you: paste them into the chat and ask it to install inisiasi.
+Requires Node 22 or newer. Not a developer? Your coding agent can run these commands for you: paste them into the chat and ask it to install inisiasi.
 
-> [!NOTE]
-> `inisiasi-mcp` is not on npm yet. Use the checkout below. The npx commands further down work once the package is published.
+### With npx
+
+Install the two skills, then register the MCP server (Claude Code shown):
+
+```sh
+npx skills add cyuberpunk/inisiasi --full-depth -g -s inisiasi
+npx skills add cyuberpunk/inisiasi --full-depth -g -s selera
+claude mcp add inisiasi --scope user -- npx -y inisiasi-mcp
+```
+
+The [`inisiasi-mcp`](https://www.npmjs.com/package/inisiasi-mcp) package carries the catalog and the reference files, so there is nothing else to download. Other agents: see [Register in other agents](#register-in-other-agents).
 
 ### From a checkout
+
+For contributors. Also requires pnpm.
 
 ```sh
 git clone https://github.com/cyuberpunk/inisiasi.git
@@ -73,15 +85,7 @@ ln -s "$PWD/../skill/selera"   ~/.agents/skills/selera
 claude mcp add inisiasi --scope user -- node "$PWD/dist/server.js"
 ```
 
-`pnpm test` validates the catalog, builds the server and runs every tool. Other agents: see [Register in other agents](#register-in-other-agents).
-
-### With npx (after the npm release)
-
-```sh
-npx skills add cyuberpunk/inisiasi --full-depth -g -s inisiasi
-npx skills add cyuberpunk/inisiasi --full-depth -g -s selera
-claude mcp add inisiasi --scope user -- npx -y inisiasi-mcp
-```
+`pnpm test` validates the catalog, builds the server and runs every tool.
 
 ### First run
 
@@ -89,23 +93,64 @@ Open your project folder in your coding agent and paste the prompt that fits.
 
 **I have an idea and have not coded before**
 
+```text
+inisiasi. I am not a programmer.
+I want an app that <what it should do> for <who>.
+Keep the explanations simple and tell me what each part is for.
+Write docs/PLAN.md first and wait for my go before
+ARCHITECTURE, TASKS, and GUIDE.
 ```
-inisiasi. I am not a programmer. I want an app that <what it should do> for <who>. Keep the explanations simple and tell me what each part is for. Write docs/PLAN.md first and wait for my go before ARCHITECTURE, TASKS, and GUIDE.
-```
+
+**Expected output:** a PLAN draft describing your idea, up to three questions
+with recommended answers, then one proposed stack explained in plain words.
+No application code or ARCHITECTURE, TASKS, or GUIDE files before your go.
 
 **I picked a stack and want to learn it while building**
 
+```text
+inisiasi. I want to build <project> with <stack you chose>.
+I am new to <stack>.
+Plan it in that stack and explain the parts I have not used before.
+Wait for my go before writing ARCHITECTURE, TASKS, and GUIDE.
 ```
-inisiasi. I want to build <project> with <stack you chose>. I am new to <stack>. Plan it in that stack, explain the parts I have not used before, and wait for my go before writing the docs.
-```
+
+**Expected output:** a PLAN draft and proposal using your chosen stack,
+with unfamiliar parts explained. A tool on an Avoid list is flagged with a
+reason and an alternative; keeping it requires your confirmation.
 
 **The code already exists but has no architecture docs**
 
-```
-inisiasi. This repo already has code but no architecture docs. Read what is here, keep the current stack, and plan how to continue: <goal for the next version>. Show me the plan first, write the docs after I say go.
+```text
+inisiasi. This repo already has code but no architecture docs.
+Read what is here and keep the current stack.
+Plan how to continue: <goal for the next version>.
+Show me the plan first. Write the docs after I say go.
 ```
 
-Then answer its questions, read the proposal, and say `go`. Existing docs are backed up before anything is written. Open `docs/GUIDE.md` for the setup steps. More prompts: [`prompts.md`](skill/inisiasi/references/prompts.md).
+**Expected output:** a PLAN based on the existing code, its current stack,
+and a proposal for the next version. Working parts stay in place;
+Avoid items are reported as risks with optional migration tasks.
+No application code is changed.
+
+Then answer its questions, read the proposal, and say:
+
+```text
+go
+```
+
+**After go, expect these files:**
+
+| Output | What to check |
+|---|---|
+| `docs/ARCHITECTURE.md` | Chosen stack, reasons, rejected alternatives, module layout, and risks |
+| `docs/TASKS.md` | 5 to 12 tasks, risk spike first, each with a verification step |
+| `docs/GUIDE.md` | Setup commands, how to run and test the project, and a plain-language glossary |
+| `AGENTS_WORKLOG.md` | A record of the decisions and checks |
+
+Existing docs are backed up before replacement. The agent runs `validate_docs`
+and checks Avoid lists and non-negotiables, then reports the stack, install
+commands, and first three tasks. This produces a plan and guide, not a built app.
+Open `docs/GUIDE.md` for the setup steps. More prompts: [`prompts.md`](skill/inisiasi/references/prompts.md).
 
 <details>
 <summary>Example <code>docs/PLAN.md</code></summary>
@@ -139,7 +184,7 @@ A personal Chrome extension that keeps my X likes and bookmarks on my machine.
 
 ## Real examples
 
-These are the checks the agent runs for you behind the scenes. You never need to type them, but they show what it looks at. Each block is a real command run against this repo on 2026-11-25, with the output trimmed to the fields shown. From npm, replace `node mcp/dist/cli.js` with `npx -y -p inisiasi-mcp inisiasi`.
+These are the checks the agent runs for you behind the scenes. You never need to type them, but they show what it looks at. Each block is a real command run against this repo on 2026-11-25, with the output trimmed to the fields shown. Outside a checkout, replace `node mcp/dist/cli.js` with `npx -y -p inisiasi-mcp inisiasi`.
 
 **1. Check a PLAN before kickoff.** The test fixture `fuu` is a macOS folder locker with two open questions.
 
@@ -201,6 +246,11 @@ node mcp/dist/cli.js validate_docs mcp/test/fixtures/fuu
 
 ## With skill vs without skill
 
+> **Recorded assertion pass rates: inisiasi 94% with skill vs 49% without;
+> selera 93% vs 53%.** These are results from one eval suite, not a guarantee
+> for every project. Detailed outcomes, including a failure with the skill,
+> are shown below.
+
 From eval run `r3` on 2026-11-19, recorded in [`evals/RESULTS.md`](evals/RESULTS.md): 21 cases, 3 runs per case, once with the skill loaded and once without. Neither arm had the MCP server. Two blind judges graded every run against the case's assertions.
 
 | Skill | With skill | Without skill |
@@ -210,8 +260,11 @@ From eval run `r3` on 2026-11-19, recorded in [`evals/RESULTS.md`](evals/RESULTS
 
 In short: without the skill, agents built too early, kept tools that no longer exist, and overwrote files they were not asked to touch. Judge A (Opus) shown; Judge B agrees within 4 points. This run measured the kickoff flow before the setup guide and the existing-project mode were added; those two are not measured yet. The tables below quote judge A's evidence for one run per arm, taken from [`evals/results/r3`](evals/results/r3). The full transcripts are not committed; `node evals/harness.mjs snapshot` regenerates them.
 
-<details>
-<summary><b>Task 1.</b> "ok fuu repo is ready, PLAN.md has the goals … run inisiasi" (with 18/21, without 9/21)</summary>
+### Task 1: propose before building
+
+**Input:** "ok fuu repo is ready, PLAN.md has the goals … run inisiasi"
+
+**Assertions passed across three runs:** with skill **18/21**, without **9/21**.
 
 | Assertion | Without skill | With skill |
 |---|---|---|
@@ -222,10 +275,11 @@ In short: without the skill, agents built too early, kept tools that no longer e
 
 **Difference:** without the skill the agent treated "ready" as "build it". With it, the agent settled the open questions in PLAN, proposed, and stopped.
 
-</details>
+### Task 2: catch tools on the Avoid list
 
-<details>
-<summary><b>Task 2.</b> "let's use MinIO for object storage and CodePush for the mobile OTA updates, wire them into the architecture" (with 15/15, without 3/15)</summary>
+**Input:** "let's use MinIO for object storage and CodePush for the mobile OTA updates, wire them into the architecture"
+
+**Assertions passed across three runs:** with skill **15/15**, without **3/15**.
 
 | Assertion | Without skill | With skill |
 |---|---|---|
@@ -236,10 +290,11 @@ In short: without the skill, agents built too early, kept tools that no longer e
 
 **Difference:** without the skill the agent wired in an archived storage server and a shut-down OTA service. With it, the Avoid lists caught both and the owner kept the final say.
 
-</details>
+### Task 3: write verifiable docs without overwriting unrelated work
 
-<details>
-<summary><b>Task 3.</b> "ok go, write the docs" (with 23/24, without 3/24)</summary>
+**Input:** "ok go, write the docs"
+
+**Assertions passed across three runs:** with skill **23/24**, without **3/24**.
 
 | Assertion | Without skill | With skill |
 |---|---|---|
@@ -250,8 +305,6 @@ In short: without the skill, agents built too early, kept tools that no longer e
 | Runs `validate_docs` or the documented self-check | Fail: none | Pass: self-check recorded |
 
 **Difference:** without the skill the agent overwrote a design doc it was not asked to touch and wrote an unverifiable task list. With it, the run kept backups and DESIGN.md intact; it still missed one ARCHITECTURE section, which `validate_docs` reports.
-
-</details>
 
 ## How it works
 
@@ -315,7 +368,7 @@ inisiasi/
 | Variable | Default | Effect |
 |---|---|---|
 | `INISIASI_REFERENCES` | the bundled `references/sot` | Source-of-truth folder for the skill and `select_references` |
-| `INISIASI_CATALOG` | `mcp/catalog.json` | Catalog file the tools read |
+| `INISIASI_CATALOG` | the bundled `catalog.json` | Catalog file the tools read |
 | `INISIASI_SKILLS_DIR` | `~/.agents/skills` | Where installed skills are detected |
 | `SELERA_CONFIG` | `$XDG_CONFIG_HOME/inisiasi/selera/profile.md` | Global selera profile path |
 
@@ -334,11 +387,11 @@ inisiasi/
 | `select_references` | `project_description?`, `plan_path?`, `limit?` |
 | `recommend_bundle` | `project_description?`, `root?`, `plan_path?`, `limit?` |
 
-Every tool has a CLI twin (`node mcp/dist/cli.js <command>`), plus `drift [root]`. `limit` defaults to 8 and caps at 25. Entries marked `verified: false` are never recommended.
+Every tool has a CLI twin (`npx -y -p inisiasi-mcp inisiasi <command>`, or `node mcp/dist/cli.js <command>` in a checkout), plus `drift [root]`. `limit` defaults to 8 and caps at 25. Entries marked `verified: false` are never recommended.
 
 ### Register in other agents
 
-The blocks use a checkout. Replace `/absolute/path/to/inisiasi` with yours. After the npm release, use `npx` as the command and `["-y", "inisiasi-mcp"]` as the arguments.
+The blocks use the npm package. From a checkout, use `node` as the command and `["/absolute/path/to/inisiasi/mcp/dist/server.js"]` as the arguments.
 
 <details>
 <summary>Codex</summary>
@@ -346,8 +399,8 @@ The blocks use a checkout. Replace `/absolute/path/to/inisiasi` with yours. Afte
 ```toml
 # ~/.codex/config.toml
 [mcp_servers.inisiasi]
-command = "node"
-args = ["/absolute/path/to/inisiasi/mcp/dist/server.js"]
+command = "npx"
+args = ["-y", "inisiasi-mcp"]
 ```
 </details>
 
@@ -359,7 +412,7 @@ args = ["/absolute/path/to/inisiasi/mcp/dist/server.js"]
   "mcp": {
     "inisiasi": {
       "type": "local",
-      "command": ["node", "/absolute/path/to/inisiasi/mcp/dist/server.js"],
+      "command": ["npx", "-y", "inisiasi-mcp"],
       "enabled": true
     }
   }
@@ -373,7 +426,7 @@ args = ["/absolute/path/to/inisiasi/mcp/dist/server.js"]
 ```json
 {
   "mcpServers": {
-    "inisiasi": { "command": "node", "args": ["/absolute/path/to/inisiasi/mcp/dist/server.js"] }
+    "inisiasi": { "command": "npx", "args": ["-y", "inisiasi-mcp"] }
   }
 }
 ```
@@ -382,6 +435,35 @@ args = ["/absolute/path/to/inisiasi/mcp/dist/server.js"]
 ### Source of truth
 
 `skill/inisiasi/references/sot/` holds stack defaults, versions, patterns, security severity and what to avoid. Each file starts with a `Last verified` date and a note on what was checked and what was not. The defaults lean toward their author: TypeScript with Vite+, native Apple platforms, Postgres, Cloudflare. If your project needs something else, name the deviation and the reason.
+
+### Token overhead
+
+Installing these components does not load every file into your agent's context.
+Hosts typically expose skill descriptions first and load full instructions when
+needed. MCP tool schemas may be loaded upfront or deferred, depending on the host.
+
+| Stage | Context added | Approximate tokens |
+|---|---|---:|
+| Session start, if all MCP schemas are loaded | Descriptions and input schemas for 10 tools | 1,700 |
+| Session start, if both skills are discoverable | inisiasi and selera trigger descriptions | 400 |
+| When inisiasi is activated | Full `skill/inisiasi/SKILL.md` | 2,640 |
+| When selera is activated | Full `skill/selera/SKILL.md` | 1,790 |
+
+**Estimated baseline: 2,100 tokens. Loading both full skills adds about 4,400.**
+These estimates use local skill text and the MCP `tools/list` response, at roughly
+4 characters per token. They are not model-tokenizer measurements and will change
+as instructions evolve. Host wrappers and other session instructions are excluded.
+
+During a conversation, profile text, selected references, tool arguments and
+results, and generated answers add more tokens. The 439-entry catalog and all SoT
+files are not automatically loaded. The MCP server and selera script make no LLM
+calls themselves; their execution has no direct model-token charge.
+
+Loaded text can remain in conversation history and count as input on later model
+requests. Prompt caching may reduce its price; deferred loading and compaction
+change how much is retained. This is neither a guaranteed one-time fee nor a fixed
+new charge per message. Dollar cost depends on your model, provider, cache rates,
+and actual usage; no fixed price is claimed here.
 
 ## Contributing
 
