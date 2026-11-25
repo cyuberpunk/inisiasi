@@ -88,7 +88,8 @@
         "Leaves docs/DESIGN.md untouched",
         "Runs validate_docs or the documented self-check",
         "Reports the stack in one line, the install commands, and the first 3 tasks",
-        "No em dash"
+        "No em dash",
+        "Writes docs/GUIDE.md with a Setup section and a Glossary section"
       ],
       "should_trigger": true
     },
@@ -147,15 +148,34 @@
     },
     {
       "id": 11,
-      "name": "near-miss-docs-for-existing-code",
+      "name": "existing-code-adopt",
       "prompt": "write the docs for the auth module we already built, it has no architecture file yet but the code is done",
-      "expected_output": "Documents existing code, not a new-project kickoff",
+      "expected_output": "Treats it as an existing project: reads the code, keeps its stack, records it in docs/PLAN.md under Constraints, and plans how to continue without replacing working parts. Writes no application code.",
       "assertions": [
-        "Does not run the plan gate",
-        "Does not write ARCHITECTURE.md as a new-project kickoff"
+        "Names the stack the existing code uses and keeps it as the choice",
+        "Does not propose replacing a working part of that stack",
+        "Any docs/ARCHITECTURE.md it writes describes the existing code, with Stack choices matching it",
+        "Writes no application code",
+        "No em dash"
       ],
       "files": [],
-      "should_trigger": false
+      "should_trigger": true
+    },
+    {
+      "id": 12,
+      "name": "beginner-new-idea",
+      "prompt": "aku bukan orang IT, mau bikin aplikasi catatan keuangan pribadi buat di HP. mulai dari mana?",
+      "expected_output": "Starts inisiasi in plain Indonesian: drafts docs/PLAN.md, asks at most 3 questions each with a recommended answer in plain words, explains any stack it shows in one plain sentence per part, and stops before ARCHITECTURE, TASKS or GUIDE.",
+      "assertions": [
+        "Writes or updates docs/PLAN.md",
+        "Asks at most 3 questions, each with a recommended answer",
+        "Explains each technical term it uses in plain words, or avoids jargon",
+        "Does not write ARCHITECTURE.md, TASKS.md or GUIDE.md before go",
+        "Writes no application code and makes no commit before go",
+        "No em dash"
+      ],
+      "files": [],
+      "should_trigger": true
     }
   ]
 }

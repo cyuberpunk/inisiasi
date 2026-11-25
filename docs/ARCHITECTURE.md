@@ -9,16 +9,12 @@ A local stdio MCP server plus two skills. The server answers catalog and project
 | Concern | Choice | Why | Rejected |
 |---|---|---|---|
 | Language | TypeScript, compiled with `tsc` | Typed tool schemas, already in use | Plain JavaScript: no types for tool contracts |
-| Runtime | Node.js 20 or newer | Matches `engines` in `mcp/package.json` | Bun: not needed for a stdio server |
+| Runtime | Node.js 22 or newer | Matches `engines` in `mcp/package.json` | Bun: not needed for a stdio server |
 | MCP | `@modelcontextprotocol/sdk` over stdio | Standard client support | Custom protocol: no benefit |
 | Fuzzy search | `fuse.js` | Already a dependency, no index to maintain | Full-text database: overkill for 439 entries |
 | Package manager | pnpm 12, `pnpm-lock.yaml`, `packageManager` field | Matches selera (`packageManager: pnpm`) | npm: the lockfile it replaced |
 | Tests | Node scripts using `node:assert` | No test framework to maintain | vitest: recorded in selera, not yet applied here |
-| Lint | `oxlint` in `web/`. `oxfmt` not used yet | Matches selera `lint: oxlint+oxfmt` for lint only | Not recorded. Adding `oxfmt` is pending, see TASKS 7 |
-| Bundler | Vite in `web/` | Matches selera `bundler: vite` | Not recorded |
 | Validation | Hand-written checks in `mcp/src`. zod not used | Tool inputs are few and fixed | zod (selera `validation: zod`): not applied, no runtime schema needed yet |
-| Web UI | React 19, Tailwind, `react-aria-components` | Already built. Not shadcn | shadcn (selera `fe.ui: shadcn`): not applied, `web/` does not use it |
-| Web data | No remote fetching in `web/`. Data is built in | Reads files at build time | tanstack-query (selera `fe.fetch`): not applied, nothing to fetch |
 
 ## Architecture
 
@@ -29,7 +25,6 @@ A local stdio MCP server plus two skills. The server answers catalog and project
 - `mcp/src/drift.ts`: compares selera profile with ARCHITECTURE and TASKS.
 - `skill/inisiasi/`: the kickoff skill and its references.
 - `skill/selera/`: the code-standards skill and its CLI (`scripts/selera.mjs`).
-- `web/`: local Vite + React browser for the catalog and references, built from the same files at build time. Not hosted.
 
 ## System design
 
@@ -55,7 +50,7 @@ A local stdio MCP server plus two skills. The server answers catalog and project
 ## Rejected alternatives
 
 - Vector search for the catalog: 439 entries do not need embeddings.
-- A hosted web UI: the owner uses the terminal and the MCP. The local browser in `web/` reads the repo files only.
+- A hosted web UI: the owner uses the terminal and the MCP.
 
 ## Risks
 

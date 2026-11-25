@@ -15,7 +15,7 @@ const profileMd = (obj) => {
     if (s) (scoped[s] ??= []).push(`- ${k.split(".").slice(1).join(".")}: ${v}`);
     else umum.push(`- ${k}: ${v}`);
   }
-  let md = "# selera\n\n## Umum\n" + umum.join("\n") + "\n";
+  let md = "# selera\n\n## General\n" + umum.join("\n") + "\n";
   for (const [s, name] of Object.entries(SECTION_NAMES)) if (scoped[s]) md += `\n## ${name}\n${scoped[s].join("\n")}\n`;
   return md;
 };
@@ -88,7 +88,8 @@ const noViteTask = checkDrift(project(stack("Vite in web/"), "nothing here", { b
 assert.deepEqual(status(noViteTask), { bundler: "missing_in_tasks" });
 
 const globalProfile =join(tmpdir(), `drift-global-${process.pid}.md`);
-writeFileSync(globalProfile, profileMd({ bundler: "webpack", db: "postgres" }));
+// "## Umum" is the old default section name and must still parse as the default scope.
+writeFileSync(globalProfile, "# selera\n\n## Umum\n- bundler: webpack\n- db: postgres\n");
 process.env.SELERA_CONFIG = globalProfile;
 const merged = checkDrift(project("vite postgres", "vite postgres", { bundler: "vite" }));
 assert.deepEqual(status(merged), { bundler: "ok", db: "ok" });

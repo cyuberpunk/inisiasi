@@ -58,7 +58,8 @@ const FIXTURES = {
   "inisiasi#8": { name: "webapp", files: { "package.json": reactPkg } },
   "inisiasi#9": { name: "streaks", files: {} },
   "inisiasi#10": { name: "counter", files: { "package.json": reactPkg, "src/Counter.tsx": "import { useState } from \"react\";\n\nexport function Counter() {\n  const [n, setN] = useState(0);\n  return <button onClick={() => setN(n + 1)}>{n}</button>;\n}\n" } },
-  "inisiasi#11": { name: "gatekeep", files: authCode },
+  "inisiasi#11": { name: "authapp", files: authCode },
+  "inisiasi#12": { name: "noteku", files: {} },
   "selera#1": { name: "orders", files: { "package.json": tsPkg() } },
   "selera#2": { name: "orders", files: { "package.json": tsPkg() } },
   "selera#3": { name: "storefront", files: { "package.json": reactPkg } },
@@ -110,7 +111,7 @@ function renderProfileMd(obj) {
     if (scope) (scoped[scope] ??= []).push(`- ${key.split(".").slice(1).join(".")}: ${value}`);
     else umum.push(`- ${key}: ${value}`);
   }
-  let md = "# selera\n\n## Umum\n" + (umum.join("\n") || "") + "\n";
+  let md = "# selera\n\n## General\n" + (umum.join("\n") || "") + "\n";
   for (const [scope, name] of Object.entries(PROFILE_SECTIONS)) if (scoped[scope]) md += `\n## ${name}\n${scoped[scope].join("\n")}\n`;
   return md;
 }

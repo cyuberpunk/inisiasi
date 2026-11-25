@@ -101,6 +101,17 @@ const validTasks = `# Tasks
 - [ ] 5. Add a unit test for the greeting → verify: tests pass
 `;
 
+const validGuide = `# Guide
+
+What this project is and how to run it.
+
+## Setup
+- Install Node 22, run the tests.
+
+## Glossary
+- CLI: a program you run in a terminal.
+`;
+
 const validLog = `# Agent Worklogs
 
 ## Entries
@@ -156,6 +167,7 @@ try {
   write(readyRoot, "docs/PLAN.md", readyPlan);
   write(readyRoot, "docs/ARCHITECTURE.md", validArch);
   write(readyRoot, "docs/TASKS.md", validTasks);
+  write(readyRoot, "docs/GUIDE.md", validGuide);
   write(readyRoot, "docs/DESIGN.md", "# Design\n");
   write(readyRoot, "AGENTS_WORKLOG.md", validLog);
   const ready = inspectPlan(readyRoot);
@@ -179,6 +191,7 @@ try {
   write(nnDoc, "docs/PLAN.md", readyPlan + "\n## Non-negotiables\n- Never sync.\n");
   write(nnDoc, "docs/ARCHITECTURE.md", validArch);
   write(nnDoc, "docs/TASKS.md", validTasks);
+  write(nnDoc, "docs/GUIDE.md", validGuide);
   write(nnDoc, "AGENTS_WORKLOG.md", validLog);
   const noNN = validateDocs(nnDoc);
   assert.ok(noNN.errors.some((e) => e.includes("missing '## Non-negotiables'")), noNN.errors.join("\n"));
@@ -212,6 +225,30 @@ try {
   const dashV = validateDocs(dash);
   assert.equal(dashV.ok, false);
   assert.ok(dashV.errors.some((e) => /em dash or en dash/.test(e)));
+
+  // GUIDE.md: required once ARCHITECTURE.md exists; needs Setup and Glossary.
+  const noGuide = join(dir, "no-guide");
+  write(noGuide, "docs/ARCHITECTURE.md", validArch);
+  write(noGuide, "docs/TASKS.md", validTasks);
+  write(noGuide, "AGENTS_WORKLOG.md", validLog);
+  const noGuideV = validateDocs(noGuide);
+  assert.ok(noGuideV.errors.some((e) => e === "docs/GUIDE.md is missing (setup steps and glossary for the owner)"), noGuideV.errors.join("\n"));
+
+  const noSections = join(dir, "no-sections");
+  write(noSections, "docs/ARCHITECTURE.md", validArch);
+  write(noSections, "docs/TASKS.md", validTasks);
+  write(noSections, "docs/GUIDE.md", "# Guide\n\nJust prose.\n");
+  write(noSections, "AGENTS_WORKLOG.md", validLog);
+  const noSectionsV = validateDocs(noSections);
+  assert.ok(noSectionsV.errors.some((e) => e === "docs/GUIDE.md has no '## Setup' section"), noSectionsV.errors.join("\n"));
+  assert.ok(noSectionsV.errors.some((e) => e === "docs/GUIDE.md has no '## Glossary' section"), noSectionsV.errors.join("\n"));
+
+  const clean = join(dir, "clean-guide");
+  write(clean, "docs/ARCHITECTURE.md", validArch);
+  write(clean, "docs/TASKS.md", validTasks);
+  write(clean, "docs/GUIDE.md", validGuide);
+  write(clean, "AGENTS_WORKLOG.md", validLog);
+  assert.ok(validateDocs(clean).ok, validateDocs(clean).errors.join("\n"));
 
   // missing root
   const gone = validateDocs(join(dir, "no-root"));

@@ -21,7 +21,7 @@ const SECTION_SCOPES = {
   mobile: "mobile", cli: "cli", infra: "infra", infrastructure: "infra",
 };
 const SCOPE_PREFIXES = new Set(["fe", "be", "mobile", "cli", "infra"]);
-const SECTION_NAME = { default: "Umum", fe: "Web", be: "Backend", mobile: "Mobile", cli: "CLI", infra: "Infra" };
+const SECTION_NAME = { default: "General", fe: "Web", be: "Backend", mobile: "Mobile", cli: "CLI", infra: "Infra" };
 const PROFILE_HEADING = /^##\s+(.+?)\s*$/;
 const PROFILE_ENTRY = /^\s*[-*]\s+([A-Za-z][\w-]*(?:\.[\w-]+)*)\s*:\s*(.+?)\s*$/;
 const KEY_SHAPE = /^[A-Za-z][\w-]*(\.[\w-]+)*$/;
@@ -95,7 +95,7 @@ function readProfile() {
   return { ...flatOf(GLOBAL), ...flatOf(PROJECT) };
 }
 
-// A flat key routes to its scope's section; everything else lands in Umum.
+// A flat key routes to its scope's section; everything else lands in General.
 function sectionFor(key) {
   const first = key.split(".")[0];
   return key.includes(".") && SCOPE_PREFIXES.has(first) ? first : "default";
@@ -488,7 +488,7 @@ export function infer() {
       if (sentence / subjects.length > 0.6) note("commit", "imperative-sentence", Math.round((sentence / subjects.length) * 100) + "% capitalized sentences, no type prefix");
     }
     const merges = git("log --merges --format=%h -n 200").trim();
-    note("merge", merges ? "merge-commit" : "squash", merges ? "merge commits present" : "linear history");
+    if (merges) note("merge", "merge-commit", "merge commits present");
   }
 
   let aliasEv = null;

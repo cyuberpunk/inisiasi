@@ -6,4 +6,4 @@
 - [x] 4. Expand `~` in project root paths. Verify: `node mcp/test/qa.mjs` passes U3.
 - [x] 5. Make `search_skills` reject an unknown domain like `list_domain_skills` does. Verify: `node mcp/test/qa.mjs` passes U4.
 - [x] 6. List `selera` in the README skill tree. Verify: `node mcp/test/qa.mjs` passes K2.
-- [ ] 7. Align `mcp/` and `web/` with the selera profile (pnpm, vitest, vite, oxlint+oxfmt, zod, shadcn, tanstack-query): add `oxfmt`, apply vitest, or record each exception in selera. Verify: `node mcp/dist/cli.js drift .` shows no `missing_in_architecture` or `missing_in_tasks` item.
+- [ ] 7. Align `mcp/` with the selera profile (pnpm, vitest, zod, lint and format): apply vitest and a formatter, or record each exception in ARCHITECTURE. Verify: `node mcp/dist/cli.js drift .` shows no `missing_in_architecture` or `missing_in_tasks` item for the General keys.

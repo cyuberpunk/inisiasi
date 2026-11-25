@@ -22,6 +22,36 @@ Expected: `inspect_plan` or, if available, one `recommend_bundle` call (`root` p
 PLAN.md for <project> already exists. Run inisiasi from it. Use recommend_bundle (repo root plus one sentence describing the project), or inspect_plan plus select_references plus recommend_skills. If there are still open questions, ask me and do not continue. If it is ready, propose the stack, skills, and module layout, then stop. Do not write ARCHITECTURE or TASKS until I say go.
 ```
 
+## Start without coding experience
+
+Use when you have an idea but have not built software before.
+
+Expected: plain-language questions (at most 3, each with a recommended answer), then a stack explained in one plain sentence per part, then a stop until you say go. After go, `docs/GUIDE.md` walks you from installing tools to a running app, with a glossary.
+
+```
+inisiasi. I am not a programmer. I want an app that <what it should do> for <who>. Keep the explanations simple and tell me what each part is for. Write docs/PLAN.md first and wait for my go before ARCHITECTURE, TASKS, and GUIDE.
+```
+
+## Guide me into a stack I chose
+
+Use when you already picked a stack and want to learn it while building.
+
+Expected: the chosen stack is kept. Only a part on an Avoid list is challenged, with the reason in one line. The reply and `docs/GUIDE.md` explain the stack at your level.
+
+```
+inisiasi. I want to build <project> with <stack you chose>. I am new to <stack>. Plan it in that stack, explain the parts I have not used before, and wait for my go before writing the docs.
+```
+
+## Pick up an existing project
+
+Use when the code already exists but there is no `docs/ARCHITECTURE.md`.
+
+Expected: the stack is read from the code and kept. PLAN, ARCHITECTURE, TASKS, and GUIDE describe how to continue from the current code; Avoid items found in it are listed as risks with an optional migration task. No code changes.
+
+```
+inisiasi. This repo already has code but no architecture docs. Read what is here, keep the current stack, and plan how to continue: <goal for the next version>. Show me the plan first, write the docs after I say go.
+```
+
 ## Revise PLAN, ARCHITECTURE, or TASKS
 
 Use when a decision changed and the docs need a tight edit, not a new stack.
@@ -146,8 +176,8 @@ Audit the inisiasi docs in this repo with validate_docs. List the errors and war
 
 Use when you want to see which SoT files are stale, not to rewrite them yet.
 
-Expected: a list of `references/sot` files with their "Last verified" dates, flagged if older than 12 months or missing the header. `select_references` already returns `verified_at` and `stale` for the shortlist; this prompt is the full-tree check. No edits unless you ask.
+Expected: a list of `references/sot` files with their "Last verified" dates, flagged if older than 6 months or missing the header. `select_references` already returns `verified_at` and `stale` for the shortlist; this prompt is the full-tree check. No edits unless you ask.
 
 ```
-Check the freshness of the inisiasi references/sot files. List the files whose "Last verified" date is more than 12 months old or whose header is missing. Do not edit the .md files, just report.
+Check the freshness of the inisiasi references/sot files. List the files whose "Last verified" date is more than 6 months old or whose header is missing. Do not edit the .md files, just report.
 ```

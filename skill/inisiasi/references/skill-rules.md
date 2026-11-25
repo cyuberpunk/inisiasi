@@ -8,11 +8,11 @@ Three pillars. Each pillar has one job. Do not mix them.
 | inisiasi | Blueprint: PLAN becomes ARCHITECTURE and TASKS, and it runs for the whole project |
 | selera | Record the owner's preferences, tech decisions, and code standards |
 
-Owner target: generalist, for web apps, digital platforms, integrations, dashboards, AI agents, SaaS, and tools. Platforms: web, desktop (Linux, Windows, macOS), iOS, iPadOS, Android, hybrid. Not a specialist, not a corporate team.
+Owner target: anyone starting a project or a stack, from people who have never coded to developers new to the chosen stack, for web apps, digital platforms, integrations, dashboards, AI agents, SaaS, and tools. Platforms: web, desktop (Linux, Windows, macOS), iOS, iPadOS, Android, hybrid. Not a corporate team. Explain in plain words when the owner is new; stay terse when they are not.
 
 ## 1. Choosing skills (MCP)
 
-1. Active limit: 2 to 3 general skills and 1 to 3 specific skills. At most 6 at once.
+1. Active limit: 2 to 3 cross-cutting skills and 1 to 3 stack-specific skills. At most 6 at once.
 2. Remove what is finished before installing something new.
 3. A skill must be relevant to the current task and fit the target platform. No speculative skills.
 4. Two skills with the same role are not active together. Pick one and state why.
@@ -38,7 +38,7 @@ Not only once at kickoff. Work repeats when triggered.
 |---|---|
 | PLAN, TASKS, or selera changes | Check drift between selera, ARCHITECTURE, and TASKS |
 | Owner runs the check command | Check drift now, then report |
-| A task needs a new capability | Recommend at most one specific skill, with options and risks |
+| A task needs a new capability | Recommend at most one stack-specific skill, with options and risks |
 | No trigger | Silent. No recommendations |
 
 No automatic check runs on every session.

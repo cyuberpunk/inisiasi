@@ -22,7 +22,7 @@ A recorded preference beats the SoT default. An unrecorded key means the SoT def
 
 ## Commands
 
-`node <skill-real-path>/scripts/selera.mjs <command>`, where `<skill-real-path>` is the directory this SKILL.md lives in, with symlinks resolved.
+`node <skill-real-path>/scripts/selera.mjs <command>`, where `<skill-real-path>` is the directory this SKILL.md lives in, with symlinks resolved. Needs Node 22 or newer.
 
 | Command | Use |
 |---|---|
@@ -36,7 +36,7 @@ A recorded preference beats the SoT default. An unrecorded key means the SoT def
 | `apply` | Render the profile as markdown for a review or a doc |
 
 Profiles merge: `~/.config/inisiasi/selera/profile.md` (all projects), then `./.selera/profile.md` (this repo wins).
-The profile is Markdown. `## Umum`, `## Web`, `## Backend`, `## Mobile`, `## CLI` and `## Infra` hold `- key: value` lines that tools read. Any other heading (`## Chrome extension`, `## Patterns`, `## Structure`, `## Libraries`) and any free text is read by you only: use it for detail that does not fit one key. `set` edits the file in place and keeps everything else.
+The profile is Markdown. `## General`, `## Web`, `## Backend`, `## Mobile`, `## CLI` and `## Infra` hold `- key: value` lines that tools read. Any other heading (`## Chrome extension`, `## Patterns`, `## Structure`, `## Libraries`) and any free text is read by you only: use it for detail that does not fit one key. `set` edits the file in place and keeps everything else. `## Umum` is read as `## General`.
 If a write fails with EPERM, the sandbox blocked the home directory: use `--project`, or ask the owner to run the command outside the sandbox.
 
 ## Scope and keys
@@ -61,7 +61,7 @@ The owner will not use fixed phrases, and should not have to. Judge by intent: i
 
 Do not fire on general tool talk. "What is zod", "why is Hermes faster", "how to install uv" are ordinary questions, not preference statements. If it is ambiguous whether the owner is stating a rule or just chatting, treat it as a question and ask once, briefly.
 
-A stated preference is a `set`, not a question. Do not ask permission to record it, and never guess a key that is not in the list.
+A stated preference is a `set`, not a question. Do not ask permission to record it. Use a key from the list when one fits; a new key must still name a role, never a tool (`fe.i18n`, not `fe.lingui`).
 
 ## Steps
 

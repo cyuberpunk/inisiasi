@@ -15,6 +15,7 @@ node "$S" set fe.ui shadcn >/dev/null
 out="$(node "$S" show)"
 echo "$out" | grep -q "## Web" || { echo "FAIL: fe.ui not filed under Web"; exit 1; }
 echo "$out" | grep -q "ui: shadcn" || { echo "FAIL: fe.ui not stored as ui"; exit 1; }
+grep -q "## General" "$XDG_CONFIG_HOME/inisiasi/selera/profile.md" || { echo "FAIL: default section not General"; exit 1; }
 echo "Free text the tools must keep." >> "$XDG_CONFIG_HOME/inisiasi/selera/profile.md"
 node "$S" set packageManager pnpm >/dev/null
 grep -q "Free text the tools must keep." "$XDG_CONFIG_HOME/inisiasi/selera/profile.md" || { echo "FAIL: set dropped free text"; exit 1; }

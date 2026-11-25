@@ -29,7 +29,7 @@ console.log("OK: unverified entries excluded");
 // selera: a recorded tool choice boosts a matching skill and labels why; no profile, no label
 const dir = mkdtempSync(join(tmpdir(), "selera-"));
 const profile = join(dir, "profile.md");
-writeFileSync(profile, "# selera\n\n## Umum\n- packageManager: pnpm\n\n## Web\n- ui: shadcn\n");
+writeFileSync(profile, "# selera\n\n## General\n- packageManager: pnpm\n\n## Web\n- ui: shadcn\n");
 const desc = "React dashboard with shadcn components and Tailwind";
 process.env.SELERA_CONFIG = join(dir, "missing.json");
 const plain = recommendBundle({ project_description: desc, root: dir }, skills).skills;

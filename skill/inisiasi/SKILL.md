@@ -1,13 +1,20 @@
 ---
 name: inisiasi
-description: Project kickoff. Turns the goals in docs/PLAN.md into the agent skills to install, the tech stack, the architecture and the system design, then writes docs/ARCHITECTURE.md and docs/TASKS.md. Use at the start of any new project or when docs/ARCHITECTURE.md is empty, and whenever the user says inisiasi, bootstrap, kickoff, "start a new project", "which stack fits", "which skills do I need", "bootstrap this project", "ok go, write the docs", or asks for architecture or system design for something not built yet. Also triggers on Indonesian equivalents, "mulai project baru", "pilih stack", "stack apa yang cocok", "skill apa yang perlu", "tulis docs-nya". Use it even if they only mention a new idea and an empty repo. Not for documenting or explaining code that is already built.
+description: Project kickoff and stack guide. Turns the goals in docs/PLAN.md, or an existing codebase with no docs/ARCHITECTURE.md yet, into a decided stack, architecture, first tasks, a beginner setup guide, and the agent skills to install. Guides non-technical owners and developers new to a stack into the stack they chose. Use when starting a new project, picking up an existing one without architecture docs, or when the user says inisiasi, bootstrap, kickoff, "start a new project", "which stack fits", "which skills do I need", "guide me through my stack", "ok go, write the docs". Also triggers on Indonesian equivalents, "mulai project baru", "pilih stack", "stack apa yang cocok", "skill apa yang perlu", "lanjutkan proyek ini", "aku bukan orang IT", "tulis docs-nya". Use it even for a bare idea in an empty repo. Not for one-off code explanations, bug fixes, or code review.
 ---
 
 # inisiasi
 
-Goal: go from goals to a decided stack, design, and first tasks, with two owner confirmation stops, so later sessions build instead of re-deciding.
+Goal: go from goals, or from code that already exists, to a decided stack, design, first tasks and a setup guide the owner can follow, with owner confirmation before anything is written, so later sessions build instead of re-deciding.
 
 The owner's time is the scarce thing. Every question you ask costs a round trip, so settle anything the repo, PLAN, or your own judgment can settle, and say what you decided. Ask only what changes the outcome and only the owner can answer.
+
+## Who you are talking to
+
+Owners range from people who have never coded to developers who are new to the chosen stack. Judge the level from how they write: jargon, code, or questions like "what is a database". If it is still unclear, ask once, in one line, together with any other questions.
+
+- Non-technical or new to the stack: explain each decision in one plain sentence (what it is, why it fits, what it means for them). Explain every technical term the first time you use it, or point to the glossary in `docs/GUIDE.md`. Keep the technical detail in the docs, not in the reply.
+- Experienced: stay terse.
 
 ## Paths
 
@@ -17,13 +24,14 @@ The owner's time is the scarce thing. Every question you ask costs a round trip,
 
 ## When to run
 
-- `docs/ARCHITECTURE.md` is missing, empty, or title-only (a heading with no stack or body) → run.
+- `docs/ARCHITECTURE.md` is missing, empty, or title-only (a heading with no stack or body), and there is no app code → new project: run.
+- App code exists but `docs/ARCHITECTURE.md` has no real stack → existing project: run, and follow the existing-project rules in steps 0, 3 and 4.
 - It already has a real stack (a Stack section with choices) → stop and say so. Re-run only if the owner asks to re-plan.
 - The owner asks to add or change one part of an existing ARCHITECTURE ("wire X into the architecture") → back it up, edit only that part, and run the step 5 Avoid check. No re-plan, no TASKS rewrite.
 
 ## Steps
 
-0. **Detect.** Use `detect_stack` if available (`root` is the project root), otherwise scan the project root yourself: `package.json`, `Package.swift`, `*.xcodeproj`, `Cargo.toml`, `go.mod`, `pyproject.toml`, lockfiles, and `docs/`. Read `AGENTS.md` if present. Reuse anything already decided. Do not ask questions the repo or the chat already answers.
+0. **Detect.** Use `detect_stack` if available (`root` is the project root), otherwise scan the project root yourself: `package.json`, `Package.swift`, `*.xcodeproj`, `Cargo.toml`, `go.mod`, `pyproject.toml`, lockfiles, and `docs/`. Read `AGENTS.md` if present. Reuse anything already decided. Do not ask questions the repo or the chat already answers. In an existing project, the stack the code uses is the owner's choice: write it into PLAN under Constraints, and read the README and package scripts for how it runs today.
 
 1. **Plan gate.** Use `inspect_plan`, or read `docs/PLAN.md` for Goals, MVP, Constraints, Non-goals. If `docs/PLAN.md` is missing or empty, write it first from the request and this conversation (Goals, MVP, Constraints, Non-goals, Non-negotiables, Open questions), then run the checks below on its open questions. An open question blocks only if it changes the stack, the data model, or v1 scope. For each, in order:
 
@@ -35,10 +43,10 @@ The owner's time is the scarce thing. Every question you ask costs a round trip,
 
 2. **Context.** Describe the project in one plain sentence. Prefer `recommend_bundle` as the single call (`limit` 10). Otherwise `select_references` plus `recommend_skills` (`limit` 10), and `search_skills` only for a PLAN need still uncovered.
     - Read only the returned reference files. TS projects: `toolchain-ts.md` and `stack-compat-ts.md` are binding. Web UI: the checklist in `frontend-architecture.md`. Note gaps and `stale` flags.
-    - Recommend at most 2 to 3 general and 1 to 3 specific skills, 6 active at once, each tied to a PLAN need. Follow `references/skill-rules.md`: no overlap, platform fits, bundles via `--list`. Skip anything `verified: false` unless flagged. If `~/.agents/skills/<id>` exists, mark it installed.
+    - Recommend at most 2 to 3 cross-cutting skills (testing, review, docs) and 1 to 3 stack-specific skills, 6 active at once, each tied to a PLAN need. Follow `references/skill-rules.md`: no overlap, platform fits, bundles via `--list`. Skip anything `verified: false` unless flagged. If `~/.agents/skills/<id>` exists, mark it installed.
     - `recommend_bundle` returns tech-scope skills only. A `selera` label on a skill means a recorded preference steered the pick: say so in one line. For a non-tech need (documents, research, writing), call `recommend_skills` with `scope: general`.
 
-3. **Propose.** Pick the simplest stack that meets the goals. Prefer SoT defaults, platform defaults, and what the owner already knows. For each decision, state the choice, one-line why, and the rejected alternative with its reason. Sketch components, data model, data flow, storage, trust boundaries, and failure modes, only as deep as the scale needs. Name the riskiest assumption and a spike to prove it.
+3. **Propose.** A stack the owner named, or the code already uses, is the choice: guide within it, and challenge only a part that is on an Avoid list (see Rules). Otherwise pick the simplest stack that meets the goals, preferring SoT defaults, platform defaults, and what the owner already knows. In an existing project, do not propose replacing working parts: list any Avoid item you find under Risks, with a migration task the owner can accept or drop. For each decision, state the choice, one-line why, and the rejected alternative with its reason. Sketch components, data model, data flow, storage, trust boundaries, and failure modes, only as deep as the scale needs. Name the riskiest assumption and a spike to prove it.
 
    Stop here. Show the stack in one line, the skill install commands, the module layout, and the riskiest assumption. Wait for the owner to say go. Do not write ARCHITECTURE or TASKS yet.
 
@@ -46,11 +54,12 @@ The owner's time is the scarce thing. Every question you ask costs a round trip,
 
 4. **Write.** After the owner says go, back up existing `docs/ARCHITECTURE.md`, `docs/TASKS.md`, and the worklog first (same filename plus `.bak-YYYYMMDD`). Use the formats in `references/templates.md`.
    - `docs/ARCHITECTURE.md`: stack, non-negotiables from PLAN, architecture, system design, skills with install commands, rejected alternatives, risks.
-   - `docs/TASKS.md`: 5 to 12 first tasks, ordered, each with a verify check. Task 1 is the risk spike.
+   - `docs/TASKS.md`: 5 to 12 first tasks, ordered, each with a verify check. Task 1 is the risk spike. In an existing project the tasks continue from the current code.
+   - `docs/GUIDE.md`: for the owner, in plain words. What is being built, the stack in plain words, setup steps from zero to a running project and passing tests, and a glossary of every technical term used in ARCHITECTURE and TASKS. Take install commands from the SoT, the official docs, or the repo's own scripts; never invent a command or a version. Back it up first if it exists.
    - `AGENTS_WORKLOG.md`: one entry, newest first, using the worklog template in `references/templates.md`.
    - Do not touch `docs/DESIGN.md`. Do not install skills or scaffold app code unless asked.
 
-5. **Validate and report.** Use `validate_docs` if available (`root` is the project root), otherwise self-check: required sections present, TASKS 5 to 12 items with verify checks and the spike as #1, no em dashes, worklog shape, DESIGN.md untouched, ARCHITECTURE not a stub. Either way, check every chosen tool against the Avoid lists in the SoT files you read; also check that nothing in the stack or TASKS breaks a PLAN non-negotiable; only an owner-confirmed deviation named in ARCHITECTURE may stay. Fix failures. Reply with the stack in one line, the install commands in one copy-paste block, and the first 3 tasks.
+5. **Validate and report.** Use `validate_docs` if available (`root` is the project root), otherwise self-check: required sections present, TASKS 5 to 12 items with verify checks and the spike as #1, no em dashes, worklog shape, DESIGN.md untouched, ARCHITECTURE not a stub. Either way, check every chosen tool against the Avoid lists in the SoT files you read; also check that nothing in the stack or TASKS breaks a PLAN non-negotiable; only an owner-confirmed deviation named in ARCHITECTURE may stay. Fix failures. Reply with the stack in one line, the install commands in one copy-paste block, the first 3 tasks, and a pointer to `docs/GUIDE.md` for the setup steps.
 
 ## Later sessions (drift check)
 
@@ -63,6 +72,6 @@ inisiasi keeps working after kickoff, only on a trigger: PLAN, TASKS or selera c
 ## Rules
 
 - Decide. Do not present menus: one choice, one rejected alternative, and its risk. Ask only product or taste calls that nothing else can settle.
-- When the owner asks for something listed under Avoid, use the SoT alternative instead and give the Avoid reason in one line. Use the requested tool only if the owner confirms after hearing the reason, and then record it in ARCHITECTURE as a named deviation with that reason.
+- The owner's stack choice wins, except for a part listed under Avoid. When the owner asks for something listed under Avoid, use the SoT alternative instead and give the Avoid reason in one line. Use the requested tool only if the owner confirms after hearing the reason, and then record it in ARCHITECTURE as a named deviation with that reason.
 - No speculative infra (queues, microservices, k8s) unless a goal needs it.
-- Terse. No em dashes.
+- Terse for experienced owners, plain and short for beginners. No em dashes.

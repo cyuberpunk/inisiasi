@@ -1,8 +1,14 @@
 # CLI fallback
 
-Use when the `inisiasi` MCP is not connected. Note the fallback in the worklog.
+Use when the `inisiasi` MCP is not connected. Note in the worklog which route you used.
 
-Run `inisiasi <command>` if it is on PATH, else `node <skill-real-path>/../../mcp/dist/cli.js <command>`.
+Try these in order and use the first one that runs:
+
+1. `inisiasi <command>` when it is on PATH.
+2. `npx -y -p inisiasi-mcp inisiasi <command>` (Node 22 or newer). It downloads the published package on first use.
+3. `node <skill-real-path>/../../mcp/dist/cli.js <command>` inside a checkout of the inisiasi repo.
+
+If none runs, say so in one line and continue without the tools: scan the project yourself as in step 0, read `docs/PLAN.md` directly, and choose references from `references/sot/README.md`. Without the catalog, skip skill recommendations and say why. Do not name a skill or an install command you have not read from a source.
 
 | Command | Same as MCP tool |
 |---|---|
@@ -16,5 +22,3 @@ Run `inisiasi <command>` if it is on PATH, else `node <skill-real-path>/../../mc
 | `get <id>` | get_skill |
 | `validate_docs <root>` | validate_docs |
 | `drift [root]` | CLI only: selera tool keys vs ARCHITECTURE and TASKS |
-
-No `dist/` either: read `<skill-real-path>/../../mcp/catalog.json` and pick by `tags` and `domain`.

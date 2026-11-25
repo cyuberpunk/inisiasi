@@ -133,6 +133,7 @@ export function validateDocs(root: string): ValidateDocsResult {
   const archPath = join(abs, "docs", "ARCHITECTURE.md");
   const tasksPath = join(abs, "docs", "TASKS.md");
   const planPath = join(abs, "docs", "PLAN.md");
+  const guideMd = readText(join(abs, "docs", "GUIDE.md"));
   const archMd = readText(archPath);
   const tasksMd = readText(tasksPath);
   const planMd = readText(planPath);
@@ -163,6 +164,15 @@ export function validateDocs(root: string): ValidateDocsResult {
     if (planHasRules && !archHasRules) errors.push("docs/ARCHITECTURE.md is missing '## Non-negotiables' (PLAN.md lists rules the build must never break)");
   }
 
+  if (archMd !== undefined) {
+    if (guideMd === undefined) errors.push("docs/GUIDE.md is missing (setup steps and glossary for the owner)");
+    else {
+      const guideSections = new Set(splitSections(guideMd).map((s) => s.title.trim().toLowerCase()));
+      if (!guideSections.has("setup")) errors.push("docs/GUIDE.md has no '## Setup' section");
+      if (!guideSections.has("glossary")) errors.push("docs/GUIDE.md has no '## Glossary' section");
+    }
+  }
+
   const tasks = parseTasks(tasksMd ?? "");
   const taskCount = tasks.length;
   if (tasksMd !== undefined) {
@@ -179,6 +189,7 @@ export function validateDocs(root: string): ValidateDocsResult {
     [planMd, "docs/PLAN.md"],
     [archMd, "docs/ARCHITECTURE.md"],
     [tasksMd, "docs/TASKS.md"],
+    [guideMd, "docs/GUIDE.md"],
   ] as const) {
     if (md) errors.push(...dashHits(md, file));
   }
