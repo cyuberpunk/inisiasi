@@ -5,7 +5,10 @@ dist/
 .DS_Store
 .local/
 mcp/sot/
+mcp/LICENSE
 *.tgz
 .agents/
 .claude/
 web/
+.opencode/skills/
+anti-slop/
