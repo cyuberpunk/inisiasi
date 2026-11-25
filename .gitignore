@@ -8,3 +8,4 @@ mcp/sot/
 *.tgz
 .agents/
 .claude/
+web/
