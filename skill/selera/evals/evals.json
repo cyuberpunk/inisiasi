@@ -21,7 +21,7 @@
       "expected_output": "Answers as ordinary question. Does not write any profile key.",
       "assertions": [
         "Does not run set",
-        "Does not change profile.json",
+        "Does not change profile.md",
         "Answers the question about zod"
       ],
       "should_trigger": false

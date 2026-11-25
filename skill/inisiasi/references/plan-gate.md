@@ -12,7 +12,7 @@ Use `inspect_plan` if available (`path` is `docs/PLAN.md` or the project root), 
 
    Then, if anything is still open: interview, write PLAN, show it, stop. If nothing is still open after folding answers and decisions, do not stop here. Say in one line which questions you settled and how, then continue to step 2 in the same turn. The owner saying "run", "lanjut", "go", or "repo is ready" is intent to proceed, so do not turn it into a question round.
 
-   Write PLAN as Goals, MVP, Constraints, Non-goals, and Open questions (only ones still unanswered). Back up the file first if it existed.
+   Write PLAN as Goals, MVP, Constraints, Non-goals, Non-negotiables, and Open questions (only ones still unanswered). Back up the file first if it existed.
 
 ## PLAN format
 
@@ -22,6 +22,7 @@ Use `inspect_plan` if available (`path` is `docs/PLAN.md` or the project root), 
 ## MVP (v1)
 ## Constraints
 ## Non-goals
+## Non-negotiables   (rules the build must never break; "None" if there are none)
 ## Open questions   (only ones still unanswered)
 ```
 

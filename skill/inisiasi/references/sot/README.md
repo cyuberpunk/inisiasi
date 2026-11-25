@@ -38,6 +38,7 @@ The defaults in this folder reflect the owner's bias (TypeScript with Vite+, App
 | [mobile.md](mobile.md) | Expo, Flutter, native, app updates |
 | [apple-macos-swift.md](apple-macos-swift.md) | macOS/iOS/iPadOS native, Swift, notarization |
 | [desktop.md](desktop.md) | Windows, Linux, cross-platform desktop: Tauri, packaging, signing, updates |
+| [browser-extensions.md](browser-extensions.md) | Chrome, Firefox, Safari extensions: WXT, MV3 service worker, storage, permissions, store rules |
 | [cli.md](cli.md) | Command-line tools: parser, output, distribution, tests |
 | [ai-llm.md](ai-llm.md) | LLM products: SDKs, streaming, RAG, cost, security |
 

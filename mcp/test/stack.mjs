@@ -31,6 +31,27 @@ assert.ok(Array.isArray(js.installed_skills));
 const missing = detectStack(join(jsApp, "no-such-root"));
 assert.equal(missing.missing_root, true);
 
+// --- detect_stack: extended package signals and docker ---
+const rich = mkdtempSync(join(tmpdir(), "stack-rich-"));
+writeFileSync(join(rich, "package.json"), JSON.stringify({
+  dependencies: { electron: "^33", wxt: "^0.20", expo: "^52", "@orpc/server": "^1", "graphile-worker": "^0.16", "@lingui/core": "^5", dexie: "^4" },
+  devDependencies: { "@biomejs/biome": "^2", turbo: "^2", typescript: "^5" },
+}));
+writeFileSync(join(rich, "Dockerfile"), "FROM node:22\n");
+const richStack = detectStack(rich);
+for (const f of ["electron", "wxt", "expo", "orpc", "graphile-worker", "lingui", "biome", "turbo", "dexie", "docker"]) {
+  assert.ok(richStack.frameworks.includes(f), `missing framework ${f}: ${richStack.frameworks}`);
+}
+rmSync(rich, { recursive: true, force: true });
+
+// README prose is not a hint source when manifests exist: "macOS" in README must not leak in.
+const proseOnly = mkdtempSync(join(tmpdir(), "stack-prose-"));
+writeFileSync(join(proseOnly, "package.json"), JSON.stringify({ dependencies: { react: "^19" } }));
+writeFileSync(join(proseOnly, "README.md"), "# app\n\nA web dashboard, tested on macOS.\n");
+const proseStack = detectStack(proseOnly);
+assert.ok(!proseStack.frameworks.includes("macOS") && !proseStack.hints.includes("macOS"), "README macOS leaked: " + proseStack.frameworks);
+rmSync(proseOnly, { recursive: true, force: true });
+
 // --- select_references: TS web vs macOS, plus stale fixture ---
 const web = selectReferences({ project_description: "React Vite TypeScript web app for service history" });
 assert.ok(web.files.length >= 3 && web.files.length <= 8);
@@ -56,6 +77,11 @@ const cli = selectReferences({ project_description: "CLI tool in Rust to batch r
 const cliFiles = cli.files.map((f) => f.file);
 assert.ok(cliFiles.includes("cli.md"), cliFiles.join(","));
 assert.equal(cli.gaps.length, 0);
+
+const reactApp = selectReferences({ project_description: "React web app with Vite" });
+assert.ok(!reactApp.files.some((f) => f.file === "agent-loops.md"), reactApp.files.map((f) => f.file).join(","));
+const agentLoop = selectReferences({ project_description: "autonomous agent loop with retries" });
+assert.ok(agentLoop.files.some((f) => f.file === "agent-loops.md"), agentLoop.files.map((f) => f.file).join(","));
 
 const ai = selectReferences({ project_description: "AI chatbot with RAG over my documents" });
 assert.ok(ai.files.some((f) => f.file === "ai-llm.md"), ai.files.map((f) => f.file).join(","));
@@ -121,6 +147,34 @@ assert.ok(fuuBundle.skills.length > 0);
 assert.ok(fuuBundle.skills.some((s) => /swift|apple|macos|xcode/i.test(s.id)));
 assert.ok(fuuBundle.skills.every((s) => typeof s.installed === "boolean"));
 assert.ok(fuuBundle.coverage_holes.length >= 1);
+assert.ok(!fuuBundle.skills.some((s) => s.id === "stripe-best-practices"), "Non-goals leaked into the query: " + fuuBundle.skills.map((s) => s.id));
+assert.ok(!fuuBundle.skills.some((s) => (s.matched ?? []).some((m) => /payments|accounts|stripe|clerk/i.test(m))), "Non-goal terms matched: " + fuuBundle.skills.map((s) => `${s.id}:${(s.matched ?? []).join("+")}`));
+
+// --- recommend_bundle: a chrome extension root must not surface mobile skills ---
+const kuraLike = mkdtempSync(join(tmpdir(), "kura-like-"));
+writeFileSync(join(kuraLike, "package.json"), JSON.stringify({
+  dependencies: { wxt: "^0.20", react: "^19", "react-dom": "^19", dexie: "^4", tailwindcss: "^4" },
+  devDependencies: { typescript: "^5", vitest: "^3" },
+}));
+writeFileSync(join(kuraLike, "README.md"), "# kura-like\n\nPersonal Chrome extension. Dashboard verified on macOS.\n");
+const kuraBundle = () => recommendBundle({ root: kuraLike, project_description: "Chrome MV3 extension WXT React Dexie IndexedDB", limit: 10 });
+const assertNoMobile = (b) => {
+  assert.ok(b.skills.every((s) => s.domain !== "mobile" && !/react-native|expo/.test(s.id)), "mobile skill surfaced: " + b.skills.map((s) => s.id));
+  assert.ok(b.skills.some((s) => s.id === "chrome-extensions"), "chrome-extensions missing: " + b.skills.map((s) => s.id));
+};
+const prevSelera = process.env.SELERA_CONFIG;
+try {
+  process.env.SELERA_CONFIG = join(kuraLike, "no-global.md");
+  assertNoMobile(kuraBundle());
+  writeFileSync(join(kuraLike, "global-profile.md"), "# selera\n\n## Web\n- fetch: tanstack-query\n- ui: shadcn\n");
+  process.env.SELERA_CONFIG = join(kuraLike, "global-profile.md");
+  assertNoMobile(kuraBundle());
+  // Root only, no description: the wxt dependency alone must still surface the extension skill.
+  assertNoMobile(recommendBundle({ root: kuraLike, limit: 10 }));
+} finally {
+  if (prevSelera === undefined) delete process.env.SELERA_CONFIG; else process.env.SELERA_CONFIG = prevSelera;
+  rmSync(kuraLike, { recursive: true, force: true });
+}
 
 console.log("OK: detect_stack, select_references, recommend_bundle");
 console.log(JSON.stringify({

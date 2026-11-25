@@ -34,21 +34,20 @@ Every entry has a `scope`:
 | Domain | Entries | Scope | Niches |
 |---|---|---|---|
 | `design` | 87 | tech | visual-style, ui, 3d, animation, design-system, critique, antislop, landing, platform-guidelines, figma, generative-art, accessibility, brand, video |
-| `core-and-utilities` | 63 | tech | review, workflow, skills, tooling, coding-discipline, git, session, debugging, verification, typescript, code-design, agents, python, refactoring, performance, release, prototype |
-| `frontend` | 44 | tech | 3d, animation, react, components, css, web-platform, vue, tooling, performance, figma, accessibility, nextjs, browser-extension, angular |
+| `core-and-utilities` | 69 | tech | review, workflow, skills, tooling, coding-discipline, git, session, debugging, verification, typescript, rust, code-design, agents, python, refactoring, performance, release, prototype |
+| `frontend` | 48 | tech | 3d, animation, react, solid, components, css, web-platform, vue, tooling, performance, figma, accessibility, nextjs, browser-extension, desktop, angular |
 | `mobile` | 31 | tech | ios, react-native, android, expo, cross-platform |
 | `architecture` | 28 | tech | planning, patterns, modeling, design, refactoring, codebase-mapping, review, decisions |
 | `ai-and-data-science` | 27 | tech | agents, llm-api, rag, prompting, models, evals, ml-apps, data-viz, mcp |
-| `document` | 24 | general | docs, anti-slop, office, diagrams, agent-docs, copywriting, slides, media |
-| `backend` | 23 | tech | database, node, baas, api, email, python-api, serverless, payments |
+| `document` | 14 | general | docs, anti-slop, diagrams, agent-docs |
+| `backend` | 26 | tech | database, node, baas, api, email, python-api, serverless, payments |
 | `automation-tools` | 22 | tech | browser, agents, ci-cd, scripting, figma, video |
 | `security` | 22 | tech | auth, guardrails, appsec, crypto, secrets, agent-security, supply-chain |
-| `testing-and-qa` | 21 | tech | unit, qa, e2e, accessibility, tdd, react, experimentation |
-| `infrastructure` | 18 | tech | release, cloudflare, deploy, iac, monorepo, observability, git-hooks, serverless |
-| `business-and-productivity` | 17 | general | seo, google-workspace, marketing, sales, notes, market-research, product, writing, workflow, issues, decision |
-| `general` | 14 | general | writing, gamedev, inspiration, autonomous, launch, education, learning |
-| `research` | 12 | general | deep-research, scraping, web-search, academic, codebase-mapping, extraction, autonomous, writing |
-| `social-media` | 10 | general | content, x, youtube, research, short-video, linkedin, instagram |
+| `testing-and-qa` | 22 | tech | unit, qa, e2e, accessibility, tdd, react, experimentation |
+| `infrastructure` | 23 | tech | release, cloudflare, deploy, iac, monorepo, observability, git-hooks, serverless |
+| `business-and-productivity` | 7 | general | seo, product, workflow, issues, decision |
+| `general` | 5 | general | gamedev, launch |
+| `research` | 8 | general | deep-research, scraping, web-search, codebase-mapping, extraction |
 
 `niche` is the subdomain: a topic inside the domain (`ios`, `react`, `database`, `auth`). Pick one already listed for that domain before inventing a new one. `tier` (`main` or `support`) is separate. `npm run validate` rejects `main`/`support` as a niche, and a scope that does not match the domain.
 

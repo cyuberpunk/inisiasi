@@ -1,5 +1,5 @@
 import { recommendSkills, loadCatalog, type Prefer, type Skill } from "./catalog.js";
-import { TOOL_KEYS, loadProfile } from "./drift.js";
+import { TOOL_KEYS, appliesTo, loadProfile } from "./drift.js";
 import { detectStack, isSkillInstalled } from "./detectStack.js";
 import { inspectPlan, type InspectPlanResult } from "./inspectPlan.js";
 import { resolvePlanPath } from "./md.js";
@@ -21,22 +21,29 @@ export type RecommendBundleResult = {
 };
 
 // Tool-role values from the owner's profile ("pnpm", "shadcn", "vitest") become words that boost matching skills.
-function preferences(root: string): { prefer: Prefer[]; path: string | null } {
+function preferences(root: string, stack: DetectStackResult | null): { prefer: Prefer[]; path: string | null } {
   const { path, data } = loadProfile(root);
   const prefer: Prefer[] = [];
   for (const [key, value] of Object.entries(data)) {
     if (!TOOL_KEYS[key.split(".").at(-1)!] || typeof value !== "string") continue;
+    if (stack && !appliesTo(key, stack)) continue;
     for (const w of value.toLowerCase().split(/[,+]/)) if (w.trim()) prefer.push({ word: w.trim(), key });
   }
   return { prefer, path };
 }
 
+// A framework that fixes the platform names that platform too, so platform skills outrank generic ones.
+const PLATFORM_WORDS: Record<string, string> = { wxt: "chrome browser extension", electron: "desktop", tauri: "desktop", expo: "mobile", "React Native": "mobile" };
+
 function deriveDescription(stack: DetectStackResult | null, plan: InspectPlanResult | null): string {
   const parts: string[] = [];
   if (stack?.language) parts.push(stack.language);
   if (stack?.frameworks.length) parts.push(stack.frameworks.join(", "));
+  const platforms = [...new Set((stack?.frameworks ?? []).map((f) => PLATFORM_WORDS[f]).filter(Boolean))];
+  if (platforms.length) parts.push(platforms.join(", "));
   if (stack?.hints.length) parts.push(stack.hints.join(", "));
-  if (plan?.facts_already_known.length) parts.push(plan.facts_already_known.map((f) => f.fact).join(" "));
+  const facts = plan?.facts_already_known.filter((f) => f.section === "Goals" || f.section === "MVP" || f.section === "Constraints") ?? [];
+  if (facts.length) parts.push(facts.map((f) => f.fact).join(" "));
   return parts.join(". ").trim();
 }
 
@@ -54,7 +61,7 @@ export function recommendBundle(input: {
   const limit = typeof input.limit === "number" && Number.isFinite(input.limit) ? input.limit : 10;
   const references = selectReferences({ project_description: description, plan_path: planPath, limit: 8 });
   // inisiasi is about building software, so the bundle stays in the tech scope; recommend_skills can still search everything.
-  const { prefer, path: selera_profile } = preferences(input.root ?? process.cwd());
+  const { prefer, path: selera_profile } = preferences(input.root ?? process.cwd(), stack);
   const recs = description ? recommendSkills(catalog, description, limit, { scope: "tech", prefer }) : [];
   const withInstalled: BundleSkill[] = recs.map((s) => ({ ...s, installed: isSkillInstalled(s.id) || isSkillInstalled(s.name) }));
   const have = new Set(withInstalled.map((s) => s.domain));

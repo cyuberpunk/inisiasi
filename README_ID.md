@@ -5,7 +5,8 @@
 **Tujuan masuk. Stack, arsitektur, dan tugas pertama keluar.**
 
 Skill kickoff dan MCP server lokal untuk coding agent.
-Membaca `docs/PLAN.md`, memutuskan, lalu menulis `docs/ARCHITECTURE.md` dan `docs/TASKS.md`.
+Ia mengubah PLAN.md menjadi stack, arsitektur, tugas pertama, dan skill yang perlu dipasang,
+semuanya diputuskan dari source of truth offline yang bertanggal, supaya agent kamu langsung membangun tanpa memutuskan ulang.
 
 [![Lisensi](https://img.shields.io/badge/lisensi-GPL--3.0--or--later-informational)](LICENSE)
 [![Node](https://img.shields.io/badge/node-%E2%89%A5%2020-informational)](mcp/package.json)
@@ -107,15 +108,19 @@ database.md, diagrams.md, problems-data.md, testing.md
 node mcp/dist/cli.js drift .
 ```
 
-```
-packageManager=ok | validation=ok | fe.ui=ok | fe.fetch=ok | lint=ok | test=ok | bundler=ok
+```json
+{ "items": [
+  { "key": "packageManager", "selera": "pnpm", "status": "ok", "note": "" },
+  { "key": "validation", "selera": "zod", "status": "deviation",
+    "note": "named in ARCHITECTURE but not as a Stack choice (rejected or not applied)" }, …],
+  "sources": { "architecture": true, "tasks": true, "profile": true } }
 ```
 
 ## Cara tiga bagian bekerja bersama
 
 | Bagian | Cakupan | Tugas |
 |--------|---------|-------|
-| **MCP server** | Tech dan umum | Menyajikan katalog 463 skill di 16 domain. Setiap entri sudah dicek ke sumbernya dan perintah instalnya |
+| **MCP server** | Tech dan umum | Menyajikan katalog 439 skill di 15 domain. Setiap entri sudah dicek ke sumbernya dan perintah instalnya |
 | **Skill `inisiasi`** | Tech | Dari tujuan ke stack, desain, dan tugas pertama. Membaca source of truth, tidak pernah merekomendasikan apa pun yang ada di daftar Avoid |
 | **Skill `selera`** | Tech | Mencatat standar kode kamu, misalnya `fe.ui: shadcn` atau `packageManager: pnpm`. Pilihan yang tercatat mengarahkan rekomendasi, dan `drift` menandai dokumen yang tidak lagi cocok |
 
@@ -197,7 +202,7 @@ cd web && pnpm install && pnpm dev
 
 Browser lokal berbasis Vite dan React untuk katalog dan referensinya. Tidak di-hosting.
 
-![Browser katalog inisiasi, menampilkan 16 domain dan 463 skill](docs/assets/web-catalog.png)
+![Browser katalog inisiasi, menampilkan 15 domain dan 439 skill](docs/assets/web-catalog.png)
 
 ## Berkontribusi
 

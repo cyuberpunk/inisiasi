@@ -110,6 +110,7 @@ export function recommendSkills(skills: Skill[], description: string, limit?: nu
   skills = skills.filter((s) => s.verified !== false && (!opts.scope || (s.scope ?? "tech") === opts.scope));
   const words = new Set(tokens(description));
   const text = description.toLowerCase();
+  const spaced = text.replace(/-/g, " ");
   const idf = idfWeights(skills);
   const w = (t: string) => idf.get(t) ?? 1;
   const scored = skills.map((s) => {
@@ -117,7 +118,9 @@ export function recommendSkills(skills: Skill[], description: string, limit?: nu
     const matched = new Set<string>();
     for (const tag of s.tags) {
       if (GENERIC.has(tag)) continue;
-      if (stemHit(words, tag) || (tag.includes("-") && text.includes(tag.replace(/-/g, " ")))) { score += 3 * w(tag); matched.add(tag); }
+      // A hyphenated tag names one thing ("react-native" is not "react"): match it whole or not at all.
+      const hit = tag.includes("-") ? spaced.includes(tag.replace(/-/g, " ")) : stemHit(words, tag);
+      if (hit) { score += 3 * w(tag); matched.add(tag); }
     }
     for (const t of [...tokens(s.niche.replace(/-/g, " ")), s.domain, ...tokens(s.name.replace(/-/g, " "))]) {
       if (!GENERIC.has(t) && words.has(t)) { score += 2 * w(t); matched.add(t); }

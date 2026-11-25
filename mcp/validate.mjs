@@ -6,7 +6,7 @@ const { skills } = JSON.parse(readFileSync(path, "utf8"));
 const slug = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 const errors = [];
 const ids = new Set();
-const GENERAL_DOMAINS = new Set(["document", "research", "business-and-productivity", "general", "social-media"]);
+const GENERAL_DOMAINS = new Set(["document", "research", "business-and-productivity", "general"]);
 const str = (v) => typeof v === "string" && v.trim().length > 0;
 const strArr = (v) => Array.isArray(v) && v.length > 0 && v.every(str);
 

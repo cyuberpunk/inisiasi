@@ -28,23 +28,24 @@ A recorded preference beats the SoT default. An unrecorded key means the SoT def
 |---|---|
 | `setup` | Interactive pass over the recorded keys (28 questions). Enter skips a question, leaving it unset. `--project` writes to the repo |
 | `setup --answers "pnpm,uv,zod,..."` | Same, non-interactive, in question order |
-| `show` | Print the merged profile as JSON |
+| `show` | Print the profile files, then the merged keys as JSON |
 | `set <key> <value> [--project]` | Record one habit after the owner states it |
 | `tree [depth]` | ASCII skeleton of the real repo, default depth 2, with the recorded `structure.repo` and `structure.topology` |
-| `learn` | Infer habits from lockfiles, dependencies, configs, and git log. Prints evidence only |
-| `learn --write` | Same, then stores the inferred keys in `./.selera/profile.json` |
+| `learn` | Infer habits from lockfiles, every workspace package, formatter configs, a sample of source files, and git log. Prints evidence only |
+| `learn --write` | Same, then stores the inferred keys in `./.selera/profile.md` |
 | `apply` | Render the profile as markdown for a review or a doc |
 
-Profiles merge: `~/.config/inisiasi/selera/profile.json` (all projects), then `./.selera/profile.json` (this repo wins).
+Profiles merge: `~/.config/inisiasi/selera/profile.md` (all projects), then `./.selera/profile.md` (this repo wins).
+The profile is Markdown. `## Umum`, `## Web`, `## Backend`, `## Mobile`, `## CLI` and `## Infra` hold `- key: value` lines that tools read. Any other heading (`## Chrome extension`, `## Patterns`, `## Structure`, `## Libraries`) and any free text is read by you only: use it for detail that does not fit one key. `set` edits the file in place and keeps everything else.
 If a write fails with EPERM, the sandbox blocked the home directory: use `--project`, or ask the owner to run the command outside the sandbox.
 
 ## Scope and keys
 
 A key is `concern` or `scope.concern`. Scopes: `fe`, `be`, `mobile`, `cli`, `infra`. A scoped key overrides the unscoped one for that platform. Keys name a role, never a tool: `fe.fetch`, not `fe.axios`. A value may be a comma list in preference order: pick one per project.
 
-Concerns: dependencies (`fetch`, `state`, `form`, `validation`, `ui`, `styling`, `db`, `queue`, `test`, `lint`, `format`, `bundler`, `packageManager`, `pythonEnv`), `naming.*` (file, folder, component, hook, function, class, module, package, constant, type, dbTable, cssClass), `structure.*` (repo, topology, folders, layers, boundaries, packages, tests, docs, config, assets, scripts, build, schema, api, pkgname), plus `imports`, `exports`, `errors`, `git`, `commit`, `branching`, `merge`, `quotes`, `semicolons`, `lineWidth`, `immutability`. An unknown key is rejected: show the list, ask once.
+Concerns: dependencies (`fetch`, `state`, `form`, `validation`, `ui`, `styling`, `db`, `queue`, `test`, `lint`, `format`, `bundler`, `packageManager`, `pythonEnv`), `naming.*` (file, folder, component, hook, function, class, module, package, constant, type, dbTable, cssClass), `structure.*` (repo, topology, folders, layers, boundaries, packages, tests, docs, config, assets, scripts, build, schema, api, pkgname), plus `imports`, `exports`, `errors`, `git`, `commit`, `branching`, `merge`, `quotes`, `semicolons`, `lineWidth`, `immutability`. Keys are free, but a tool role from this list is what drift and inisiasi's recommendations read, so prefer it when one fits.
 
-`learn` reads lockfiles, dependencies, configs, and git log. It does not read chat history. `tree [depth]` prints the real repo structure; it shows what exists, not whether it is feature-based or layered.
+`learn` reads lockfiles, every workspace package.json, formatter configs, a sample of source files, and git log. It does not read chat history. `tree [depth]` prints the real repo structure; it shows what exists, not whether it is feature-based or layered.
 
 ## Reading the intent
 

@@ -5,7 +5,8 @@
 **Goals in. Stack, architecture and first tasks out.**
 
 A kickoff skill and a local MCP server for coding agents.
-It reads `docs/PLAN.md`, decides, and writes `docs/ARCHITECTURE.md` and `docs/TASKS.md`.
+It turns PLAN.md into a decided stack, architecture, first tasks, and the skills to install,
+from a dated offline source of truth, so your agent builds instead of re-deciding.
 
 [![License](https://img.shields.io/badge/license-GPL--3.0--or--later-informational)](LICENSE)
 [![Node](https://img.shields.io/badge/node-%E2%89%A5%2020-informational)](mcp/package.json)
@@ -107,15 +108,19 @@ database.md, diagrams.md, problems-data.md, testing.md
 node mcp/dist/cli.js drift .
 ```
 
-```
-packageManager=ok | validation=ok | fe.ui=ok | fe.fetch=ok | lint=ok | test=ok | bundler=ok
+```json
+{ "items": [
+  { "key": "packageManager", "selera": "pnpm", "status": "ok", "note": "" },
+  { "key": "validation", "selera": "zod", "status": "deviation",
+    "note": "named in ARCHITECTURE but not as a Stack choice (rejected or not applied)" }, …],
+  "sources": { "architecture": true, "tasks": true, "profile": true } }
 ```
 
 ## How the three parts fit
 
 | Part | Scope | Job |
 |------|-------|-----|
-| **MCP server** | Tech and general | Serves a curated catalog of 463 skills across 16 domains. Every entry was checked against its source and its install command |
+| **MCP server** | Tech and general | Serves a curated catalog of 439 skills across 15 domains. Every entry was checked against its source and its install command |
 | **`inisiasi` skill** | Tech | From goals to stack, design and first tasks. Reads the source of truth, never recommends anything on an Avoid list |
 | **`selera` skill** | Tech | Records your code standards, such as `fe.ui: shadcn` or `packageManager: pnpm`. A recorded choice steers recommendations, and `drift` flags docs that stopped matching it |
 
@@ -197,7 +202,7 @@ cd web && pnpm install && pnpm dev
 
 A local Vite and React browser for the catalog and the references. It is not hosted.
 
-![The inisiasi catalog browser, listing 16 domains and 463 skills](docs/assets/web-catalog.png)
+![The inisiasi catalog browser, listing 15 domains and 439 skills](docs/assets/web-catalog.png)
 
 ## Contributing
 

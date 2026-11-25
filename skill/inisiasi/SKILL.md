@@ -25,7 +25,7 @@ The owner's time is the scarce thing. Every question you ask costs a round trip,
 
 0. **Detect.** Use `detect_stack` if available (`root` is the project root), otherwise scan the project root yourself: `package.json`, `Package.swift`, `*.xcodeproj`, `Cargo.toml`, `go.mod`, `pyproject.toml`, lockfiles, and `docs/`. Read `AGENTS.md` if present. Reuse anything already decided. Do not ask questions the repo or the chat already answers.
 
-1. **Plan gate.** Use `inspect_plan`, or read `docs/PLAN.md` for Goals, MVP, Constraints, Non-goals. If `docs/PLAN.md` is missing or empty, write it first from the request and this conversation (Goals, MVP, Constraints, Non-goals, Open questions), then run the checks below on its open questions. An open question blocks only if it changes the stack, the data model, or v1 scope. For each, in order:
+1. **Plan gate.** Use `inspect_plan`, or read `docs/PLAN.md` for Goals, MVP, Constraints, Non-goals. If `docs/PLAN.md` is missing or empty, write it first from the request and this conversation (Goals, MVP, Constraints, Non-goals, Non-negotiables, Open questions), then run the checks below on its open questions. An open question blocks only if it changes the stack, the data model, or v1 scope. For each, in order:
 
     1. Already answered in this conversation: write it into PLAN, settled.
     2. Settled by an SoT default or platform convention: decide, write it into PLAN, label it as your decision.
@@ -45,17 +45,17 @@ The owner's time is the scarce thing. Every question you ask costs a round trip,
    Exception: if the owner already said to write the docs ("go, write the docs", "tulis docs-nya") and nothing is still open, propose and write in the same turn. Put the stack line first in the reply so they can veto. Backups make this reversible.
 
 4. **Write.** After the owner says go, back up existing `docs/ARCHITECTURE.md`, `docs/TASKS.md`, and the worklog first (same filename plus `.bak-YYYYMMDD`). Use the formats in `references/templates.md`.
-   - `docs/ARCHITECTURE.md`: stack, architecture, system design, skills with install commands, rejected alternatives, risks.
+   - `docs/ARCHITECTURE.md`: stack, non-negotiables from PLAN, architecture, system design, skills with install commands, rejected alternatives, risks.
    - `docs/TASKS.md`: 5 to 12 first tasks, ordered, each with a verify check. Task 1 is the risk spike.
    - `AGENTS_WORKLOG.md`: one entry, newest first, using the worklog template in `references/templates.md`.
    - Do not touch `docs/DESIGN.md`. Do not install skills or scaffold app code unless asked.
 
-5. **Validate and report.** Use `validate_docs` if available (`root` is the project root), otherwise self-check: required sections present, TASKS 5 to 12 items with verify checks and the spike as #1, no em dashes, worklog shape, DESIGN.md untouched, ARCHITECTURE not a stub. Either way, check every chosen tool against the Avoid lists in the SoT files you read; only an owner-confirmed deviation named in ARCHITECTURE may stay. Fix failures. Reply with the stack in one line, the install commands in one copy-paste block, and the first 3 tasks.
+5. **Validate and report.** Use `validate_docs` if available (`root` is the project root), otherwise self-check: required sections present, TASKS 5 to 12 items with verify checks and the spike as #1, no em dashes, worklog shape, DESIGN.md untouched, ARCHITECTURE not a stub. Either way, check every chosen tool against the Avoid lists in the SoT files you read; also check that nothing in the stack or TASKS breaks a PLAN non-negotiable; only an owner-confirmed deviation named in ARCHITECTURE may stay. Fix failures. Reply with the stack in one line, the install commands in one copy-paste block, and the first 3 tasks.
 
 ## Later sessions (drift check)
 
 inisiasi keeps working after kickoff, only on a trigger: PLAN, TASKS or selera changed, the owner asks "check drift" or "inisiasi check" (Indonesian: "cek drift", "inisiasi cek"), or a task needs a new capability.
-1. Run `inisiasi drift <root>` (see `references/cli-fallback.md`) for the mechanical check of selera tool keys against ARCHITECTURE and TASKS. Then read selera (`show`), ARCHITECTURE and TASKS for the rest. List what no longer agrees: one line each.
+1. Run `inisiasi drift <root>` (see `references/cli-fallback.md`) for the mechanical check of selera tool keys against ARCHITECTURE and TASKS. A `deviation` item means ARCHITECTURE names the tool but did not choose it: list it unless ARCHITECTURE records it as an owner-confirmed deviation. Then read selera (`show`), ARCHITECTURE and TASKS for the rest. List what no longer agrees: one line each.
 2. A new tech decision: propose it for selera and wait for the owner to confirm before `set`. Never write it silently.
 3. A task needs a capability: recommend at most one specific skill with options and the risk of each. Install nothing without a yes.
 4. No trigger, no output. Never run on every session.

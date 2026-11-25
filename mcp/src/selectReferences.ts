@@ -40,6 +40,7 @@ const RULES: Rule[] = [
   // "ios" alone is left to mobile.md so a Flutter or Expo app does not pull in the native Apple file.
   { file: "apple-macos-swift.md", keywords: ["macos", "osx", "swift", "swiftui", "xcode", "menubar", "finder", "apple", "appkit", "keychain", "notarization", "ipados", "ipad"], reason: "Native Apple stack, iPadOS, Keychain, notarization", weight: 6 },
   { file: "desktop.md", keywords: ["desktop", "tauri", "electron", "electrobun", "for windows", "windows app", "windows desktop", "gtk", "gnome", "kde", "installer", "tray", "flatpak", "appimage", "msix"], reason: "Desktop apps: packaging, signing, updates per OS", weight: 6 },
+  { file: "browser-extensions.md", keywords: ["browser extension", "chrome extension", "web extension", "webextension", "wxt", "plasmo", "crxjs", "mv3", "manifest v3", "content script", "firefox addon", "safari extension"], reason: "Browser extensions: WXT, MV3 service worker, storage, permissions, store rules", weight: 6 },
   { file: "billing.md", keywords: ["billing", "subscription", "subscriptions", "paywall", "iap", "in-app", "revenuecat", "storekit", "pricing", "entitlement", "midtrans", "xendit"], reason: "Subscriptions, entitlements, in-app purchases", weight: 5 },
   { file: "auth.md", keywords: ["auth", "login", "jwt", "clerk", "session", "oauth", "sso", "passkey", "signup"], reason: "Authentication options", weight: 5 },
   { file: "security.md", keywords: ["security", "encrypt", "encryption", "aes", "keychain", "touch", "privacy", "lock", "crypto", "secret", "password", "hdiutil", "llm", "ai", "cvss", "epss", "asvs", "cwe", "threat model", "stride", "vulnerability", "cve", "pentest"], reason: "Security controls and secrets", weight: 5 },
@@ -58,7 +59,7 @@ const RULES: Rule[] = [
   { file: "observability.md", keywords: ["observability", "metrics", "tracing", "otel", "monitor", "logging", "alert", "analytics", "posthog", "funnel", "tracking", "tracking plan", "event taxonomy", "slo", "sli"], reason: "Logs, metrics, traces, alerting, product analytics", weight: 3 },
   { file: "reliability.md", keywords: ["backup", "disaster", "recovery", "load", "scale", "cost", "chaos"], reason: "Backup, DR, load test, cost", weight: 3 },
   { file: "agentic-engineering.md", keywords: ["agent", "agents", "agentic", "tool-calling", "tools", "mcp", "autonomous", "copilot", "assistant", "ag-ui", "a2ui", "a2a", "agent ui", "generative ui"], reason: "Agent shape, tools, guardrails, agent-generated UI", weight: 5 },
-  { file: "agent-loops.md", keywords: ["agent", "agents", "loop", "autonomous", "retry", "react", "self-correct", "iterate"], reason: "Agent loop stop conditions, verification, checkpoints", weight: 4 },
+  { file: "agent-loops.md", keywords: ["agent", "agents", "loop", "autonomous", "retry", "self-correct", "iterate"], reason: "Agent loop stop conditions, verification, checkpoints", weight: 4 },
   { file: "agent-graphs.md", keywords: ["workflow", "graph", "langgraph", "orchestration", "multi-agent", "multi-step", "pipeline", "human-in-the-loop"], reason: "Multi-step AI flows as typed state machines", weight: 4 },
   { file: "idioms.md", keywords: ["typescript", "ts", "swift", "swiftui", "python", "sql", "idiom", "idioms"], reason: "Idiomatic TS, Swift, Python, SQL", weight: 2 },
   { file: "mechanisms.md", keywords: ["retry", "idempotency", "idempotent", "lock", "lease", "concurrency", "rate", "cache", "queue", "webhook", "payment", "order"], reason: "Idempotency, locks, retries, rate limits", weight: 3 },
@@ -132,6 +133,7 @@ const NEEDS = [
   { label: "CLI/terminal", re: /\b(cli|command-line|command line|terminal tool|tui)\b/i, files: ["cli"] },
   { label: "AI/LLM", re: /\b(llm|rag|chatbot|embedding|inference|ai agent)\b/i, files: ["ai-llm", "llm"] },
   { label: "Desktop", re: /\b(desktop|tauri|electron|electrobun)\b/i, files: ["desktop"] },
+  { label: "Browser extension", re: /\b(browser extension|chrome extension|web extension|webextension|wxt|mv3|manifest v3)\b/i, files: ["browser-extensions"] },
 ];
 
 export function selectReferences(input: { project_description?: string; plan_path?: string; limit?: number }): SelectReferencesResult {

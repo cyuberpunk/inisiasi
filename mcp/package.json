@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "license": "GPL-3.0-or-later",
-  "description": "Local stdio MCP server that recommends agent skills from a curated catalog. Same tool surface as skill-issue.in.",
+  "description": "Local MCP server for inisiasi, which turns PLAN.md into a decided stack, architecture, first tasks, and the skills to install.",
   "type": "module",
   "files": [
     "dist",

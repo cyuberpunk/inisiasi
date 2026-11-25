@@ -100,6 +100,20 @@ function buildKit() {
 
 // ---------- one run: a sanitized project dir plus the prompt a subagent candidate receives ----------
 const sh = (cwd, cmd, args) => execFileSync(cmd, args, { cwd, stdio: ["ignore", "pipe", "pipe"] });
+
+// Same section mapping as selera.mjs: a scoped key goes under its section as "- role: value".
+const PROFILE_SECTIONS = { fe: "Web", be: "Backend", mobile: "Mobile", cli: "CLI", infra: "Infra" };
+function renderProfileMd(obj) {
+  const umum = [], scoped = {};
+  for (const [key, value] of Object.entries(obj)) {
+    const scope = key.includes(".") && PROFILE_SECTIONS[key.split(".")[0]] ? key.split(".")[0] : null;
+    if (scope) (scoped[scope] ??= []).push(`- ${key.split(".").slice(1).join(".")}: ${value}`);
+    else umum.push(`- ${key}: ${value}`);
+  }
+  let md = "# selera\n\n## Umum\n" + (umum.join("\n") || "") + "\n";
+  for (const [scope, name] of Object.entries(PROFILE_SECTIONS)) if (scoped[scope]) md += `\n## ${name}\n${scoped[scope].join("\n")}\n`;
+  return md;
+}
 const describe = (skill) => readFileSync(join(KIT, "skill", skill, "SKILL.md"), "utf8").match(/^description:\s*(?:>-\n)?([\s\S]*?)\n---/m)[1].replace(/\s+/g, " ").trim();
 
 function setup(c, arm) {
@@ -111,9 +125,9 @@ function setup(c, arm) {
   mkdirSync(dir, { recursive: true });
   for (const [p, body] of Object.entries(fx.files)) { mkdirSync(dirname(join(dir, p)), { recursive: true }); writeFileSync(join(dir, p), body); }
   // A repo without the skill would never hold a selera profile, so only the skill arm gets one.
-  if (fx.projectProfile && arm === "with") { mkdirSync(join(dir, ".selera"), { recursive: true }); writeFileSync(join(dir, ".selera", "profile.json"), JSON.stringify(fx.projectProfile, null, 2)); }
-  const globalProfile = join(root, ".config", "inisiasi", "selera", "profile.json");
-  if (fx.globalProfile) { mkdirSync(dirname(globalProfile), { recursive: true }); writeFileSync(globalProfile, JSON.stringify(fx.globalProfile, null, 2)); }
+  if (fx.projectProfile && arm === "with") { mkdirSync(join(dir, ".selera"), { recursive: true }); writeFileSync(join(dir, ".selera", "profile.md"), renderProfileMd(fx.projectProfile)); }
+  const globalProfile = join(root, ".config", "inisiasi", "selera", "profile.md");
+  if (fx.globalProfile) { mkdirSync(dirname(globalProfile), { recursive: true }); writeFileSync(globalProfile, renderProfileMd(fx.globalProfile)); }
   const id = ["-c", "user.name=owner", "-c", "user.email=owner@example.com"];
   sh(dir, "git", ["init", "-q"]);
   sh(dir, "git", [...id, "add", "-A"]);
@@ -128,7 +142,7 @@ function setup(c, arm) {
     if (existsSync(script)) {
       const src = readFileSync(script, "utf8");
       const patched = src.replace('const CONFIG_HOME = process.env.XDG_CONFIG_HOME ?? join(homedir(), ".config");', `const CONFIG_HOME = ${JSON.stringify(join(root, ".config"))};`)
-        .replace('const GLOBAL = process.env.SELERA_CONFIG ?? join(CONFIG_HOME, "inisiasi", "selera", "profile.json");', `const GLOBAL = ${JSON.stringify(globalProfile)};`);
+        .replace('const GLOBAL = process.env.SELERA_CONFIG ?? join(CONFIG_HOME, "inisiasi", "selera", "profile.md");', `const GLOBAL = ${JSON.stringify(globalProfile)};`);
       assert.notEqual(patched, src, "selera profile path patched");
       writeFileSync(script, patched);
     }
@@ -184,7 +198,7 @@ function evidence(rec, c) {
   const fx = FIXTURES[c.key];
   const files = {};
   for (const f of walk(rec.dir)) {
-    const before = fx.files[f] ?? (f === ".selera/profile.json" && fx.projectProfile && rec.arm === "with" ? JSON.stringify(fx.projectProfile, null, 2) : undefined);
+    const before = fx.files[f] ?? (f === ".selera/profile.md" && fx.projectProfile && rec.arm === "with" ? renderProfileMd(fx.projectProfile) : undefined);
     // A run can leave a symlink to a directory (e.g. a build output link); record it instead of reading it.
     let now;
     try { now = readFileSync(join(rec.dir, f), "utf8"); } catch (e) {

@@ -3506,32 +3506,6 @@
       "scope": "tech"
     },
     {
-      "id": "slides",
-      "name": "Slides",
-      "domain": "document",
-      "niche": "slides",
-      "creator": "nextlevelbuilder",
-      "use_cases": [
-        "Create strategic HTML presentations with Chart.js, design tokens, responsive layouts, copywriting formulas, and contextual slide strategies."
-      ],
-      "tags": [
-        "slides",
-        "presentations",
-        "html",
-        "chart.js",
-        "pitch-deck"
-      ],
-      "source_url": "https://www.ui-skills.com/skills/nextlevelbuilder/slides",
-      "install_command": "npx skills add nextlevelbuilder/ui-ux-pro-max-skill -g -s slides",
-      "popularity": 151070,
-      "verified": true,
-      "tier": "support",
-      "score": 81.18,
-      "ui_skills_count": 49900,
-      "last_pushed": "2026-11-18",
-      "scope": "general"
-    },
-    {
       "id": "gsap-plugins",
       "name": "Gsap Plugins",
       "domain": "frontend",
@@ -4945,33 +4919,6 @@
       "scope": "tech"
     },
     {
-      "id": "build-daily-inspiration-sites",
-      "name": "Build Daily Inspiration Sites",
-      "domain": "general",
-      "niche": "inspiration",
-      "creator": "MengTo",
-      "use_cases": [
-        "Turn a completed daily UI inspiration capture into exactly five original landing-page builds, one per separate Codex task, using Sites.",
-        "Use when the user asks to turn the daily inspiration references, a five-item UI prompt pack, or a dated `*-ui-inspiration-capture` article into distinct HTML landing pages while changing the source brands, names, copy"
-      ],
-      "tags": [
-        "landing-page",
-        "inspiration",
-        "websites",
-        "prototypes",
-        "codex"
-      ],
-      "source_url": "https://www.ui-skills.com/skills/mengto/build-daily-inspiration-sites",
-      "install_command": "npx skills add MengTo/Skills -g -s build-daily-inspiration-sites",
-      "popularity": 7693,
-      "verified": true,
-      "tier": "support",
-      "score": 57.3,
-      "ui_skills_count": 1600,
-      "last_pushed": "2026-11-14",
-      "scope": "general"
-    },
-    {
       "id": "build-mobile-threejs-games",
       "name": "Build Mobile Threejs Games",
       "domain": "frontend",
@@ -5437,34 +5384,6 @@
       "scope": "tech"
     },
     {
-      "id": "create-ai-avatar",
-      "name": "Create Ai Avatar",
-      "domain": "document",
-      "niche": "media",
-      "creator": "MengTo",
-      "use_cases": [
-        "Make an AI avatar of yourself that looks and sounds like you. A HeyGen digital twin trained on a couple of minutes of your own footage says lines you never recorded, in your own ElevenLabs voice",
-        "Use when someone wants a digital twin, an AI avatar or talking head of themselves or a consenting person, a HeyGen avatar from their YouTube videos or recordings, their avatar to speak in their own cloned voice"
-      ],
-      "tags": [
-        "avatar",
-        "heygen",
-        "elevenlabs",
-        "voice-clone",
-        "video",
-        "lip-sync"
-      ],
-      "source_url": "https://www.ui-skills.com/skills/mengto/create-ai-avatar",
-      "install_command": "npx skills add MengTo/Skills -g -s create-ai-avatar",
-      "popularity": 7693,
-      "verified": true,
-      "tier": "support",
-      "score": 47.94,
-      "ui_skills_count": 236,
-      "last_pushed": "2026-11-14",
-      "scope": "general"
-    },
-    {
       "id": "digital-twin",
       "name": "Digital Twin",
       "domain": "design",
@@ -5697,7 +5616,10 @@
         "extension",
         "manifest",
         "mv3",
-        "browser"
+        "browser",
+        "wxt",
+        "web-extension",
+        "browser-extension"
       ],
       "source_url": "https://github.com/GoogleChrome/modern-web-guidance/tree/main/skills/chrome-extensions",
       "install_command": "npx skills add GoogleChrome/modern-web-guidance -g -s chrome-extensions",
@@ -7199,148 +7121,6 @@
       "scope": "tech"
     },
     {
-      "id": "copywriting",
-      "name": "copywriting",
-      "domain": "document",
-      "niche": "copywriting",
-      "creator": "coreyhaines31",
-      "use_cases": [
-        "Conversion copywriting skill that diagnoses the brief first, then writes or rewrites homepage, landing, pricing and feature copy."
-      ],
-      "tags": [
-        "copywriting",
-        "landing-page",
-        "headlines",
-        "pricing",
-        "marketing",
-        "homepage"
-      ],
-      "source_url": "https://github.com/coreyhaines31/marketingskills",
-      "install_command": "npx skills add coreyhaines31/marketingskills -g -s copywriting",
-      "popularity": 61107,
-      "verified": true,
-      "tier": "support",
-      "score": null,
-      "last_pushed": "2026-11-18",
-      "scope": "general"
-    },
-    {
-      "id": "copy-editing",
-      "name": "copy-editing",
-      "domain": "document",
-      "niche": "copywriting",
-      "creator": "coreyhaines31",
-      "use_cases": [
-        "Editing passes for existing copy that tighten, proofread and strip AI tells without rewriting from scratch."
-      ],
-      "tags": [
-        "copy",
-        "editing"
-      ],
-      "source_url": "https://github.com/coreyhaines31/marketingskills",
-      "install_command": "npx skills add coreyhaines31/marketingskills -g -s copy-editing",
-      "popularity": 61107,
-      "verified": true,
-      "tier": "support",
-      "score": null,
-      "last_pushed": "2026-11-18",
-      "scope": "general"
-    },
-    {
-      "id": "autoresearch",
-      "name": "autoresearch",
-      "domain": "research",
-      "niche": "autonomous",
-      "creator": "uditgoenka",
-      "use_cases": [
-        "Autonomous loop that modifies, verifies and keeps or discards changes against a chosen metric."
-      ],
-      "tags": [
-        "autonomous",
-        "iteration",
-        "metrics",
-        "optimization",
-        "experiments"
-      ],
-      "source_url": "https://github.com/uditgoenka/autoresearch",
-      "install_command": "npx skills add uditgoenka/autoresearch -g -s autoresearch",
-      "popularity": 6847,
-      "verified": true,
-      "tier": "support",
-      "score": null,
-      "skill_count": 7,
-      "bundle": true,
-      "last_pushed": "2026-10-31",
-      "scope": "general"
-    },
-    {
-      "id": "content-research-writer",
-      "name": "content-research-writer",
-      "domain": "research",
-      "niche": "writing",
-      "creator": "ComposioHQ",
-      "use_cases": [
-        "Helps write content with research, citations, hook improvement and section-by-section feedback."
-      ],
-      "tags": [
-        "content",
-        "research",
-        "writer"
-      ],
-      "source_url": "https://github.com/ComposioHQ/awesome-claude-skills/tree/master/content-research-writer",
-      "install_command": "npx skills add ComposioHQ/awesome-claude-skills -g -s content-research-writer",
-      "popularity": 79764,
-      "verified": true,
-      "tier": "support",
-      "score": null,
-      "last_pushed": "2026-09-18",
-      "scope": "general"
-    },
-    {
-      "id": "ai-research-explore",
-      "name": "ai-research-explore",
-      "domain": "research",
-      "niche": "academic",
-      "creator": "lllllllama",
-      "use_cases": [
-        "Rigor Explore compatible skill slug for meaningful and potentially novel deep learning research candidates."
-      ],
-      "tags": [
-        "research",
-        "explore"
-      ],
-      "source_url": "https://github.com/lllllllama/RigorPilot-Skills",
-      "install_command": "npx skills add lllllllama/RigorPilot-Skills -g -s ai-research-explore",
-      "popularity": 486,
-      "verified": true,
-      "tier": "support",
-      "score": null,
-      "last_pushed": "2026-09-23",
-      "scope": "general"
-    },
-    {
-      "id": "ai-research-reproduction",
-      "name": "ai-research-reproduction",
-      "domain": "research",
-      "niche": "academic",
-      "creator": "lllllllama",
-      "use_cases": [
-        "Rigor Reproduce compatible skill slug for README-first deep learning repository reproduction."
-      ],
-      "tags": [
-        "research",
-        "reproduction"
-      ],
-      "source_url": "https://github.com/lllllllama/RigorPilot-Skills",
-      "install_command": "npx skills add lllllllama/RigorPilot-Skills -g -s ai-research-reproduction",
-      "popularity": 486,
-      "verified": true,
-      "tier": "support",
-      "score": null,
-      "last_pushed": "2026-09-23",
-      "scope": "general"
-    },
-    {
       "id": "serpapi-web-search",
       "name": "serpapi-web-search",
       "domain": "research",
@@ -7364,98 +7144,6 @@
       "tier": "support",
       "score": null,
       "last_pushed": "2026-07-09",
-      "scope": "general"
-    },
-    {
-      "id": "x-twitter-growth",
-      "name": "x-twitter-growth",
-      "domain": "social-media",
-      "niche": "x",
-      "creator": "alirezarezvani",
-      "use_cases": [
-        "X/Twitter growth workflow with profile audit, tweet composer and content planner scripts."
-      ],
-      "tags": [
-        "twitter",
-        "growth"
-      ],
-      "source_url": "https://github.com/alirezarezvani/claude-skills/blob/main/marketing-skill/skills/x-twitter-growth/SKILL.md",
-      "install_command": "npx skills add alirezarezvani/claude-skills -g -s SKILL.md",
-      "popularity": 30028,
-      "verified": true,
-      "tier": "support",
-      "score": null,
-      "last_pushed": "2026-11-17",
-      "scope": "general"
-    },
-    {
-      "id": "baoyu-post-to-x",
-      "name": "baoyu-post-to-x",
-      "domain": "social-media",
-      "niche": "x",
-      "creator": "JimLiu",
-      "use_cases": [
-        "Posts text, images, videos and long-form X Articles from Markdown to X through Chrome."
-      ],
-      "tags": [
-        "baoyu",
-        "post"
-      ],
-      "source_url": "https://github.com/JimLiu/baoyu-skills",
-      "install_command": "npx skills add JimLiu/baoyu-skills -g -s baoyu-post-to-x",
-      "popularity": 27663,
-      "verified": true,
-      "tier": "support",
-      "score": null,
-      "last_pushed": "2026-11-06",
-      "scope": "general"
-    },
-    {
-      "id": "content-strategy",
-      "name": "content-strategy",
-      "domain": "social-media",
-      "niche": "content",
-      "creator": "coreyhaines31",
-      "use_cases": [
-        "Plans content with topic clusters, editorial calendars and roadmaps tied to customers, after checking product marketing context."
-      ],
-      "tags": [
-        "content",
-        "strategy"
-      ],
-      "source_url": "https://github.com/coreyhaines31/marketingskills",
-      "install_command": "npx skills add coreyhaines31/marketingskills -g -s content-strategy",
-      "popularity": 61107,
-      "verified": true,
-      "tier": "support",
-      "score": null,
-      "last_pushed": "2026-11-18",
-      "scope": "general"
-    },
-    {
-      "id": "social",
-      "name": "social",
-      "domain": "social-media",
-      "niche": "content",
-      "creator": "coreyhaines31",
-      "use_cases": [
-        "Creates organic social content for LinkedIn, X, Instagram, TikTok and Facebook: posts, threads, carousels and short video scripts."
-      ],
-      "tags": [
-        "social-media",
-        "linkedin",
-        "x",
-        "instagram",
-        "tiktok",
-        "content-calendar"
-      ],
-      "source_url": "https://github.com/coreyhaines31/marketingskills",
-      "install_command": "npx skills add coreyhaines31/marketingskills -g -s social",
-      "popularity": 61107,
-      "verified": true,
-      "tier": "support",
-      "score": null,
-      "last_pushed": "2026-11-18",
       "scope": "general"
     },
     {
@@ -7531,28 +7219,6 @@
       "score": null,
       "last_pushed": "2026-11-17",
       "scope": "tech"
-    },
-    {
-      "id": "dream-loop",
-      "name": "dream-loop",
-      "domain": "general",
-      "niche": "autonomous",
-      "creator": "achimala",
-      "use_cases": [
-        "Loop that builds a game or app until a live screenshot matches a generated rendering at high graphical fidelity."
-      ],
-      "tags": [
-        "dream",
-        "loop"
-      ],
-      "source_url": "https://github.com/achimala/dream-loop",
-      "install_command": "npx skills add achimala/dream-loop -g -s dream-loop",
-      "popularity": 2419,
-      "verified": true,
-      "tier": "support",
-      "score": null,
-      "last_pushed": "2026-09-09",
-      "scope": "general"
     },
     {
       "id": "procedural-gen",
@@ -7662,28 +7328,6 @@
       "tier": "support",
       "score": null,
       "last_pushed": "2026-11-18",
-      "scope": "general"
-    },
-    {
-      "id": "scaffold-exercises",
-      "name": "scaffold-exercises",
-      "domain": "general",
-      "niche": "education",
-      "creator": "mattpocock",
-      "use_cases": [
-        "Creates exercise directory structures (sections, problems, solutions) that pass linting for courses."
-      ],
-      "tags": [
-        "scaffold",
-        "exercises"
-      ],
-      "source_url": "https://github.com/mattpocock/skills",
-      "install_command": "npx skills add mattpocock/skills -g -s scaffold-exercises",
-      "popularity": 327014,
-      "verified": true,
-      "tier": "support",
-      "score": null,
-      "last_pushed": "2026-11-17",
       "scope": "general"
     },
     {
@@ -7807,51 +7451,6 @@
       "scope": "tech"
     },
     {
-      "id": "gws-sheets-read",
-      "name": "gws-sheets-read",
-      "domain": "business-and-productivity",
-      "niche": "google-workspace",
-      "creator": "google",
-      "use_cases": [
-        "Reads values from a Google Sheets spreadsheet via the Google Workspace CLI."
-      ],
-      "tags": [
-        "gws",
-        "sheets",
-        "read"
-      ],
-      "source_url": "https://github.com/googleworkspace/cli",
-      "install_command": "npx skills add googleworkspace/cli -g -s gws-sheets-read",
-      "popularity": 32376,
-      "verified": true,
-      "tier": "support",
-      "score": null,
-      "last_pushed": "2026-11-03",
-      "scope": "general"
-    },
-    {
-      "id": "marketing-psychology",
-      "name": "marketing-psychology",
-      "domain": "business-and-productivity",
-      "niche": "marketing",
-      "creator": "coreyhaines31",
-      "use_cases": [
-        "Applies psychology to marketing: biases, mental models, anchoring and social proof, with an ethics check."
-      ],
-      "tags": [
-        "marketing",
-        "psychology"
-      ],
-      "source_url": "https://github.com/coreyhaines31/marketingskills",
-      "install_command": "npx skills add coreyhaines31/marketingskills -g -s marketing-psychology",
-      "popularity": 61107,
-      "verified": true,
-      "tier": "support",
-      "score": null,
-      "last_pushed": "2026-11-18",
-      "scope": "general"
-    },
-    {
       "id": "seo-audit",
       "name": "seo-audit",
       "domain": "business-and-productivity",
@@ -7914,95 +7513,6 @@
       ],
       "source_url": "https://github.com/coreyhaines31/marketingskills",
       "install_command": "npx skills add coreyhaines31/marketingskills -g -s ai-seo",
-      "popularity": 61107,
-      "verified": true,
-      "tier": "support",
-      "score": null,
-      "last_pushed": "2026-11-18",
-      "scope": "general"
-    },
-    {
-      "id": "gws-gmail-send",
-      "name": "gws-gmail-send",
-      "domain": "business-and-productivity",
-      "niche": "google-workspace",
-      "creator": "google",
-      "use_cases": [
-        "Sends an email via Gmail through the Google Workspace CLI."
-      ],
-      "tags": [
-        "gws",
-        "gmail",
-        "send"
-      ],
-      "source_url": "https://github.com/googleworkspace/cli",
-      "install_command": "npx skills add googleworkspace/cli -g -s gws-gmail-send",
-      "popularity": 32376,
-      "verified": true,
-      "tier": "support",
-      "score": null,
-      "last_pushed": "2026-11-03",
-      "scope": "general"
-    },
-    {
-      "id": "marketing-ideas",
-      "name": "marketing-ideas",
-      "domain": "business-and-productivity",
-      "niche": "marketing",
-      "creator": "coreyhaines31",
-      "use_cases": [
-        "Supplies marketing ideas and growth tactics for a software product with little time or budget."
-      ],
-      "tags": [
-        "marketing",
-        "ideas"
-      ],
-      "source_url": "https://github.com/coreyhaines31/marketingskills",
-      "install_command": "npx skills add coreyhaines31/marketingskills -g -s marketing-ideas",
-      "popularity": 61107,
-      "verified": true,
-      "tier": "support",
-      "score": null,
-      "last_pushed": "2026-11-18",
-      "scope": "general"
-    },
-    {
-      "id": "cold-email",
-      "name": "cold-email",
-      "domain": "business-and-productivity",
-      "niche": "sales",
-      "creator": "coreyhaines31",
-      "use_cases": [
-        "Writes B2B cold outbound emails, follow-ups and covers sending domains and deliverability."
-      ],
-      "tags": [
-        "cold",
-        "email"
-      ],
-      "source_url": "https://github.com/coreyhaines31/marketingskills",
-      "install_command": "npx skills add coreyhaines31/marketingskills -g -s cold-email",
-      "popularity": 61107,
-      "verified": true,
-      "tier": "support",
-      "score": null,
-      "last_pushed": "2026-11-18",
-      "scope": "general"
-    },
-    {
-      "id": "sales-enablement",
-      "name": "sales-enablement",
-      "domain": "business-and-productivity",
-      "niche": "sales",
-      "creator": "coreyhaines31",
-      "use_cases": [
-        "Creates sales collateral: decks, one-pagers, objection handling, demo scripts and battle cards."
-      ],
-      "tags": [
-        "sales",
-        "enablement"
-      ],
-      "source_url": "https://github.com/coreyhaines31/marketingskills",
-      "install_command": "npx skills add coreyhaines31/marketingskills -g -s sales-enablement",
       "popularity": 61107,
       "verified": true,
       "tier": "support",
@@ -8142,33 +7652,6 @@
       "ui_skills_count": 216,
       "last_pushed": "2026-10-22",
       "scope": "tech"
-    },
-    {
-      "id": "appllama-usage",
-      "name": "Appllama Usage",
-      "domain": "business-and-productivity",
-      "niche": "market-research",
-      "creator": "Appllama",
-      "use_cases": [
-        "Teaches using the Appllama MCP to research top-grossing mobile apps, screens and flows before building."
-      ],
-      "tags": [
-        "mobile",
-        "app-research",
-        "competitors",
-        "ui",
-        "mcp",
-        "market-research"
-      ],
-      "source_url": "https://www.ui-skills.com/skills/appllama/appllama-usage",
-      "install_command": "npx skills add Appllama/appllama-skills -g -s appllama-usage",
-      "popularity": 5227,
-      "verified": true,
-      "tier": "support",
-      "score": null,
-      "ui_skills_count": 5500,
-      "last_pushed": "2026-09-06",
-      "scope": "general"
     },
     {
       "id": "article-prompts-to-skills",
@@ -8677,54 +8160,6 @@
       "scope": "tech"
     },
     {
-      "id": "higgsfield-youtube-thumbnail",
-      "name": "higgsfield-youtube-thumbnail",
-      "domain": "social-media",
-      "niche": "youtube",
-      "creator": "higgsfield-ai",
-      "use_cases": [
-        "|"
-      ],
-      "tags": [
-        "higgsfield",
-        "youtube",
-        "thumbnail"
-      ],
-      "source_url": "https://github.com/higgsfield-ai/skills",
-      "install_command": "npx skills add higgsfield-ai/skills -g -s higgsfield-youtube-thumbnail",
-      "popularity": 2017,
-      "verified": true,
-      "tier": "support",
-      "score": 75.81,
-      "last_pushed": "2026-11-05",
-      "scope": "general"
-    },
-    {
-      "id": "cheat-on-content",
-      "name": "cheat-on-content",
-      "domain": "social-media",
-      "niche": "content",
-      "creator": "XBuilderLAB",
-      "use_cases": [
-        "给所有想把\"感觉\"变成可校准预测的内容创作者。**方法论通用**——打分 → 盲预测 → T+3d 复盘 → 进化 rubric 的循环适用任何能被量化（播放 / 阅读 / 收听 / 点击）的内容。**rubric 是循环的内容，不是循环本身**——当前内置一份观点视频 rubric（参考博主 25+ 视频拟合），其他形态可借这套起步并 bump 调权重。**强烈建议导入对标账号**作为初始信号源（/cheat-learn-from）。触发词：\"初始化\"/\"打分这篇\"/\"启动预测\"/\"已发布\"/\"复盘\"/\"升级 rubric\"/\"推荐选题\"/\"抓热点\"/"
-      ],
-      "tags": [
-        "cheat",
-        "content",
-        "rubric",
-        "bump",
-        "learn"
-      ],
-      "source_url": "https://github.com/XBuilderLAB/cheat-on-content",
-      "install_command": "npx skills add XBuilderLAB/cheat-on-content -g -s cheat-on-content",
-      "popularity": 7596,
-      "verified": true,
-      "tier": "support",
-      "score": 44.32,
-      "last_pushed": "2026-11-16",
-      "scope": "general"
-    },
-    {
       "id": "firecrawl-scraper",
       "name": "firecrawl-scraper",
       "domain": "research",
@@ -9178,163 +8613,6 @@
       "scope": "tech"
     },
     {
-      "id": "docx",
-      "name": "docx",
-      "domain": "document",
-      "niche": "office",
-      "creator": "anthropics",
-      "use_cases": [
-        "Use this skill whenever the user wants to create, read, edit, or manipulate Word documents (.docx files) or Word templates (.dotx files).",
-        "Use when creating, reading or editing Word (.docx) documents."
-      ],
-      "tags": [
-        "docx",
-        "word",
-        "document",
-        "office",
-        "report",
-        "template"
-      ],
-      "source_url": "https://github.com/anthropics/skills/tree/main/skills/docx",
-      "install_command": "npx skills add anthropics/skills -g -s docx",
-      "popularity": 196925,
-      "verified": true,
-      "tier": "main",
-      "last_pushed": "2026-11-16",
-      "scope": "general"
-    },
-    {
-      "id": "pdf",
-      "name": "pdf",
-      "domain": "document",
-      "niche": "office",
-      "creator": "anthropics",
-      "use_cases": [
-        "Use this skill whenever the user wants to do anything with PDF files.",
-        "Use when reading, merging, splitting, filling or creating PDF files."
-      ],
-      "tags": [
-        "pdf",
-        "document",
-        "forms",
-        "extract",
-        "merge",
-        "ocr"
-      ],
-      "source_url": "https://github.com/anthropics/skills/tree/main/skills/pdf",
-      "install_command": "npx skills add anthropics/skills -g -s pdf",
-      "popularity": 196925,
-      "verified": true,
-      "tier": "main",
-      "last_pushed": "2026-11-16",
-      "scope": "general"
-    },
-    {
-      "id": "pptx",
-      "name": "pptx",
-      "domain": "document",
-      "niche": "office",
-      "creator": "anthropics",
-      "use_cases": [
-        "Use this skill any time a .pptx or .potx file is involved in any way — as input, output, or both.",
-        "Use when creating or editing PowerPoint (.pptx) presentations."
-      ],
-      "tags": [
-        "pptx",
-        "powerpoint",
-        "slides",
-        "presentation",
-        "deck",
-        "office"
-      ],
-      "source_url": "https://github.com/anthropics/skills/tree/main/skills/pptx",
-      "install_command": "npx skills add anthropics/skills -g -s pptx",
-      "popularity": 196925,
-      "verified": true,
-      "tier": "main",
-      "last_pushed": "2026-11-16",
-      "scope": "general"
-    },
-    {
-      "id": "xlsx",
-      "name": "xlsx",
-      "domain": "document",
-      "niche": "office",
-      "creator": "anthropics",
-      "use_cases": [
-        "Use this skill any time a spreadsheet file is the primary input or output.",
-        "Use when creating or editing Excel (.xlsx) and CSV spreadsheets."
-      ],
-      "tags": [
-        "xlsx",
-        "excel",
-        "spreadsheet",
-        "csv",
-        "formulas",
-        "data",
-        "office"
-      ],
-      "source_url": "https://github.com/anthropics/skills/tree/main/skills/xlsx",
-      "install_command": "npx skills add anthropics/skills -g -s xlsx",
-      "popularity": 196925,
-      "verified": true,
-      "tier": "main",
-      "last_pushed": "2026-11-16",
-      "scope": "general"
-    },
-    {
-      "id": "obsidian-markdown",
-      "name": "obsidian-markdown",
-      "domain": "business-and-productivity",
-      "niche": "notes",
-      "creator": "obsidian",
-      "use_cases": [
-        "Create and edit Obsidian Flavored Markdown with wikilinks, embeds, callouts, properties, and other Obsidian-specific syntax.",
-        "Use when writing Obsidian-flavored Markdown notes with links, callouts and properties."
-      ],
-      "tags": [
-        "obsidian",
-        "markdown",
-        "notes",
-        "vault",
-        "knowledge",
-        "pkm"
-      ],
-      "source_url": "https://github.com/obsidianmd/obsidian-skills/tree/main/plugins/obsidian/skills/obsidian-markdown",
-      "install_command": "npx skills add obsidianmd/obsidian-skills -g -s obsidian-markdown",
-      "popularity": 53119,
-      "verified": true,
-      "tier": "main",
-      "last_pushed": "2026-11-17",
-      "scope": "general"
-    },
-    {
-      "id": "obsidian-cli",
-      "name": "obsidian-cli",
-      "domain": "business-and-productivity",
-      "niche": "notes",
-      "creator": "obsidian",
-      "use_cases": [
-        "Interact with Obsidian vaults using the Obsidian CLI to read, create, search, and manage notes, tasks, properties, and more.",
-        "Use when reading, creating and searching notes in an Obsidian vault from the CLI."
-      ],
-      "tags": [
-        "obsidian",
-        "cli",
-        "notes",
-        "vault",
-        "search",
-        "tasks"
-      ],
-      "source_url": "https://github.com/obsidianmd/obsidian-skills/tree/main/plugins/obsidian/skills/obsidian-cli",
-      "install_command": "npx skills add obsidianmd/obsidian-skills -g -s obsidian-cli",
-      "popularity": 53119,
-      "verified": true,
-      "tier": "main",
-      "last_pushed": "2026-11-17",
-      "scope": "general"
-    },
-    {
       "id": "create-prd",
       "name": "create-prd",
       "domain": "business-and-productivity",
@@ -9361,29 +8639,6 @@
       "scope": "general"
     },
     {
-      "id": "discernment-nudge",
-      "name": "discernment-nudge",
-      "domain": "general",
-      "niche": "writing",
-      "creator": "anthropics",
-      "use_cases": [
-        "After you give a substantive answer or draft that the user may act on — advice or recommendations, drafted artifacts such as goals, plans, pitches, proposals, o"
-      ],
-      "tags": [
-        "review",
-        "advice",
-        "critical-thinking"
-      ],
-      "source_url": "https://github.com/anthropics/skills",
-      "install_command": "npx skills add anthropics/skills -g -s discernment-nudge",
-      "popularity": 196972,
-      "verified": true,
-      "tier": "support",
-      "score": null,
-      "last_pushed": "2026-11-16",
-      "scope": "general"
-    },
-    {
       "id": "algorithmic-art",
       "name": "algorithmic-art",
       "domain": "design",
@@ -9406,30 +8661,6 @@
       "score": null,
       "last_pushed": "2026-11-16",
       "scope": "tech"
-    },
-    {
-      "id": "internal-comms",
-      "name": "internal-comms",
-      "domain": "business-and-productivity",
-      "niche": "writing",
-      "creator": "anthropics",
-      "use_cases": [
-        "A set of resources to help me write all kinds of internal communications, using the formats that my company likes to use. Claude should use this skill whenever "
-      ],
-      "tags": [
-        "internal",
-        "comms",
-        "status-report",
-        "newsletter"
-      ],
-      "source_url": "https://github.com/anthropics/skills",
-      "install_command": "npx skills add anthropics/skills -g -s internal-comms",
-      "popularity": 196972,
-      "verified": true,
-      "tier": "support",
-      "score": null,
-      "last_pushed": "2026-11-16",
-      "scope": "general"
     },
     {
       "id": "slack-gif-creator",
@@ -9786,29 +9017,6 @@
       "scope": "tech"
     },
     {
-      "id": "teach",
-      "name": "teach",
-      "domain": "general",
-      "niche": "learning",
-      "creator": "mattpocock",
-      "use_cases": [
-        "Teach the user a new skill or concept, within this workspace."
-      ],
-      "tags": [
-        "teach",
-        "learning",
-        "concept"
-      ],
-      "source_url": "https://github.com/mattpocock/skills",
-      "install_command": "npx skills add mattpocock/skills -g -s teach",
-      "popularity": 327100,
-      "verified": true,
-      "tier": "support",
-      "score": null,
-      "last_pushed": "2026-11-18",
-      "scope": "general"
-    },
-    {
       "id": "to-questionnaire",
       "name": "to-questionnaire",
       "domain": "business-and-productivity",
@@ -9824,29 +9032,6 @@
       ],
       "source_url": "https://github.com/mattpocock/skills",
       "install_command": "npx skills add mattpocock/skills -g -s to-questionnaire",
-      "popularity": 327100,
-      "verified": true,
-      "tier": "support",
-      "score": null,
-      "last_pushed": "2026-11-18",
-      "scope": "general"
-    },
-    {
-      "id": "wait-what",
-      "name": "wait-what",
-      "domain": "general",
-      "niche": "writing",
-      "creator": "mattpocock",
-      "use_cases": [
-        "Stop. That last message did not land: re-pitch it."
-      ],
-      "tags": [
-        "clarify",
-        "re-pitch",
-        "communication"
-      ],
-      "source_url": "https://github.com/mattpocock/skills",
-      "install_command": "npx skills add mattpocock/skills -g -s wait-what",
       "popularity": 327100,
       "verified": true,
       "tier": "support",
@@ -9946,75 +9131,6 @@
       "score": null,
       "last_pushed": "2026-11-18",
       "scope": "tech"
-    },
-    {
-      "id": "writing-beats",
-      "name": "writing-beats",
-      "domain": "general",
-      "niche": "writing",
-      "creator": "mattpocock",
-      "use_cases": [
-        "Writing, exploit; assemble raw material into a journey of beats, grounding each term before a beat leans on it."
-      ],
-      "tags": [
-        "writing",
-        "beats",
-        "article"
-      ],
-      "source_url": "https://github.com/mattpocock/skills",
-      "install_command": "npx skills add mattpocock/skills -g -s writing-beats",
-      "popularity": 327100,
-      "verified": true,
-      "tier": "support",
-      "score": null,
-      "last_pushed": "2026-11-18",
-      "scope": "general"
-    },
-    {
-      "id": "writing-fragments",
-      "name": "writing-fragments",
-      "domain": "general",
-      "niche": "writing",
-      "creator": "mattpocock",
-      "use_cases": [
-        "Writing, explore: mine raw fragments, no structure yet."
-      ],
-      "tags": [
-        "writing",
-        "fragments",
-        "brainstorm"
-      ],
-      "source_url": "https://github.com/mattpocock/skills",
-      "install_command": "npx skills add mattpocock/skills -g -s writing-fragments",
-      "popularity": 327100,
-      "verified": true,
-      "tier": "support",
-      "score": null,
-      "last_pushed": "2026-11-18",
-      "scope": "general"
-    },
-    {
-      "id": "writing-shape",
-      "name": "writing-shape",
-      "domain": "general",
-      "niche": "writing",
-      "creator": "mattpocock",
-      "use_cases": [
-        "Writing, exploit: shape raw material into an article, paragraph by paragraph."
-      ],
-      "tags": [
-        "writing",
-        "article",
-        "draft"
-      ],
-      "source_url": "https://github.com/mattpocock/skills",
-      "install_command": "npx skills add mattpocock/skills -g -s writing-shape",
-      "popularity": 327100,
-      "verified": true,
-      "tier": "support",
-      "score": null,
-      "last_pushed": "2026-11-18",
-      "scope": "general"
     },
     {
       "id": "git-guardrails-claude-code",
@@ -10551,30 +9667,6 @@
       "scope": "general"
     },
     {
-      "id": "document-generate",
-      "name": "document-generate",
-      "domain": "document",
-      "niche": "docs",
-      "creator": "garrytan",
-      "use_cases": [
-        "Generate missing documentation from scratch for a feature, module, or entire project. Use for: write docs for this, generate documentation."
-      ],
-      "tags": [
-        "gstack",
-        "docs",
-        "generate",
-        "documentation"
-      ],
-      "source_url": "https://github.com/garrytan/gstack",
-      "install_command": "npx skills add garrytan/gstack -g -s document-generate",
-      "popularity": 141966,
-      "verified": true,
-      "tier": "support",
-      "score": null,
-      "last_pushed": "2026-11-18",
-      "scope": "general"
-    },
-    {
       "id": "document-release",
       "name": "document-release",
       "domain": "document",
@@ -10910,30 +10002,6 @@
       "score": null,
       "last_pushed": "2026-11-18",
       "scope": "tech"
-    },
-    {
-      "id": "make-pdf",
-      "name": "make-pdf",
-      "domain": "document",
-      "niche": "docs",
-      "creator": "garrytan",
-      "use_cases": [
-        "Turn any markdown file into a publication-quality PDF. Use for: markdown to pdf, generate pdf, make pdf, export pdf."
-      ],
-      "tags": [
-        "gstack",
-        "pdf",
-        "markdown",
-        "publishing"
-      ],
-      "source_url": "https://github.com/garrytan/gstack",
-      "install_command": "npx skills add garrytan/gstack -g -s make-pdf",
-      "popularity": 141966,
-      "verified": true,
-      "tier": "support",
-      "score": null,
-      "last_pushed": "2026-11-18",
-      "scope": "general"
     },
     {
       "id": "modernize",
@@ -11780,97 +10848,503 @@
       "scope": "general"
     },
     {
-      "id": "trend-discovery",
-      "name": "trend-discovery",
-      "domain": "social-media",
-      "niche": "research",
-      "creator": "ScrapeCreators",
+      "id": "orpc",
+      "name": "orpc",
+      "domain": "backend",
+      "niche": "api",
+      "creator": "unnoq",
       "use_cases": [
-        "Use when the user wants to discover trending social topics, hashtags, sounds, posts, reels, shorts, creators, or formats in a niche. Searches public trend and discovery endpoints, ranks evidence, and "
+        "Build, serve, and call end-to-end typesafe APIs with oRPC",
+        "This skill should be used when working in a project that depends on @orpc packages: procedures, routers, middleware, server and client calls, TanStack Query integration"
       ],
       "tags": [
-        "trends",
-        "social",
-        "research"
+        "orpc",
+        "rpc",
+        "api",
+        "typescript",
+        "typesafe"
       ],
-      "source_url": "https://github.com/ScrapeCreators/social-media-research-skills",
-      "install_command": "npx skills add ScrapeCreators/social-media-research-skills -g -s trend-discovery",
-      "popularity": 6675,
+      "source_url": "https://github.com/unnoq/orpc/tree/main/skills/orpc",
+      "install_command": "npx skills add unnoq/orpc -g -s orpc",
+      "popularity": 10,
       "verified": true,
-      "tier": "support",
+      "tier": "main",
       "score": null,
-      "last_pushed": "2026-11-18",
-      "scope": "general"
+      "last_pushed": "2026-10-27",
+      "scope": "tech"
     },
     {
-      "id": "reels-scripting",
-      "name": "reels-scripting",
-      "domain": "social-media",
-      "niche": "short-video",
-      "creator": "charlie947",
+      "id": "orpc-contract",
+      "name": "orpc-contract",
+      "domain": "backend",
+      "niche": "api",
+      "creator": "unnoq",
       "use_cases": [
-        "Turn a reference Instagram Reel into a script for your own Reel, tuned to your voice and repurposed from your newsletter content. Takes a Reel URL or Notion reference link, uses Apify to scrape the vi"
+        "Contract-first API design with oRPC contracts and OpenAPI",
+        "This skill should be used when defining or evolving an oRPC contract before implementing procedures, or generating contract-based docs"
       ],
       "tags": [
-        "reels",
-        "script",
-        "short-video"
+        "orpc",
+        "rpc",
+        "api",
+        "typescript",
+        "contract",
+        "openapi"
       ],
-      "source_url": "https://github.com/charlie947/social-media-skills",
-      "install_command": "npx skills add charlie947/social-media-skills -g -s reels-scripting",
-      "popularity": 4729,
+      "source_url": "https://github.com/unnoq/orpc/tree/main/skills/orpc-contract",
+      "install_command": "npx skills add unnoq/orpc -g -s orpc-contract",
+      "popularity": 10,
       "verified": true,
-      "tier": "support",
+      "tier": "main",
       "score": null,
-      "last_pushed": "2026-11-18",
-      "scope": "general"
+      "last_pushed": "2026-10-27",
+      "scope": "tech"
     },
     {
-      "id": "linkedin-marketing",
-      "name": "linkedin-marketing",
-      "domain": "social-media",
-      "niche": "linkedin",
-      "creator": "sergebulaev",
+      "id": "orpc-openapi",
+      "name": "orpc-openapi",
+      "domain": "backend",
+      "niche": "api",
+      "creator": "unnoq",
       "use_cases": [
-        "Plan, draft, audit, and publish LinkedIn posts and comments. Use when the user wants to write a viral LinkedIn post, draft a comment or reply on any LinkedIn post URL, audit a draft against 2026 algor"
+        "Expose oRPC procedures as REST/OpenAPI endpoints",
+        "This skill should be used when an oRPC API needs REST or OpenAPI exposure alongside its typesafe RPC interface"
       ],
       "tags": [
-        "linkedin",
-        "marketing",
-        "content"
+        "orpc",
+        "rpc",
+        "api",
+        "typescript",
+        "openapi",
+        "rest"
       ],
-      "source_url": "https://github.com/sergebulaev/linkedin-skills",
-      "install_command": "npx skills add sergebulaev/linkedin-skills -g -s linkedin-marketing",
-      "popularity": 6011,
+      "source_url": "https://github.com/unnoq/orpc/tree/main/skills/orpc-openapi",
+      "install_command": "npx skills add unnoq/orpc -g -s orpc-openapi",
+      "popularity": 10,
       "verified": true,
-      "tier": "support",
+      "tier": "main",
       "score": null,
-      "last_pushed": "2026-11-18",
-      "scope": "general"
+      "last_pushed": "2026-10-27",
+      "scope": "tech"
     },
     {
-      "id": "ig-reel",
-      "name": "ig-reel",
-      "domain": "social-media",
-      "niche": "instagram",
-      "creator": "Jakeschincariol",
+      "id": "solid-2.0",
+      "name": "solid-2.0",
+      "domain": "frontend",
+      "niche": "solid",
+      "creator": "solidjs",
       "use_cases": [
-        "Write an Instagram Reel from a raw idea - hook options off 26 formulas, the spoken script, the on-screen text, and a timed beat sheet - in the user's own voice and scored before they shoot it. Use whe"
+        "Solid 2.0 primer: run-once components, reactivity primitives, and the shapes that replace 1.x APIs",
+        "This skill should be used before writing or editing Solid 2.0 code, since pretrained knowledge describes Solid 1.x"
       ],
       "tags": [
-        "instagram",
-        "reels",
-        "content"
+        "solid",
+        "solidjs",
+        "reactivity",
+        "web",
+        "frontend"
       ],
-      "source_url": "https://github.com/Jakeschincariol/instagram-agent-skill",
-      "install_command": "npx skills add Jakeschincariol/instagram-agent-skill -g -s ig-reel",
-      "popularity": 7023,
+      "source_url": "https://github.com/solidjs/solid/tree/main/packages/solid/skills/solid-2.0",
+      "install_command": "npx skills add solidjs/solid -g -s solid-2.0",
+      "popularity": 36957,
       "verified": true,
-      "tier": "support",
+      "tier": "main",
       "score": null,
-      "last_pushed": "2026-11-18",
-      "scope": "general"
+      "last_pushed": "2026-11-25",
+      "scope": "tech"
+    },
+    {
+      "id": "reactivity-diagnostics",
+      "name": "reactivity-diagnostics",
+      "domain": "frontend",
+      "niche": "solid",
+      "creator": "solidjs",
+      "use_cases": [
+        "Diagnose Solid reactivity problems from @solidjs/diagnostics diagnostic codes",
+        "This skill should be used when a Solid diagnostic such as REACTIVE_WRITE_IN_OWNED_SCOPE appears, or a reactive value stops updating"
+      ],
+      "tags": [
+        "solid",
+        "solidjs",
+        "reactivity",
+        "diagnostics",
+        "debugging"
+      ],
+      "source_url": "https://github.com/solidjs/solid/tree/main/packages/solid/skills/reactivity-diagnostics",
+      "install_command": "npx skills add solidjs/solid -g -s reactivity-diagnostics",
+      "popularity": 36957,
+      "verified": true,
+      "tier": "main",
+      "score": null,
+      "last_pushed": "2026-11-25",
+      "scope": "tech"
+    },
+    {
+      "id": "server-components",
+      "name": "server-components",
+      "domain": "frontend",
+      "niche": "solid",
+      "creator": "solidjs",
+      "use_cases": [
+        "Write Solid \"use server\" components: where server markup ends and client slots begin",
+        "This skill should be used when writing Solid server components or moving logic between server and client"
+      ],
+      "tags": [
+        "solid",
+        "solidjs",
+        "server-components",
+        "ssr",
+        "web"
+      ],
+      "source_url": "https://github.com/solidjs/solid/tree/main/packages/web/skills/server-components",
+      "install_command": "npx skills add solidjs/solid -g -s server-components",
+      "popularity": 36957,
+      "verified": true,
+      "tier": "main",
+      "score": null,
+      "last_pushed": "2026-11-25",
+      "scope": "tech"
+    },
+    {
+      "id": "idiomatic-rust",
+      "name": "idiomatic-rust",
+      "domain": "core-and-utilities",
+      "niche": "rust",
+      "creator": "rewrite-rs",
+      "use_cases": [
+        "Write Rust that reads like Rust: iterators over index loops, From/Into, derives, newtypes",
+        "This skill should be used when writing new Rust, reviewing translated-looking Rust, or naming constructors and accessors"
+      ],
+      "tags": [
+        "rust",
+        "idioms",
+        "ownership",
+        "borrow-checker"
+      ],
+      "source_url": "https://github.com/rewrite-rs/skills/tree/main/skills/rust/idiomatic-rust",
+      "install_command": "npx skills add rewrite-rs/skills -g -s idiomatic-rust",
+      "popularity": 27,
+      "verified": true,
+      "tier": "main",
+      "score": null,
+      "last_pushed": "2026-11-21",
+      "scope": "tech"
+    },
+    {
+      "id": "rust-errors",
+      "name": "rust-errors",
+      "domain": "core-and-utilities",
+      "niche": "rust",
+      "creator": "rewrite-rs",
+      "use_cases": [
+        "Design Rust error types and panic policy: Result over unwrap, thiserror for libraries, anyhow for binaries",
+        "This skill should be used when code calls unwrap or expect, or when designing or refactoring an error enum"
+      ],
+      "tags": [
+        "rust",
+        "error-handling",
+        "thiserror",
+        "anyhow",
+        "result"
+      ],
+      "source_url": "https://github.com/rewrite-rs/skills/tree/main/skills/rust/rust-errors",
+      "install_command": "npx skills add rewrite-rs/skills -g -s rust-errors",
+      "popularity": 27,
+      "verified": true,
+      "tier": "main",
+      "score": null,
+      "last_pushed": "2026-11-21",
+      "scope": "tech"
+    },
+    {
+      "id": "async-rust",
+      "name": "async-rust",
+      "domain": "core-and-utilities",
+      "niche": "rust",
+      "creator": "rewrite-rs",
+      "use_cases": [
+        "Correct async Rust: runtime choice, Send and Sync bounds, cancellation safety, blocking work in async contexts",
+        "This skill should be used when writing or reviewing async Rust, when a future is held across an await, or tokio/select issues come up"
+      ],
+      "tags": [
+        "rust",
+        "async",
+        "tokio",
+        "concurrency",
+        "futures"
+      ],
+      "source_url": "https://github.com/rewrite-rs/skills/tree/main/skills/rust/async-rust",
+      "install_command": "npx skills add rewrite-rs/skills -g -s async-rust",
+      "popularity": 27,
+      "verified": true,
+      "tier": "main",
+      "score": null,
+      "last_pushed": "2026-11-21",
+      "scope": "tech"
+    },
+    {
+      "id": "rust-testing",
+      "name": "rust-testing",
+      "domain": "core-and-utilities",
+      "niche": "rust",
+      "creator": "rewrite-rs",
+      "use_cases": [
+        "Rust testing practice: unit, integration, property and doc tests, and how to keep them fast",
+        "This skill should be used when writing or structuring Rust tests, choosing test frameworks, or improving coverage"
+      ],
+      "tags": [
+        "rust",
+        "testing",
+        "cargo",
+        "unit-tests"
+      ],
+      "source_url": "https://github.com/rewrite-rs/skills/tree/main/skills/workflow/rust-testing",
+      "install_command": "npx skills add rewrite-rs/skills -g -s rust-testing",
+      "popularity": 27,
+      "verified": true,
+      "tier": "main",
+      "score": null,
+      "last_pushed": "2026-11-21",
+      "scope": "tech"
+    },
+    {
+      "id": "rust-code-review",
+      "name": "rust-code-review",
+      "domain": "core-and-utilities",
+      "niche": "rust",
+      "creator": "rewrite-rs",
+      "use_cases": [
+        "Review Rust changes on standards and spec at once, beyond what clippy reports",
+        "This skill should be used when reviewing a Rust diff, pull request, or branch, or auditing a Rust file or crate"
+      ],
+      "tags": [
+        "rust",
+        "code-review",
+        "review",
+        "clippy"
+      ],
+      "source_url": "https://github.com/rewrite-rs/skills/tree/main/skills/workflow/rust-code-review",
+      "install_command": "npx skills add rewrite-rs/skills -g -s rust-code-review",
+      "popularity": 27,
+      "verified": true,
+      "tier": "main",
+      "score": null,
+      "last_pushed": "2026-11-21",
+      "scope": "tech"
+    },
+    {
+      "id": "unsafe-rust-review",
+      "name": "unsafe-rust-review",
+      "domain": "core-and-utilities",
+      "niche": "rust",
+      "creator": "google",
+      "use_cases": [
+        "Review unsafe Rust for soundness and memory-safety pitfalls",
+        "This skill should be used when reviewing or writing unsafe Rust blocks, FFI boundaries, or raw pointer code"
+      ],
+      "tags": [
+        "rust",
+        "unsafe",
+        "memory-safety",
+        "review",
+        "ffi"
+      ],
+      "source_url": "https://github.com/google/rust-skills/tree/main/unsafe_rust_review",
+      "install_command": "npx skills add google/rust-skills -g -s unsafe-rust-review",
+      "popularity": 90,
+      "verified": true,
+      "tier": "main",
+      "score": null,
+      "last_pushed": "2026-10-28",
+      "scope": "tech"
+    },
+    {
+      "id": "otel-js",
+      "name": "otel-js",
+      "domain": "infrastructure",
+      "niche": "observability",
+      "creator": "ollygarden",
+      "use_cases": [
+        "OpenTelemetry SDK setup and instrumentation for JavaScript and Node.js services",
+        "This skill should be used when adding traces, metrics, or logs to a Node.js or TypeScript service with OpenTelemetry"
+      ],
+      "tags": [
+        "opentelemetry",
+        "otel",
+        "observability",
+        "tracing",
+        "nodejs",
+        "javascript"
+      ],
+      "source_url": "https://github.com/ollygarden/opentelemetry-agent-skills/tree/main/skills/otel-js",
+      "install_command": "npx skills add ollygarden/opentelemetry-agent-skills -g -s otel-js",
+      "popularity": 126,
+      "verified": true,
+      "tier": "main",
+      "score": null,
+      "last_pushed": "2026-11-25",
+      "scope": "tech"
+    },
+    {
+      "id": "otel-go",
+      "name": "otel-go",
+      "domain": "infrastructure",
+      "niche": "observability",
+      "creator": "ollygarden",
+      "use_cases": [
+        "OpenTelemetry SDK setup and instrumentation for Go services",
+        "This skill should be used when adding traces, metrics, or logs to a Go service with OpenTelemetry"
+      ],
+      "tags": [
+        "opentelemetry",
+        "otel",
+        "observability",
+        "tracing",
+        "go",
+        "golang"
+      ],
+      "source_url": "https://github.com/ollygarden/opentelemetry-agent-skills/tree/main/skills/otel-go",
+      "install_command": "npx skills add ollygarden/opentelemetry-agent-skills -g -s otel-go",
+      "popularity": 126,
+      "verified": true,
+      "tier": "main",
+      "score": null,
+      "last_pushed": "2026-11-25",
+      "scope": "tech"
+    },
+    {
+      "id": "otel-python",
+      "name": "otel-python",
+      "domain": "infrastructure",
+      "niche": "observability",
+      "creator": "ollygarden",
+      "use_cases": [
+        "OpenTelemetry SDK setup and instrumentation for Python services",
+        "This skill should be used when adding traces, metrics, or logs to a Python service with OpenTelemetry"
+      ],
+      "tags": [
+        "opentelemetry",
+        "otel",
+        "observability",
+        "tracing",
+        "python"
+      ],
+      "source_url": "https://github.com/ollygarden/opentelemetry-agent-skills/tree/main/skills/otel-python",
+      "install_command": "npx skills add ollygarden/opentelemetry-agent-skills -g -s otel-python",
+      "popularity": 126,
+      "verified": true,
+      "tier": "main",
+      "score": null,
+      "last_pushed": "2026-11-25",
+      "scope": "tech"
+    },
+    {
+      "id": "otel-collector",
+      "name": "otel-collector",
+      "domain": "infrastructure",
+      "niche": "observability",
+      "creator": "ollygarden",
+      "use_cases": [
+        "Configure OpenTelemetry Collector components: config keys, defaults, signal support, stability",
+        "This skill should be used when writing or reviewing a Collector pipeline, receivers, processors, or exporters"
+      ],
+      "tags": [
+        "opentelemetry",
+        "otel",
+        "observability",
+        "tracing",
+        "collector",
+        "pipeline"
+      ],
+      "source_url": "https://github.com/ollygarden/opentelemetry-agent-skills/tree/main/skills/otel-collector",
+      "install_command": "npx skills add ollygarden/opentelemetry-agent-skills -g -s otel-collector",
+      "popularity": 126,
+      "verified": true,
+      "tier": "main",
+      "score": null,
+      "last_pushed": "2026-11-25",
+      "scope": "tech"
+    },
+    {
+      "id": "otel-semantic-conventions",
+      "name": "otel-semantic-conventions",
+      "domain": "infrastructure",
+      "niche": "observability",
+      "creator": "ollygarden",
+      "use_cases": [
+        "OpenTelemetry semantic conventions: attribute names, units, and stability for spans, metrics, and resources",
+        "This skill should be used when naming attributes or checking that telemetry follows the semconv spec"
+      ],
+      "tags": [
+        "opentelemetry",
+        "otel",
+        "observability",
+        "tracing",
+        "semantic-conventions",
+        "attributes"
+      ],
+      "source_url": "https://github.com/ollygarden/opentelemetry-agent-skills/tree/main/skills/otel-semantic-conventions",
+      "install_command": "npx skills add ollygarden/opentelemetry-agent-skills -g -s otel-semantic-conventions",
+      "popularity": 126,
+      "verified": true,
+      "tier": "main",
+      "score": null,
+      "last_pushed": "2026-11-25",
+      "scope": "tech"
+    },
+    {
+      "id": "tauri",
+      "name": "tauri",
+      "domain": "frontend",
+      "niche": "desktop",
+      "creator": "pinkpixel-dev",
+      "use_cases": [
+        "Build Tauri desktop apps: commands, capabilities, plugins, bundling, and distribution",
+        "This skill should be used when creating or working on a Tauri v2 app, its Rust commands, IPC, or packaging"
+      ],
+      "tags": [
+        "tauri",
+        "desktop",
+        "rust",
+        "webview",
+        "app"
+      ],
+      "source_url": "https://github.com/pinkpixel-dev/tauri-skills/tree/main/skills/tauri",
+      "install_command": "npx skills add pinkpixel-dev/tauri-skills -g -s tauri",
+      "popularity": 4,
+      "verified": true,
+      "tier": "main",
+      "score": null,
+      "last_pushed": "2026-08-08",
+      "scope": "tech"
+    },
+    {
+      "id": "electron-live-test",
+      "name": "electron-live-test",
+      "domain": "testing-and-qa",
+      "niche": "e2e",
+      "creator": "instructa",
+      "use_cases": [
+        "Live, headed testing of a running Electron app via native-devtools-mcp, CDP, screenshots, and accessibility tools",
+        "This skill should be used for interactive verification of an Electron desktop app, not deterministic CI coverage"
+      ],
+      "tags": [
+        "electron",
+        "desktop",
+        "testing",
+        "e2e",
+        "cdp",
+        "devtools"
+      ],
+      "source_url": "https://github.com/instructa/agent-skills/tree/main/skills/electron/electron-live-test",
+      "install_command": "npx skills add instructa/agent-skills -g -s electron-live-test",
+      "popularity": 141,
+      "verified": true,
+      "tier": "main",
+      "score": null,
+      "last_pushed": "2026-11-06",
+      "scope": "tech"
     }
   ],
-  "count": 463
+  "count": 439
 }

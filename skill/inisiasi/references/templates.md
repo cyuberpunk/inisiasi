@@ -16,6 +16,9 @@
 | Storage | | | |
 | Build/CI | | | |
 
+## Non-negotiables
+<every rule from PLAN, one per line, plus any the stack adds. Omit the section only when PLAN has none.>
+
 ## Architecture
 <Components and who owns what. Module boundaries. A small diagram (mermaid or ASCII) if it helps.>
 

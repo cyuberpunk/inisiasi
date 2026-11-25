@@ -12,6 +12,7 @@ export type InspectPlanResult = {
   sections_missing: string[];
   open_questions: string[];
   deferred_questions: string[];
+  non_negotiables: string[];
   facts_already_known: PlanFact[];
   questions_to_ask: string[];
 };
@@ -24,6 +25,7 @@ const INTERVIEW: { need: (s: Set<string>, text: string) => boolean; q: string }[
   { need: (s, text) => !s.has("Goals") || !/\b(personal|solo|sold|team|owner|myself|sendiri|jual)\b/i.test(text), q: "Solo/personal, team, or sold? Scale and budget?" },
   { need: (s) => !s.has("Constraints"), q: "Hard constraints: offline, privacy, existing code, languages you know?" },
   { need: (s) => !s.has("Non-goals"), q: "What is out of scope?" },
+  { need: (s) => !s.has("Non-negotiables"), q: "Anything the build must never do (non-negotiables)?" },
 ];
 
 const DEFERRED = /\b(later,\s+not\s+v1|out of v1|out of scope|deferred|resolved:|decided:|n\/a|won'?t do in v1)\b/i;
@@ -35,6 +37,7 @@ function normalizeTitle(title: string): string | undefined {
   if (/^mvp\b/.test(t)) return "MVP";
   if (/^constraints?$/.test(t)) return "Constraints";
   if (/^non[-\s]?goals?$/.test(t)) return "Non-goals";
+  if (/^(non[-\s]?negotiables?|never|do not|don'?ts|must not|prohibitions?|larangan)$/.test(t)) return "Non-negotiables";
   if (/^open questions?$/.test(t)) return "Open questions";
   return undefined;
 }
@@ -70,6 +73,7 @@ export function inspectPlan(path: string, maxQuestions?: number): InspectPlanRes
     sections_missing: [...REQUIRED],
     open_questions: [],
     deferred_questions: [],
+    non_negotiables: [],
     facts_already_known: [],
     questions_to_ask: INTERVIEW.map((i) => i.q).slice(0, max),
     ...extra,
@@ -88,7 +92,7 @@ export function inspectPlan(path: string, maxQuestions?: number): InspectPlanRes
     }
   }
   // A "Goal: ..." line counts as the Goals section when no heading exists.
-  for (const [name, label] of [["Goals", "goals?"], ["MVP", "mvp"], ["Constraints", "constraints?"], ["Non-goals", "non[- ]?goals?"]] as const) {
+  for (const [name, label] of [["Goals", "goals?"], ["MVP", "mvp"], ["Constraints", "constraints?"], ["Non-goals", "non[- ]?goals?"], ["Non-negotiables", "non[-\\s]?negotiables?"]] as const) {
     if (byName.has(name)) continue;
     const line = md.match(new RegExp(`^\\s*(?:[*_]{2})?${label}(?:[*_]{2})?\\s*:\\s*(\\S.*)$`, "im"));
     if (line) byName.set(name, line[1]);
@@ -104,9 +108,14 @@ export function inspectPlan(path: string, maxQuestions?: number): InspectPlanRes
   const rawItems = listItems(byName.get("Open questions") ?? "").filter((q) => !NONE.test(q.trim()));
   const { open, deferred } = classifyQuestions(rawItems);
 
+  const nnBody = byName.get("Non-negotiables");
+  const nnItems = nnBody !== undefined && !isEmptyBody(nnBody) ? listItems(nnBody) : [];
+  const nonNegotiables = nnItems.length ? nnItems : nnBody !== undefined && nnBody.trim() ? [nnBody.replace(/\s+/g, " ").trim()] : [];
+
   const facts: PlanFact[] = present.map((section) => ({ section, fact: firstFact(byName.get(section)!) }));
   const text = [md].join("\n");
-  const presentSet = new Set(present);
+  const presentSet = new Set<string>(present);
+  if (nonNegotiables.length) presentSet.add("Non-negotiables");
 
   const questions: string[] = [];
   const seen = new Set<string>();
@@ -126,10 +135,11 @@ export function inspectPlan(path: string, maxQuestions?: number): InspectPlanRes
     path: planPath,
     title_only: isTitleOnly,
     missing_file: false,
-    sections_present: [...present, ...(byName.has("Open questions") ? ["Open questions"] as const : [])],
+    sections_present: [...present, ...(byName.has("Open questions") ? ["Open questions"] as const : []), ...(nonNegotiables.length ? ["Non-negotiables"] as const : [])],
     sections_missing: missing,
     open_questions: open,
     deferred_questions: deferred,
+    non_negotiables: nonNegotiables,
     facts_already_known: facts,
     questions_to_ask: questions,
   };

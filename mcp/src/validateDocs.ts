@@ -157,6 +157,12 @@ export function validateDocs(root: string): ValidateDocsResult {
     }
   }
 
+  if (planMd !== undefined) {
+    const planHasRules = splitSections(planMd).some((s) => /^non[-\s]?negotiables?$/i.test(s.title.trim()) && s.body.trim().length > 0);
+    const archHasRules = archMd !== undefined && splitSections(archMd).some((s) => /^non[-\s]?negotiables?$/i.test(s.title.trim()));
+    if (planHasRules && !archHasRules) errors.push("docs/ARCHITECTURE.md is missing '## Non-negotiables' (PLAN.md lists rules the build must never break)");
+  }
+
   const tasks = parseTasks(tasksMd ?? "");
   const taskCount = tasks.length;
   if (tasksMd !== undefined) {

@@ -169,7 +169,7 @@ qa("K1", "skill", "every skill's name equals its folder and its referenced files
 
 qa("K2", "skill", "README lists every skill folder", async () => {
   const readme = readFileSync(join(REPO, "README.md"), "utf8");
-  const missing = readdirSync(join(REPO, "skill")).filter((d) => !readme.includes(`skill/${d}/`));
+  const missing = readdirSync(join(REPO, "skill")).filter((d) => !readme.includes(`skill/${d}`));
   ok(missing.length === 0, `not in README: ${missing.join(", ")}`);
 });
 

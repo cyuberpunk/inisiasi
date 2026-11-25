@@ -47,7 +47,14 @@ const FRAMEWORK_PKGS: Record<string, string> = {
   "@clerk/nextjs": "clerk", zustand: "zustand", "@reduxjs/toolkit": "redux",
   "@trpc/server": "trpc", "@trpc/client": "trpc", graphql: "graphql",
   wrangler: "wrangler", firebase: "firebase", "@supabase/supabase-js": "supabase",
+  electron: "electron", "electron-vite": "electron", wxt: "wxt", expo: "expo",
+  "react-native": "React Native", "@orpc/server": "orpc", "@orpc/client": "orpc",
+  "@orpc/contract": "orpc", "graphile-worker": "graphile-worker",
+  "@lingui/core": "lingui", "@biomejs/biome": "biome", turbo: "turbo",
+  dexie: "dexie", "@tauri-apps/api": "tauri", "@tauri-apps/cli": "tauri",
 };
+
+const DOCKER_FILES = new Set(["Dockerfile", "docker-compose.yml", "docker-compose.yaml", "compose.yml", "compose.yaml"]);
 
 const HINTS: { re: RegExp; label: string; kind: "language" | "framework" }[] = [
   { re: /\bswiftui\b/i, label: "SwiftUI", kind: "framework" },
@@ -166,6 +173,7 @@ export function detectStack(root: string): DetectStackResult {
     else if (base === "Gemfile") { manifests.push({ path: rel, kind: "Gemfile" }); add(languages, "Ruby"); add(managers, "bundler"); }
     else if (base === "composer.json") { manifests.push({ path: rel, kind: "composer.json" }); add(languages, "PHP"); add(managers, "composer"); }
     else if (base === "deno.json" || base === "deno.jsonc") { manifests.push({ path: rel, kind: base }); add(languages, "TypeScript"); add(managers, "deno"); }
+    else if (DOCKER_FILES.has(base)) add(frameworks, "docker");
   }
 
   for (const { file, manager } of LOCKS) if (has(file)) {
@@ -175,8 +183,14 @@ export function detectStack(root: string): DetectStackResult {
 
   if (has("package.json") && !managers.some((m) => ["npm", "pnpm", "yarn", "bun"].includes(m))) add(managers, "npm");
 
-  const hintText = [readText(join(abs, "AGENTS.md")), readText(join(abs, "README.md")), readText(join(abs, "docs", "PLAN.md"))]
-    .filter(Boolean).join("\n");
+  // PLAN states intent, so its text always informs hints. AGENTS/README get read only when there is
+  // no PLAN and no manifest to go on: prose docs mention platforms the code does not use.
+  const planText = readText(join(abs, "docs", "PLAN.md"));
+  const hintText = planText !== undefined
+    ? planText
+    : manifests.length
+      ? ""
+      : [readText(join(abs, "AGENTS.md")), readText(join(abs, "README.md"))].filter(Boolean).join("\n");
   const hints: string[] = [];
   for (const h of HINTS) if (h.re.test(hintText)) add(hints, h.label);
   for (const h of HINTS) {

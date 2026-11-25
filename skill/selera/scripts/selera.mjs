@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // selera: record the owner's habits and render them as code standards.
-// Profile lands in ~/.config/inisiasi/selera/profile.json, project override in ./.selera/profile.json.
+// Profile lands in ~/.config/inisiasi/selera/profile.md, project override in ./.selera/profile.md.
 import { mkdirSync, readFileSync, writeFileSync, existsSync, readdirSync } from "node:fs";
 import { homedir } from "node:os";
 import { execSync } from "node:child_process";
@@ -8,23 +8,49 @@ import { join } from "node:path";
 import { createInterface } from "node:readline/promises";
 
 const CONFIG_HOME = process.env.XDG_CONFIG_HOME ?? join(homedir(), ".config");
-const GLOBAL = process.env.SELERA_CONFIG ?? join(CONFIG_HOME, "inisiasi", "selera", "profile.json");
-const LEGACY = join(CONFIG_HOME, "selera", "profile.json");
-const PROJECT = join(process.cwd(), ".selera", "profile.json");
+const GLOBAL = process.env.SELERA_CONFIG ?? join(CONFIG_HOME, "inisiasi", "selera", "profile.md");
+const PROJECT = join(process.cwd(), ".selera", "profile.md");
 
 const SCOPES = ["default", "fe", "be", "mobile", "cli", "infra"];
 
-// Key = role, never a tool name. A value is one choice, or a comma list in preference order.
-const KEYS = [
-  "fetch", "state", "form", "validation", "ui", "styling", "db", "queue", "test", "lint", "format",
-  "structure", "imports", "exports", "errors", "git", "testing", "formatting", "immutability", "packageManager",
-  "pythonEnv", "commit", "branching", "merge", "quotes", "semicolons", "lineWidth",
-  "naming.file", "naming.folder", "naming.component", "naming.hook", "naming.function", "naming.class",
-  "naming.module", "naming.package", "naming.constant", "naming.type", "naming.dbTable", "naming.cssClass",
-  "bundler", "structure.repo", "structure.topology", "structure.folders", "structure.layers", "structure.boundaries",
-  "structure.packages", "structure.tests", "structure.docs", "structure.config", "structure.assets",
-  "structure.scripts", "structure.build", "structure.schema", "structure.api", "structure.pkgname",
-];
+// "## Web" sections hold "- key: value" entries; any other heading and free text is prose for the agent only.
+const SECTION_SCOPES = {
+  umum: "default", general: "default", default: "default",
+  web: "fe", frontend: "fe", fe: "fe",
+  backend: "be", be: "be",
+  mobile: "mobile", cli: "cli", infra: "infra", infrastructure: "infra",
+};
+const SCOPE_PREFIXES = new Set(["fe", "be", "mobile", "cli", "infra"]);
+const SECTION_NAME = { default: "Umum", fe: "Web", be: "Backend", mobile: "Mobile", cli: "CLI", infra: "Infra" };
+const PROFILE_HEADING = /^##\s+(.+?)\s*$/;
+const PROFILE_ENTRY = /^\s*[-*]\s+([A-Za-z][\w-]*(?:\.[\w-]+)*)\s*:\s*(.+?)\s*$/;
+const KEY_SHAPE = /^[A-Za-z][\w-]*(\.[\w-]+)*$/;
+
+function parseSections(md) {
+  const sections = [];
+  let cur = null;
+  for (const line of md.split(/\r?\n/)) {
+    const h = PROFILE_HEADING.exec(line);
+    if (h) { cur = { title: h[1].trim(), scope: SECTION_SCOPES[h[1].trim().toLowerCase()] ?? null, lines: [] }; sections.push(cur); }
+    else if (cur) cur.lines.push(line);
+  }
+  for (const s of sections) s.body = s.lines.join("\n").trim();
+  return sections;
+}
+
+function parseProfileMd(md) {
+  const flat = {};
+  for (const s of parseSections(md)) {
+    if (s.scope === null) continue;
+    for (const line of s.body.split("\n")) {
+      const m = PROFILE_ENTRY.exec(line);
+      if (!m) continue;
+      const key = m[1];
+      flat[s.scope === "default" || SCOPE_PREFIXES.has(key.split(".")[0]) ? key : `${s.scope}.${key}`] = m[2].replace(/`/g, "");
+    }
+  }
+  return flat;
+}
 
 const QUESTIONS = [
   { key: "packageManager", q: "Package manager", options: ["pnpm", "npm", "bun", "yarn"] },
@@ -58,39 +84,66 @@ const QUESTIONS = [
 ];
 
 function validKey(key) {
-  if (KEYS.includes(key)) return true;
-  const [scope, ...rest] = key.split(".");
-  return SCOPES.includes(scope) && rest.length && KEYS.includes(rest.join("."));
+  return KEY_SHAPE.test(key);
+}
+
+function flatOf(p) {
+  return existsSync(p) ? parseProfileMd(readFileSync(p, "utf8")) : {};
 }
 
 function readProfile() {
-  const pick = (p) => (existsSync(p) ? parseProfile(p) : {});
-  const legacy = existsSync(LEGACY) && !existsSync(GLOBAL) ? pick(LEGACY) : {};
-  const merged = { ...legacy, ...pick(GLOBAL), ...pick(PROJECT) };
-  // "schema" was the old name for "validation". Read it as the alias so old profiles keep working.
-  if (merged.schema !== undefined) { merged.validation ??= merged.schema; delete merged.schema; }
-  // "folders" was the old name for "structure.folders".
-  if (merged.folders !== undefined) { merged["structure.folders"] ??= merged.folders; delete merged.folders; }
-  return merged;
+  return { ...flatOf(GLOBAL), ...flatOf(PROJECT) };
 }
 
-function parseProfile(p) {
-  try { return JSON.parse(readFileSync(p, "utf8")); }
-  catch { console.error(`selera profile ${p} is not valid JSON. Fix or delete it.`); process.exit(1); }
+// A flat key routes to its scope's section; everything else lands in Umum.
+function sectionFor(key) {
+  const first = key.split(".")[0];
+  return key.includes(".") && SCOPE_PREFIXES.has(first) ? first : "default";
 }
 
+// Writes entries in place: replace the existing "- key:" line in the section, else append after its
+// last entry line, else create the section at the end. All other text (headings, prose) is kept.
 function writeProfile(kind, data) {
   const target = kind === "project" ? PROJECT : GLOBAL;
+  let lines = existsSync(target) ? readFileSync(target, "utf8").split("\n") : ["# selera"];
+  for (const [key, value] of Object.entries(data)) {
+    const scope = sectionFor(key);
+    const entryKey = scope === "default" ? key : key.split(".").slice(1).join(".");
+    const bounds = (() => {
+      let start = -1, end = lines.length;
+      for (let i = 0; i <= lines.length; i++) {
+        const h = i < lines.length ? PROFILE_HEADING.exec(lines[i]) : null;
+        if (h) {
+          if (start >= 0) { end = i; break; }
+          if ((SECTION_SCOPES[h[1].trim().toLowerCase()] ?? null) === scope) start = i;
+        }
+      }
+      return { start, end };
+    })();
+    if (bounds.start < 0) {
+      if (lines.length && lines[lines.length - 1].trim() !== "") lines.push("");
+      lines.push(`## ${SECTION_NAME[scope]}`, `- ${entryKey}: ${value}`);
+      continue;
+    }
+    let replaced = false;
+    let lastEntry = bounds.start;
+    for (let i = bounds.start + 1; i < bounds.end; i++) {
+      const m = PROFILE_ENTRY.exec(lines[i]);
+      if (!m) continue;
+      lastEntry = i;
+      if (m[1] === entryKey && !replaced) { lines[i] = `- ${entryKey}: ${value}`; replaced = true; }
+    }
+    if (!replaced) lines.splice(lastEntry + 1, 0, `- ${entryKey}: ${value}`);
+  }
   mkdirSync(join(target, ".."), { recursive: true });
-  const prev = existsSync(target) ? parseProfile(target) : {};
-  writeFileSync(target, JSON.stringify({ ...prev, ...data, updated: new Date().toISOString().slice(0, 10) }, null, 2));
+  writeFileSync(target, lines.join("\n").replace(/\n*$/, "\n"));
   return target;
 }
 
 // Compares with the file being written, not the merged view, so a project value that shadows a global write is named instead of hidden.
 function reportChanges(kind, data) {
-  const own = existsSync(kind === "project" ? PROJECT : GLOBAL) ? parseProfile(kind === "project" ? PROJECT : GLOBAL) : {};
-  const shadow = kind === "global" && existsSync(PROJECT) ? parseProfile(PROJECT) : {};
+  const own = flatOf(kind === "project" ? PROJECT : GLOBAL);
+  const shadow = kind === "global" ? flatOf(PROJECT) : {};
   for (const [k, v] of Object.entries(data)) {
     if (own[k] !== undefined && String(own[k]) !== v) console.log(`replaced ${k}: ${own[k]} -> ${v}`);
     if (shadow[k] !== undefined && String(shadow[k]) !== v) console.log(`note ${k}: project profile keeps ${shadow[k]}`);
@@ -128,7 +181,6 @@ async function setup(kind, prefill) {
 function render(profile) {
   const byScope = new Map();
   for (const [key, value] of Object.entries(profile)) {
-    if (key === "updated") continue;
     const [first, ...rest] = key.split(".");
     const scope = SCOPES.includes(first) && rest.length ? first : "default";
     const name = scope === "default" ? key : rest.join(".");
@@ -144,6 +196,13 @@ function render(profile) {
     lines.push("");
   }
   if (lines.length === 4) lines.push("Empty profile. The SoT defaults apply.", "");
+  for (const p of [GLOBAL, PROJECT]) {
+    if (!existsSync(p)) continue;
+    for (const s of parseSections(readFileSync(p, "utf8"))) {
+      if (s.scope !== null || !s.body) continue;
+      lines.push("## " + s.title, "", s.body, "");
+    }
+  }
   return lines.join("\n");
 }
 
@@ -196,10 +255,60 @@ const git = (cmd) => { try { return execSync("git " + cmd, { stdio: ["ignore", "
 
 export function infer() {
   const out = {};
-  const note = (key, value, evidence) => { if (value) out[key] = { value, evidence }; };
-  let pkg = {};
-  try { pkg = JSON.parse(readText("package.json") || "{}"); } catch { pkg = {}; }
-  const d = { ...(pkg.dependencies ?? {}), ...(pkg.devDependencies ?? {}) };
+  const note = (key, value, evidence) => { if (value && !out[key]) out[key] = { value, evidence }; };
+  const readJson = (rel) => { try { return JSON.parse(readText(rel)); } catch { return null; } };
+  const pkg = readJson("package.json") ?? {};
+
+  // Package set: the root package.json plus every workspace package, classified fe/be/mobile.
+  const globs = [];
+  const wsSection = readText("pnpm-workspace.yaml").match(/packages:\s*\n((?:\s*-\s*[^\n]*\n?)+)/);
+  if (wsSection) {
+    for (const line of wsSection[1].split("\n")) {
+      const g = line.match(/-\s*["']?([^"'\s]+)["']?\s*$/);
+      if (g && !g[1].startsWith("!")) globs.push(g[1]);
+    }
+  }
+  const ws = pkg.workspaces;
+  if (Array.isArray(ws)) globs.push(...ws);
+  else if (ws && Array.isArray(ws.packages)) globs.push(...ws.packages);
+
+  const pkgDirs = ["."];
+  const hasPkg = (dir) => existsSync(join(process.cwd(), dir, "package.json"));
+  const pkgsUnder = (base, maxDepth) => {
+    const found = [];
+    const visit = (dir, depth) => {
+      if (depth > maxDepth) return;
+      let entries = [];
+      try { entries = readdirSync(join(process.cwd(), dir), { withFileTypes: true }); } catch { return; }
+      for (const e of entries) {
+        if (!e.isDirectory() || SKIP.test(e.name)) continue;
+        const sub = join(dir, e.name);
+        if (hasPkg(sub)) { found.push(sub); continue; }
+        visit(sub, depth + 1);
+      }
+    };
+    visit(base, 1);
+    return found;
+  };
+  for (const g of globs) {
+    if (g.endsWith("/**")) pkgDirs.push(...pkgsUnder(g.slice(0, -3), 3));
+    else if (g.endsWith("/*")) pkgDirs.push(...pkgsUnder(g.slice(0, -2), 1));
+    else if (hasPkg(g)) pkgDirs.push(g);
+  }
+  const pkgs = pkgDirs.map((dir) => {
+    const p = dir === "." ? pkg : (readJson(join(dir, "package.json")) ?? {});
+    return { dir, deps: { ...(p.dependencies ?? {}), ...(p.devDependencies ?? {}) } };
+  });
+  const MOBILE = ["expo", "react-native"];
+  const FE = ["react", "vue", "svelte", "solid-js", "@angular/core", "next"];
+  const BE = ["hono", "express", "fastify", "elysia", "@nestjs/core", "@orpc/server", "@trpc/server", "prisma", "@prisma/client", "drizzle-orm", "graphile-worker"];
+  const hasAny = (p, names) => names.some((n) => p.deps[n]);
+  const mobilePkgs = pkgs.filter((p) => hasAny(p, MOBILE));
+  const fePkgs = pkgs.filter((p) => hasAny(p, FE) && !hasAny(p, MOBILE));
+  const bePkgs = pkgs.filter((p) => hasAny(p, BE));
+  // First match in the listed dep order, across the given packages.
+  const findDep = (list, names) => { for (const n of names) { const p = list.find((x) => x.deps[n]); if (p) return `${p.dir}: dependency ${n}`; } return null; };
+  const depRe = (list, re) => { for (const p of list) { const k = Object.keys(p.deps).find((x) => re.test(x)); if (k) return `${p.dir}: dependency ${k}`; } return null; };
 
   if (has("pnpm-lock.yaml")) note("packageManager", "pnpm", "pnpm-lock.yaml");
   else if (has("bun.lockb") || has("bun.lock")) note("packageManager", "bun", "bun lockfile");
@@ -209,40 +318,164 @@ export function infer() {
   if (has("uv.lock")) note("pythonEnv", "uv", "uv.lock");
   else if (has("poetry.lock")) note("pythonEnv", "poetry", "poetry.lock");
 
-  if (d.zod) note("validation", "zod", "dependency zod");
-  else if (d.valibot) note("validation", "valibot", "dependency valibot");
-  else if (d["@sinclair/typebox"]) note("validation", "typebox", "dependency typebox");
+  const vZod = findDep(pkgs, ["zod"]);
+  const vValibot = findDep(pkgs, ["valibot"]);
+  const vTypebox = findDep(pkgs, ["@sinclair/typebox", "typebox"]);
+  if (vZod) note("validation", "zod", vZod);
+  else if (vValibot) note("validation", "valibot", vValibot);
+  else if (vTypebox) note("validation", "typebox", vTypebox);
   else if (readText("pyproject.toml").includes("pydantic")) note("validation", "pydantic", "pyproject pydantic");
 
-  const uiMap = { "@heroui/react": "heroui", "@chakra-ui/react": "chakra", "@mantine/core": "mantine", "@mui/material": "mui" };
-  for (const [dep, name] of Object.entries(uiMap)) if (d[dep]) { note("ui", name, "dependency " + dep); break; }
-  if (!out.ui && has("components.json")) note("ui", "shadcn", "components.json");
-
-  if (d["@tanstack/react-query"]) note("fetch", "tanstack-query", "dependency @tanstack/react-query");
-  else if (d.axios) note("fetch", "axios", "dependency axios");
-  else if (d["@apollo/client"] || d.graphql) note("fetch", "gql", "dependency graphql");
-
-  if (d.vite || has("vite.config.ts") || has("vite.config.js")) note("bundler", "vite", "vite config or dependency");
-  else if (d.webpack || has("webpack.config.js")) note("bundler", "webpack", "webpack config or dependency");
-
-  if (d.oxlint || has(".oxlintrc.json")) note("lint", "oxlint", "oxlint config");
-  else if (d["@biomejs/biome"] || has("biome.json") || has("biome.jsonc")) note("lint", "biome", "biome config");
-  else if (d.eslint || has("eslint.config.js") || has("eslint.config.mjs") || has(".eslintrc.json")) note("lint", "eslint", "eslint config");
-
-  if (d.vitest) note("test", "vitest", "dependency vitest");
-  else if (d.jest) note("test", "jest", "dependency jest");
+  const tVitest = findDep(pkgs, ["vitest"]);
+  const tJest = findDep(pkgs, ["jest"]);
+  if (tVitest) note("test", "vitest", tVitest);
+  else if (tJest) note("test", "jest", tJest);
   else if (has("pytest.ini") || readText("pyproject.toml").includes("pytest")) note("test", "pytest", "pytest config");
 
-  for (const f of [".prettierrc", ".prettierrc.json", "biome.json", ".editorconfig"]) {
+  const lOxlint = findDep(pkgs, ["oxlint"]);
+  const lBiome = findDep(pkgs, ["@biomejs/biome"]);
+  const lEslint = findDep(pkgs, ["eslint"]);
+  if (lOxlint || has(".oxlintrc.json")) note("lint", "oxlint", lOxlint ?? ".oxlintrc.json");
+  else if (lBiome || has("biome.json") || has("biome.jsonc")) note("lint", "biome", lBiome ?? "biome config");
+  else if (lEslint || has("eslint.config.js") || has("eslint.config.mjs") || has(".eslintrc.json")) note("lint", "eslint", lEslint ?? "eslint config");
+
+  const fOxfmt = findDep(pkgs, ["oxfmt"]);
+  const fPrettier = findDep(pkgs, ["prettier"]);
+  const prettierRc = [".prettierrc", ".prettierrc.json", ".prettierrc.jsonc", ".prettierrc.yaml", ".prettierrc.yml", ".prettierrc.js", ".prettierrc.mjs"].find(has);
+  if (fOxfmt || has(".oxfmtrc.json") || has(".oxfmtrc.jsonc")) note("format", "oxfmt", fOxfmt ?? ".oxfmtrc");
+  else if (lBiome || has("biome.json") || has("biome.jsonc")) note("format", "biome", lBiome ?? "biome config");
+  else if (fPrettier || prettierRc) note("format", "prettier", fPrettier ?? prettierRc);
+
+  const ePlaywright = findDep(pkgs, ["@playwright/test", "playwright"]);
+  const eCypress = findDep(pkgs, ["cypress"]);
+  if (ePlaywright) note("e2e", "playwright", ePlaywright);
+  else if (eCypress) note("e2e", "cypress", eCypress);
+
+  const iLingui = findDep(pkgs, ["@lingui/core"]);
+  const iI18next = findDep(pkgs, ["i18next"]);
+  if (iLingui) note("i18n", "lingui", iLingui);
+  else if (iI18next) note("i18n", "i18next", iI18next);
+
+  const aBetter = findDep(pkgs, ["better-auth"]);
+  const aClerk = depRe(pkgs, /^@clerk\//);
+  if (aBetter) note("auth", "better-auth", aBetter);
+  else if (aClerk) note("auth", "clerk", aClerk);
+
+  const oSentry = depRe(pkgs, /^@sentry\//);
+  const oOtel = findDep(pkgs, ["@opentelemetry/api"]);
+  if (oSentry && oOtel) note("observability", "sentry+opentelemetry", oSentry + "; " + oOtel);
+  else if (oSentry) note("observability", "sentry", oSentry);
+  else if (oOtel) note("observability", "opentelemetry", oOtel);
+
+  if (fePkgs.length) {
+    const uiMap = [["@heroui/react", "heroui"], ["@chakra-ui/react", "chakra"], ["@mantine/core", "mantine"], ["@mui/material", "mui"]];
+    for (const [dep, name] of uiMap) { const ev = findDep(fePkgs, [dep]); if (ev) { note("fe.ui", name, ev); break; } }
+    if (!out["fe.ui"]) {
+      const dir = fePkgs.find((p) => existsSync(join(process.cwd(), p.dir, "components.json")))?.dir;
+      if (dir || has("components.json")) note("fe.ui", "shadcn", (dir ?? ".") + ": components.json");
+    }
+    const styling = findDep(fePkgs, ["tailwindcss"]);
+    if (styling) note("fe.styling", "tailwind", styling);
+    const fetchMap = [["@tanstack/react-query", "tanstack-query"], ["swr", "swr"], ["axios", "axios"]];
+    for (const [dep, name] of fetchMap) { const ev = findDep(fePkgs, [dep]); if (ev) { note("fe.fetch", name, ev); break; } }
+    if (!out["fe.fetch"]) { const ev = findDep(fePkgs, ["graphql", "@apollo/client"]); if (ev) note("fe.fetch", "gql", ev); }
+    const rr = findDep(fePkgs, ["react-router", "react-router-dom"]);
+    const tr = findDep(fePkgs, ["@tanstack/react-router"]);
+    if (rr) note("fe.router", "react-router", rr);
+    else if (tr) note("fe.router", "tanstack-router", tr);
+    const stateMap = [["zustand", "zustand"], ["@reduxjs/toolkit", "redux"], ["jotai", "jotai"]];
+    for (const [dep, name] of stateMap) { const ev = findDep(fePkgs, [dep]); if (ev) { note("fe.state", name, ev); break; } }
+    const vite = findDep(fePkgs, ["vite"]);
+    const webpack = findDep(fePkgs, ["webpack"]);
+    const viteCfg = fePkgs.find((p) => ["vite.config.ts", "vite.config.js"].some((f) => existsSync(join(process.cwd(), p.dir, f))))?.dir;
+    if (vite || viteCfg || has("vite.config.ts") || has("vite.config.js")) note("fe.bundler", "vite", vite ?? (viteCfg ? viteCfg + ": vite config" : "vite config"));
+    else if (webpack || has("webpack.config.js")) note("fe.bundler", "webpack", webpack ?? "webpack config");
+  }
+
+  if (bePkgs.length) {
+    const fwMap = [["hono", "hono"], ["express", "express"], ["fastify", "fastify"], ["elysia", "elysia"], ["@nestjs/core", "nestjs"]];
+    for (const [dep, name] of fwMap) { const ev = findDep(bePkgs, [dep]); if (ev) { note("be.framework", name, ev); break; } }
+    const orpc = findDep(bePkgs, ["@orpc/server", "@orpc/contract"]);
+    const trpc = findDep(bePkgs, ["@trpc/server"]);
+    if (orpc) note("be.api", "orpc", orpc);
+    else if (trpc) note("be.api", "trpc", trpc);
+    const prisma = findDep(bePkgs, ["prisma", "@prisma/client"]);
+    const drizzle = findDep(bePkgs, ["drizzle-orm"]);
+    if (prisma) note("be.orm", "prisma", prisma);
+    else if (drizzle) note("be.orm", "drizzle", drizzle);
+    const dbMap = [[["pg", "postgres", "@prisma/adapter-pg", "@neondatabase/serverless"], "postgres"], [["mysql2"], "mysql"], [["better-sqlite3"], "sqlite"]];
+    for (const [deps, name] of dbMap) { const ev = findDep(bePkgs, deps); if (ev) { note("be.db", name, ev); break; } }
+    const queueMap = [["graphile-worker", "graphile-worker"], ["bullmq", "bullmq"], ["pg-boss", "pg-boss"]];
+    for (const [dep, name] of queueMap) { const ev = findDep(bePkgs, [dep]); if (ev) { note("be.queue", name, ev); break; } }
+  }
+
+  if (mobilePkgs.length) {
+    const expo = findDep(mobilePkgs, ["expo"]);
+    const rn = findDep(mobilePkgs, ["react-native"]);
+    note("mobile.framework", expo ? "expo" : "react-native", expo ?? rn);
+  }
+
+  note("structure.repo", globs.length ? "monorepo" : "single", globs.length ? "workspace globs " + globs.join(", ") : "no workspace config");
+  if (has("turbo.json")) note("structure.build", "turbo", "turbo.json");
+  else if (has("nx.json")) note("structure.build", "nx", "nx.json");
+
+  // Formatting, config first: each property comes from the first file that sets it.
+  for (const f of ["biome.json", "biome.jsonc", ".prettierrc", ".prettierrc.json", ".oxfmtrc.json", ".oxfmtrc.jsonc", ".editorconfig"]) {
     const t = readText(f);
     if (!t) continue;
-    if (/"singleQuote"\s*:\s*true/.test(t)) note("quotes", "single", f);
-    if (/"singleQuote"\s*:\s*false/.test(t)) note("quotes", "double", f);
-    if (/"semi"\s*:\s*false/.test(t)) note("semicolons", "never", f);
-    if (/"semi"\s*:\s*true/.test(t)) note("semicolons", "always", f);
-    const w = t.match(/"printWidth"\s*:\s*(\d+)/);
-    if (w) note("lineWidth", w[1], f);
-    break;
+    if (!out.quotes) {
+      const q = t.match(/"quoteStyle"\s*:\s*"(single|double)"/);
+      if (q) note("quotes", q[1], f);
+      else if (/"singleQuote"\s*:\s*true/.test(t)) note("quotes", "single", f);
+      else if (/"singleQuote"\s*:\s*false/.test(t)) note("quotes", "double", f);
+    }
+    if (!out.semicolons) {
+      const s = t.match(/"semicolons"\s*:\s*"(always|asNeeded)"/);
+      if (s) note("semicolons", s[1] === "always" ? "always" : "never", f);
+      else if (/"semi"\s*:\s*true/.test(t)) note("semicolons", "always", f);
+      else if (/"semi"\s*:\s*false/.test(t)) note("semicolons", "never", f);
+    }
+    if (!out.lineWidth) {
+      const w = t.match(/"lineWidth"\s*:\s*(\d+)/) ?? t.match(/"printWidth"\s*:\s*(\d+)/) ?? t.match(/max_line_length\s*=\s*(\d+)/);
+      if (w) note("lineWidth", w[1], f);
+    }
+  }
+
+  // Source fallback for quotes/semicolons, plus the import style the code actually uses.
+  const importLines = [];
+  const srcSkip = /^(node_modules|\.git|dist|build|coverage|\.next|\.turbo|\.cache|\.output|\.wxt|\.codebase-memory|\.agent-teams|\.selera|\.DS_Store)$/;
+  let filesSeen = 0;
+  const sampleSrc = (dir) => {
+    if (filesSeen >= 300) return;
+    let entries = [];
+    try { entries = readdirSync(dir, { withFileTypes: true }); } catch { return; }
+    for (const e of entries) {
+      if (filesSeen >= 300) return;
+      if (srcSkip.test(e.name)) continue;
+      const p = join(dir, e.name);
+      if (e.isDirectory()) { sampleSrc(p); continue; }
+      if (!/\.(ts|tsx|js|jsx|mjs)$/.test(e.name)) continue;
+      filesSeen++;
+      let text = "";
+      try { text = readFileSync(p, "utf8"); } catch { continue; }
+      for (const l of text.split("\n")) {
+        const m = l.match(/^import .* from (['"])([^'"]+)\1(;?)\s*$/);
+        if (m) importLines.push({ q: m[1], semi: m[3] === ";", spec: m[2] });
+      }
+    }
+  };
+  sampleSrc(process.cwd());
+  if (importLines.length >= 20) {
+    const dq = importLines.filter((l) => l.q === '"').length;
+    const sc = importLines.filter((l) => l.semi).length;
+    if (!out.quotes) {
+      const maj = Math.max(dq, importLines.length - dq);
+      if (maj / importLines.length >= 0.8) note("quotes", dq * 2 >= importLines.length ? "double" : "single", `${maj} of ${importLines.length} imports in source`);
+    }
+    if (!out.semicolons) {
+      if (sc / importLines.length >= 0.8) note("semicolons", "always", `${sc} of ${importLines.length} imports in source`);
+      else if (sc / importLines.length <= 0.2) note("semicolons", "never", `${sc} of ${importLines.length} imports in source`);
+    }
   }
 
   const subjects = git("log --format=%s -n 200").trim().split("\n").filter(Boolean);
@@ -258,11 +491,24 @@ export function infer() {
     note("merge", merges ? "merge-commit" : "squash", merges ? "merge commits present" : "linear history");
   }
 
-  if (has("tsconfig.json")) note("imports", /"(paths|baseUrl)"/.test(readText("tsconfig.json")) ? "alias" : "relative", "tsconfig.json");
+  let aliasEv = null;
+  for (const dir of pkgDirs) {
+    let names = [];
+    try { names = readdirSync(join(process.cwd(), dir)).filter((n) => /^tsconfig.*\.json$/.test(n)); } catch { continue; }
+    for (const n of names) {
+      const rel = join(dir, n);
+      if (/"(paths|baseUrl)"/.test(readText(rel))) { aliasEv = rel; break; }
+    }
+    if (aliasEv) break;
+  }
+  const aliased = importLines.filter((l) => l.spec.startsWith("@/") || l.spec.startsWith("~/")).length;
+  if (aliasEv) note("imports", "alias", aliasEv);
+  else if (aliased >= 5) note("imports", "alias", `${aliased} imports from @/ or ~/`);
+  else note("imports", "relative", aliased ? `${aliased} imports from @/ or ~/` : "no paths or aliases");
 
   const counts = { "kebab-case": 0, camelCase: 0, PascalCase: 0 };
   const scan = (dir, depth) => {
-    if (depth > 2) return;
+    if (depth > 4) return;
     let entries = [];
     try { entries = readdirSync(dir, { withFileTypes: true }); } catch { return; }
     for (const e of entries) {
@@ -302,13 +548,20 @@ const answersIdx = rest.indexOf("--answers");
 if (cmd === "tree") cmdTree(rest.find((r) => /^\d+$/.test(r)));
 else if (cmd === "learn") cmdLearn(rest.includes("--write"));
 else if (cmd === "setup") await setup(kind, answersIdx >= 0 ? rest[answersIdx + 1] : undefined);
-else if (cmd === "show") console.log(JSON.stringify(readProfile(), null, 2));
+else if (cmd === "show") {
+  const out = [];
+  for (const [label, p] of [["global", GLOBAL], ["project", PROJECT]]) {
+    if (!existsSync(p)) continue;
+    out.push(`# ${label}: ${p}`, readFileSync(p, "utf8").trimEnd());
+  }
+  if (!out.length) console.log("Empty profile. The SoT defaults apply.");
+  else console.log(out.join("\n\n") + "\n\n# merged\n" + JSON.stringify(readProfile(), null, 2));
+}
 else if (cmd === "apply") process.stdout.write(render(readProfile()));
 else if (cmd === "set") {
-  const [rawKey, ...valueParts] = rest.filter((r) => !r.startsWith("--"));
-  const key = rawKey === "schema" ? "validation" : rawKey;
+  const [key, ...valueParts] = rest.filter((r) => !r.startsWith("--"));
   if (!key || !valueParts.length) { console.error("usage: selera set <key> <value> [--project]"); process.exit(1); }
-  if (!validKey(key)) { console.error(`unknown key. known: ${KEYS.join(", ")}. prefix with a scope: ${SCOPES.slice(1).join(", ")}`); process.exit(1); }
+  if (!validKey(key)) { console.error(`bad key "${key}". Shape: role or scope.role, e.g. validation, fe.ui`); process.exit(1); }
   const value = valueParts.join(" ");
   reportChanges(kind, { [key]: value });
   console.log("wrote " + writeProfile(kind, { [key]: value }));

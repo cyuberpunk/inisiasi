@@ -147,7 +147,7 @@ try {
   assert.equal(open.deferred_questions.length, 1);
   assert.ok(open.open_questions[0].includes("Which folders"));
   assert.ok(open.deferred_questions[0].toLowerCase().includes("notarization"));
-  assert.equal(open.questions_to_ask.length, 2);
+  assert.equal(open.questions_to_ask.length, 3);
   assert.ok(!open.questions_to_ask[0].match(/not answered yet/i));
   assert.equal(inspectPlan(join(dir, "open"), 1).questions_to_ask.length, 1);
 
@@ -163,6 +163,28 @@ try {
   assert.equal(ready.open_questions.length, 0);
   assert.equal(ready.deferred_questions.length, 1);
   assert.ok(ready.facts_already_known.some((f) => f.section === "Goals"));
+  assert.deepEqual(ready.non_negotiables, []);
+  assert.ok(ready.questions_to_ask.some((q) => /non-negotiables/i.test(q)));
+
+  // Non-negotiables: optional, normalized from "## Larangan", never affects ready.
+  const nnRoot = join(dir, "nn");
+  write(nnRoot, "docs/PLAN.md", readyPlan + "\n## Larangan\n- Never sync to a server.\n- Never log secrets.\n");
+  const nn = inspectPlan(nnRoot);
+  assert.equal(nn.ready, true);
+  assert.equal(nn.non_negotiables.length, 2);
+  assert.ok(nn.sections_present.includes("Non-negotiables"));
+  assert.ok(!nn.questions_to_ask.some((q) => /non-negotiables/i.test(q)));
+
+  const nnDoc = join(dir, "nn-docs");
+  write(nnDoc, "docs/PLAN.md", readyPlan + "\n## Non-negotiables\n- Never sync.\n");
+  write(nnDoc, "docs/ARCHITECTURE.md", validArch);
+  write(nnDoc, "docs/TASKS.md", validTasks);
+  write(nnDoc, "AGENTS_WORKLOG.md", validLog);
+  const noNN = validateDocs(nnDoc);
+  assert.ok(noNN.errors.some((e) => e.includes("missing '## Non-negotiables'")), noNN.errors.join("\n"));
+  write(nnDoc, "docs/ARCHITECTURE.md", validArch + "\n## Non-negotiables\n- Never sync.\n");
+  const hasNN = validateDocs(nnDoc);
+  assert.ok(!hasNN.errors.some((e) => /Non-negotiables/.test(e)), hasNN.errors.join("\n"));
 
   const valid = validateDocs(readyRoot);
   assert.equal(valid.ok, true, valid.errors.join("\n"));
