@@ -7,7 +7,7 @@
 Ceritakan ke coding agent kamu apa yang mau dibuat. inisiasi membantunya memilih alat,<br>
 merencanakan pekerjaan, dan menulis panduan langkah demi langkah yang bisa kamu ikuti, walaupun kamu belum pernah coding.
 
-[![npm](https://img.shields.io/npm/v/inisiasi-mcp)](https://www.npmjs.com/package/inisiasi-mcp)
+[![npm](https://img.shields.io/npm/v/inisiasi)](https://www.npmjs.com/package/inisiasi)
 [![License](https://img.shields.io/badge/license-GPL--3.0--or--later-informational)](LICENSE)
 [![Node](https://img.shields.io/badge/node-%E2%89%A5%2022-informational)](mcp/package.json)
 [![MCP tools](https://img.shields.io/badge/MCP%20tools-10-informational)](#tool-mcp)
@@ -64,10 +64,10 @@ Pasang dua skill, lalu daftarkan MCP server (contoh Claude Code):
 ```sh
 npx skills add cyuberpunk/inisiasi --full-depth -g -s inisiasi
 npx skills add cyuberpunk/inisiasi --full-depth -g -s selera
-claude mcp add inisiasi --scope user -- npx -y inisiasi-mcp
+claude mcp add inisiasi --scope user -- npx -y -p inisiasi inisiasi-mcp
 ```
 
-Paket [`inisiasi-mcp`](https://www.npmjs.com/package/inisiasi-mcp) sudah membawa katalog dan file referensi, jadi tidak ada lagi yang perlu diunduh. Agent lain: lihat [Daftarkan di agent lain](#daftarkan-di-agent-lain).
+Paket [`inisiasi`](https://www.npmjs.com/package/inisiasi) sudah membawa katalog dan file referensi, jadi tidak ada lagi yang perlu diunduh. Agent lain: lihat [Daftarkan di agent lain](#daftarkan-di-agent-lain).
 
 ### Dari checkout
 
@@ -143,7 +143,7 @@ Ekstensi Chrome pribadi yang menyimpan likes dan bookmark X saya di perangkat se
 
 ## Contoh nyata
 
-Ini pengecekan yang dijalankan agent untukmu di balik layar. Kamu tidak perlu mengetiknya, tapi contoh ini menunjukkan apa yang ia periksa. Setiap blok adalah perintah sungguhan yang dijalankan di repo ini pada 2026-11-25, dengan output dipotong ke field yang ditampilkan. Di luar checkout, ganti `node mcp/dist/cli.js` dengan `npx -y -p inisiasi-mcp inisiasi`.
+Ini pengecekan yang dijalankan agent untukmu di balik layar. Kamu tidak perlu mengetiknya, tapi contoh ini menunjukkan apa yang ia periksa. Setiap blok adalah perintah sungguhan yang dijalankan di repo ini pada 2026-11-25, dengan output dipotong ke field yang ditampilkan. Di luar checkout, ganti `node mcp/dist/cli.js` dengan `npx -y -p inisiasi inisiasi`.
 
 **1. Cek PLAN sebelum kickoff.** Fixture tes `fuu` adalah pengunci folder macOS dengan dua pertanyaan terbuka.
 
@@ -338,7 +338,7 @@ inisiasi/
 | `select_references` | `project_description?`, `plan_path?`, `limit?` |
 | `recommend_bundle` | `project_description?`, `root?`, `plan_path?`, `limit?` |
 
-Setiap tool punya padanan CLI (`npx -y -p inisiasi-mcp inisiasi <perintah>`, atau `node mcp/dist/cli.js <perintah>` di checkout), ditambah `drift [root]`. `limit` bawaannya 8 dan maksimal 25. Entri bertanda `verified: false` tidak pernah direkomendasikan.
+Setiap tool punya padanan CLI (`npx -y -p inisiasi inisiasi <perintah>`, atau `node mcp/dist/cli.js <perintah>` di checkout), ditambah `drift [root]`. `limit` bawaannya 8 dan maksimal 25. Entri bertanda `verified: false` tidak pernah direkomendasikan.
 
 ### Daftarkan di agent lain
 
@@ -351,7 +351,7 @@ Blok di bawah memakai paket npm. Dari checkout, pakai `node` sebagai command dan
 # ~/.codex/config.toml
 [mcp_servers.inisiasi]
 command = "npx"
-args = ["-y", "inisiasi-mcp"]
+args = ["-y", "-p", "inisiasi", "inisiasi-mcp"]
 ```
 </details>
 
@@ -363,7 +363,7 @@ args = ["-y", "inisiasi-mcp"]
   "mcp": {
     "inisiasi": {
       "type": "local",
-      "command": ["npx", "-y", "inisiasi-mcp"],
+      "command": ["npx", "-y", "-p", "inisiasi", "inisiasi-mcp"],
       "enabled": true
     }
   }
@@ -377,7 +377,7 @@ args = ["-y", "inisiasi-mcp"]
 ```json
 {
   "mcpServers": {
-    "inisiasi": { "command": "npx", "args": ["-y", "inisiasi-mcp"] }
+    "inisiasi": { "command": "npx", "args": ["-y", "-p", "inisiasi", "inisiasi-mcp"] }
   }
 }
 ```

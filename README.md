@@ -7,7 +7,7 @@
 Tell your coding agent what you want to build. inisiasi helps it choose the tools,<br>
 plan the work, and write a step-by-step guide you can follow, even if you have never coded.
 
-[![npm](https://img.shields.io/npm/v/inisiasi-mcp)](https://www.npmjs.com/package/inisiasi-mcp)
+[![npm](https://img.shields.io/npm/v/inisiasi)](https://www.npmjs.com/package/inisiasi)
 [![License](https://img.shields.io/badge/license-GPL--3.0--or--later-informational)](LICENSE)
 [![Node](https://img.shields.io/badge/node-%E2%89%A5%2022-informational)](mcp/package.json)
 [![MCP tools](https://img.shields.io/badge/MCP%20tools-10-informational)](#mcp-tools)
@@ -64,10 +64,10 @@ Install the two skills, then register the MCP server (Claude Code shown):
 ```sh
 npx skills add cyuberpunk/inisiasi --full-depth -g -s inisiasi
 npx skills add cyuberpunk/inisiasi --full-depth -g -s selera
-claude mcp add inisiasi --scope user -- npx -y inisiasi-mcp
+claude mcp add inisiasi --scope user -- npx -y -p inisiasi inisiasi-mcp
 ```
 
-The [`inisiasi-mcp`](https://www.npmjs.com/package/inisiasi-mcp) package carries the catalog and the reference files, so there is nothing else to download. Other agents: see [Register in other agents](#register-in-other-agents).
+The [`inisiasi`](https://www.npmjs.com/package/inisiasi) package carries the catalog and the reference files, so there is nothing else to download. Other agents: see [Register in other agents](#register-in-other-agents).
 
 ### From a checkout
 
@@ -184,7 +184,7 @@ A personal Chrome extension that keeps my X likes and bookmarks on my machine.
 
 ## Real examples
 
-These are the checks the agent runs for you behind the scenes. You never need to type them, but they show what it looks at. Each block is a real command run against this repo on 2026-11-25, with the output trimmed to the fields shown. Outside a checkout, replace `node mcp/dist/cli.js` with `npx -y -p inisiasi-mcp inisiasi`.
+These are the checks the agent runs for you behind the scenes. You never need to type them, but they show what it looks at. Each block is a real command run against this repo on 2026-11-25, with the output trimmed to the fields shown. Outside a checkout, replace `node mcp/dist/cli.js` with `npx -y -p inisiasi inisiasi`.
 
 **1. Check a PLAN before kickoff.** The test fixture `fuu` is a macOS folder locker with two open questions.
 
@@ -387,7 +387,7 @@ inisiasi/
 | `select_references` | `project_description?`, `plan_path?`, `limit?` |
 | `recommend_bundle` | `project_description?`, `root?`, `plan_path?`, `limit?` |
 
-Every tool has a CLI twin (`npx -y -p inisiasi-mcp inisiasi <command>`, or `node mcp/dist/cli.js <command>` in a checkout), plus `drift [root]`. `limit` defaults to 8 and caps at 25. Entries marked `verified: false` are never recommended.
+Every tool has a CLI twin (`npx -y -p inisiasi inisiasi <command>`, or `node mcp/dist/cli.js <command>` in a checkout), plus `drift [root]`. `limit` defaults to 8 and caps at 25. Entries marked `verified: false` are never recommended.
 
 ### Register in other agents
 
@@ -400,7 +400,7 @@ The blocks use the npm package. From a checkout, use `node` as the command and `
 # ~/.codex/config.toml
 [mcp_servers.inisiasi]
 command = "npx"
-args = ["-y", "inisiasi-mcp"]
+args = ["-y", "-p", "inisiasi", "inisiasi-mcp"]
 ```
 </details>
 
@@ -412,7 +412,7 @@ args = ["-y", "inisiasi-mcp"]
   "mcp": {
     "inisiasi": {
       "type": "local",
-      "command": ["npx", "-y", "inisiasi-mcp"],
+      "command": ["npx", "-y", "-p", "inisiasi", "inisiasi-mcp"],
       "enabled": true
     }
   }
@@ -426,7 +426,7 @@ args = ["-y", "inisiasi-mcp"]
 ```json
 {
   "mcpServers": {
-    "inisiasi": { "command": "npx", "args": ["-y", "inisiasi-mcp"] }
+    "inisiasi": { "command": "npx", "args": ["-y", "-p", "inisiasi", "inisiasi-mcp"] }
   }
 }
 ```

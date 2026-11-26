@@ -1,4 +1,4 @@
-# inisiasi-mcp
+# inisiasi
 
 Local MCP server and CLI for [inisiasi](https://github.com/cyuberpunk/inisiasi), a kickoff skill that turns `docs/PLAN.md`, or an existing codebase without architecture docs, into a decided stack, architecture, first tasks and a setup guide.
 
@@ -11,10 +11,10 @@ Requires Node 22 or newer.
 Register the server (Claude Code shown):
 
 ```sh
-claude mcp add inisiasi --scope user -- npx -y inisiasi-mcp
+claude mcp add inisiasi --scope user -- npx -y -p inisiasi inisiasi-mcp
 ```
 
-Other agents: use `npx` as the command and `["-y", "inisiasi-mcp"]` as the arguments.
+Other agents: use `npx` as the command and `["-y", "-p", "inisiasi", "inisiasi-mcp"]` as the arguments.
 
 Install the two skills that drive it:
 
@@ -28,9 +28,9 @@ Then open a project and tell your agent `inisiasi`.
 ## Use from the terminal
 
 ```sh
-npx -y -p inisiasi-mcp inisiasi recommend "Tauri desktop app"
-npx -y -p inisiasi-mcp inisiasi inspect_plan .
-npx -y -p inisiasi-mcp inisiasi validate_docs .
+npx -y -p inisiasi inisiasi recommend "Tauri desktop app"
+npx -y -p inisiasi inisiasi inspect_plan .
+npx -y -p inisiasi inisiasi validate_docs .
 ```
 
 ## Tools
