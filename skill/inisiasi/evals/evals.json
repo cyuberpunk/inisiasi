@@ -24,11 +24,13 @@
       "files": [],
       "assertions": [
         "Writes docs/PLAN.md",
-        "Asks at most 3 questions, each with a recommended answer; zero questions passes when it states what it settled and how",
+        "Asks at most 3 questions in total before the proposal, each with a recommended answer, using the host interactive question tool when one is available; zero questions passes when it states what it settled and how",
         "Labels any stack shown as provisional while a question is still open",
         "Does not write ARCHITECTURE.md or TASKS.md",
         "Writes no application code and makes no commit before go",
         "Stops and waits for go",
+        "Keeps chat replies short: decisions with one-line reasons, with detail moved to docs",
+        "Defers questions that do not block the first spike by recording an assumption in PLAN instead of asking them upfront",
         "No em dash"
       ],
       "should_trigger": true
@@ -125,10 +127,11 @@
       "expected_output": "Starts the inisiasi flow",
       "assertions": [
         "Writes or updates docs/PLAN.md",
-        "Asks at most 3 questions, each with a recommended answer",
+        "Asks at most 3 questions in total before the proposal, each with a recommended answer, using the host interactive question tool when one is available",
         "Labels any stack shown as provisional until the plan gate closes",
         "Does not write ARCHITECTURE.md or TASKS.md",
         "Writes no application code and makes no commit before go",
+        "Keeps chat replies short: decisions with one-line reasons, with detail moved to docs",
         "No em dash"
       ],
       "files": [],
@@ -168,13 +171,32 @@
       "expected_output": "Starts inisiasi in plain Indonesian: drafts docs/PLAN.md, asks at most 3 questions each with a recommended answer in plain words, explains any stack it shows in one plain sentence per part, and stops before ARCHITECTURE, TASKS or GUIDE.",
       "assertions": [
         "Writes or updates docs/PLAN.md",
-        "Asks at most 3 questions, each with a recommended answer",
+        "Asks at most 3 questions in total before the proposal, each with a recommended answer, using the host interactive question tool when one is available",
         "Explains each technical term it uses in plain words, or avoids jargon",
         "Does not write ARCHITECTURE.md, TASKS.md or GUIDE.md before go",
         "Writes no application code and makes no commit before go",
+        "Keeps chat replies short: decisions with one-line reasons, with detail moved to docs",
         "No em dash"
       ],
       "files": [],
+      "should_trigger": true
+    },
+    {
+      "id": 13,
+      "name": "defer-nonblocking-questions",
+      "prompt": "inisiasi. new project: a paid macOS app that locks folders, sold outside the app store, with encryption, a license server, a website, and auto-updates. PLAN.md is empty.",
+      "expected_output": "Drafts docs/PLAN.md, settles what defaults can settle, asks at most 3 questions in total (the ones that block the first spike, such as the distribution or signing constraint), and defers the rest by recording assumptions in PLAN tagged with the task they belong to. Replies stay short and plain. Does not write ARCHITECTURE.md or TASKS.md before go.",
+      "files": [],
+      "assertions": [
+        "Writes docs/PLAN.md",
+        "Asks at most 3 questions in total before the proposal, each with a recommended answer, using the host interactive question tool when one is available",
+        "Defers questions that do not block the first spike by recording an assumption in PLAN instead of asking them upfront",
+        "Keeps chat replies short: decisions with one-line reasons, with detail moved to docs",
+        "Glosses or avoids technical jargon in chat",
+        "Does not write ARCHITECTURE.md or TASKS.md before go",
+        "Writes no application code and makes no commit before go",
+        "No em dash"
+      ],
       "should_trigger": true
     }
   ]

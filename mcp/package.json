@@ -1,6 +1,6 @@
 {
   "name": "inisiasi",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "GPL-3.0-or-later",
   "description": "Local MCP server for inisiasi, which turns PLAN.md into a decided stack, architecture, first tasks, and the skills to install.",
   "keywords": [

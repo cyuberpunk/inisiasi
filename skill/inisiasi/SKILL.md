@@ -13,8 +13,16 @@ The owner's time is the scarce thing. Every question you ask costs a round trip,
 
 Owners range from people who have never coded to developers who are new to the chosen stack. Judge the level from how they write: jargon, code, or questions like "what is a database". If it is still unclear, ask once, in one line, together with any other questions.
 
-- Non-technical or new to the stack: explain each decision in one plain sentence (what it is, why it fits, what it means for them). Explain every technical term the first time you use it, or point to the glossary in `docs/GUIDE.md`. Keep the technical detail in the docs, not in the reply.
+- Non-technical or new to the stack: explain each decision in one plain sentence (what it is, why it fits, what it means for them). Keep the technical detail in the docs, not in the reply.
 - Experienced: stay terse.
+
+## How you reply
+
+The chat is for deciding; the docs are for detail. An owner who has to scroll through screens of analysis in chat cannot find the two things that matter: what you recommend and what you need from them.
+
+- **Short replies.** One decision, one line of reasoning, move on. Tables of evidence, the full alternatives analysis, command output, and proofs go in `docs/` or the worklog, never in chat. If a reply is growing past two screens, that is the signal to move detail into a doc and link it.
+- **Glossed jargon.** Every technical term in chat carries a short plain gloss the first time it appears ("notarization, Apple's malware scan for apps"), or it does not appear at all. Bare jargon lives in the docs and the `docs/GUIDE.md` glossary.
+- **Clickable questions.** When the host has an interactive question tool (clickable options), use it instead of listing a/b/c choices in chat. An owner typing letters by hand is a sign you skipped it. One question per round is fine when the answers are independent; batch only what one decision needs.
 
 ## Paths
 
@@ -37,7 +45,7 @@ Owners range from people who have never coded to developers who are new to the c
 
     1. Already answered in this conversation: write it into PLAN, settled.
     2. Settled by an SoT default or platform convention: decide, write it into PLAN, label it as your decision.
-    3. Otherwise a real question: collect at most 3 in one message, each with your recommended answer, and stop. If you show a stack while questions are open, label it provisional in its first line.
+    3. Otherwise a real question. Ask at most 3 **in total** before the proposal, each with your recommended answer, through the host's interactive question tool when it has one. Everything else is **deferred**: write the assumption you are going with into PLAN under Open questions, tagged with the task it belongs to, and ask it when that task starts. A question that does not block the first spike costs the owner attention now for a decision that can still be changed cheaply later. Stop after asking. If you show a stack while questions are open, label it provisional in its first line.
 
     If nothing is left open, say in one line what you settled and how, then continue to step 2 in the same turn. "run", "lanjut", "go", "repo is ready" mean proceed, not a question round. Back up PLAN before writing it. Details and PLAN format: `references/plan-gate.md`.
 
@@ -71,7 +79,7 @@ inisiasi keeps working after kickoff, only on a trigger: PLAN, TASKS or selera c
 
 ## Rules
 
-- Decide. Do not present menus: one choice, one rejected alternative, and its risk. Ask only product or taste calls that nothing else can settle.
+- Decide. Do not present menus: one choice, one rejected alternative, and its risk. A menu is a list of options with no recommendation; a question with concrete options **and your recommendation marked** is not a menu, it is how you ask what only the owner can answer. Ask only product or taste calls that nothing else can settle.
 - The owner's stack choice wins, except for a part listed under Avoid. When the owner asks for something listed under Avoid, use the SoT alternative instead and give the Avoid reason in one line. Use the requested tool only if the owner confirms after hearing the reason, and then record it in ARCHITECTURE as a named deviation with that reason.
 - No speculative infra (queues, microservices, k8s) unless a goal needs it.
 - Terse for experienced owners, plain and short for beginners. No em dashes.
